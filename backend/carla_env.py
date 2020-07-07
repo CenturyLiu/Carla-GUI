@@ -25,7 +25,8 @@ import carla
 import matplotlib.pyplot as plt
 import numpy as np
 from collections import deque
-
+from configobj import ConfigObj
+import math
 
 # color for debug use
 red = carla.Color(255, 0, 0)
@@ -79,6 +80,9 @@ class CARLA_ENV():
         self.config_env()
         #self.synchrony = synchrony
         #self.delta_seconds = delta_seconds
+        
+        self.distance_between_vehicles = ConfigObj() # store the distance between vehicles
+        
         
     def config_env(self, synchrony = False, delta_seconds = 0.02):
 
@@ -225,6 +229,94 @@ class CARLA_ENV():
         yaw = transform.rotation.yaw
         
         return (location_2d,yaw)
+    
+    def update_vehicle_distance(self):
+        '''
+        Update the distance between each 2 vehicles
+        This function should be called each world.tick()
+
+        Returns
+        -------
+        None.
+
+        '''
+        self.distance_between_vehicles.reset() # reset the configuration file each update
+        
+        # get all available vehicles
+        vehicle_uniquenames = []
+        for name in self.vehicle_dict:
+            vehicle_uniquenames.append(name)
+            self.distance_between_vehicles[name] = {} # create empty storage
+            
+        for ii in range(len(vehicle_uniquenames)):
+            for jj in range(ii,len(vehicle_uniquenames)):
+                name_1 = vehicle_uniquenames[ii]
+                name_2 = vehicle_uniquenames[jj]
+                if name_1 == name_2:
+                    self.distance_between_vehicles[name_1][name_2] = 0.0 # distance with itself, 0.0
+                else:
+                    vehicle_1 = self.vehicle_dict[name_1]
+                    vehicle_2 = self.vehicle_dict[name_2]
+                    location_1 = vehicle_1.get_transform().location
+                    location_2 = vehicle_2.get_transform().location
+                    distance = math.sqrt((location_1.x - location_2.x)**2 + (location_1.y - location_2.y)**2)
+                    self.distance_between_vehicles[name_1][name_2] = distance
+                    self.distance_between_vehicles[name_2][name_1] = distance
+                    
+    def check_vehicle_in_front(self, uniquename, safety_distance):
+        '''
+        
+
+        Parameters
+        ----------
+        uniquename : str
+            name of the vehicle.
+            
+        safety_distance: float
+            allowed closest distance between two vehicles
+
+        Returns
+        -------
+        has_vehicle_in_front : bool
+            whether there exists a vehicle within safety distance
+        distance: float
+            distance between this vehicle and the vehicle in the front
+
+        '''
+        # get the distance between this vehicle and other vehicles
+        distance_with_other_vehicle = self.distance_between_vehicles[uniquename]
+        
+        # get the bounding box of this vehicle
+        vehicle_bb = self.vehicle_dict[uniquename].bounding_box.extent
+        safety_distance += vehicle_bb.x / 2 # add the half length of the vehicle
+        
+        has_vehicle_in_front = False
+        distance = None
+        
+        vehicle_1 = self.vehicle_dict[uniquename]
+        location_1 = vehicle_1.get_transform().location
+        forward_vector = vehicle_1.get_transform().get_forward_vector()
+        
+        for name in distance_with_other_vehicle:
+            if name != uniquename and distance_with_other_vehicle[name] < safety_distance and name in self.vehicle_dict: # a possible vehicle
+                location_2 = self.vehicle_dict[name].get_transform().location
+                vec1_2 = np.array([location_2.x - location_1.x, location_2.y - location_1.y])
+                forward_vector_2d = np.array([forward_vector.x, forward_vector.y])
+                
+                norm_vec1_2 = vec1_2 / np.linalg.norm(vec1_2)
+                norm_forward_vector_2d = forward_vector_2d / np.linalg.norm(forward_vector_2d)
+                dot_product = np.dot(norm_vec1_2,norm_forward_vector_2d)
+                angle = np.arccos(dot_product)
+                
+                if angle < np.arctan(vehicle_bb.y / vehicle_bb.x): # angle smaller than 45 degrees, indicating a vehicle in the front
+                    has_vehicle_in_front = True
+                    distance = np.dot(vec1_2,forward_vector_2d)
+                    break
+            
+        return has_vehicle_in_front, distance
+        
+        
+
     
     def get_traffic_light_state(self, uniquename):
         '''

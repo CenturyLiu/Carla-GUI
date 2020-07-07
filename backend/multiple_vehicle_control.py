@@ -52,6 +52,7 @@ class VehicleControl(object):
         self.ref_speed_list = self.vehicle_config["ref_speed_list"]
         self.obey_traffic_lights = self.vehicle_config["obey_traffic_lights"]
         self.run = self.vehicle_config["run"]
+        self.safety_distance = self.vehicle_config["safety_distance"]
         
         # discrete step time
         self.delta_seconds = delta_seconds
@@ -270,11 +271,15 @@ class VehicleControl(object):
         self.index = index
         steer = np.clip(delta,-1.0,1.0)
         
+        
+        # If vehicle has safety distance set, check whether a vehicle is in the front
+        current_ref_speed = self._obey_safety_distance(current_ref_speed)
+        
         # If vehicle obey traffic lights and is going straight / turning left, check the traffic light state
         current_ref_speed = self._obey_traffic_light(current_ref_speed)
         
-        if self.debug_vehicle:
-            print("current_ref_speed == ",current_ref_speed)
+        #if self.debug_vehicle:
+        #    print("current_ref_speed == ",current_ref_speed)
         
         self.ref_speeds.append(current_ref_speed)
         self.reference_speed.append(current_ref_speed)
@@ -311,11 +316,19 @@ class VehicleControl(object):
         
         # check light state
         state = self.env.get_traffic_light_state(self.model_uniquename)
-        print(state)
+        
         if state == carla.TrafficLightState.Red or state == carla.TrafficLightState.Yellow:
             return 0.0 # stop the car immediately
         
         return current_ref_speed # obey light and light is green
+    
+    def _obey_safety_distance(self, current_ref_speed):
+        
+        has_vehicle_in_front, distance = self.env.check_vehicle_in_front(self.model_uniquename, self.safety_distance)
+        if has_vehicle_in_front: 
+            return 0.0
+        
+        return current_ref_speed
     
     def _destroy_vehicle(self):
         self.env.destroy_vehicle(self.model_uniquename)
@@ -324,6 +337,10 @@ def multiple_vehicle_control(env,intersection_list):
     vehicle_list = []
     while True:
         env.world.tick()
+        
+        # update the distance between vehicles after each tick
+        env.update_vehicle_distance()
+        
         for ii in range(len(intersection_list)-1,-1,-1):
             if intersection_list[ii].start_sim:
                 for vehicle_config in intersection_list[ii].subject_vehicle:
@@ -381,8 +398,8 @@ def main():
         world.set_weather(weather)
         
         # set the spectator position for demo purpose
-        #spectator = world.get_spectator()
-        #spectator.set_transform(carla.Transform(carla.Location(x=26.6, y=1.29, z=75.0), carla.Rotation(pitch=-88.0, yaw= -1.85, roll=1.595))) # top view of intersection
+        spectator = world.get_spectator()
+        spectator.set_transform(carla.Transform(carla.Location(x=26.6, y=1.29, z=75.0), carla.Rotation(pitch=-88.0, yaw= -1.85, roll=1.595))) # top view of intersection
         
         env = CARLA_ENV(world) 
         time.sleep(2) # sleep for 2 seconds, wait the initialization to finish
@@ -395,20 +412,20 @@ def main():
         world_pos = (25.4,0.0)
         
         intersection1 = Intersection(env, world_pos, traffic_light_list)
-        #intersection1.add_vehicle(run = True)
+        intersection1.add_vehicle(obey_traffic_lights = False)
         
-        #intersection1.add_vehicle(command = "left",run = True)
-        #intersection1.add_vehicle(command = "right",run = True)
+        intersection1.add_vehicle(command = "left", obey_traffic_lights = False)
+        intersection1.add_vehicle(command = "right", obey_traffic_lights = False)
         
-        intersection1.add_vehicle(gap = 5,choice = "left")
-        #intersection1.add_vehicle(gap = 5, choice = "left",command = "right", run = True)
-        #intersection1.add_vehicle(gap = 5,choice = "left",command = "left",run=True)
-        #intersection1.add_vehicle(choice = "right")
-        #intersection1.add_vehicle(choice = "right",command = "left",run = True)
-        #intersection1.add_vehicle(gap = 10.0,choice = "right",command = "right",run=True)
-        #intersection1.add_vehicle(choice = "ahead",run = True)
-        #intersection1.add_vehicle(choice = "ahead",command = "right",run = True)
-        #intersection1.add_vehicle(choice = "ahead",command = "left",run = True)
+        intersection1.add_vehicle(gap = 5,choice = "left", obey_traffic_lights = False)
+        intersection1.add_vehicle(gap = 5, choice = "left",command = "right", obey_traffic_lights = False)
+        intersection1.add_vehicle(gap = 5,choice = "left",command = "left", obey_traffic_lights = False)
+        intersection1.add_vehicle(choice = "right", obey_traffic_lights = False)
+        intersection1.add_vehicle(choice = "right",command = "left", obey_traffic_lights = False)
+        intersection1.add_vehicle(gap = 10.0,choice = "right",command = "right", obey_traffic_lights = False)
+        intersection1.add_vehicle(choice = "ahead", obey_traffic_lights = False)
+        intersection1.add_vehicle(choice = "ahead",command = "right", obey_traffic_lights = False)
+        intersection1.add_vehicle(choice = "ahead",command = "left", obey_traffic_lights = False)
         
         intersection1.start_simulation()
         

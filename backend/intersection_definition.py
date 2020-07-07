@@ -362,7 +362,7 @@ class Intersection():
             self.env.world.debug.draw_point(self.right_lane_ref.transform.location,size = 0.2, color = blue, life_time=0.0, persistent_lines=True)
             self.env.world.debug.draw_point(self.ahead_lane_ref.transform.location,size = 0.2, color = red, life_time=0.0, persistent_lines=True)
         
-    def add_vehicle(self,gap = 10.0,model_name = "vehicle.tesla.model3",choice = "subject", command = "straight", obey_traffic_lights = True, run = False):    
+    def add_vehicle(self,gap = 10.0,model_name = "vehicle.tesla.model3",choice = "subject", command = "straight", obey_traffic_lights = True, run = True, safety_distance = 15.0):    
         '''
         
 
@@ -389,6 +389,7 @@ class Intersection():
         vehicle["command"] = command
         vehicle["obey_traffic_lights"] = obey_traffic_lights
         vehicle["run"] = run
+        vehicle["safety_distance"] = safety_distance
         
         if choice == "subject":
             ref_waypoint = self.subject_lane_ref
