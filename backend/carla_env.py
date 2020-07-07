@@ -225,6 +225,29 @@ class CARLA_ENV():
         yaw = transform.rotation.yaw
         
         return (location_2d,yaw)
+    
+    def get_traffic_light_state(self, uniquename):
+        '''
+        
+
+        Parameters
+        ----------
+        uniquename : str
+            name of the vehicle..
+
+        Returns
+        -------
+        The traffic light state corresponding to this vehicle.
+        If no traffic light available, return None
+
+        '''
+        vehicle = self.vehicle_dict[uniquename]
+        state = None
+        if vehicle.is_at_traffic_light():
+            light = vehicle.get_traffic_light()
+            state = light.get_state()
+            
+        return state
         
     def draw_waypoints(self, trajectory, points):
         '''

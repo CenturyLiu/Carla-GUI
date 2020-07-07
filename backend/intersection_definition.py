@@ -36,7 +36,7 @@ START1 = -12.5
 START2 = -16.0
 
 # right shift from the center of the lane when spawning
-RIGHT_SHIFT = 1.6
+RIGHT_SHIFT = 1.6 # 0.0 if requirements changed to spawn in the middle of the lane#
 
 def get_traffic_lights(actor_list):
     # get all the available traffic lights
@@ -362,7 +362,7 @@ class Intersection():
             self.env.world.debug.draw_point(self.right_lane_ref.transform.location,size = 0.2, color = blue, life_time=0.0, persistent_lines=True)
             self.env.world.debug.draw_point(self.ahead_lane_ref.transform.location,size = 0.2, color = red, life_time=0.0, persistent_lines=True)
         
-    def add_vehicle(self,gap = 10.0,model_name = "vehicle.tesla.model3",choice = "subject", command = "straight", run = False):    
+    def add_vehicle(self,gap = 10.0,model_name = "vehicle.tesla.model3",choice = "subject", command = "straight", obey_traffic_lights = True, run = False):    
         '''
         
 
@@ -387,6 +387,7 @@ class Intersection():
         vehicle["model"] = model_name
         
         vehicle["command"] = command
+        vehicle["obey_traffic_lights"] = obey_traffic_lights
         vehicle["run"] = run
         
         if choice == "subject":
@@ -410,6 +411,13 @@ class Intersection():
             
             right_shift_value = right_shift_value #- bb.y / 2
             gap += bb.x
+        
+        else:
+            if gap < 10.0:
+                gap = 10.0 # add a constraint to the gap between the first vehicle and the lane 
+                           # reference point. Add a vehicle too close to reference point
+                           # will lead to vehicle not detecting the traffic light
+                           
         
         # use the original reference point to get the new reference point
         # reference point is in the middle of the lane
