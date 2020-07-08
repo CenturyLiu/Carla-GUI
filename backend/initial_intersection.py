@@ -319,7 +319,7 @@ def get_ego_spectator(ego_transform,distance = -10):
         forward_vector = ego_transform.get_forward_vector()
 
         location = ego_transform.location
-        spectator_location = carla.Location(x = location.x + distance * forward_vector.x  , y = location.y + distance * forward_vector.y , z = location.z + 2.0)
+        spectator_location = carla.Location(x = location.x + distance * forward_vector.x  , y = location.y + distance * forward_vector.y , z = location.z + 5.0)
         spectator_transform = carla.Transform(spectator_location,ego_transform.rotation)
         
         return spectator_transform
@@ -376,9 +376,11 @@ def IntersectionBackend(env,intersection_list):
         if env.vehicle_available(spectator_vehicle["uniquename"]):
             spectator_vehicle_transform = env.get_transform_3d(spectator_vehicle["uniquename"])
             spectator_transform = get_ego_spectator(spectator_vehicle_transform,distance = -10)
-        else:
-            spectator_transform = carla.Transform(carla.Location(x= 25.4, y=1.29, z=75.0), carla.Rotation(pitch=-88.0, yaw= -1.85, roll=1.595))
-        spectator.set_transform(spectator_transform)
+            spectator.set_transform(spectator_transform)
+        
+        #else:
+        #    spectator_transform = carla.Transform(carla.Location(x= 25.4, y=1.29, z=75.0), carla.Rotation(pitch=-88.0, yaw= -1.85, roll=1.595))
+        #spectator.set_transform(spectator_transform)
         
         
         for ii in range(len(intersection_list)-1,-1,-1):

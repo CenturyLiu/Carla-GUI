@@ -369,7 +369,9 @@ class CARLA_ENV():
                 dot_product = np.dot(norm_vec1_2,norm_forward_vector_2d)
                 angle = np.arccos(dot_product)
                 
-                if angle < np.arctan(vehicle_bb.y / vehicle_bb.x): # angle smaller than 45 degrees, indicating a vehicle in the front
+                
+                
+                if angle < np.arctan(vehicle_bb.y /  vehicle_bb.x):#np.arcsin((vehicle_bb.y  + 1) / distance_with_other_vehicle[name]):#np.arctan(vehicle_bb.y / vehicle_bb.x): 
                     has_vehicle_in_front = True
                     distance = np.dot(vec1_2,forward_vector_2d)
                     break

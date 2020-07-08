@@ -119,7 +119,7 @@ def get_trajectory(way_points):
     # Build a list of the spline function, one for each dimension:
     splines = [UnivariateSpline(distance, coords, k=3, s=.2) for coords in points.T]
     
-    alpha = np.linspace(0,1.02, 2 * len(distance))
+    alpha = np.linspace(0,1.0, 2 * len(distance))
     trajectory = np.vstack( [spl(alpha) for spl in splines] ).T
     
     

@@ -95,6 +95,9 @@ class VehicleControl(object):
         self.debug_vehicle = True # enable drawing vehicle trajectory
         self.vehicle_pose = deque(maxlen = 2)
         
+        # indication of whether the vehicle stops at traffic light
+        self.blocked_by_light = False
+        
     def _get_PI_controller(self):
         '''
         Effects: create a discrete state-space PI controller
@@ -279,7 +282,9 @@ class VehicleControl(object):
         current_ref_speed = self._obey_traffic_light(current_ref_speed)
         
         #if self.debug_vehicle:
+        #    print("--------")
         #    print("current_ref_speed == ",current_ref_speed)
+        #    print("current_speed ==",curr_speed)
         
         self.ref_speeds.append(current_ref_speed)
         self.reference_speed.append(current_ref_speed)
@@ -309,6 +314,8 @@ class VehicleControl(object):
     def _obey_traffic_light(self, current_ref_speed):
         # the vehicle should take traffic lights into account when it is required 
         # to obey lights and is going straight or turning left
+        self.blocked_by_light = False
+        
         if not self.obey_traffic_lights:
             return current_ref_speed
         if self.command == "right":
@@ -318,6 +325,9 @@ class VehicleControl(object):
         state = self.env.get_traffic_light_state(self.model_uniquename)
         
         if state == carla.TrafficLightState.Red or state == carla.TrafficLightState.Yellow:
+            # add an indication that the vehicle is blocked by the traffic light
+            self.blocked_by_light = True
+            
             return 0.0 # stop the car immediately
         
         return current_ref_speed # obey light and light is green
