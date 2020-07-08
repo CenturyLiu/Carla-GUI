@@ -230,6 +230,26 @@ class CARLA_ENV():
         velocity = vehicle.get_velocity()
         return (velocity.x ** 2 + velocity.y ** 2 + velocity.z ** 2)**0.5
     
+    def vehicle_available(self, uniquename):
+        '''
+        check whether the vehicle exists
+
+        Parameters
+        ----------
+        uniquename : str
+            name of the vehicle.
+
+        Returns
+        -------
+        exists : bool
+            whether the vehicle exists
+
+        '''
+        if uniquename in self.vehicle_dict:
+            return True
+        else:
+            return False
+    
     def get_transform_2d(self, uniquename):
         '''
         
@@ -250,6 +270,26 @@ class CARLA_ENV():
         yaw = transform.rotation.yaw
         
         return (location_2d,yaw)
+    
+    def get_transform_3d(self, uniquename):
+        '''
+        
+
+        Parameters
+        ----------
+        uniquename : str
+            name of the vehicle.
+
+        Returns
+        -------
+        3d transform of the vehicle
+
+        '''
+        vehicle = self.vehicle_dict[uniquename]
+        transform = vehicle.get_transform()
+        
+        
+        return transform
     
     def update_vehicle_distance(self):
         '''

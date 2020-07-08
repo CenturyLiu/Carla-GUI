@@ -430,7 +430,7 @@ def main():
         intersection1._shift_vehicles(-10,index = 1)
         
         
-        intersection1.start_simulation()
+        intersection1.start_sim = True
         
         intersection_list.append(intersection1)
         

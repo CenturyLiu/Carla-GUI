@@ -298,17 +298,92 @@ def create_intersections(env, number_of_intersections, traffic_light_list):
     init_intersection = Init_Intersection(env,world_pos_list[0],traffic_light_list,waypoint_list)
     intersection_list.insert(0,init_intersection)
     return intersection_list
-    
+
+
+def get_ego_spectator(ego_transform,distance = -10):
+        '''
+        
+
+        Parameters
+        ----------
+        ego_transform : carla.Transform
+            transform for the ego vehicle.
+        distance : float, optional
+            "distance" between  ego vehicle and spectator. The default is -10.
+
+        Returns
+        -------
+        next_waypoint : carla.Waypoint
+            next waypoint, "distance" away from curr_waypoint, in the direction of the current way point
+        '''
+        forward_vector = ego_transform.get_forward_vector()
+
+        location = ego_transform.location
+        spectator_location = carla.Location(x = location.x + distance * forward_vector.x  , y = location.y + distance * forward_vector.y , z = location.z + 2.0)
+        spectator_transform = carla.Transform(spectator_location,ego_transform.rotation)
+        
+        return spectator_transform
 
 def IntersectionBackend(env,intersection_list):
     vehicle_list = []
+    started_intersection_list = []
+    ego_vehicle = intersection_list[0].ego_vehicle #init_intersection.ego_vehicle
+    lead_vehicle = intersection_list[0].lead_vehicle
+    follow_vehicle = intersection_list[0].follow_vehicle
+    
+    spectator = env.world.get_spectator()
+    
+    # assign the first full path vehicle, to determine whether 
+    # each intersection should start
+    if not lead_vehicle == None:
+        first_full_path_vehicle_name = lead_vehicle["uniquename"]
+    else:
+        first_full_path_vehicle_name = ego_vehicle["uniquename"]
+    
+    # assign the vehicle for the spectator to follow
+    if follow_vehicle != None:
+        spectator_vehicle = follow_vehicle
+    else:
+        spectator_vehicle = ego_vehicle
+    # get the init intersection
+    init_intersection = intersection_list.pop(0)
+    
+    for vehicle_config in init_intersection.subject_vehicle:
+        # initialize vehicles by different type (ego,lead,follow,other)
+        vehicle = VehicleControl(env, vehicle_config, env.delta_seconds)
+        vehicle_list.append(vehicle)
+    
+    for vehicle_config in init_intersection.left_vehicle:
+        vehicle = VehicleControl(env, vehicle_config, env.delta_seconds)
+        vehicle_list.append(vehicle)
+                    
+    for vehicle_config in init_intersection.right_vehicle:
+        vehicle = VehicleControl(env, vehicle_config, env.delta_seconds)
+        vehicle_list.append(vehicle)
+        
+    for vehicle_config in init_intersection.ahead_vehicle:
+        vehicle = VehicleControl(env, vehicle_config, env.delta_seconds)
+        vehicle_list.append(vehicle)
+    
+    
     while True:
         env.world.tick()
         
         # update the distance between vehicles after each tick
         env.update_vehicle_distance()
         
+        # update the ego spectator
+        if env.vehicle_available(spectator_vehicle["uniquename"]):
+            spectator_vehicle_transform = env.get_transform_3d(spectator_vehicle["uniquename"])
+            spectator_transform = get_ego_spectator(spectator_vehicle_transform,distance = -10)
+        else:
+            spectator_transform = carla.Transform(carla.Location(x= 25.4, y=1.29, z=75.0), carla.Rotation(pitch=-88.0, yaw= -1.85, roll=1.595))
+        spectator.set_transform(spectator_transform)
+        
+        
         for ii in range(len(intersection_list)-1,-1,-1):
+            # check whether the intersection should start
+            intersection_list[ii].start_simulation(first_full_path_vehicle_name)
             if intersection_list[ii].start_sim:
                 for vehicle_config in intersection_list[ii].subject_vehicle:
                     vehicle = VehicleControl(env, vehicle_config, env.delta_seconds)
@@ -325,8 +400,10 @@ def IntersectionBackend(env,intersection_list):
                 for vehicle_config in intersection_list[ii].ahead_vehicle:
                     vehicle = VehicleControl(env, vehicle_config, env.delta_seconds)
                     vehicle_list.append(vehicle)
-                    
-                intersection_list.pop(ii)
+                
+                # move the intersection to started intersection list
+                intersection = intersection_list.pop(ii)
+                started_intersection_list.append(intersection)
                 
         if len(vehicle_list) == 0:
             break        
@@ -370,6 +447,21 @@ def main():
         init_intersection.add_vehicle(choice = "right",command="left")
         init_intersection.add_vehicle(choice = "ahead",command="left")
         init_intersection.add_vehicle(choice = "ahead",command = "right")
+        
+        intersection_list[1].add_vehicle(choice = "ahead")
+        intersection_list[1].add_vehicle(choice = "left",command="left")
+        intersection_list[1].add_vehicle(choice = "right",command = "left")
+        intersection_list[1].add_vehicle(choice = "right",command = "right")
+        intersection_list[1]._shift_vehicles(-10, choice = "right",index = 0)
+        
+        intersection_list[2].add_vehicle(choice = "ahead")
+        intersection_list[2].add_vehicle(choice = "left",command="left")
+        intersection_list[2].add_vehicle(choice = "right",command = "left")
+        intersection_list[2].add_vehicle(choice = "right",command = "right")
+        
+        intersection_list[3].add_vehicle(command = "left")
+        intersection_list[3].add_vehicle()
+        
         
         IntersectionBackend(env,intersection_list)
     finally:

@@ -146,7 +146,7 @@ def get_trajectory(way_points):
     return trajectory, ref_speed_list
 
 class Intersection():
-    def __init__(self, env, world_pos, traffic_light_list, distance = 75.0, yaw = 0.0):
+    def __init__(self, env, world_pos, traffic_light_list, distance = 75.0, yaw = 0.0, start_sim_distance = 40):
         '''
         
 
@@ -183,12 +183,37 @@ class Intersection():
         self.right_vehicle = []
         self.ahead_vehicle = []
         
+        self.start_sim_distance = start_sim_distance
         self.start_sim = False # whether the simulation at this intersection should start or not
         
         self.DEBUG_TRAJECTORY = True
         
-    def start_simulation(self):
-        self.start_sim = True
+    def start_simulation(self, full_path_vehicle_name):
+        '''
+        check whether the first full path vehicle is within this intersection
+
+        Parameters
+        ----------
+        full_path_vehicle_name : string
+            uniquename of the first full path vehicle (i.e. lead if lead exists, otherwise ego)
+
+        Returns
+        -------
+        None.
+
+        '''
+        full_path_vehicle_transform = self.env.get_transform_2d(full_path_vehicle_name)
+        full_path_vehicle_location = full_path_vehicle_transform[0] # 2d location of the vehicle
+        ref_waypoint = self.subject_lane_ref
+        ref_location = ref_waypoint.transform.location
+        distance = math.sqrt((ref_location.x - full_path_vehicle_location[0])**2 + (ref_location.y - full_path_vehicle_location[1])**2 )
+       
+        # start simulation if distance between the vehicle and the reference point is within 
+        # the pre-set start_sim_distance
+        if distance < self.start_sim_distance:
+            self.start_sim = True
+        
+        
         
     def _get_local_traffic_lights(self, world_pos,traffic_light_list):
         '''
@@ -267,7 +292,7 @@ class Intersection():
                     norm_forward_vector_2d = forward_vector_2d / np.linalg.norm(forward_vector_2d)
                     dot_product = np.dot(norm_vec1_2,norm_forward_vector_2d)
                     angle = np.arccos(dot_product)
-                    print(angle)
+                    
                     
                     if angle < np.pi / 12: # angle within 15 degrees
                         other_light_location = another_light_location
@@ -276,8 +301,6 @@ class Intersection():
                     
             distance = math.sqrt((light_location.x - other_light_location.x)**2 + (light_location.y - other_light_location.y)**2)
             
-            
-            print(distance)
             
             if distance < 25: # 4 lanes inside
                 END1 = -6.5#-5.5
