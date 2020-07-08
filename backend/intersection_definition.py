@@ -30,10 +30,10 @@ white = carla.Color(255, 255, 255)
 
 
 # distance of lane points from traffic light
-END1 = -5.5
+END1 = -6.5#-5.5
 END2 = -9.0
 START1 = -12.5
-START2 = -16.0
+START2 = -15.5#-15.5#-16.0
 
 # right shift from the center of the lane when spawning
 RIGHT_SHIFT = 1.6 # 0.0 if requirements changed to spawn in the middle of the lane#
@@ -183,6 +183,8 @@ class Intersection():
         
         self.start_sim = False # whether the simulation at this intersection should start or not
         
+        self.DEBUG_TRAJECTORY = True
+        
     def start_simulation(self):
         self.start_sim = True
         
@@ -316,11 +318,11 @@ class Intersection():
         for pt in self.into_lane_points:
             pt_yaw = pt.transform.rotation.yaw % 360
             relative_yaw = (pt_yaw - self.yaw) % 360
-            if abs(relative_yaw - 0) < max_angle_dev:
+            if abs(relative_yaw - 0) < max_angle_dev or abs(relative_yaw - 360) < max_angle_dev:
                 self.ahead_in.append(pt)
                 self._debug_lane_point(pt,green)
                 
-            elif abs(relative_yaw - 90) < max_angle_dev or abs(relative_yaw - 360) < max_angle_dev:
+            elif abs(relative_yaw - 90) < max_angle_dev :
                 self.right_in.append(pt)
                 self._debug_lane_point(pt,blue)
                 
@@ -426,7 +428,7 @@ class Intersection():
         forward_vector = ref_waypoint.transform.get_forward_vector()
 
         location = ref_waypoint.transform.location
-        raw_spawn_point = carla.Location(x = location.x - gap * forward_vector.x  , y = location.y - gap * forward_vector.y , z = 10.0)
+        raw_spawn_point = carla.Location(x = location.x - gap * forward_vector.x  , y = location.y - gap * forward_vector.y , z = location.z + 1.0)
         
         new_ref_waypoint = self.carla_map.get_waypoint(raw_spawn_point)
         
@@ -438,7 +440,7 @@ class Intersection():
         
         new_location = new_ref_waypoint.transform.location
         
-        spawn_location = carla.Location(x = new_location.x - right_shift_value * right_vector[0], y = new_location.y -  right_shift_value * right_vector[1], z = new_location.z + 1.0)
+        spawn_location = carla.Location(x = new_location.x - right_shift_value * right_vector[0], y = new_location.y -  right_shift_value * right_vector[1], z = new_location.z + 0.1)
         spawn_rotation = new_ref_waypoint.transform.rotation
         
         uniquename = self.env.spawn_vehicle(model_name = model_name,spawn_point = carla.Transform(spawn_location,spawn_rotation)) 
@@ -457,9 +459,78 @@ class Intersection():
         
         new_bb = self.env.get_vehicle_bounding_box(uniquename)
         vehicle["bounding_box"] = new_bb
-        
+        vehicle["vehicle_type"] = "other"
         vehicle_set.append(vehicle)
+    
+    def _shift_vehicles(self, length, choice = "subject", index = 0):
+        '''
+        shift the location of a list of vehicles
         
+        **note: for ego/lead/follow type, the path is not generated**
+
+        Parameters
+        ----------
+        length : float
+            the length we want to shift all the vehicles
+        choice : string, optional
+            the lane this vehicle will be added, valid values: "subject", "left", "right", "ahead". The default is "subject". 
+        index : int, optional
+            the index of the vehicle that shifting. The default is 0.
+
+        Returns
+        -------
+        None.
+
+        '''
+        right_shift_value = RIGHT_SHIFT
+        
+        if choice == "subject":
+            #ref_waypoint = self.subject_lane_ref
+            vehicle_set = self.subject_vehicle
+        elif choice == "left":
+            #ref_waypoint = self.left_lane_ref
+            vehicle_set = self.left_vehicle
+        elif choice == "ahead":
+            #ref_waypoint = self.ahead_lane_ref
+            vehicle_set = self.ahead_vehicle
+        elif choice == "right":
+            #ref_waypoint = self.right_lane_ref
+            vehicle_set = self.right_vehicle
+            
+        #if index != 0:
+        #    ref_waypoint = vehicle_set[index - 1]["ref_waypoint"]
+            
+        # shifting the vehicles in reverse order
+        for ii in range(len(vehicle_set) - 1,index - 1,-1):
+            vehicle = vehicle_set[ii]
+            new_ref_waypoint = self._get_next_waypoint(vehicle["ref_waypoint"],distance = length)
+        
+            ref_yaw = new_ref_waypoint.transform.rotation.yaw
+        
+            right_vector = self._get_unit_right_vector(ref_yaw)
+        
+            new_location = new_ref_waypoint.transform.location
+        
+            spawn_location = carla.Location(x = new_location.x - right_shift_value * right_vector[0], y = new_location.y -  right_shift_value * right_vector[1], z = new_location.z + 0.1)
+            spawn_rotation = new_ref_waypoint.transform.rotation
+            
+            # move the vehicle location
+            self.env.move_vehicle_location(vehicle["uniquename"],carla.Transform(spawn_location,spawn_rotation))
+            vehicle["ref_waypoint"] = new_ref_waypoint
+            vehicle["location"] = spawn_location
+            vehicle["rotation"] = spawn_rotation
+            
+            if vehicle["vehicle_type"] == "other":
+                command = vehicle["command"]
+                trajectory, ref_speed_list = self._generate_path(choice, command, new_ref_waypoint) # generate new trajectory
+                vehicle["trajectory"] = trajectory
+                vehicle["ref_speed_list"] = ref_speed_list
+                
+            
+        
+        
+        
+    
     def _get_unit_right_vector(self,yaw):
         # get the right vector
         right_yaw = (yaw + 270) % 360
@@ -537,7 +608,7 @@ class Intersection():
         
         smoothed_full_trajectory, ref_speed_list = get_trajectory(trajectory) 
         
-        if DEBUG_TRAJECTORY:
+        if self.DEBUG_TRAJECTORY:
             for ii in range(1,len(smoothed_full_trajectory)):
                 loc1 = carla.Location(x = smoothed_full_trajectory[ii - 1][0], y = smoothed_full_trajectory[ii - 1][1], z = 0.0)
                 loc2 = carla.Location(x = smoothed_full_trajectory[ii][0], y = smoothed_full_trajectory[ii][1], z = 0.0)
@@ -563,11 +634,16 @@ class Intersection():
         forward_vector = curr_waypoint.transform.get_forward_vector()
 
         location = curr_waypoint.transform.location
-        raw_spawn_point = carla.Location(x = location.x + distance * forward_vector.x  , y = location.y + distance * forward_vector.y , z = 10.0)
+        raw_spawn_point = carla.Location(x = location.x + distance * forward_vector.x  , y = location.y + distance * forward_vector.y , z = location.z + 0.1)
         
         next_waypoint = self.carla_map.get_waypoint(raw_spawn_point)
         return next_waypoint
         
+    def get_subject_waypoints(self):
+        first_waypoint = self.subject_lane_ref
+        second_waypoint = self.ahead_in[0]
+        third_waypoint = self._get_next_waypoint(second_waypoint,20)
+        return [first_waypoint,second_waypoint,third_waypoint]
 
         
 def main():

@@ -120,6 +120,27 @@ class CARLA_ENV():
         self.vehicle_dict[vehicle.type_id + '_' + str(vehicle.id)] = vehicle
         return vehicle.type_id + '_' + str(vehicle.id)
     
+    def move_vehicle_location(self, uniquename, spawn_point):
+        '''
+        
+
+        Parameters
+        ----------
+        uniquename : string
+            uniquename of a vehicle.
+        spawn_point :  carla.Transform()
+            new spawn point of the vehicle
+
+        Returns
+        -------
+        None.
+
+        '''
+        
+        
+        vehicle = self.vehicle_dict[uniquename]
+        vehicle.set_transform(spawn_point)
+    
     def destroy_vehicle(self, uniquename):
         if uniquename in self.vehicle_dict:
             self.vehicle_dict[uniquename].destroy() # destroy the vehicle in carla

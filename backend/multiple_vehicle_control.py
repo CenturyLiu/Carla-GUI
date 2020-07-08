@@ -399,7 +399,7 @@ def main():
         
         # set the spectator position for demo purpose
         spectator = world.get_spectator()
-        spectator.set_transform(carla.Transform(carla.Location(x=26.6, y=1.29, z=75.0), carla.Rotation(pitch=-88.0, yaw= -1.85, roll=1.595))) # top view of intersection
+        spectator.set_transform(carla.Transform(carla.Location(x=-133, y=1.29, z=75.0), carla.Rotation(pitch=-88.0, yaw= -1.85, roll=1.595))) # top view of intersection
         
         env = CARLA_ENV(world) 
         time.sleep(2) # sleep for 2 seconds, wait the initialization to finish
@@ -409,7 +409,7 @@ def main():
         intersection_list = []
         
         # intersection 1
-        world_pos = (25.4,0.0)
+        world_pos = (-133.0,0.0)#(25.4,0.0)
         
         intersection1 = Intersection(env, world_pos, traffic_light_list)
         intersection1.add_vehicle(obey_traffic_lights = False)
@@ -426,6 +426,9 @@ def main():
         intersection1.add_vehicle(choice = "ahead", obey_traffic_lights = False)
         intersection1.add_vehicle(choice = "ahead",command = "right", obey_traffic_lights = False)
         intersection1.add_vehicle(choice = "ahead",command = "left", obey_traffic_lights = False)
+        
+        intersection1._shift_vehicles(-10,index = 1)
+        
         
         intersection1.start_simulation()
         
