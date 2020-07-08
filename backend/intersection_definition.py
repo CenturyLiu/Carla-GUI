@@ -30,10 +30,12 @@ white = carla.Color(255, 255, 255)
 
 
 # distance of lane points from traffic light
+'''
 END1 = -6.5#-5.5
 END2 = -9.0
 START1 = -12.5
 START2 = -15.5#-15.5#-16.0
+'''
 
 # right shift from the center of the lane when spawning
 RIGHT_SHIFT = 1.6 # 0.0 if requirements changed to spawn in the middle of the lane#
@@ -233,6 +235,8 @@ class Intersection():
         self.carla_map = self.env.world.get_map()
         self.out_lane_points = []
         self.into_lane_points = []
+        
+        '''
         for light in self.local_traffic_lights:
             light_location = light.get_location()
             vector = light.get_transform().get_forward_vector()
@@ -248,23 +252,64 @@ class Intersection():
             self.out_lane_points.append(out_2)
             self.into_lane_points.append(into_1)
             self.into_lane_points.append(into_2)
-        
         '''
-        if DEBUG_INIT:
-            for pt in self.out_lane_points:
-                self.env.world.debug.draw_point(pt.transform.location,size = 0.1, color = green, life_time=0.0, persistent_lines=True)
-                forward_vector = pt.transform.get_forward_vector()
-                start = pt.transform.location
-                end = carla.Location(x = start.x + forward_vector.x, y = start.y + forward_vector.y, z = start.z + forward_vector.z)
-                self.env.world.debug.draw_arrow(start,end,thickness=0.1, arrow_size=0.2, color = green, life_time=0.0, persistent_lines=True)
-                
-            for pt in self.into_lane_points:
-                self.env.world.debug.draw_point(pt.transform.location,size = 0.1, color = red, life_time=0.0, persistent_lines=True)
-                forward_vector = pt.transform.get_forward_vector()
-                start = pt.transform.location
-                end = carla.Location(x = start.x + forward_vector.x, y = start.y + forward_vector.y, z = start.z + forward_vector.z)
-                self.env.world.debug.draw_arrow(start,end,thickness=0.1, arrow_size=0.2, color = red, life_time=0.0, persistent_lines=True)
-        '''
+        for ii in range(len(self.local_traffic_lights)):
+            light_location = self.local_traffic_lights[ii].get_location()
+            vector = self.local_traffic_lights[ii].get_transform().get_forward_vector()
+            for jj in range(len(self.local_traffic_lights)):
+                if jj != ii:
+                    # calculate the angle between the light's forward vector and 
+                    # the vector from this light to the other light
+                    another_light_location = self.local_traffic_lights[jj].get_location()
+                    vec1_2 = np.array([another_light_location.x - light_location.x, another_light_location.y - light_location.y])
+                    forward_vector_2d = np.array([-vector.x, -vector.y]) # the reverse direction of forward vector is what we need
+                    norm_vec1_2 = vec1_2 / np.linalg.norm(vec1_2)
+                    norm_forward_vector_2d = forward_vector_2d / np.linalg.norm(forward_vector_2d)
+                    dot_product = np.dot(norm_vec1_2,norm_forward_vector_2d)
+                    angle = np.arccos(dot_product)
+                    print(angle)
+                    
+                    if angle < np.pi / 12: # angle within 15 degrees
+                        other_light_location = another_light_location
+                        break
+                    
+                    
+            distance = math.sqrt((light_location.x - other_light_location.x)**2 + (light_location.y - other_light_location.y)**2)
+            
+            
+            print(distance)
+            
+            if distance < 25: # 4 lanes inside
+                END1 = -6.5#-5.5
+                END2 = -9.0
+                START1 = -12.5
+                START2 = -15.5#-15.5#-16.0
+            elif distance >= 25 and distance < 27:
+                # 6 lane road
+                END1 = -8.0#-5.5
+                END2 = -12.0
+                START1 = -16.0
+                START2 = -18.0#-15.5#-16.0
+            else:
+                # 6 lane road, wider
+                END1 = -9.0#-5.5
+                END2 = -12.0
+                START1 = -16.0
+                START2 = -20.0#-15.5#-16.0
+            
+            
+            end_1 = carla.Location(x = light_location.x + vector.x * END1,y = light_location.y + vector.y * END1, z = light_location.z + vector.z * END1) 
+            end_2 = carla.Location(x = light_location.x + vector.x * END2,y = light_location.y + vector.y * END2, z = light_location.z + vector.z * END2)
+            start_1 = carla.Location(x = light_location.x + vector.x * START1,y = light_location.y + vector.y * START1, z = light_location.z + vector.z * START1)
+            start_2 = carla.Location(x = light_location.x + vector.x * START2,y = light_location.y + vector.y * START2, z = light_location.z + vector.z * START2)
+            into_1 = self.carla_map.get_waypoint(end_1)
+            into_2 = self.carla_map.get_waypoint(end_2)
+            out_1 = self.carla_map.get_waypoint(start_1)
+            out_2 = self.carla_map.get_waypoint(start_2)
+            self.out_lane_points.append(out_1)
+            self.out_lane_points.append(out_2)
+            self.into_lane_points.append(into_1)
+            self.into_lane_points.append(into_2)
         
     def _yaw2vector(self):
         # get the direction vector of this intersection
@@ -661,12 +706,12 @@ def main():
         
         # set the spectator position for demo purpose
         spectator = world.get_spectator()
-        spectator.set_transform(carla.Transform(carla.Location(x=0.0, y=0.0, z=20.0), carla.Rotation(pitch=-31.07, yaw= -90.868, roll=1.595))) # plain ground
+        spectator.set_transform(carla.Transform(carla.Location(x=-133.0, y=1.29, z=75.0), carla.Rotation(pitch=-88.0, yaw= -1.85, roll=1.595))) # plain ground
         
         env = CARLA_ENV(world) 
         time.sleep(2) # sleep for 2 seconds, wait the initialization to finish
         
-        world_pos = (25.4,0.0)
+        world_pos = (-133.0,0.0)#(25.4,0.0)
         traffic_light_list = get_traffic_lights(world.get_actors())
         intersection1 = Intersection(env, world_pos, traffic_light_list)
         intersection1.add_vehicle()
