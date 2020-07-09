@@ -25,7 +25,7 @@ from multiple_vehicle_control import VehicleControl
 import copy
 
 from initial_intersection import Init_Intersection, create_intersections, get_ego_spectator
-from full_path_vehicle import LeadVehicleControl
+from full_path_vehicle import LeadVehicleControl, FollowVehicleControl
 
 
 def IntersectionBackend(env,intersection_list):
@@ -43,19 +43,22 @@ def IntersectionBackend(env,intersection_list):
         first_full_path_vehicle_name = lead_vehicle_config["uniquename"]
         
         lead_vehicle = LeadVehicleControl(env,lead_vehicle_config,env.delta_seconds)
-        ego_vehicle = VehicleControl(env, ego_vehicle_config, env.delta_seconds)
+        ego_vehicle = FollowVehicleControl(env, ego_vehicle_config, env.delta_seconds)
         end_lead = False
+        ego_vehicle.use_distance_mode(ego_vehicle_config["lead_distance"]) #use distance control mode with lead_distance
         
     else:
         first_full_path_vehicle_name = ego_vehicle_config["uniquename"]
-        ego_vehicle = VehicleControl(env, ego_vehicle_config, env.delta_seconds)
+        ego_vehicle = FollowVehicleControl(env, ego_vehicle_config, env.delta_seconds)
         end_lead = True
+        ego_vehicle.use_speed_mode()
     
     # assign the vehicle for the spectator to follow
     if follow_vehicle_config != None:
         spectator_vehicle = follow_vehicle_config
-        follow_vehicle = VehicleControl(env, follow_vehicle_config, env.delta_seconds)
+        follow_vehicle = FollowVehicleControl(env, follow_vehicle_config, env.delta_seconds)
         end_follow = False
+        follow_vehicle.use_distance_mode(ego_vehicle_config["follow_distance"])
     else:
         spectator_vehicle = ego_vehicle_config
         end_follow = True
@@ -125,6 +128,31 @@ def IntersectionBackend(env,intersection_list):
                 started_intersection_list.append(intersection)
                 
         ego_stop_at_light = False        
+        
+        
+        
+        # check the current location of the lead vehicle and ego vehicle if they are available
+        # so as to update the curr_distance for ego, and follow vehicle
+        lead_transform = None
+        ego_transform = None
+        if not end_lead:
+            lead_transform = lead_vehicle.get_vehicle_transform()
+            
+        if not end_ego:
+            ego_transform = ego_vehicle.get_vehicle_transform()
+            if lead_transform != None:
+                ego_vehicle.get_current_distance(lead_transform)
+            else:
+                ego_vehicle.use_speed_mode() # no lead available, change to speed control
+            
+        if not end_follow:
+            if ego_transform != None:
+                follow_vehicle.get_current_distance(ego_transform)
+            else:
+                follow_vehicle.use_speed_mode()# no ego available, change to speed control
+        
+        
+        
         
         # apply control to ego vehicle, get whether it stops at traffic light
         if not end_ego:        

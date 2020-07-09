@@ -171,6 +171,7 @@ class LeadVehicleControl(VehicleControl):
             self.vehicle_pose.append(vehicle_pos_2d[0])
             if len(self.vehicle_pose) == 2:
                 self.env.draw_real_trajectory(self.vehicle_pose)
+            self._display_vehicle_type()
                 
         # use pure-pursuit model to get the steer angle (in radius)
         delta, current_ref_speed, index, end_trajectory = self.pure_pursuit_control(vehicle_pos_2d, curr_speed, self.trajectory, self.ref_speed_list, self.index)
@@ -217,3 +218,193 @@ class LeadVehicleControl(VehicleControl):
             vehicle_control = carla.VehicleControl(throttle = throttle,steer=steer,brake = 0.5)
         self.env.apply_vehicle_control(self.model_uniquename, vehicle_control) # apply control to vehicle
         return end_trajectory            
+    
+
+class FollowVehicleControl(VehicleControl):
+    # the FollowVehicle class is created for both ego and follow vehicle
+    # this kind of vehicle has 2 modes:
+    #    - speed control mode, when the vehicle is not following another vehicle
+    #    - distance control mode, when the vehicle is following another vehicle
+    
+    def __init__(self,env,vehicle_config, delta_seconds):
+        super().__init__(env, vehicle_config, delta_seconds)
+        
+        # control mode
+        self.mode = "speed"
+        
+    def _get_distance_controller(self,delta_seconds):
+        '''
+        Effects: create distance controller
+        '''
+        KP_1 = 0.5#1.0
+        KI_1 = 0.5#1.0
+        
+        num_pi = [-KP_1, -KI_1] # numerator of the PI transfer function (KP*s + KI)
+        den_pi = [1.0, 0.01*KI_1/KP_1] # denominator of PI transfer function (s + 0.01*KI/KP)
+    
+        sys = control.tf(num_pi,den_pi) # get transfer function for PI controller (since the denominator has a small term 0.01*KI/KP, it is actually a lag-compensator)
+        sys = control.sample_system(sys, delta_seconds) # discretize the transfer function (from s-domain which is continuous to z-domain)
+                                                            #since our simulation is discrete
+        sys = control.tf2ss(sys) # transform transfer function into state space.
+        
+        
+        self.distance_sys = sys
+        
+    def _get_distance_control_reference_speed(self):
+        '''
+        
+    
+        Parameters
+        ----------
+        self.distance_sys : control.ss 
+            state space controller.
+        self.ref_distance : deque(maxlen=2), float
+            the reference distance.
+        self.curr_distance : deque(maxlen=2), float
+            current distance between two vehicles.
+        init_values : the initial_values of the system
+    
+        Returns
+        -------
+        None.
+    
+        '''
+        U0 = np.array(self.ref_distance) - np.array(self.curr_distance)
+        #print(U0)
+        _,y0,x0 = control.forced_response(self.distance_sys,U = U0,X0 = self.distance_init_values[0]) # y0 is the next values, x0 is the state evolution
+                                                                          # see https://python-control.readthedocs.io/en/0.8.3/generated/control.forced_response.html#control.forced_response 
+        self.distance_init_values.append(x0[-1])
+        ref_speed = y0[-1]
+        
+        #print(ref_speed)
+        
+        return ref_speed
+    
+    
+    def use_distance_mode(self, follow_distance):
+        # change the mode
+        self.mode = "distance"
+        
+        # store the follow_distance
+        self.follow_distance = follow_distance + self.L # self.L is the length of the bounding box
+        
+        # storage for distance controller
+        self.distance_init_values = deque(maxlen = 2)
+        self.ref_distance = deque(maxlen = 2)
+        self.curr_distance = deque(maxlen = 2)
+        
+        # initialize those storage
+        self.distance_init_values.append(0)
+        self.ref_distance.append(self.follow_distance)
+        self.curr_distance.append(self.follow_distance)
+        
+        # get the controller for distance control
+        self._get_distance_controller(self.env.delta_seconds)
+        
+    def use_speed_mode(self):
+        self.mode = "speed"
+        
+    def get_current_distance(self, target_transform):
+        '''
+        get the real distance between the vehicle and the one it is following
+
+        Parameters
+        ----------
+        target_transform : carla.Transform
+            the transformation of the target.
+
+        Returns
+        -------
+        None.
+
+        '''
+        # distance control seems problematic, temporarily still keep using speed control
+        self.mode = "speed"#"distance"
+        
+        target_location = target_transform.location
+        # get the local transformation
+        local_transform = self.env.get_transform_3d(self.model_uniquename)
+        local_location = local_transform.location
+        forward_vector = local_transform.get_forward_vector()
+        forward_vector_2d = np.array([forward_vector.x,forward_vector.y])
+        unit_forward_vector_2d =  forward_vector_2d / np.linalg.norm(forward_vector_2d)
+        
+        vec_loc_target = np.array([target_location.x - local_location.x,target_location.y - local_location.y])
+        
+        # get the distance in the direction of local vehicle heading
+        distance = np.dot(vec_loc_target,unit_forward_vector_2d)
+        
+        #print(distance)
+        
+        self.ref_distance.append(self.follow_distance)
+        self.curr_distance.append(distance)
+        
+    
+    def pure_pursuit_control(self,vehicle_pos_2d, current_forward_speed, trajectory, ref_speed_list, prev_index):
+        
+        # override the pure_pursuit_control method
+        # use self.mode to decide how we are going to 
+        # assign the model reference speed
+        
+        '''
+        
+    
+        Parameters
+        ----------
+        vehicle_pos_2d : (location_2d,yaw)
+            tuple of vehicle location and heading in 2d.
+            location_2d : (x,y), both x and y are in meter
+            yaw : heading angle **Note** yaw is in degree
+        current_forward_speed : float
+            the current velocity of the vehicle.
+        trajectory : numpy 2d array
+            interpolated waypoints.
+        ref_speed_list : list
+            the reference speed corresponding to each way point
+        prev_index : int
+            the previous index
+        Returns
+        -------
+        delta : float
+            steer angle of the vehicle.
+        current_ref_speed : the reference speed
+            DESCRIPTION.
+        index : int
+            the index of the target.
+        end_trajectory : boolean
+            whether we have reached clos enough to the destination.
+    
+        '''
+        
+        
+        
+        location_2d, yaw = vehicle_pos_2d
+        yaw = np.deg2rad(yaw) # change the unit the radius
+        index, end_trajectory = self.get_target_index(location_2d, current_forward_speed, trajectory)
+        
+        if prev_index >= index:
+            index = prev_index
+            
+        if index < len(trajectory):
+            tx = trajectory[index][0]
+            ty = trajectory[index][1]
+        else:
+            tx = trajectory[-1][0]
+            ty = trajectory[-1][1] 
+        
+        alpha = math.atan2(ty - location_2d[1],tx - location_2d[0]) - yaw
+        
+        if current_forward_speed < 0: #back, should not happen in our case
+            alpha = math.pi - alpha
+        
+        Lf = self.k * current_forward_speed + self.Lfc
+        
+        delta = math.atan2(2.0 * self.L * math.sin(alpha) / Lf, 1.0)
+        #print("delta == ", delta, "yaw == ", yaw)
+        
+        if self.mode == "speed":
+            current_ref_speed = ref_speed_list[index]
+        elif self.mode == "distance":
+            current_ref_speed = self._get_distance_control_reference_speed() 
+        
+        return delta, current_ref_speed, index, end_trajectory

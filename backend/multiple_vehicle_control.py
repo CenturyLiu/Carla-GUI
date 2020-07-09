@@ -20,6 +20,15 @@ from intersection_definition import Intersection, get_traffic_lights
 from carla_env import CARLA_ENV # self-written class that provides help functions, should be in the same folder
 from configobj import ConfigObj
 
+# color for debug use
+red = carla.Color(255, 0, 0)
+green = carla.Color(0, 255, 0)
+blue = carla.Color(47, 210, 231)
+cyan = carla.Color(0, 255, 255)
+yellow = carla.Color(255, 255, 0)
+orange = carla.Color(255, 162, 0)
+white = carla.Color(255, 255, 255)
+
 class VehicleControl(object):
     def __init__(self,env,vehicle_config, delta_seconds):
         '''
@@ -97,6 +106,11 @@ class VehicleControl(object):
         
         # indication of whether the vehicle stops at traffic light
         self.blocked_by_light = False
+        
+        
+    def get_vehicle_transform(self):
+        transform = self.env.get_transform_3d(self.model_uniquename)
+        return transform
         
     def _get_PI_controller(self):
         '''
@@ -269,6 +283,8 @@ class VehicleControl(object):
             if len(self.vehicle_pose) == 2:
                 self.env.draw_real_trajectory(self.vehicle_pose)
                 
+            self._display_vehicle_type()
+                
         # use pure-pursuit model to get the steer angle (in radius)
         delta, current_ref_speed, index, end_trajectory = self.pure_pursuit_control(vehicle_pos_2d, curr_speed, self.trajectory, self.ref_speed_list, self.index)
         self.index = index
@@ -307,6 +323,7 @@ class VehicleControl(object):
             vehicle_control = carla.VehicleControl(throttle = throttle,steer=steer) 
         else:
             vehicle_control = carla.VehicleControl(throttle = throttle,steer=steer,brake = 0.5)
+            
         self.env.apply_vehicle_control(self.model_uniquename, vehicle_control) # apply control to vehicle
         return end_trajectory
     
@@ -342,6 +359,23 @@ class VehicleControl(object):
     
     def _destroy_vehicle(self):
         self.env.destroy_vehicle(self.model_uniquename)
+        
+    def _display_vehicle_type(self):
+        vehicle_type = self.vehicle_config["vehicle_type"]
+        vehicle_transform = self.get_vehicle_transform()
+        vehicle_location = vehicle_transform.location
+        debug_location = carla.Location(x = vehicle_location.x, y = vehicle_location.y, z = vehicle_location.z + 2 * self.vehicle_config["bounding_box"].z)
+        
+        
+        if vehicle_type == "other":
+            self.env.world.debug.draw_string(debug_location,text = "other", color = green, life_time = self.env.delta_seconds)
+        elif vehicle_type == "lead":
+            self.env.world.debug.draw_string(debug_location,text = "lead", color = yellow, life_time = self.env.delta_seconds)
+        elif vehicle_type == "ego":
+            self.env.world.debug.draw_string(debug_location,text = "ego", color = red, life_time = self.env.delta_seconds)
+        elif vehicle_type == "follow":
+            self.env.world.debug.draw_string(debug_location,text = "follow", color = blue, life_time = self.env.delta_seconds)
+        
     
 def multiple_vehicle_control(env,intersection_list):
     vehicle_list = []
