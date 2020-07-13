@@ -177,6 +177,7 @@ class Intersection():
         #self._yaw2vector()
         self._split_lane_points() # split in/out point of lane into subject/left/right/ahead
         self._get_spawn_reference() # find a reference point for spawning for each of the subject/left/right/ahead lane
+        self._split_traffic_lights() # split the traffic lights into subject/left/right/ahead
         
         self.subject_vehicle = []
         self.left_vehicle = []
@@ -248,11 +249,12 @@ class Intersection():
         
         self.world_pos = (x / len(self.local_traffic_lights),y / len(self.local_traffic_lights)) 
         
+        
         if DEBUG_INIT:
             print(self.world_pos)
             for light in self.local_traffic_lights:
                 print(light.get_location())
-                self.env.world.debug.draw_point(light.get_location(),size = 0.5, color = blue, life_time=0.0, persistent_lines=True)
+                self.env.world.debug.draw_point(light.get_location(),size = 0.1, color = blue, life_time=0.0, persistent_lines=True)
                 
 
     def _get_lane_points(self):
@@ -401,6 +403,68 @@ class Intersection():
             elif abs(relative_yaw - 270) < max_angle_dev:
                 self.left_in.append(pt)
                 self._debug_lane_point(pt,orange)
+                
+    def _split_traffic_lights(self):
+        # split the traffic lights into 
+        # subject/left/right/ahead lane
+        
+        # get the 4 direction vector
+        forward_direction = self.subject_lane_ref.transform.get_forward_vector()
+        forward_direction_2d = [forward_direction.x,forward_direction.y]
+        forward_direction_2d = forward_direction_2d / np.linalg.norm(forward_direction_2d)
+        
+        left_direction = self.left_lane_ref.transform.get_forward_vector()
+        left_direction_2d = [left_direction.x,left_direction.y]
+        left_direction_2d = left_direction_2d / np.linalg.norm(left_direction_2d)
+        
+        right_direction = self.right_lane_ref.transform.get_forward_vector()
+        right_direction_2d = [right_direction.x,right_direction.y]
+        right_direction_2d = right_direction_2d / np.linalg.norm(right_direction_2d)
+        
+        ahead_direction = self.ahead_lane_ref.transform.get_forward_vector()
+        ahead_direction_2d = [ahead_direction.x,ahead_direction.y]
+        ahead_direction_2d = ahead_direction_2d / np.linalg.norm(ahead_direction_2d)
+        
+        self.subject_light = None
+        self.left_light = None
+        self.right_light = None
+        self.ahead_light = None
+        
+        for traffic_light in self.local_traffic_lights:
+            light_vector = traffic_light.get_transform().get_forward_vector()
+            left_vector = self._get_left_vector(light_vector)
+            if abs(np.dot(left_vector,forward_direction_2d) - 1.0) < 0.1:
+                self.subject_light = traffic_light
+            elif abs(np.dot(left_vector,left_direction_2d) - 1.0) < 0.1:
+                self.left_light = traffic_light
+            elif abs(np.dot(left_vector,right_direction_2d) - 1.0) < 0.1:
+                self.right_light = traffic_light
+            elif abs(np.dot(left_vector,ahead_direction_2d) - 1.0) < 0.1:
+                self.ahead_light = traffic_light
+        
+        self.light_config = ConfigObj()
+        self.light_config["subject"] = None
+        self.light_config["left"] = None
+        self.light_config["right"] = None
+        self.light_config["ahead"] = None
+        
+        # initialize counter for traffic light color setting
+        self.local_time_count = 0
+        
+        
+        if DEBUG_INIT:
+            self.env.world.debug.draw_point(self.subject_light.get_transform().location,size = 0.2, color = green, life_time=0.0, persistent_lines=True)
+            self.env.world.debug.draw_point(self.left_light.get_transform().location,size = 0.2, color = yellow, life_time=0.0, persistent_lines=True)
+            self.env.world.debug.draw_point(self.right_light.get_transform().location,size = 0.2, color = blue, life_time=0.0, persistent_lines=True)
+            self.env.world.debug.draw_point(self.ahead_light.get_transform().location,size = 0.2, color = red, life_time=0.0, persistent_lines=True)
+            
+    def _get_left_vector(self,vector):
+        # return the left vector of the input 2d vector
+        # vector : carla.Vector3D
+        left_x = vector.y
+        left_y = - vector.x
+        return [left_x,left_y]
+        
                 
     def _vec_angle(self,vec1,vec2):
         vec1 = vec1 / np.linalg.norm(vec1)
@@ -713,6 +777,119 @@ class Intersection():
         third_waypoint = self._get_next_waypoint(second_waypoint,20)
         return [first_waypoint,second_waypoint,third_waypoint]
 
+
+    def edit_traffic_light(self,light, red_start = 0.0,red_end = 10.0,yellow_start = 10.0,yellow_end = 15.0,green_start = 15.0,green_end = 25.0):
+        '''
+        edit the start and end time for traffic colors
+        the traffic color timeline will not loop
+        i.e. after it reaches the end of timeline, the traffic state will be 
+        frozen at that state
+        
+        Requirements: there exists and only exists one start time at 0
+                      otherwise, a red color will be used as placeholder
+                      until the first start time
+
+        Parameters
+        ----------
+        light : string
+            light choice. valid values: ahead,left,right,subject
+        
+
+        Returns
+        -------
+        None.
+        '''
+        red_start = red_start / self.env.delta_seconds
+        red_end = red_end / self.env.delta_seconds
+        yellow_start = yellow_start / self.env.delta_seconds
+        yellow_end = yellow_end / self.env.delta_seconds
+        green_start = green_start / self.env.delta_seconds
+        green_end = green_end / self.env.delta_seconds
+        
+        
+        # get the end of timeline
+        max_time = max(red_end,yellow_end,green_end)
+        
+        color_timeline = []
+        
+        for ii in range(int(max_time)):
+            if ii >= red_start and ii < red_end:
+                color_timeline.append('red')
+            elif ii >= yellow_start and ii < yellow_end:
+                color_timeline.append('yellow')
+            elif ii >= green_start and ii < green_end:
+                color_timeline.append('green')
+            else:
+                color_timeline.append('red')
+        
+        self.light_config[light] = color_timeline
+        
+    def set_intersection_traffic_lights(self):
+        # if any traffic light has been set, use the traffic light setting
+        # otherwise, do nothing and exit
+        # call this function each time after a world.tick()
+        
+        if self.light_config["subject"] != None:
+            if len(self.light_config["subject"]) > self.local_time_count: 
+                setting = self.light_config["subject"][self.local_time_count]
+                print(setting)
+                light = self.subject_light
+                if setting == 'red':
+                    light.set_state(carla.TrafficLightState.Red)
+                    light.set_red_time(self.env.delta_seconds * 2.0)
+                elif setting == 'yellow':
+                    light.set_state(carla.TrafficLightState.Yellow)
+                    light.set_yellow_time(self.env.delta_seconds * 2.0)
+                else:
+                    light.set_state(carla.TrafficLightState.Green)
+                    light.set_green_time(self.env.delta_seconds * 2.0)
+        
+        if self.light_config["left"] != None:
+            if len(self.light_config["left"]) > self.local_time_count: 
+                setting = self.light_config["left"][self.local_time_count]
+                light = self.left_light
+                if setting == 'red':
+                    light.set_state(carla.TrafficLightState.Red)
+                    light.set_red_time(self.env.delta_seconds * 2.0)
+                elif setting == 'yellow':
+                    light.set_state(carla.TrafficLightState.Yellow)
+                    light.set_yellow_time(self.env.delta_seconds * 2.0)
+                else:
+                    light.set_state(carla.TrafficLightState.Green)
+                    light.set_green_time(self.env.delta_seconds * 2.0)
+                    
+        if self.light_config["right"] != None:
+            if len(self.light_config["right"]) > self.local_time_count: 
+                setting = self.light_config["right"][self.local_time_count]
+                light = self.right_light
+                if setting == 'red':
+                    light.set_state(carla.TrafficLightState.Red)
+                    light.set_red_time(self.env.delta_seconds * 2.0)
+                elif setting == 'yellow':
+                    light.set_state(carla.TrafficLightState.Yellow)
+                    light.set_yellow_time(self.env.delta_seconds * 2.0)
+                else:
+                    light.set_state(carla.TrafficLightState.Green)
+                    light.set_green_time(self.env.delta_seconds * 2.0)
+        
+        if self.light_config["ahead"] != None:
+            if len(self.light_config["ahead"]) > self.local_time_count: 
+                setting = self.light_config["ahead"][self.local_time_count]
+                light = self.ahead_light
+                if setting == 'red':
+                    light.set_state(carla.TrafficLightState.Red)
+                    light.set_red_time(self.env.delta_seconds * 2.0)
+                elif setting == 'yellow':
+                    light.set_state(carla.TrafficLightState.Yellow)
+                    light.set_yellow_time(self.env.delta_seconds * 2.0)
+                else:
+                    light.set_state(carla.TrafficLightState.Green)
+                    light.set_green_time(self.env.delta_seconds * 2.0)
+        
+        # update the time count
+        self.local_time_count += 1
+        
+
         
 def main():
     try:
@@ -737,6 +914,8 @@ def main():
         world_pos = (-133.0,0.0)#(25.4,0.0)
         traffic_light_list = get_traffic_lights(world.get_actors())
         intersection1 = Intersection(env, world_pos, traffic_light_list)
+        
+        '''
         intersection1.add_vehicle()
         
         intersection1.add_vehicle(command = "left")
@@ -751,8 +930,16 @@ def main():
         intersection1.add_vehicle(choice = "ahead")
         intersection1.add_vehicle(choice = "ahead",command = "left")
         intersection1.add_vehicle(choice = "ahead",command = "right")
+        '''
+        # traffic light
+        intersection1.edit_traffic_light("subject",red_start = 10.0,red_end = 20.0,yellow_start=0.0,yellow_end=10.0,green_start=20.0,green_end = 30.0)
+        
+        for ii in range(int(30 / env.delta_seconds)):
+            intersection1.set_intersection_traffic_lights()
+        
+        
     finally:
-        time.sleep(10)
+        #time.sleep(10)
         env.destroy_actors()
 
 if __name__ == '__main__':

@@ -323,6 +323,18 @@ def get_ego_spectator(ego_transform,distance = -10):
         spectator_transform = carla.Transform(spectator_location,ego_transform.rotation)
         
         return spectator_transform
+    
+
+def get_ego_left_spectator(ego_transform,distance = -20):
+    forward_vector = ego_transform.get_forward_vector()
+
+    location = ego_transform.location
+    spectator_location = carla.Location(x = location.x + distance * forward_vector.y  , y = location.y + distance * forward_vector.x , z = location.z + 5.0)
+    spectator_rotation = carla.Rotation(roll = ego_transform.rotation.roll,pitch = ego_transform.rotation.pitch, yaw = (ego_transform.rotation.yaw + 90) % 360)
+    
+    spectator_transform = carla.Transform(spectator_location,spectator_rotation)
+    return spectator_transform
+
 
 def IntersectionBackend(env,intersection_list):
     vehicle_list = []

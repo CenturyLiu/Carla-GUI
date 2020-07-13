@@ -24,7 +24,7 @@ from multiple_vehicle_control import VehicleControl
 
 import copy
 
-from initial_intersection import Init_Intersection, create_intersections, get_ego_spectator
+from initial_intersection import Init_Intersection, create_intersections, get_ego_spectator, get_ego_left_spectator
 from full_path_vehicle import LeadVehicleControl, FollowVehicleControl
 
 
@@ -66,6 +66,7 @@ def IntersectionBackend(env,intersection_list):
     end_ego = False
     # get the init intersection
     init_intersection = intersection_list.pop(0)
+    started_intersection_list.append(init_intersection)
     
     for vehicle_config in init_intersection.subject_vehicle:
         # initialize vehicles by different type (ego,lead,follow,other)
@@ -95,7 +96,8 @@ def IntersectionBackend(env,intersection_list):
         # update the ego spectator
         if env.vehicle_available(spectator_vehicle["uniquename"]):
             spectator_vehicle_transform = env.get_transform_3d(spectator_vehicle["uniquename"])
-            spectator_transform = get_ego_spectator(spectator_vehicle_transform,distance = -10)
+            #spectator_transform = get_ego_spectator(spectator_vehicle_transform,distance = -10)
+            spectator_transform = get_ego_left_spectator(spectator_vehicle_transform)
             spectator.set_transform(spectator_transform)
         
         #else:
@@ -129,7 +131,9 @@ def IntersectionBackend(env,intersection_list):
                 
         ego_stop_at_light = False        
         
-        
+        # set the traffic lights based on traffic light setting
+        for started_intsection in started_intersection_list:
+            started_intsection.set_intersection_traffic_lights()
         
         # check the current location of the lead vehicle and ego vehicle if they are available
         # so as to update the curr_distance for ego, and follow vehicle
@@ -218,20 +222,24 @@ def main():
         init_intersection.add_vehicle(choice = "right",command="left")
         init_intersection.add_vehicle(choice = "ahead",command="left")
         init_intersection.add_vehicle(choice = "ahead",command = "right")
+        #init_intersection.edit_traffic_light("subject")
         
         intersection_list[1].add_vehicle(choice = "ahead")
         intersection_list[1].add_vehicle(choice = "left",command="left")
         intersection_list[1].add_vehicle(choice = "right",command = "left")
         intersection_list[1].add_vehicle(choice = "right",command = "right")
         intersection_list[1]._shift_vehicles(-10, choice = "right",index = 0)
+        #intersection_list[1].edit_traffic_light("left")
         
         intersection_list[2].add_vehicle(choice = "ahead")
         intersection_list[2].add_vehicle(choice = "left",command="left")
         intersection_list[2].add_vehicle(choice = "right",command = "left")
         intersection_list[2].add_vehicle(choice = "right",command = "right")
+        #intersection_list[2].edit_traffic_light("right")
         
         intersection_list[3].add_vehicle(command = "left")
         intersection_list[3].add_vehicle()
+        #intersection_list[3].edit_traffic_light("ahead")
         
         
         IntersectionBackend(env,intersection_list)
