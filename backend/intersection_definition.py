@@ -546,15 +546,22 @@ class Intersection():
         if choice == "subject":
             ref_waypoint = self.subject_lane_ref
             vehicle_set = self.subject_vehicle
+            vehicle["traffic_light"] = self.subject_light
+            
         elif choice == "left":
             ref_waypoint = self.left_lane_ref
             vehicle_set = self.left_vehicle
+            vehicle["traffic_light"] = self.left_light
+            
         elif choice == "ahead":
             ref_waypoint = self.ahead_lane_ref
             vehicle_set = self.ahead_vehicle
+            vehicle["traffic_light"] = self.ahead_light
+            
         elif choice == "right":
             ref_waypoint = self.right_lane_ref
             vehicle_set = self.right_vehicle
+            vehicle["traffic_light"] = self.right_light
         
         if len(vehicle_set) != 0:
             ref_waypoint = vehicle_set[-1]["ref_waypoint"]
@@ -616,12 +623,12 @@ class Intersection():
         vehicle["penetrate_distance"] = penetrate_distance
         if stop_choice == "normal":
             stop_point = self._get_next_waypoint(ref_waypoint,distance = -3.0) # 3 meters after the reference point
-            vehicle["stop_ref_point"] = stop_point.transform.location
+            vehicle["stop_ref_point"] = stop_point.transform
         elif stop_choice == "penetrate":
             stop_point = self._get_next_waypoint(ref_waypoint,distance = penetrate_distance)
-            vehicle["stop_ref_point"] = stop_point.transform.location
+            vehicle["stop_ref_point"] = stop_point.transform
         else:
-            vehicle["stop_ref_point"] = None
+            vehicle["stop_ref_point"] = ref_waypoint.transform
         
         
         
@@ -813,6 +820,9 @@ class Intersection():
         third_waypoint = self._get_next_waypoint(second_waypoint,20)
         return [first_waypoint,second_waypoint,third_waypoint]
 
+
+    def get_subject_traffic_light(self):
+        return self.subject_light
 
     def remove_vehicle(self,uniquename):
         '''
@@ -1141,17 +1151,17 @@ class Intersection():
                              run = vehicle_config['run'],
                              safety_distance = vehicle_config['safety_distance'] )
     
-        self.light_config['subject'] = intersection_settings['subject_light']
-        self.light_config['subject_time'] = intersection_settings['subject_light_time']
+        self.light_config['subject'] = copy.copy(intersection_settings['subject_light'])
+        self.light_config['subject_time'] = copy.copy(intersection_settings['subject_light_time'])
         
-        self.light_config['left'] = intersection_settings['left_light']
-        self.light_config['left_time'] = intersection_settings['left_light_time']
+        self.light_config['left'] = copy.copy(intersection_settings['left_light'])
+        self.light_config['left_time'] = copy.copy(intersection_settings['left_light_time'])
         
-        self.light_config['right'] = intersection_settings['right_light']
-        self.light_config['right_time'] = intersection_settings['right_light_time']
+        self.light_config['right'] = copy.copy(intersection_settings['right_light'])
+        self.light_config['right_time'] = copy.copy(intersection_settings['right_light_time'])
         
-        self.light_config['ahead'] = intersection_settings['ahead_light']
-        self.light_config['ahead_time'] = intersection_settings['ahead_light_time']
+        self.light_config['ahead'] = copy.copy(intersection_settings['ahead_light'])
+        self.light_config['ahead_time'] = copy.copy(intersection_settings['ahead_light_time'])
         
         new_intersection_setting = self.export_settings()
         return new_intersection_setting

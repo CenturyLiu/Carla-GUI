@@ -343,9 +343,67 @@ class VehicleControl(object):
         if self.command == "right":
             return current_ref_speed
         
-        # check light state
-        state = self.env.get_traffic_light_state(self.model_uniquename)
         
+        
+        # get the location of the vehicle
+        curr_transform = self.env.get_transform_2d(self.model_uniquename)
+        curr_location = curr_transform[0]
+        
+        abrupt_stop_vel = carla.Vector3D(x = 0,y = 0,z = 0)
+        
+        if self.vehicle_config["vehicle_type"] == "other":
+            target_location = self.stop_ref_point.location
+            target_vector = self.stop_ref_point.get_forward_vector()
+            target_vector_2d = np.array([target_vector.x,target_vector.y])
+            target_vector_2d = target_vector_2d / np.linalg.norm(target_vector_2d)
+            vec_tar_curr = np.array([curr_location[0] - target_location.x,curr_location[1] - target_location.y])
+            vec_tar_curr = vec_tar_curr / np.linalg.norm(vec_tar_curr)
+            coef = np.dot(vec_tar_curr,target_vector_2d)
+            
+            
+            smallest_distance = math.sqrt((curr_location[0] - target_location.x)**2 + (curr_location[1] - target_location.y)**2) * coef
+            light =  self.vehicle_config["traffic_light"]
+        else:
+            smallest_distance = np.inf
+            real_target = None
+            for ii in range(len(self.stop_ref_point)):
+                target_location = self.stop_ref_point[ii].location
+                distance = math.sqrt((curr_location[0] - target_location.x)**2 + (curr_location[1] - target_location.y)**2)
+                if distance < smallest_distance:
+                    smallest_distance = distance
+                    light = self.vehicle_config["traffic_light"][ii]
+                    real_target = self.stop_ref_point[ii]
+            target_vector = real_target.get_forward_vector()
+            target_vector_2d = np.array([target_vector.x,target_vector.y])
+            target_vector_2d = target_vector_2d / np.linalg.norm(target_vector_2d)
+            vec_tar_curr = np.array([curr_location[0] - real_target.location.x,curr_location[1] - real_target.location.y])
+            vec_tar_curr = vec_tar_curr / np.linalg.norm(vec_tar_curr)
+            coef = np.dot(vec_tar_curr,target_vector_2d)
+            smallest_distance *= coef
+            
+        if smallest_distance < 2 and smallest_distance > -10: 
+            state = light.get_state()
+            if state == carla.TrafficLightState.Red or state == carla.TrafficLightState.Yellow:
+                if self.stop_choice == "abrupt":
+                    self.env.set_vehicle_velocity(self.model_uniquename , abrupt_stop_vel) # immediately stop vehicle
+                    return 0.0 # abrupt stop
+                else:
+                    if smallest_distance < 1.0:
+                        self.env.set_vehicle_velocity(self.model_uniquename , abrupt_stop_vel)
+                        return 0.0
+                    else:
+                        return current_ref_speed
+            else:
+                return current_ref_speed
+        
+        return current_ref_speed
+        
+        '''
+        # check light state
+        #state = self.env.get_traffic_light_state(self.model_uniquename)
+        
+        if self.vehicle_config['vehicle_type'] == 'lead':
+            print(state)
         
         if state == carla.TrafficLightState.Red or state == carla.TrafficLightState.Yellow:
             # add an indication that the vehicle is blocked by the traffic light
@@ -387,6 +445,7 @@ class VehicleControl(object):
             return 0.0 # stop the car immediately
         
         return current_ref_speed # obey light and light is green
+        '''
     
     def _obey_safety_distance(self, current_ref_speed):
         

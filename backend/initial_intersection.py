@@ -36,10 +36,12 @@ white = carla.Color(255, 255, 255)
 
 
 class Init_Intersection(Intersection):
-    def __init__(self, env, world_pos, traffic_light_list, waypoint_list):
+    def __init__(self, env, world_pos, traffic_light_list, waypoint_list, subject_traffic_light_list):
         super().__init__(env, world_pos, traffic_light_list)
         self.waypoint_list = waypoint_list
         self.start_sim = True # the init intersection will start as soon as the simulation begins
+        self.subject_traffic_light_list = subject_traffic_light_list
+        self.subject_traffic_light_list.insert(0,self.subject_light)
         
         # 3 special vehicles
         self.ego_vehicle = None
@@ -167,6 +169,7 @@ class Init_Intersection(Intersection):
         vehicle["run"] = run
         vehicle["safety_distance"] = safety_distance
         vehicle["command"] = "straight"
+        vehicle["traffic_light"] = self.subject_traffic_light_list
         ref_waypoint = self.subject_lane_ref
         vehicle_set = self.subject_vehicle
         
@@ -247,14 +250,14 @@ class Init_Intersection(Intersection):
         if stop_choice == "normal":
             for ref_waypoint in stop_ref_waypoint:
                 stop_point = self._get_next_waypoint(ref_waypoint,distance = -3.0)
-                stop_ref_list.append(stop_point.transform.location)
+                stop_ref_list.append(stop_point.transform)
         elif stop_choice == "penetrate":
             for ref_waypoint in stop_ref_waypoint:
                 stop_point = self._get_next_waypoint(ref_waypoint,distance = penetrate_distance)
-                stop_ref_list.append(stop_point.transform.location)
+                stop_ref_list.append(stop_point.transform)
         else:
             for ref_waypoint in stop_ref_waypoint:
-                stop_ref_list.append(ref_waypoint.transform.location)
+                stop_ref_list.append(ref_waypoint.transform)
         
         return stop_ref_list
     
@@ -504,15 +507,18 @@ def create_intersections(env, number_of_intersections, traffic_light_list):
     world_pos_list = [(-190.0,0.0),(-133.0,0.0),(-55.0,0.0),(25.4,0.0)]
     number_of_intersections = min(4,number_of_intersections)
     waypoint_list = [] # way points that form the full path
+    subject_traffic_light_list = [] # all subject traffic lights along the full path 
     intersection_list = []
     
     for ii in range(1,number_of_intersections):
         normal_intersection = Intersection(env,world_pos_list[ii],traffic_light_list)
         waypoint_list += normal_intersection.get_subject_waypoints() # get the three points representing the path
+        subject_traffic_light_list.append(normal_intersection.get_subject_traffic_light())
         intersection_list.append(normal_intersection)
+        
     
     
-    init_intersection = Init_Intersection(env,world_pos_list[0],traffic_light_list,waypoint_list)
+    init_intersection = Init_Intersection(env,world_pos_list[0],traffic_light_list,waypoint_list,subject_traffic_light_list)
     intersection_list.insert(0,init_intersection)
     return intersection_list
 
