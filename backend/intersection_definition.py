@@ -851,6 +851,10 @@ class Intersection():
                 color_timeline.append('red')
         
         self.light_config[light] = color_timeline
+        self.light_config[light + '_time'] = {}
+        self.light_config[light + '_time']['red'] = red_end - red_start
+        self.light_config[light + '_time']['yellow'] = yellow_end - yellow_start
+        self.light_config[light + '_time']['green'] = green_end - green_start
         
     def set_intersection_traffic_lights(self):
         # if any traffic light has been set, use the traffic light setting
@@ -860,59 +864,87 @@ class Intersection():
         if self.light_config["subject"] != None:
             if len(self.light_config["subject"]) > self.local_time_count: 
                 setting = self.light_config["subject"][self.local_time_count]
-                print(setting)
+                #print(setting)
                 light = self.subject_light
+                light_state = light.get_state()
                 if setting == 'red':
-                    light.set_state(carla.TrafficLightState.Red)
-                    light.set_red_time(self.env.delta_seconds * 2.0)
+                    if light_state != carla.TrafficLightState.Red: # only set color when the current state is not what we want
+                        light.set_state(carla.TrafficLightState.Red)
+                        light.set_red_time(self.light_config['subject_time']['red'])
+                        light.freeze(True)
                 elif setting == 'yellow':
-                    light.set_state(carla.TrafficLightState.Yellow)
-                    light.set_yellow_time(self.env.delta_seconds * 2.0)
+                    if light_state != carla.TrafficLightState.Yellow:
+                        light.set_state(carla.TrafficLightState.Yellow)
+                        light.set_yellow_time(self.light_config['subject_time']['yellow'])
+                        light.freeze(True)
                 else:
-                    light.set_state(carla.TrafficLightState.Green)
-                    light.set_green_time(self.env.delta_seconds * 2.0)
+                    if light_state != carla.TrafficLightState.Green:
+                        light.set_state(carla.TrafficLightState.Green)
+                        light.set_yellow_time(self.light_config['subject_time']['green'])
+                        light.freeze(True)
         
         if self.light_config["left"] != None:
             if len(self.light_config["left"]) > self.local_time_count: 
                 setting = self.light_config["left"][self.local_time_count]
                 light = self.left_light
+                light_state = light.get_state()
                 if setting == 'red':
-                    light.set_state(carla.TrafficLightState.Red)
-                    light.set_red_time(self.env.delta_seconds * 2.0)
+                    if light_state != carla.TrafficLightState.Red: # only set color when the current state is not what we want
+                        light.set_state(carla.TrafficLightState.Red)
+                        light.set_red_time(self.light_config['left_time']['red'])
+                        light.freeze(True)
                 elif setting == 'yellow':
-                    light.set_state(carla.TrafficLightState.Yellow)
-                    light.set_yellow_time(self.env.delta_seconds * 2.0)
+                    if light_state != carla.TrafficLightState.Yellow:
+                        light.set_state(carla.TrafficLightState.Yellow)
+                        light.set_yellow_time(self.light_config['left_time']['yellow'])
+                        light.freeze(True)
                 else:
-                    light.set_state(carla.TrafficLightState.Green)
-                    light.set_green_time(self.env.delta_seconds * 2.0)
+                    if light_state != carla.TrafficLightState.Green:
+                        light.set_state(carla.TrafficLightState.Green)
+                        light.set_yellow_time(self.light_config['left_time']['green'])
+                        light.freeze(True)
                     
         if self.light_config["right"] != None:
             if len(self.light_config["right"]) > self.local_time_count: 
                 setting = self.light_config["right"][self.local_time_count]
                 light = self.right_light
+                light_state = light.get_state()
                 if setting == 'red':
-                    light.set_state(carla.TrafficLightState.Red)
-                    light.set_red_time(self.env.delta_seconds * 2.0)
+                    if light_state != carla.TrafficLightState.Red: # only set color when the current state is not what we want
+                        light.set_state(carla.TrafficLightState.Red)
+                        light.set_red_time(self.light_config['right_time']['red'])
+                        light.freeze(True)
                 elif setting == 'yellow':
-                    light.set_state(carla.TrafficLightState.Yellow)
-                    light.set_yellow_time(self.env.delta_seconds * 2.0)
+                    if light_state != carla.TrafficLightState.Yellow:
+                        light.set_state(carla.TrafficLightState.Yellow)
+                        light.set_yellow_time(self.light_config['right_time']['yellow'])
+                        light.freeze(True)
                 else:
-                    light.set_state(carla.TrafficLightState.Green)
-                    light.set_green_time(self.env.delta_seconds * 2.0)
+                    if light_state != carla.TrafficLightState.Green:
+                        light.set_state(carla.TrafficLightState.Green)
+                        light.set_yellow_time(self.light_config['right_time']['green'])
+                        light.freeze(True)
         
         if self.light_config["ahead"] != None:
             if len(self.light_config["ahead"]) > self.local_time_count: 
                 setting = self.light_config["ahead"][self.local_time_count]
                 light = self.ahead_light
+                light_state = light.get_state()
                 if setting == 'red':
-                    light.set_state(carla.TrafficLightState.Red)
-                    light.set_red_time(self.env.delta_seconds * 2.0)
+                    if light_state != carla.TrafficLightState.Red: # only set color when the current state is not what we want
+                        light.set_state(carla.TrafficLightState.Red)
+                        light.set_red_time(self.light_config['ahead_time']['red'])
+                        light.freeze(True)
                 elif setting == 'yellow':
-                    light.set_state(carla.TrafficLightState.Yellow)
-                    light.set_yellow_time(self.env.delta_seconds * 2.0)
+                    if light_state != carla.TrafficLightState.Yellow:
+                        light.set_state(carla.TrafficLightState.Yellow)
+                        light.set_yellow_time(self.light_config['ahead_time']['yellow'])
+                        light.freeze(True)
                 else:
-                    light.set_state(carla.TrafficLightState.Green)
-                    light.set_green_time(self.env.delta_seconds * 2.0)
+                    if light_state != carla.TrafficLightState.Green:
+                        light.set_state(carla.TrafficLightState.Green)
+                        light.set_yellow_time(self.light_config['ahead_time']['green'])
+                        light.freeze(True)
         
         # update the time count
         self.local_time_count += 1
@@ -934,7 +966,7 @@ def main():
         
         # set the spectator position for demo purpose
         spectator = world.get_spectator()
-        spectator.set_transform(carla.Transform(carla.Location(x=-133.0, y=1.29, z=75.0), carla.Rotation(pitch=-88.0, yaw= -1.85, roll=1.595))) # plain ground
+        spectator.set_transform(carla.Transform(carla.Location(x=-133.0, y=1.29, z=11.0), carla.Rotation(pitch=-31.0, yaw= -4.23, roll=1.595))) # plain ground
         
         env = CARLA_ENV(world) 
         time.sleep(2) # sleep for 2 seconds, wait the initialization to finish
@@ -959,10 +991,15 @@ def main():
         intersection1.add_vehicle(choice = "ahead",command = "left")
         intersection1.add_vehicle(choice = "ahead",command = "right")
         '''
+        time.sleep(2)
         # traffic light
-        intersection1.edit_traffic_light("subject",red_start = 10.0,red_end = 20.0,yellow_start=0.0,yellow_end=10.0,green_start=20.0,green_end = 30.0)
+        intersection1.edit_traffic_light("subject",red_start = 20.0,red_end = 40.0,yellow_start=0.0,yellow_end=20.0,green_start=40.0,green_end = 60.0)
+        intersection1.edit_traffic_light("left",red_start = 20.0,red_end = 40.0,yellow_start=0.0,yellow_end=20.0,green_start=40.0,green_end = 60.0)
+        intersection1.edit_traffic_light("right",red_start = 20.0,red_end = 40.0,yellow_start=0.0,yellow_end=20.0,green_start=40.0,green_end = 60.0)
+        intersection1.edit_traffic_light("ahead",red_start = 20.0,red_end = 40.0,yellow_start=0.0,yellow_end=20.0,green_start=40.0,green_end = 60.0)
         
-        for ii in range(int(30 / env.delta_seconds)):
+        for ii in range(int(60 / env.delta_seconds)):
+            env.world.tick()
             intersection1.set_intersection_traffic_lights()
         
         

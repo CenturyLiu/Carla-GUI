@@ -77,7 +77,7 @@ class CARLA_ENV():
         self.vehicle_dict = {}
         self.walker_dict = {}
         self.sensor_dict = {}
-        self.config_env()
+        self.config_env(synchrony = False)
         #self.synchrony = synchrony
         #self.delta_seconds = delta_seconds
         
