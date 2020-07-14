@@ -17,6 +17,8 @@ from generate_path_omit_regulation import generate_path
 from scipy.interpolate import UnivariateSpline
 import copy
 
+from intersection_settings_helper import write_intersection_settings, read_intersection_settings
+
 DEBUG_INIT = True
 DEBUG_TRAJECTORY = True
 
@@ -542,6 +544,8 @@ class Intersection():
         vehicle["run"] = run
         vehicle["safety_distance"] = safety_distance
         vehicle["choice"] = choice
+        
+        print(choice)
         
         if choice == "subject":
             ref_waypoint = self.subject_lane_ref
@@ -1238,13 +1242,13 @@ def main():
         # check the import/export method
         setting = intersection1.export_settings()
         
-        setting.filename = 'demo_setting1'
-        setting.write() # write the setting to file
+        write_intersection_settings(name = 'demo_setting2', settings = setting)
         
-        new_setting = ConfigObj(infile = 'demo_setting1')
+        new_setting = read_intersection_settings('demo_setting2')
         
         intersection1.import_settings(new_setting)
         
+        print("successfully imported settings")
         
         for ii in range(int(60 / env.delta_seconds)):
             env.world.tick()
