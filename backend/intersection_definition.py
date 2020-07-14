@@ -496,7 +496,7 @@ class Intersection():
             self.env.world.debug.draw_point(self.right_lane_ref.transform.location,size = 0.2, color = blue, life_time=0.0, persistent_lines=True)
             self.env.world.debug.draw_point(self.ahead_lane_ref.transform.location,size = 0.2, color = red, life_time=0.0, persistent_lines=True)
         
-    def add_vehicle(self,gap = 10.0,model_name = "vehicle.tesla.model3",choice = "subject", command = "straight", obey_traffic_lights = True, run = True, safety_distance = 15.0):    
+    def add_vehicle(self,gap = 10.0,model_name = "vehicle.tesla.model3",choice = "subject", command = "straight", stop_choice = "normal", penetrate_distance = None,obey_traffic_lights = True, run = True, safety_distance = 15.0):    
         '''
         
 
@@ -507,7 +507,19 @@ class Intersection():
         model_name : string, optional
             vehicle type. The default is "vehicle.tesla.model3".
         choice : string, optional
-            the lane this vehicle will be added, valid values: "subject", "left", "right", "ahead". The default is "subject". 
+            the lane this vehicle will be added, valid values: "subject", "left", "right", "ahead". The default is "subject".
+        command : string, optional
+            the turning command, valid values: "straight", "right", "left"
+        stop_choice : string, optional
+            how will the vehicle stop when at yellow or red light. valid values: "normal", "abrupt", "penetrate"
+        penetrate_distance : float, unit: meter
+            to what extent the vehicle will penetrate the traffic lane. This parameter will only be use when stop_choice is "penetrate"
+        obey_traffic_light : bool, optional
+            whether the vehicle will obey traffic light. Default is True
+        run : bool, optional
+            whether the vehicle is running. Default is True
+        safety_distance : float, optional
+            smallest distance between this vehicle and vehicle ahead
 
         Returns
         -------
@@ -592,6 +604,22 @@ class Intersection():
         new_bb = self.env.get_vehicle_bounding_box(uniquename)
         vehicle["bounding_box"] = new_bb
         vehicle["vehicle_type"] = "other"
+        
+        # vehicle stop type
+        vehicle["stop_choice"] = stop_choice
+        vehicle["penetrate_distance"] = penetrate_distance
+        if stop_choice == "normal":
+            stop_point = self._get_next_waypoint(ref_waypoint,distance = -3.0) # 3 meters after the reference point
+            vehicle["stop_ref_point"] = stop_point.transform.location
+        elif stop_choice == "penetrate":
+            stop_point = self._get_next_waypoint(ref_waypoint,distance = penetrate_distance)
+            vehicle["stop_ref_point"] = stop_point.transform.location
+        else:
+            vehicle["stop_ref_point"] = None
+        
+        
+        
+        
         vehicle_set.append(vehicle)
     
     def _shift_vehicles(self, length, choice = "subject", index = 0):

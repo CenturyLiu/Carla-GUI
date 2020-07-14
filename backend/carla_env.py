@@ -212,6 +212,26 @@ class CARLA_ENV():
         vehicle = self.vehicle_dict[uniquename]
         vehicle.apply_control(vehicle_control)
         
+    def set_vehicle_velocity(self, uniquename, vehicle_velocity):
+        '''
+        
+
+        Parameters
+        ----------
+        uniquename : string
+            uniquename of vehicle.
+        vehicle_velocity : varla.Vector3D
+            vehicle speed
+
+        Returns
+        -------
+        None.
+
+        '''
+        vehicle = self.vehicle_dict[uniquename]
+        vehicle.set_velocity(vehicle_velocity)
+        
+        
     def get_forward_speed(self, uniquename):
         '''
         Get the forward speed of the vehicle

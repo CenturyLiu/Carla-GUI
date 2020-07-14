@@ -94,12 +94,13 @@ def IntersectionBackend(env,intersection_list):
         env.update_vehicle_distance()
         
         # update the ego spectator
+        '''
         if env.vehicle_available(spectator_vehicle["uniquename"]):
             spectator_vehicle_transform = env.get_transform_3d(spectator_vehicle["uniquename"])
-            #spectator_transform = get_ego_spectator(spectator_vehicle_transform,distance = -10)
-            spectator_transform = get_ego_left_spectator(spectator_vehicle_transform)
+            spectator_transform = get_ego_spectator(spectator_vehicle_transform,distance = -10)
+            #spectator_transform = get_ego_left_spectator(spectator_vehicle_transform)
             spectator.set_transform(spectator_transform)
-        
+        '''
         #else:
         #    spectator_transform = carla.Transform(carla.Location(x= 25.4, y=1.29, z=75.0), carla.Rotation(pitch=-88.0, yaw= -1.85, roll=1.595))
         #spectator.set_transform(spectator_transform)
@@ -215,9 +216,9 @@ def main():
         intersection_list = create_intersections(env, 4, traffic_light_list)
         init_intersection = intersection_list[0]
         normal_intersections = intersection_list[1:]
-        init_intersection.add_ego_vehicle(safety_distance = 15.0 )
+        init_intersection.add_ego_vehicle(safety_distance = 15.0, stop_choice = "normal")
         init_intersection.add_follow_vehicle(follow_distance = 20.0)
-        init_intersection.add_lead_vehicle(lead_distance = 20.0)
+        init_intersection.add_lead_vehicle(lead_distance = 20.0, stop_choice = "penetrate", penetrate_distance = 2.0)
         init_intersection.add_vehicle(choice = "left")
         init_intersection.add_vehicle(choice = "right",command="left")
         init_intersection.add_vehicle(choice = "ahead",command="left")

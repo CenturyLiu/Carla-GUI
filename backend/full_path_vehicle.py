@@ -23,6 +23,7 @@ from multiple_vehicle_control import VehicleControl
 
 import copy
 
+
 # color for debug use
 red = carla.Color(255, 0, 0)
 green = carla.Color(0, 255, 0)
@@ -236,8 +237,8 @@ class FollowVehicleControl(VehicleControl):
         '''
         Effects: create distance controller
         '''
-        KP_1 = 0.5#1.0
-        KI_1 = 0.5#1.0
+        KP_1 = 1.0#1.0
+        KI_1 = 1.0#1.0
         
         num_pi = [-KP_1, -KI_1] # numerator of the PI transfer function (KP*s + KI)
         den_pi = [1.0, 0.01*KI_1/KP_1] # denominator of PI transfer function (s + 0.01*KI/KP)
@@ -275,6 +276,14 @@ class FollowVehicleControl(VehicleControl):
                                                                           # see https://python-control.readthedocs.io/en/0.8.3/generated/control.forced_response.html#control.forced_response 
         self.distance_init_values.append(x0[-1])
         ref_speed = y0[-1]
+        
+        if self.ref_distance[1] > self.curr_distance[1]:
+            ref_speed = 0
+        
+        # apply a boundary to the reference speed
+        # to avoid vehicle approaching too high a speed
+        # when trying to catch up the target
+        ref_speed = np.clip(ref_speed,0,15)
         
         #print(ref_speed)
         
@@ -333,8 +342,9 @@ class FollowVehicleControl(VehicleControl):
         
         # get the distance in the direction of local vehicle heading
         distance = np.dot(vec_loc_target,unit_forward_vector_2d)
-        
-        #print(distance)
+        if self.vehicle_config["vehicle_type"] == "follow":
+            #print(distance)
+            pass
         
         self.ref_distance.append(self.follow_distance)
         self.curr_distance.append(distance)

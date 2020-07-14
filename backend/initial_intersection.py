@@ -49,15 +49,18 @@ class Init_Intersection(Intersection):
         # generate the full path that's going to be shared between the ego, lead and follow vehicles
         self._generate_intersection_path()
     
-    def add_ego_vehicle(self, gap = 10.0,model_name = "vehicle.tesla.model3", obey_traffic_lights = True, run = True, safety_distance = 0.0):
+    def add_ego_vehicle(self, gap = 10.0,model_name = "vehicle.tesla.model3", stop_choice = "abrupt", penetrate_distance = None, obey_traffic_lights = True, run = True, safety_distance = 0.0):
         
         self._add_full_path_vehicle("ego",gap = gap, model_name = model_name, obey_traffic_lights = obey_traffic_lights, run = run, safety_distance = safety_distance)
         self.ego_vehicle["lead_distance"] = 0.0
         self.ego_vehicle["follow_distance"] = 0.0
         self.ego_vehicle["index"] = len(self.subject_vehicle) - 1 # the index of the ego vehicle in the subject
         self.ego_vehicle["vehicle_type"] = "ego"
+        self.ego_vehicle["stop_choice"] = stop_choice
+        self.ego_vehicle["penetrate_distance"] = penetrate_distance
+        self.ego_vehicle["stop_ref_point"] = self._generate_full_path_stop_ref(stop_choice,penetrate_distance)
         
-    def add_lead_vehicle(self, lead_distance ,gap = 10.0,model_name = "vehicle.tesla.model3", obey_traffic_lights = True, run = True, safety_distance = 15.0):
+    def add_lead_vehicle(self, lead_distance ,gap = 10.0,model_name = "vehicle.tesla.model3", stop_choice = "abrupt", penetrate_distance = None, obey_traffic_lights = True, run = True, safety_distance = 15.0):
         # get all the vehicles that's going to be after the lead vehicle
         ego_index = self.ego_vehicle["index"]
         vehicle_after_lead = self.subject_vehicle[ego_index : ]
@@ -85,7 +88,12 @@ class Init_Intersection(Intersection):
         self.lead_vehicle["vehicle_type"] = "lead"
         self.ego_vehicle["index"] = ego_index + 1 # add one car in front of ego vehicle
         
-    def add_follow_vehicle(self, follow_distance ,gap = 10.0,model_name = "vehicle.tesla.model3", obey_traffic_lights = True, run = True, safety_distance = 15.0):
+        # stop settings for lead
+        self.lead_vehicle["stop_choice"] = stop_choice
+        self.lead_vehicle["penetrate_distance"] = penetrate_distance
+        self.lead_vehicle["stop_ref_point"] = self._generate_full_path_stop_ref(stop_choice,penetrate_distance)
+        
+    def add_follow_vehicle(self, follow_distance ,gap = 10.0,model_name = "vehicle.tesla.model3", stop_choice = "abrupt", penetrate_distance = None, obey_traffic_lights = True, run = True, safety_distance = 15.0):
         # get all the vehicles that's going to be after the lead vehicle
         ego_index = self.ego_vehicle["index"]
         vehicle_after_ego = self.subject_vehicle[ego_index + 1 : ]
@@ -106,6 +114,11 @@ class Init_Intersection(Intersection):
         
     
         self.follow_vehicle["vehicle_type"] = "follow"
+        
+        # stop settings for follow vehicle
+        self.follow_vehicle["stop_choice"] = stop_choice
+        self.follow_vehicle["penetrate_distance"] = penetrate_distance
+        self.follow_vehicle["stop_ref_point"] = self._generate_full_path_stop_ref(stop_choice,penetrate_distance)
         
         
     def _add_full_path_vehicle(self, vehicle_type, gap = 10.0,model_name = "vehicle.tesla.model3", obey_traffic_lights = True, run = True, safety_distance = 0.0):
@@ -208,6 +221,39 @@ class Init_Intersection(Intersection):
         vehicle["bounding_box"] = new_bb
         
         vehicle_set.append(vehicle)
+    
+    def _generate_full_path_stop_ref(self, stop_choice, penetrate_distance):
+        '''
+        generate the reference point for stoping the vehicle
+
+        Returns
+        -------
+        stop_ref_list : list [(float,float),(float,float),...]
+            a list of stop reference points
+
+        '''
+        
+        stop_ref_waypoint = []
+        stop_ref_waypoint.append(self.subject_lane_ref)
+        
+        stop_ref_list = []
+        
+        for ii in range(0,len(self.waypoint_list),3):
+            stop_ref_waypoint.append(self.waypoint_list[ii]) # the first point of each intersection
+        
+        if stop_choice == "normal":
+            for ref_waypoint in stop_ref_waypoint:
+                stop_point = self._get_next_waypoint(ref_waypoint,distance = -3.0)
+                stop_ref_list.append(stop_point.transform.location)
+        elif stop_choice == "penetrate":
+            for ref_waypoint in stop_ref_waypoint:
+                stop_point = self._get_next_waypoint(ref_waypoint,distance = penetrate_distance)
+                stop_ref_list.append(stop_point.transform.location)
+        else:
+            for ref_waypoint in stop_ref_waypoint:
+                stop_ref_list.append(ref_waypoint.transform.location)
+        
+        return stop_ref_list
     
     def _generate_intersection_path(self):
         '''

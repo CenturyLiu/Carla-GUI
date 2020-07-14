@@ -62,6 +62,9 @@ class VehicleControl(object):
         self.obey_traffic_lights = self.vehicle_config["obey_traffic_lights"]
         self.run = self.vehicle_config["run"]
         self.safety_distance = self.vehicle_config["safety_distance"]
+        self.stop_choice = self.vehicle_config["stop_choice"]
+        self.penetrate_distance = self.vehicle_config["penetrate_distance"]
+        self.stop_ref_point = self.vehicle_config["stop_ref_point"]
         
         # discrete step time
         self.delta_seconds = delta_seconds
@@ -333,6 +336,8 @@ class VehicleControl(object):
         # to obey lights and is going straight or turning left
         self.blocked_by_light = False
         
+        
+        
         if not self.obey_traffic_lights:
             return current_ref_speed
         if self.command == "right":
@@ -341,9 +346,43 @@ class VehicleControl(object):
         # check light state
         state = self.env.get_traffic_light_state(self.model_uniquename)
         
+        
         if state == carla.TrafficLightState.Red or state == carla.TrafficLightState.Yellow:
             # add an indication that the vehicle is blocked by the traffic light
             self.blocked_by_light = True
+            abrupt_stop_vel = carla.Vector3D(x = 0,y = 0,z = 0)
+            
+            if self.stop_choice == "abrupt":
+                self.env.set_vehicle_velocity(self.model_uniquename , abrupt_stop_vel) # immediately stop vehicle
+                return 0.0 # abrupt stop
+            else:
+                curr_transform = self.env.get_transform_2d(self.model_uniquename)
+                curr_location = curr_transform[0]
+                
+                if self.vehicle_config["vehicle_type"] == "other":
+                    
+                    target_location = self.stop_ref_point
+                    distance = math.sqrt((curr_location[0] - target_location.x)**2 + (curr_location[1] - target_location.y)**2)
+                    #print(distance)
+                    if distance < 1.0: # close to target enough
+                        self.env.set_vehicle_velocity(self.model_uniquename , abrupt_stop_vel) # stop vehicle when close enough to reference
+                        return 0.0
+                    else:
+                        return current_ref_speed
+                else: # full path vehicle
+                    smallest_distance = np.inf
+                    
+                    # get the smallest distance from the vehicle to target stop point
+                    for target_location in self.stop_ref_point:
+                        distance = math.sqrt((curr_location[0] - target_location.x)**2 + (curr_location[1] - target_location.y)**2)
+                        if distance < smallest_distance:
+                            smallest_distance = distance
+                            
+                    if smallest_distance < 1.0: # close to target enough
+                        self.env.set_vehicle_velocity(self.model_uniquename , abrupt_stop_vel) # stop vehicle when close enough to reference
+                        return 0.0
+                    else:
+                        return current_ref_speed
             
             return 0.0 # stop the car immediately
         
