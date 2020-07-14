@@ -15,6 +15,7 @@ import numpy as np
 from configobj import ConfigObj
 from generate_path_omit_regulation import generate_path
 from scipy.interpolate import UnivariateSpline
+import copy
 
 DEBUG_INIT = True
 DEBUG_TRAJECTORY = True
@@ -444,9 +445,13 @@ class Intersection():
         
         self.light_config = ConfigObj()
         self.light_config["subject"] = None
+        self.light_config["subject_time"] = None
         self.light_config["left"] = None
+        self.light_config["left_time"] = None
         self.light_config["right"] = None
+        self.light_config["right_time"] = None
         self.light_config["ahead"] = None
+        self.light_config["ahead_time"] = None
         
         # initialize counter for traffic light color setting
         self.local_time_count = 0
@@ -523,7 +528,7 @@ class Intersection():
 
         Returns
         -------
-        None.
+        uniquename : the uniquename of the vehicle
 
         '''
         
@@ -531,11 +536,12 @@ class Intersection():
         
         vehicle = ConfigObj()
         vehicle["model"] = model_name
-        
+        vehicle["gap"] = gap
         vehicle["command"] = command
         vehicle["obey_traffic_lights"] = obey_traffic_lights
         vehicle["run"] = run
         vehicle["safety_distance"] = safety_distance
+        vehicle["choice"] = choice
         
         if choice == "subject":
             ref_waypoint = self.subject_lane_ref
@@ -621,6 +627,8 @@ class Intersection():
         
         
         vehicle_set.append(vehicle)
+        
+        return uniquename
     
     def _shift_vehicles(self, length, choice = "subject", index = 0):
         '''
@@ -806,6 +814,51 @@ class Intersection():
         return [first_waypoint,second_waypoint,third_waypoint]
 
 
+    def remove_vehicle(self,uniquename):
+        '''
+        remove a specific vehicle from the intersection
+
+        Parameters
+        ----------
+        uniquename : TYPE
+            DESCRIPTION.
+
+        Returns
+        -------
+        removed : Bool, 
+            whether a vehicle is removed
+
+        '''
+        for ii in range(len(self.subject_vehicle)):
+            if self.subject_vehicle[ii]["uniquename"] == uniquename: # check whether the vehicle is the one we want to remove
+                # remove vehicle from environment
+                self.env.destroy_vehicle(uniquename)
+                self.subject_vehicle.pop(ii)
+                return True
+            
+        for ii in range(len(self.left_vehicle)):
+            if self.left_vehicle[ii]["uniquename"] == uniquename: # check whether the vehicle is the one we want to remove
+                # remove vehicle from environment
+                self.env.destroy_vehicle(uniquename)
+                self.left_vehicle.pop(ii)
+                return True
+
+        for ii in range(len(self.right_vehicle)):
+            if self.right_vehicle[ii]["uniquename"] == uniquename: # check whether the vehicle is the one we want to remove
+                # remove vehicle from environment
+                self.env.destroy_vehicle(uniquename)
+                self.right_vehicle.pop(ii)
+                return True
+            
+        for ii in range(len(self.ahead_vehicle)):
+            if self.ahead_vehicle[ii]["uniquename"] == uniquename: # check whether the vehicle is the one we want to remove
+                # remove vehicle from environment
+                self.env.destroy_vehicle(uniquename)
+                self.ahead_vehicle.pop(ii)
+                return True
+
+        return False
+
     def edit_traffic_light(self,light, red_start = 0.0,red_end = 10.0,yellow_start = 10.0,yellow_end = 15.0,green_start = 15.0,green_end = 25.0):
         '''
         edit the start and end time for traffic colors
@@ -949,6 +1002,174 @@ class Intersection():
         # update the time count
         self.local_time_count += 1
         
+    def export_settings(self):
+        '''
+        export all settings for a specific intersection
+
+        Returns
+        -------
+        intersection_settings : ConfigObj
+            settings of the intersection
+
+        '''
+        intersection_settings = ConfigObj()
+        
+        # vehicles
+        intersection_settings["subject_vehicle"] = []
+        intersection_settings["left_vehicle"] = []
+        intersection_settings["right_vehicle"] = []
+        intersection_settings["ahead_vehicle"] = []
+        
+        for vehicle in self.subject_vehicle:
+            # deep copy the vehicle settings
+            new_vehicle = self._copy_vehicle_settings(vehicle)
+            intersection_settings["subject_vehicle"].append(new_vehicle)
+        
+        for vehicle in self.left_vehicle:
+            # deep copy the vehicle settings
+            new_vehicle = self._copy_vehicle_settings(vehicle)
+            intersection_settings["left_vehicle"].append(new_vehicle)
+            
+        for vehicle in self.right_vehicle:
+            # deep copy the vehicle settings
+            new_vehicle = self._copy_vehicle_settings(vehicle)
+            intersection_settings["right_vehicle"].append(new_vehicle)
+            
+        for vehicle in self.ahead_vehicle:
+            # deep copy the vehicle settings
+            new_vehicle = self._copy_vehicle_settings(vehicle)
+            intersection_settings["ahead_vehicle"].append(new_vehicle)
+        
+        # lights
+        intersection_settings["subject_light"] = copy.copy(self.light_config["subject"])
+        intersection_settings["subject_light_time"] = copy.copy(self.light_config["subject_time"])
+        
+        intersection_settings["left_light"] = copy.copy(self.light_config["left"])
+        intersection_settings["left_light_time"] = copy.copy(self.light_config["left_time"])
+        
+        intersection_settings["right_light"] = copy.copy(self.light_config["right"])
+        intersection_settings["right_light_time"] = copy.copy(self.light_config["right_time"])
+        
+        intersection_settings["ahead_light"] = copy.copy(self.light_config["ahead"])
+        intersection_settings["ahead_light_time"] = copy.copy(self.light_config["ahead_time"])
+        
+        return intersection_settings
+    
+    def import_settings(self,intersection_settings):
+        '''
+        
+
+        Parameters
+        ----------
+        intersection_settings : ConfigObj
+            the intersection settings we want to import
+
+        Returns
+        -------
+        new_intersection_setting : ConfigObj
+            settings of the intersection
+            this will be generated by call self.export_settings() after finishing import
+            output these settings are for the purpose of creating the front-end gui
+        '''
+        
+        # remove all vehicle in this intersection 
+        # if any vehicle has been added
+        for ii in range(len(self.subject_vehicle) - 1, -1, -1): # go through the array in reverse order
+            uniquename = self.subject_vehicle[ii]['uniquename']
+            self.remove_vehicle(uniquename)
+        
+        for ii in range(len(self.left_vehicle) - 1, -1, -1): # go through the array in reverse order
+            uniquename = self.left_vehicle[ii]['uniquename']
+            self.remove_vehicle(uniquename)
+            
+        for ii in range(len(self.right_vehicle) - 1, -1, -1): # go through the array in reverse order
+            uniquename = self.right_vehicle[ii]['uniquename']
+            self.remove_vehicle(uniquename)
+            
+        for ii in range(len(self.ahead_vehicle) - 1, -1, -1): # go through the array in reverse order
+            uniquename = self.ahead_vehicle[ii]['uniquename']
+            self.remove_vehicle(uniquename)
+        
+        # import all settings
+       
+        
+        for vehicle_config in intersection_settings["subject_vehicle"]:
+            # add vehicles according to imported settings
+            self.add_vehicle(gap = vehicle_config["gap"], 
+                             model_name = vehicle_config["model"], 
+                             choice = vehicle_config['choice'], 
+                             command = vehicle_config['command'],
+                             stop_choice = vehicle_config['stop_choice'],
+                             penetrate_distance = vehicle_config['penetrate_distance'],
+                             obey_traffic_lights = vehicle_config['obey_traffic_lights'],
+                             run = vehicle_config['run'],
+                             safety_distance = vehicle_config['safety_distance'] )
+            
+        for vehicle_config in intersection_settings["left_vehicle"]:
+            # add vehicles according to imported settings
+            self.add_vehicle(gap = vehicle_config["gap"], 
+                             model_name = vehicle_config["model"], 
+                             choice = vehicle_config['choice'], 
+                             command = vehicle_config['command'],
+                             stop_choice = vehicle_config['stop_choice'],
+                             penetrate_distance = vehicle_config['penetrate_distance'],
+                             obey_traffic_lights = vehicle_config['obey_traffic_lights'],
+                             run = vehicle_config['run'],
+                             safety_distance = vehicle_config['safety_distance'] )
+            
+        for vehicle_config in intersection_settings["right_vehicle"]:
+            # add vehicles according to imported settings
+            self.add_vehicle(gap = vehicle_config["gap"], 
+                             model_name = vehicle_config["model"], 
+                             choice = vehicle_config['choice'], 
+                             command = vehicle_config['command'],
+                             stop_choice = vehicle_config['stop_choice'],
+                             penetrate_distance = vehicle_config['penetrate_distance'],
+                             obey_traffic_lights = vehicle_config['obey_traffic_lights'],
+                             run = vehicle_config['run'],
+                             safety_distance = vehicle_config['safety_distance'] )
+            
+        for vehicle_config in intersection_settings["ahead_vehicle"]:
+            # add vehicles according to imported settings
+            self.add_vehicle(gap = vehicle_config["gap"], 
+                             model_name = vehicle_config["model"], 
+                             choice = vehicle_config['choice'], 
+                             command = vehicle_config['command'],
+                             stop_choice = vehicle_config['stop_choice'],
+                             penetrate_distance = vehicle_config['penetrate_distance'],
+                             obey_traffic_lights = vehicle_config['obey_traffic_lights'],
+                             run = vehicle_config['run'],
+                             safety_distance = vehicle_config['safety_distance'] )
+    
+        self.light_config['subject'] = intersection_settings['subject_light']
+        self.light_config['subject_time'] = intersection_settings['subject_light_time']
+        
+        self.light_config['left'] = intersection_settings['left_light']
+        self.light_config['left_time'] = intersection_settings['left_light_time']
+        
+        self.light_config['right'] = intersection_settings['right_light']
+        self.light_config['right_time'] = intersection_settings['right_light_time']
+        
+        self.light_config['ahead'] = intersection_settings['ahead_light']
+        self.light_config['ahead_time'] = intersection_settings['ahead_light_time']
+        
+        new_intersection_setting = self.export_settings()
+        return new_intersection_setting
+    
+
+    def _copy_vehicle_settings(self,vehicle_config):
+        new_vehicle = copy.copy(vehicle_config)
+            
+        new_vehicle["ref_waypoint"] = None
+        new_vehicle["location"] = None
+        new_vehicle["rotation"] = None
+        new_vehicle["trajectory"] = None
+        new_vehicle["ref_speed_list"] = None
+        new_vehicle["stop_ref_point"] = None
+        new_vehicle["bounding_box"] = None
+        
+        return new_vehicle
+
 
         
 def main():
@@ -975,11 +1196,11 @@ def main():
         traffic_light_list = get_traffic_lights(world.get_actors())
         intersection1 = Intersection(env, world_pos, traffic_light_list)
         
-        '''
-        intersection1.add_vehicle()
         
-        intersection1.add_vehicle(command = "left")
-        intersection1.add_vehicle(command = "right")
+        name1 = intersection1.add_vehicle()
+        
+        name2 = intersection1.add_vehicle(command = "left")
+        name3 = intersection1.add_vehicle(command = "right")
         
         intersection1.add_vehicle(gap = 5,choice = "left")
         intersection1.add_vehicle(gap = 5, choice = "left",command = "left")
@@ -990,13 +1211,30 @@ def main():
         intersection1.add_vehicle(choice = "ahead")
         intersection1.add_vehicle(choice = "ahead",command = "left")
         intersection1.add_vehicle(choice = "ahead",command = "right")
-        '''
+        
         time.sleep(2)
+        
+        # check the remove method
+        intersection1.remove_vehicle(name1)
+        intersection1.remove_vehicle(name3)
+        intersection1.remove_vehicle(name2)
+        
         # traffic light
         intersection1.edit_traffic_light("subject",red_start = 20.0,red_end = 40.0,yellow_start=0.0,yellow_end=20.0,green_start=40.0,green_end = 60.0)
         intersection1.edit_traffic_light("left",red_start = 20.0,red_end = 40.0,yellow_start=0.0,yellow_end=20.0,green_start=40.0,green_end = 60.0)
         intersection1.edit_traffic_light("right",red_start = 20.0,red_end = 40.0,yellow_start=0.0,yellow_end=20.0,green_start=40.0,green_end = 60.0)
         intersection1.edit_traffic_light("ahead",red_start = 20.0,red_end = 40.0,yellow_start=0.0,yellow_end=20.0,green_start=40.0,green_end = 60.0)
+        
+        # check the import/export method
+        setting = intersection1.export_settings()
+        
+        setting.filename = 'demo_setting1'
+        setting.write() # write the setting to file
+        
+        new_setting = ConfigObj(infile = 'demo_setting1')
+        
+        intersection1.import_settings(new_setting)
+        
         
         for ii in range(int(60 / env.delta_seconds)):
             env.world.tick()

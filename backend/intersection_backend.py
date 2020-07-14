@@ -224,9 +224,9 @@ def main():
         init_intersection.add_vehicle(choice = "ahead",command="left")
         init_intersection.add_vehicle(choice = "ahead",command = "right")
         init_intersection.edit_traffic_light("subject")
-        init_intersection.edit_traffic_light("left",red_start = 40.0,red_end = 60.0,yellow_start=30.0,yellow_end=40.0,green_start=0.0,green_end = 30.0)
-        init_intersection.edit_traffic_light("right",red_start = 0.0,red_end = 10.0,yellow_start=10.0,yellow_end=20.0,green_start=20.0,green_end = 40.0)
-        init_intersection.edit_traffic_light("ahead",red_start = 20.0,red_end = 40.0,yellow_start=10.0,yellow_end=20.0,green_start=0.0,green_end = 10.0)
+        #init_intersection.edit_traffic_light("left",red_start = 40.0,red_end = 60.0,yellow_start=30.0,yellow_end=40.0,green_start=0.0,green_end = 30.0)
+        #init_intersection.edit_traffic_light("right",red_start = 0.0,red_end = 10.0,yellow_start=10.0,yellow_end=20.0,green_start=20.0,green_end = 40.0)
+        #init_intersection.edit_traffic_light("ahead",red_start = 20.0,red_end = 40.0,yellow_start=10.0,yellow_end=20.0,green_start=0.0,green_end = 10.0)
         
         
         intersection_list[1].add_vehicle(choice = "ahead")
@@ -245,6 +245,18 @@ def main():
         intersection_list[3].add_vehicle(command = "left")
         intersection_list[3].add_vehicle()
         #intersection_list[3].edit_traffic_light("ahead")
+        
+        # test import/export
+        init_setting = init_intersection.export_settings()
+        
+        intersection_list[3].import_settings(init_setting)
+        intersection_list[3].add_vehicle(command = "left")
+        intersection_list[3].add_vehicle()
+        third_setting = intersection_list[3].export_settings()
+        
+        intersection_list[2].import_settings(third_setting)
+        
+        
         
         
         IntersectionBackend(env,intersection_list)
