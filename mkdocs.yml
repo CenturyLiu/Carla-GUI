@@ -1,0 +1,9 @@
+site_name: UMTRI CARLA GUI BACKEND GUIDE
+docs_dir: Docs
+theme: readthedocs
+
+
+nav:
+    - Home: index.md
+    - Installation Guide: installation_guide.md
+    - Urban Backend Introduction: urban_backend_introduction.md
