@@ -148,9 +148,14 @@ The init intersection is the intersection for adding the full path vehicles (ego
 
 The normal intersections are intersections after the initial one. All vehicles added to these intersections are intersection-only vehicles. Simulation inside these intersection will not start until a full-path vehicle enter the intersection.  
 
+![intersection_start](img/intersection_start.gif)
+> gif showing the start simulation condition of an intersection. The green rectangle represents a full path vehicle. The blue region is the region of interest defined by the user. Once a full path vehicle appears inside the region, the simulation in this intersection starts.
+
 ## Traffic light
 
-Traffic lights are split into subject, left, right and opposite light. User can have access to the traffic lights and customize the light color timeline.
+Traffic lights are split into subject, left, right and opposite light. User can have access to the traffic lights and customize the light color timeline. 
+
+
 
 ## Import and Export
 
@@ -163,5 +168,14 @@ For normal intersection, following settings will be imported/exported:
 
 For init intersection, the vehicles inside the subject lane will not be imported/exported, since this lane is intended to adding full path vehicles. Other settings will be imported/exported as for normal intersection.
 
+
+---
+author: shijiliu
+
+date: 2020-07-16 
+
+email: shijiliu@umich.edu
+
+---
 
 

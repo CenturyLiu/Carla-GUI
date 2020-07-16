@@ -11,3 +11,12 @@ available on [Carla_GUI/backend](https://github.com/CenturyLiu/Carla-GUI/tree/ma
 - Urban Backend API
 - Freeway Backend Introduction
 - Freeway Backend API
+
+---
+author: shijiliu
+
+date: 2020-07-15
+
+email: shijiliu@umich.edu
+
+---

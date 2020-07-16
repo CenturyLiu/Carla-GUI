@@ -32,3 +32,12 @@ The backend uses the following python modules:
         UnboundLocalError: local variable 'env' referenced before assignment
 
     This is because the carla client failed to connect to the carla server. Just run the code again and it should be fine.
+
+---
+author: shijiliu
+
+date: 2020-07-165
+
+email: shijiliu@umich.edu
+
+---
