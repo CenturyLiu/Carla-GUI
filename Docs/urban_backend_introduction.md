@@ -142,6 +142,26 @@ Backend supports 2 different type of vehicles:
     - follow vehicle
     Follow vehicle is the vehicle behind ego vehicle. When adding a follow vehicle, there must exist one and only one ego vehicle in the intersection.
     
+## Init Intersection and Normal Intersection
 
- 
+The init intersection is the intersection for adding the full path vehicles (ego,lead,follow). These vehicles will be added to the subject lane of the init intersection. Once simulation is started, the vehicles added into the init intersection will start moving.
+
+The normal intersections are intersections after the initial one. All vehicles added to these intersections are intersection-only vehicles. Simulation inside these intersection will not start until a full-path vehicle enter the intersection.  
+
+## Traffic light
+
+Traffic lights are split into subject, left, right and opposite light. User can have access to the traffic lights and customize the light color timeline.
+
+## Import and Export
+
+Import and export for intersection settings are supported by the backend. 
+
+For normal intersection, following settings will be imported/exported:
+
+- vehicles inside each lane (all vehicle settings will be reserved)
+- traffic light color timeline for each light
+
+For init intersection, the vehicles inside the subject lane will not be imported/exported, since this lane is intended to adding full path vehicles. Other settings will be imported/exported as for normal intersection.
+
+
 
