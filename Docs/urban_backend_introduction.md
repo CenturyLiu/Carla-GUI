@@ -43,7 +43,7 @@ Here is a skeleton image showing the relationship between different components i
 
 ## Urban simulation environment
 
-The urban simulation environment consists of a series of **Intersections**, as shown in the image below. An **ego vehicle** will go in the direction of the green arrow through each intersection.
+The urban simulation environment consists of a series of **Intersections** (user can custom number of intersections), as shown in the image below. An **ego vehicle** will go in the direction of the green arrow through each intersection. 
 
 ![urban sim scenario](img/urban_sim_scenario.PNG)
 
@@ -76,8 +76,72 @@ With the help of intersection location and direction parameters, we can split th
 ![intersection lane and light seperation](img/intersection_lane_light.PNG)
 
 
-
 ## Lane
 
-Vehicles are added to each lane.
+Lanes are represented by a lane_reference_point, which is of carla.Waypoint type, which has a (x,y,z) location and a lane direction. The typical choice of the 4 reference points is shown in the figure below.
+
+![lane representation](img/lane_representation.PNG)
+> picture showing the lane representation
+
+
+Vehicles are added into intersections by choosing a specific lane. The later a vehicle is added to a specific lane, the farther it's position is from the center of intersection. The way vehicles are added to the intersection is shown in the gif below.
+
+
+![intersection add vehicle](img/intersection_add_vehicle.gif)
+> gif showing the process of adding vehicles into lane.
+
+## Vehicle
+
+Backend supports 2 different type of vehicles: 
+
+- Intersection-only vehicle   
+    The intersection only vehicle, or "other type" vehicle, is a kind of vehicle that's only going to navigate inside a specific intersection. Following options are currently supported for these vehicles:
+
+    - Turning option: 
+       turn left; go straight; turn right
+    
+    - Obey traffic light option:
+       obey; ignore
+
+    - Stop option when stop at red light:      
+
+      normal stop (stop at the border line);    
+![normal stop](img/normal_stop.png)
+
+      abrupt stop (stop once light detected);    
+![abrupt stop](img/abrupt_stop.gif) 
+
+      penetrate border line;   
+![penetrate stop](img/penetrate_stop.gif)
+
+
+       
+
+    - gap: the distance between this vehicle and the vehicle in front of it when being added to a lane
+     - safety distance: the smallest distance between this vehicle and the vehicle in front of it when navigating
+
+    ![collision avoidance](img/avoid_collision_demo_short.gif)
+    > vehicles avoid collision by holding safety distance 
+
+
+- Full-path vehicle   
+    The full path vehicle is the vehicle that go through different intersections. Basic settings for full path vehicles are identical to the Intersection-only vehicle, except the turning option for full-path vehicle is fixed to be straight.
+   
+    Three types of full path vehicles are available: 
+
+    - ego vehicle   
+    Each simulation must include an ego vehicle, which will go through all intersections in the simulation.
+
+    - lead vehicle   
+    The lead vehicle is the vehicle in front of the ego vehicle. When adding a lead vehicle, there must exist one and only one ego vehicle in the intersection. The lead vehicle is going to wait for the ego vehicle is the ego vehicle is blocked by the traffic light. As is shown in the gif below.
+    
+
+    ![lead wait for ego](img/lead_wait_for_ego.gif)
+    > the lead vehicle wait for the ego vehicle
+
+    - follow vehicle
+    Follow vehicle is the vehicle behind ego vehicle. When adding a follow vehicle, there must exist one and only one ego vehicle in the intersection.
+    
+
+ 
 
