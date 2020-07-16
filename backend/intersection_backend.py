@@ -101,8 +101,8 @@ def IntersectionBackend(env,intersection_list):
         '''
         if env.vehicle_available(spectator_vehicle["uniquename"]):
             spectator_vehicle_transform = env.get_transform_3d(spectator_vehicle["uniquename"])
-            spectator_transform = get_ego_spectator(spectator_vehicle_transform,distance = -10)
-            #spectator_transform = get_ego_left_spectator(spectator_vehicle_transform)
+            #spectator_transform = get_ego_spectator(spectator_vehicle_transform,distance = -10)
+            spectator_transform = get_ego_left_spectator(spectator_vehicle_transform)
             spectator.set_transform(spectator_transform)
         '''
         #else:
@@ -220,13 +220,13 @@ def main():
         intersection_list = create_intersections(env, 4, traffic_light_list)
         init_intersection = intersection_list[0]
         normal_intersections = intersection_list[1:]
-        init_intersection.add_ego_vehicle(safety_distance = 15.0, stop_choice = "abrupy")
-        init_intersection.add_follow_vehicle(follow_distance = 20.0)
+        init_intersection.add_ego_vehicle(safety_distance = 15.0, stop_choice = "abrupt")
+        init_intersection.add_follow_vehicle(follow_distance = 20.0, stop_choice = "penetrate", penetrate_distance = 2.0)
         init_intersection.add_lead_vehicle(lead_distance = 20.0, stop_choice = "abrupt")
         init_intersection.add_vehicle(choice = "left", stop_choice = "abrupt")
-        init_intersection.add_vehicle(choice = "right",command="left", stop_choice = "abrupt")
-        init_intersection.add_vehicle(choice = "ahead",command="left", stop_choice = "abrupt")
-        init_intersection.add_vehicle(choice = "ahead",command = "right", stop_choice = "abrupt")
+        init_intersection.add_vehicle(choice = "right",command="left")
+        init_intersection.add_vehicle(choice = "ahead",command="left")
+        init_intersection.add_vehicle(choice = "ahead",command = "right")
         #init_intersection.edit_traffic_light("subject")
         #init_intersection.edit_traffic_light("left",red_start = 40.0,red_end = 60.0,yellow_start=30.0,yellow_end=40.0,green_start=0.0,green_end = 30.0)
         #init_intersection.edit_traffic_light("right",red_start = 0.0,red_end = 10.0,yellow_start=10.0,yellow_end=20.0,green_start=20.0,green_end = 40.0)

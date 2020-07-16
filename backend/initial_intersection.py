@@ -239,6 +239,7 @@ class Init_Intersection(Intersection):
 
         '''
         
+        
         stop_ref_waypoint = []
         stop_ref_waypoint.append(self.subject_lane_ref)
         

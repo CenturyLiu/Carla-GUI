@@ -381,14 +381,14 @@ class VehicleControl(object):
             coef = np.dot(vec_tar_curr,target_vector_2d)
             smallest_distance *= coef
             
-        if smallest_distance < 2 and smallest_distance > -10: 
+        if smallest_distance < 0.5 and smallest_distance > -10: 
             state = light.get_state()
             if state == carla.TrafficLightState.Red or state == carla.TrafficLightState.Yellow:
                 if self.stop_choice == "abrupt":
                     self.env.set_vehicle_velocity(self.model_uniquename , abrupt_stop_vel) # immediately stop vehicle
                     return 0.0 # abrupt stop
                 else:
-                    if smallest_distance < 1.0:
+                    if abs(smallest_distance) < 1.0: # normal or penetrate, note smallest_distance is most likely negative
                         self.env.set_vehicle_velocity(self.model_uniquename , abrupt_stop_vel)
                         return 0.0
                     else:
