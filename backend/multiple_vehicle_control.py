@@ -16,7 +16,7 @@ import math
 
 import control # the python-control package, install first
 
-from intersection_definition import Intersection, get_traffic_lights
+from backend.intersection_definition import Intersection, get_traffic_lights
 from carla_env import CARLA_ENV # self-written class that provides help functions, should be in the same folder
 from configobj import ConfigObj
 

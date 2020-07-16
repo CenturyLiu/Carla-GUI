@@ -8,16 +8,16 @@ Created on Sun Jul  5 10:20:35 2020
 
 
 import carla
-from carla_env import CARLA_ENV 
+from backend.carla_env import CARLA_ENV 
 import math
 import time
 import numpy as np
 from configobj import ConfigObj
-from generate_path_omit_regulation import generate_path
+from backend.generate_path_omit_regulation import generate_path
 from scipy.interpolate import UnivariateSpline
 import copy
 
-from intersection_settings_helper import write_intersection_settings, read_intersection_settings
+from backend.intersection_settings_helper import write_intersection_settings, read_intersection_settings
 
 DEBUG_INIT = True
 DEBUG_TRAJECTORY = True

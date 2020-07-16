@@ -15,11 +15,11 @@ import math
 
 import control # the python-control package, install first
 
-from generate_path_omit_regulation import generate_path
-from intersection_definition import Intersection, get_traffic_lights, get_trajectory, smooth_trajectory
-from carla_env import CARLA_ENV # self-written class that provides help functions, should be in the same folder
+from backend.generate_path_omit_regulation import generate_path
+from backend.intersection_definition import Intersection, get_traffic_lights, get_trajectory, smooth_trajectory
+from backend.carla_env import CARLA_ENV # self-written class that provides help functions, should be in the same folder
 from configobj import ConfigObj
-from multiple_vehicle_control import VehicleControl
+from backend.multiple_vehicle_control import VehicleControl
 
 import copy
 

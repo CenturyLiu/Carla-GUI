@@ -16,18 +16,18 @@ import math
 
 import control # the python-control package, install first
 
-from generate_path_omit_regulation import generate_path
-from intersection_definition import Intersection, get_traffic_lights, get_trajectory, smooth_trajectory
-from carla_env import CARLA_ENV # self-written class that provides help functions, should be in the same folder
+from backend.generate_path_omit_regulation import generate_path
+from backend.intersection_definition import Intersection, get_traffic_lights, get_trajectory, smooth_trajectory
+from backend.carla_env import CARLA_ENV # self-written class that provides help functions, should be in the same folder
 from configobj import ConfigObj
-from multiple_vehicle_control import VehicleControl
+from backend.multiple_vehicle_control import VehicleControl
 
 import copy
 
-from initial_intersection import Init_Intersection, create_intersections, get_ego_spectator, get_ego_left_spectator
-from full_path_vehicle import LeadVehicleControl, FollowVehicleControl
+from backend.initial_intersection import Init_Intersection, create_intersections, get_ego_spectator, get_ego_left_spectator
+from backend.full_path_vehicle import LeadVehicleControl, FollowVehicleControl
 
-from intersection_settings_helper import write_intersection_settings, read_intersection_settings
+from backend.intersection_settings_helper import write_intersection_settings, read_intersection_settings
 
     
 

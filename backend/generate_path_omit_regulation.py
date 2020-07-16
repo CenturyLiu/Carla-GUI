@@ -32,7 +32,7 @@ import math
 import random
 import time
 
-from carla_env import CARLA_ENV # self-written class that provides help functions, should be in the same folder
+from backend.carla_env import CARLA_ENV # self-written class that provides help functions, should be in the same folder
 
 # color for debugging
 red = carla.Color(255, 0, 0)
