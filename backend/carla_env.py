@@ -94,7 +94,7 @@ class CARLA_ENV():
         settings.fixed_delta_seconds = delta_seconds
         self.world.apply_settings(settings)
         
-    def spawn_vehicle(self, model_name = None, spawn_point = None):
+    def spawn_vehicle(self, model_name = None, spawn_point = None, color = None):
         '''
         Parameters
         ----------
@@ -102,6 +102,8 @@ class CARLA_ENV():
             DESCRIPTION:  The default is None.
         spawn_point : carla.Transform() TYPE, optional
             DESCRIPTION. The default is None.
+        color : str, optional
+            the color of the vehicle
 
         Returns
         -------
@@ -115,6 +117,10 @@ class CARLA_ENV():
         
         if spawn_point == None:
             spawn_point = random.choice(self.world.get_map().get_spawn_points())
+        
+        if color != None:
+            bp.set_attribute('color',color)
+        
         
         vehicle = self.world.spawn_actor(bp,spawn_point)
         self.vehicle_dict[vehicle.type_id + '_' + str(vehicle.id)] = vehicle

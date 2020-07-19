@@ -179,6 +179,13 @@ def transform_vehicle_config(vehicle_config_str):
                 vehicle_config[key] = None
         elif key == 'stop_ref_point':
             vehicle_config[key] = None
+        elif key == 'vehicle_color':
+            if val == 'None':
+                vehicle_config[key] = None
+            else:
+                vehicle_config[key] = val.replace(';',',').split("\'")[1]
+                #print(vehicle_config[key])
+        
             
     return vehicle_config
 

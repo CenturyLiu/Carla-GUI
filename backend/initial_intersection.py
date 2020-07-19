@@ -5,7 +5,8 @@ Created on Tue Jul  7 15:12:58 2020
 
 @author: shijiliu
 """
-
+import sys
+sys.path.append("..")
 
 import carla
 import matplotlib.pyplot as plt
@@ -51,9 +52,9 @@ class Init_Intersection(Intersection):
         # generate the full path that's going to be shared between the ego, lead and follow vehicles
         self._generate_intersection_path()
     
-    def add_ego_vehicle(self, gap = 10.0,model_name = "vehicle.tesla.model3", stop_choice = "abrupt", penetrate_distance = None, obey_traffic_lights = True, run = True, safety_distance = 0.0):
+    def add_ego_vehicle(self, gap = 10.0,model_name = "vehicle.tesla.model3", stop_choice = "abrupt", penetrate_distance = None, obey_traffic_lights = True, run = True, safety_distance = 0.0, vehicle_color = None):
         
-        self._add_full_path_vehicle("ego",gap = gap, model_name = model_name, obey_traffic_lights = obey_traffic_lights, run = run, safety_distance = safety_distance)
+        self._add_full_path_vehicle("ego",gap = gap, model_name = model_name, obey_traffic_lights = obey_traffic_lights, run = run, safety_distance = safety_distance, vehicle_color = vehicle_color)
         self.ego_vehicle["lead_distance"] = 0.0
         self.ego_vehicle["follow_distance"] = 0.0
         self.ego_vehicle["index"] = len(self.subject_vehicle) - 1 # the index of the ego vehicle in the subject
@@ -64,7 +65,7 @@ class Init_Intersection(Intersection):
         
         return self.ego_vehicle['uniquename']
         
-    def add_lead_vehicle(self, lead_distance ,gap = 10.0,model_name = "vehicle.tesla.model3", stop_choice = "abrupt", penetrate_distance = None, obey_traffic_lights = True, run = True, safety_distance = 15.0):
+    def add_lead_vehicle(self, lead_distance ,gap = 10.0,model_name = "vehicle.tesla.model3", stop_choice = "abrupt", penetrate_distance = None, obey_traffic_lights = True, run = True, safety_distance = 15.0, vehicle_color = None):
         # get all the vehicles that's going to be after the lead vehicle
         ego_index = self.ego_vehicle["index"]
         vehicle_after_lead = self.subject_vehicle[ego_index : ]
@@ -78,7 +79,7 @@ class Init_Intersection(Intersection):
         self.subject_vehicle = self.subject_vehicle[:ego_index] 
         
         # add the lead vehicle
-        self._add_full_path_vehicle("lead",gap = gap, model_name = model_name, obey_traffic_lights = obey_traffic_lights, run = run, safety_distance = safety_distance)
+        self._add_full_path_vehicle("lead",gap = gap, model_name = model_name, obey_traffic_lights = obey_traffic_lights, run = run, safety_distance = safety_distance, vehicle_color = vehicle_color)
     
         # put back ego and vehicles after ego
         self.subject_vehicle += vehicle_after_lead
@@ -98,7 +99,7 @@ class Init_Intersection(Intersection):
         self.lead_vehicle["stop_ref_point"] = self._generate_full_path_stop_ref(stop_choice,penetrate_distance)
         return self.lead_vehicle['uniquename']
         
-    def add_follow_vehicle(self, follow_distance ,gap = 10.0,model_name = "vehicle.tesla.model3", stop_choice = "abrupt", penetrate_distance = None, obey_traffic_lights = True, run = True, safety_distance = 15.0):
+    def add_follow_vehicle(self, follow_distance ,gap = 10.0,model_name = "vehicle.tesla.model3", stop_choice = "abrupt", penetrate_distance = None, obey_traffic_lights = True, run = True, safety_distance = 15.0, vehicle_color = None):
         # get all the vehicles that's going to be after the lead vehicle
         ego_index = self.ego_vehicle["index"]
         vehicle_after_ego = self.subject_vehicle[ego_index + 1 : ]
@@ -112,7 +113,7 @@ class Init_Intersection(Intersection):
         self.subject_vehicle = self.subject_vehicle[:ego_index + 1]
         
         # add the follow vehicle
-        self._add_full_path_vehicle("follow",gap = gap, model_name = model_name, obey_traffic_lights = obey_traffic_lights, run = run, safety_distance = safety_distance)
+        self._add_full_path_vehicle("follow",gap = gap, model_name = model_name, obey_traffic_lights = obey_traffic_lights, run = run, safety_distance = safety_distance, vehicle_color = vehicle_color)
         
         # put back vehicles after follow
         self.subject_vehicle += vehicle_after_ego
@@ -126,7 +127,7 @@ class Init_Intersection(Intersection):
         self.follow_vehicle["stop_ref_point"] = self._generate_full_path_stop_ref(stop_choice,penetrate_distance)
         return self.follow_vehicle['uniquename']
         
-    def _add_full_path_vehicle(self, vehicle_type, gap = 10.0,model_name = "vehicle.tesla.model3", obey_traffic_lights = True, run = True, safety_distance = 0.0):
+    def _add_full_path_vehicle(self, vehicle_type, gap = 10.0,model_name = "vehicle.tesla.model3", obey_traffic_lights = True, run = True, safety_distance = 0.0, vehicle_color = None):
         '''
         
 
@@ -209,11 +210,15 @@ class Init_Intersection(Intersection):
         spawn_location = carla.Location(x = new_location.x - right_shift_value * right_vector[0], y = new_location.y -  right_shift_value * right_vector[1], z = new_location.z + 0.1)
         spawn_rotation = new_ref_waypoint.transform.rotation
         
-        uniquename = self.env.spawn_vehicle(model_name = model_name,spawn_point = carla.Transform(spawn_location,spawn_rotation)) 
+        uniquename = self.env.spawn_vehicle(model_name = model_name,spawn_point = carla.Transform(spawn_location,spawn_rotation), color = vehicle_color) 
         vehicle["uniquename"] = uniquename
         vehicle["ref_waypoint"] = new_ref_waypoint
         vehicle["location"] = spawn_location
         vehicle["rotation"] = spawn_rotation
+        if vehicle_color == None:
+            vehicle["vehicle_color"] = vehicle_color
+        else:
+            vehicle["vehicle_color"] = vehicle_color.replace(',',';') # replace , by ; to avoid error when importing from file
         
         # generate the full path
         trajectory, ref_speed_list = self._generate_full_path(new_ref_waypoint)
@@ -422,7 +427,7 @@ class Init_Intersection(Intersection):
         
         # import all settings
        
-        
+        '''
         for vehicle_config in intersection_settings["subject_vehicle"]:
             # add vehicles according to imported settings
             self.add_vehicle(gap = vehicle_config["gap"], 
@@ -433,10 +438,15 @@ class Init_Intersection(Intersection):
                              penetrate_distance = vehicle_config['penetrate_distance'],
                              obey_traffic_lights = vehicle_config['obey_traffic_lights'],
                              run = vehicle_config['run'],
-                             safety_distance = vehicle_config['safety_distance'] )
-            
+                             safety_distance = vehicle_config['safety_distance'],
+                             vehicle_color = vehicle_config['vehicle_color'].replace(';',','))
+        '''
+        
         for vehicle_config in intersection_settings["left_vehicle"]:
             # add vehicles according to imported settings
+            if vehicle_config['vehicle_color'] != None:
+                vehicle_config['vehicle_color'] = vehicle_config['vehicle_color'].replace(';',',')
+            
             self.add_vehicle(gap = vehicle_config["gap"], 
                              model_name = vehicle_config["model"], 
                              choice = vehicle_config['choice'], 
@@ -445,10 +455,14 @@ class Init_Intersection(Intersection):
                              penetrate_distance = vehicle_config['penetrate_distance'],
                              obey_traffic_lights = vehicle_config['obey_traffic_lights'],
                              run = vehicle_config['run'],
-                             safety_distance = vehicle_config['safety_distance'] )
+                             safety_distance = vehicle_config['safety_distance'],
+                             vehicle_color = vehicle_config['vehicle_color'])
             
         for vehicle_config in intersection_settings["right_vehicle"]:
             # add vehicles according to imported settings
+            if vehicle_config['vehicle_color'] != None:
+                vehicle_config['vehicle_color'] = vehicle_config['vehicle_color'].replace(';',',')
+            
             self.add_vehicle(gap = vehicle_config["gap"], 
                              model_name = vehicle_config["model"], 
                              choice = vehicle_config['choice'], 
@@ -457,10 +471,14 @@ class Init_Intersection(Intersection):
                              penetrate_distance = vehicle_config['penetrate_distance'],
                              obey_traffic_lights = vehicle_config['obey_traffic_lights'],
                              run = vehicle_config['run'],
-                             safety_distance = vehicle_config['safety_distance'] )
+                             safety_distance = vehicle_config['safety_distance'],
+                             vehicle_color = vehicle_config['vehicle_color'])
             
         for vehicle_config in intersection_settings["ahead_vehicle"]:
             # add vehicles according to imported settings
+            if vehicle_config['vehicle_color'] != None:
+                vehicle_config['vehicle_color'] = vehicle_config['vehicle_color'].replace(';',',')
+            
             self.add_vehicle(gap = vehicle_config["gap"], 
                              model_name = vehicle_config["model"], 
                              choice = vehicle_config['choice'], 
@@ -469,7 +487,8 @@ class Init_Intersection(Intersection):
                              penetrate_distance = vehicle_config['penetrate_distance'],
                              obey_traffic_lights = vehicle_config['obey_traffic_lights'],
                              run = vehicle_config['run'],
-                             safety_distance = vehicle_config['safety_distance'] )
+                             safety_distance = vehicle_config['safety_distance'],
+                             vehicle_color = vehicle_config['vehicle_color'])
     
         self.light_config['subject'] = intersection_settings['subject_light']
         self.light_config['subject_time'] = intersection_settings['subject_light_time']

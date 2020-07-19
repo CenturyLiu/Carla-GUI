@@ -5,7 +5,8 @@ Created on Wed Jul  8 14:20:00 2020
 
 @author: shijiliu
 """
-
+import sys
+sys.path.append("..")
 
 import carla
 import matplotlib.pyplot as plt
@@ -220,10 +221,10 @@ def main():
         intersection_list = create_intersections(env, 4, traffic_light_list)
         init_intersection = intersection_list[0]
         normal_intersections = intersection_list[1:]
-        init_intersection.add_ego_vehicle(safety_distance = 15.0, stop_choice = "abrupt")
+        init_intersection.add_ego_vehicle(safety_distance = 15.0, stop_choice = "abrupt", vehicle_color = '255,255,255')
         init_intersection.add_follow_vehicle(follow_distance = 20.0, stop_choice = "penetrate", penetrate_distance = 2.0)
         init_intersection.add_lead_vehicle(lead_distance = 20.0, stop_choice = "abrupt")
-        init_intersection.add_vehicle(choice = "left", stop_choice = "abrupt")
+        init_intersection.add_vehicle(choice = "left", stop_choice = "abrupt", vehicle_color = '255,255,255')
         init_intersection.add_vehicle(choice = "right",command="left")
         init_intersection.add_vehicle(choice = "ahead",command="left")
         init_intersection.add_vehicle(choice = "ahead",command = "right")
