@@ -25,7 +25,7 @@ The Intersection class defines a **normal intersection** as is discussed in [urb
 
 ### Method
 
-- **<font color="#7fb800">add_vehicle</font>**(<font color="#00a6ed">**self, gap = 10.0, model_name = "vehicle.tesla.model3", choice = "subject", command = "straight", stop_choice = "normal", penetrate_distance = None,obey_traffic_lights = True, run = True, safety_distance = 15.0**</font>)		
+- **<font color="#7fb800">add_vehicle</font>**(<font color="#00a6ed">**self, gap = 10.0, model_name = "vehicle.tesla.model3", choice = "subject", command = "straight", stop_choice = "normal", penetrate_distance = None,obey_traffic_lights = True, run = True, safety_distance = 15.0, vehicle_color = None**</font>)		
    Add a vehicle to a chosen lane, as is discussed in the [lane section](urban_backend_introduction.md#lane) and the [vehicle section](urban_backend_introduction.md#vehicle)
 
     - **Parameters**
@@ -59,6 +59,8 @@ The Intersection class defines a **normal intersection** as is discussed in [urb
         - `safety_distance` : float, optional	
             smallest distance between this vehicle and vehicle ahead. Default is 15 meters.
 
+        - `vehicle_color` : string, optional	
+            custom string representation of the RGB color of the vehicle. The string should be in the format 'R,G,B', where R,G,B are integer values. For example, blue is represented as (R,G,B) = (47, 210, 231), then the input string should be '47,210,231'. The default is None, meaning using the default color for the vehicle.
 
     - **Return**
         - `uniquename` : the uniquename of the vehicle		
@@ -81,6 +83,55 @@ The Intersection class defines a **normal intersection** as is discussed in [urb
 
         - `index` : int, optional.		
         the index of the vehicle that shifting. The default is 0.
+
+
+- **<font color="#7fb800">edit_vehicle_settings</font>**(<font color="#00a6ed">**self, uniquename, choice, gap = 10.0,model_name = "vehicle.tesla.model3", command = "straight", stop_choice = "normal", penetrate_distance = None,obey_traffic_lights = True, run = True, safety_distance = 15.0, vehicle_color = None**</font>)		
+   Edit settings of an other type vehicle with the vehicle's uniquename and the lane choice.	
+
+    <font color="#ff0000">**Note: This function will modify the vehicle's uniquename if editing is successful, or return None if failed. Please remember to store the new uniquename**</font>	
+
+    - **Parameters**
+        - `uniquename` : the uniquename of the vehicle
+        - `choice` : string, optional	
+            the lane this vehicle will be added, valid values: "subject", "left", "right", "ahead". 
+<font color="#ff0000"> **Note: 1. use " instead of ', 'subject' is invalid. This rule applies to all the string variables.  2. "ahead" is essentially the opposite direction as discussed in the [lane section](urban_backend_introduction.md#lane)**</font>
+
+        - `gap`  : float,optional		
+            the distance between a vehicle and its previous one. Default is 10 meter
+        - `model_name` : string, optional		
+            vehicle model type. The default is "vehicle.tesla.model3".
+
+        - `choice` : string, optional	
+            the lane this vehicle will be added, valid values: "subject", "left", "right", "ahead". The default is "subject".	
+<font color="#ff0000"> **Note: 1. use " instead of ', 'subject' is invalid. This rule applies to all the string variables.  2. "ahead" is essentially the opposite direction as discussed in the [lane section](urban_backend_introduction.md#lane)**</font>
+
+
+        - `command` : string, optional		
+            the turning command, valid values: "straight", "right", "left"
+
+
+        - `stop_choice` : string, optional	
+            how will the vehicle stop when at yellow or red light. valid values: "normal", "abrupt", "penetrate"
+
+
+        - `penetrate_distance` : float, unit: meter		
+            to what extent the vehicle will penetrate the traffic lane. This parameter will only be use when stop_choice is "penetrate"
+
+        - `obey_traffic_light` : bool, optional		
+            whether the vehicle will obey traffic light. Default is True
+
+        - `run` : bool, optional	
+            whether the vehicle is running. Default is True
+
+        - `safety_distance` : float, optional	
+            smallest distance between this vehicle and vehicle ahead. Default is 15 meters.
+
+        - `vehicle_color` : string, optional	
+            custom string representation of the RGB color of the vehicle. The string should be in the format 'R,G,B', where R,G,B are integer values. For example, blue is represented as (R,G,B) = (47, 210, 231), then the input string should be '47,210,231'. The default is None, meaning using the default color for the vehicle.
+
+    - **Return**
+        - `new_uniquename` : the new of the vehicle		
+<font color="#ff0000">**Note: this method will call the add_vehicle method for intersection and generate a new uniquename. Please remember to store the new uniquename**</font>
 
 
 
@@ -147,7 +198,7 @@ Init intersection class is inherited from the Intersection class, only new metho
     The list of traffic lights along the full navigation path.
 ### Methods
 
-- **<font color="#7fb800">add_ego_vehicle</font>**(<font color="#00a6ed">**self, gap = 10.0,model_name = "vehicle.tesla.model3", stop_choice = "abrupt", penetrate_distance = None, obey_traffic_lights = True, run = True, safety_distance = 0.0**</font>)		
+- **<font color="#7fb800">add_ego_vehicle</font>**(<font color="#00a6ed">**self, gap = 10.0,model_name = "vehicle.tesla.model3", stop_choice = "abrupt", penetrate_distance = None, obey_traffic_lights = True, run = True, safety_distance = 0.0, vehicle_color = None**</font>)		
     add the ego vehicle to the intersection
     - **Parameters**
         - `gap`  : float,optional		
@@ -171,11 +222,13 @@ Init intersection class is inherited from the Intersection class, only new metho
         - `safety_distance` : float, optional	
             smallest distance between this vehicle and vehicle ahead. Default is 0.0 meters, means ego vehicle is highly likely to collide into other vehicles.
 
+        - `vehicle_color` : string, optional	
+            custom string representation of the RGB color of the vehicle. The string should be in the format 'R,G,B', where R,G,B are integer values. For example, blue is represented as (R,G,B) = (47, 210, 231), then the input string should be '47,210,231'. The default is None, meaning using the default color for the vehicle.
 
     - **Return**
         - `uniquename` : the uniquename of the ego vehicle		
 
-- **<font color="#7fb800">add_lead_vehicle</font>**(<font color="#00a6ed">**self, lead_distance, gap = 10.0,model_name = "vehicle.tesla.model3", stop_choice = "abrupt", penetrate_distance = None, obey_traffic_lights = True, run = True, safety_distance = 0.0**</font>)		
+- **<font color="#7fb800">add_lead_vehicle</font>**(<font color="#00a6ed">**self, lead_distance, gap = 10.0,model_name = "vehicle.tesla.model3", stop_choice = "abrupt", penetrate_distance = None, obey_traffic_lights = True, run = True, safety_distance = 0.0, vehicle_color = None**</font>)		
     add the ego vehicle to the intersection
     - **Parameters**
         - `lead_distance` : float, 
@@ -206,11 +259,13 @@ Init intersection class is inherited from the Intersection class, only new metho
         - `safety_distance` : float, optional	
             smallest distance between this vehicle and vehicle ahead. Default is 0.0 meters, means ego vehicle is highly likely to collide into other vehicles.
 
+        - `vehicle_color` : string, optional	
+            custom string representation of the RGB color of the vehicle. The string should be in the format 'R,G,B', where R,G,B are integer values. For example, blue is represented as (R,G,B) = (47, 210, 231), then the input string should be '47,210,231'. The default is None, meaning using the default color for the vehicle.
 
     - **Return**
         - `uniquename` : the uniquename of the lead vehicle
 
-- **<font color="#7fb800">add_follow_vehicle</font>**(<font color="#00a6ed">**self, follow_distance, gap = 10.0,model_name = "vehicle.tesla.model3", stop_choice = "abrupt", penetrate_distance = None, obey_traffic_lights = True, run = True, safety_distance = 0.0**</font>)		
+- **<font color="#7fb800">add_follow_vehicle</font>**(<font color="#00a6ed">**self, follow_distance, gap = 10.0,model_name = "vehicle.tesla.model3", stop_choice = "abrupt", penetrate_distance = None, obey_traffic_lights = True, run = True, safety_distance = 0.0, vehicle_color = None**</font>)		
     add the ego vehicle to the intersection
     - **Parameters**
         - `follow_distance` : float, 
@@ -241,6 +296,8 @@ Init intersection class is inherited from the Intersection class, only new metho
         - `safety_distance` : float, optional	
             smallest distance between this vehicle and vehicle ahead. Default is 0.0 meters, means ego vehicle is highly likely to collide into other vehicles.
 
+        - `vehicle_color` : string, optional	
+            custom string representation of the RGB color of the vehicle. The string should be in the format 'R,G,B', where R,G,B are integer values. For example, blue is represented as (R,G,B) = (47, 210, 231), then the input string should be '47,210,231'. The default is None, meaning using the default color for the vehicle.
 
     - **Return**
         - `uniquename` : the uniquename of the follow vehicle
@@ -409,13 +466,18 @@ Here is an example of the whole work flow of creating an urban simulation. This 
 			# these should be done with the help of the front end gui
 			init_intersection = intersection_list[0]
 			normal_intersections = intersection_list[1:]
-			init_intersection.add_ego_vehicle(safety_distance = 15.0, stop_choice = "abrupt")
+			init_intersection.add_ego_vehicle(safety_distance = 15.0, stop_choice = "abrupt", vehicle_color = '255,255,255')
 			init_intersection.add_follow_vehicle(follow_distance = 20.0, stop_choice = "penetrate", penetrate_distance = 2.0)
 			init_intersection.add_lead_vehicle(lead_distance = 20.0, stop_choice = "abrupt")
-			init_intersection.add_vehicle(choice = "left", stop_choice = "abrupt")
+			init_intersection.add_vehicle(choice = "left", stop_choice = "abrupt", vehicle_color = '255,255,255')
 			init_intersection.add_vehicle(choice = "right",command="left")
-			init_intersection.add_vehicle(choice = "ahead",command="left")
-			init_intersection.add_vehicle(choice = "ahead",command = "right")
+			
+			# test edit settings
+			name1 = init_intersection.add_vehicle(choice = "ahead",command="left")
+			name2 = init_intersection.add_vehicle(choice = "ahead",command = "right")
+			
+			init_intersection.edit_vehicle_settings(name1, choice = "ahead", vehicle_color = '128,128,128')
+			init_intersection.edit_vehicle_settings(name2, choice = "ahead", gap = 15.0, vehicle_color = '128,128,128')
 			init_intersection.edit_traffic_light("subject")
 			init_intersection.edit_traffic_light("left",red_start = 40.0,red_end = 60.0,yellow_start=30.0,yellow_end=40.0,green_start=0.0,green_end = 30.0)
 			init_intersection.edit_traffic_light("right",red_start = 0.0,red_end = 10.0,yellow_start=10.0,yellow_end=20.0,green_start=20.0,green_end = 40.0)
@@ -464,10 +526,11 @@ Here is an example of the whole work flow of creating an urban simulation. This 
 	    main()
 
 
+
 ---
 author: shijiliu
 
-date: 2020-07-16 
+date: 2020-07-19 
 
 email: shijiliu@umich.edu
 
