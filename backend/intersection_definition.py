@@ -528,6 +528,9 @@ class Intersection():
             whether the vehicle is running. Default is True
         safety_distance : float, optional
             smallest distance between this vehicle and vehicle ahead
+        vehicle_color : string
+            the RGB representation of the vehicle color. e.g. '255,255,255'
+
 
         Returns
         -------
@@ -546,7 +549,7 @@ class Intersection():
         vehicle["safety_distance"] = safety_distance
         vehicle["choice"] = choice
         
-        print(choice)
+        #print(choice)
         
         if choice == "subject":
             ref_waypoint = self.subject_lane_ref
@@ -611,7 +614,7 @@ class Intersection():
         vehicle["location"] = spawn_location
         vehicle["rotation"] = spawn_rotation
         
-        print(vehicle_color)
+        #print(vehicle_color)
         
         if vehicle_color == None:
             vehicle["vehicle_color"] = vehicle_color
@@ -879,6 +882,121 @@ class Intersection():
                 return True
 
         return False
+    
+    def edit_vehicle_settings(self, uniquename, choice, gap = 10.0,model_name = "vehicle.tesla.model3", command = "straight", stop_choice = "normal", penetrate_distance = None,obey_traffic_lights = True, run = True, safety_distance = 15.0, vehicle_color = None ):
+        '''
+        allow user to edit the vehicle settings
+        Note: the original vehicle will be destroyed, and a new vehicle will be added
+
+        Parameters
+        ----------
+        uniquename : string
+            original uniquename of the vehicle.
+        choice : string
+            the lane choice, valid values: "subject","left","right","ahead"
+        gap : float,optional
+            the distance between a vehicle and its previous one
+        model_name : string, optional
+            vehicle type. The default is "vehicle.tesla.model3".
+        command : string, optional
+            the turning command, valid values: "straight", "right", "left"
+        stop_choice : string, optional
+            how will the vehicle stop when at yellow or red light. valid values: "normal", "abrupt", "penetrate"
+        penetrate_distance : float, unit: meter
+            to what extent the vehicle will penetrate the traffic lane. This parameter will only be use when stop_choice is "penetrate"
+        obey_traffic_light : bool, optional
+            whether the vehicle will obey traffic light. Default is True
+        run : bool, optional
+            whether the vehicle is running. Default is True
+        safety_distance : float, optional
+            smallest distance between this vehicle and vehicle ahead
+        vehicle_color : string
+            the RGB representation of the vehicle color. e.g. '255,255,255'
+        Returns
+        -------
+        new_uniquename : string
+            new uniquename of the vehicle
+
+        '''
+        
+        
+
+        
+        # get the given lane
+        if choice == "subject":
+            vehicle_set = self.subject_vehicle
+        elif choice == "left":
+            vehicle_set = self.left_vehicle
+        elif choice == "ahead":
+            vehicle_set = self.ahead_vehicle
+        elif choice == "right":
+            vehicle_set = self.right_vehicle
+        
+        
+        # get vehicle index in the given lane
+        index = 0
+        original_gap = None
+        for vehicle in vehicle_set:
+            if vehicle["uniquename"] == uniquename:
+                original_gap = vehicle["gap"]
+                break
+            index += 1
+        
+        
+        
+        
+        # shift the vehicle
+        if original_gap != None:
+            shift_distance = original_gap - gap
+            self._shift_vehicles(shift_distance, choice = choice, index = index)
+        else:
+            print("return None in edit vehicle")
+            return None
+        
+        # remove the current vehicle, 
+        # note that after removing the vehicle, index is pointing at the vehicle after the current one
+        removed = self.remove_vehicle(uniquename)
+        if not removed:
+            print("vehicle not found")
+            return None
+        
+        
+        # get the given lane
+        if choice == "subject":
+            # store the vehicles after the current one
+            vehicles_after_current = self.subject_vehicle[index :]
+            self.subject_vehicle = self.subject_vehicle[:index]
+            
+        elif choice == "left":
+            vehicles_after_current = self.left_vehicle[index :]
+            self.left_vehicle = self.left_vehicle[:index]
+            
+        elif choice == "ahead":
+            vehicles_after_current = self.ahead_vehicle[index :]
+            self.ahead_vehicle = self.ahead_vehicle[:index]
+            
+        elif choice == "right":
+            vehicles_after_current = self.right_vehicle[index :]
+            self.right_vehicle = self.right_vehicle[:index]
+            
+        
+        
+        # add a new vehicle with new settings
+        new_uniquename = self.add_vehicle(gap = gap, model_name = model_name, choice = choice, command = command, stop_choice = stop_choice, penetrate_distance = penetrate_distance, obey_traffic_lights = obey_traffic_lights, run = run, safety_distance = safety_distance, vehicle_color = vehicle_color)
+        
+        
+        if choice == "subject":
+            self.subject_vehicle += vehicles_after_current
+        elif choice == "left":
+            self.left_vehicle += vehicles_after_current
+        elif choice == "ahead":
+            self.ahead_vehicle += vehicles_after_current
+        elif choice == "right":
+            self.right_vehicle += vehicles_after_current
+        
+        
+        return new_uniquename
+    
 
     def edit_traffic_light(self,light, red_start = 0.0,red_end = 10.0,yellow_start = 10.0,yellow_end = 15.0,green_start = 15.0,green_end = 25.0):
         '''
@@ -1234,27 +1352,36 @@ def main():
         intersection1 = Intersection(env, world_pos, traffic_light_list)
         
         
-        name1 = intersection1.add_vehicle()
+        #name1 = intersection1.add_vehicle()
         
-        name2 = intersection1.add_vehicle(command = "left", vehicle_color='255,255,255')
-        name3 = intersection1.add_vehicle(command = "right", vehicle_color='255,255,255')
+        #name2 = intersection1.add_vehicle(command = "left", vehicle_color='255,255,255')
+        #name3 = intersection1.add_vehicle(command = "right", vehicle_color='255,255,255')
         
-        intersection1.add_vehicle(gap = 5,choice = "left", vehicle_color='255,255,255')
-        intersection1.add_vehicle(gap = 5, choice = "left",command = "left", vehicle_color='255,255,255')
-        intersection1.add_vehicle(gap = 5,choice = "left",command = "right", vehicle_color='255,255,255')
+        name4 = intersection1.add_vehicle(gap = 5,choice = "left", vehicle_color='0,0,0')
+        name5 = intersection1.add_vehicle(gap = 5, choice = "left",command = "left", vehicle_color='128,128,128')
+        name6 = intersection1.add_vehicle(gap = 5,choice = "left",command = "right", vehicle_color='255,255,255')
+        '''
         intersection1.add_vehicle(choice = "right", vehicle_color='255,255,255')
         intersection1.add_vehicle(choice = "right",command = "left", vehicle_color='255,255,255')
         intersection1.add_vehicle(choice = "right",command = "right", vehicle_color='255,255,255')
         intersection1.add_vehicle(choice = "ahead", vehicle_color='255,255,255')
         intersection1.add_vehicle(choice = "ahead",command = "left", vehicle_color='255,255,255')
         intersection1.add_vehicle(choice = "ahead",command = "right", vehicle_color='255,255,255')
+        '''
+        #intersection1._shift_vehicles(-5,choice = "left",index = 0)
+        #intersection1._shift_vehicles(-5,choice = "left",index = 1)
+        #intersection1._shift_vehicles(-5,choice = "left",index = 2)
+        
+        intersection1.edit_vehicle_settings(name4,choice = "left", vehicle_color = '0,0,0')
+        intersection1.edit_vehicle_settings(name5,choice = "left", vehicle_color = '0,0,0')
+        intersection1.edit_vehicle_settings(name6,choice = "left", vehicle_color = '0,0,0')
         
         time.sleep(2)
         
         # check the remove method
-        intersection1.remove_vehicle(name1)
-        intersection1.remove_vehicle(name3)
-        intersection1.remove_vehicle(name2)
+        #intersection1.remove_vehicle(name1)
+        #intersection1.remove_vehicle(name3)
+        #intersection1.remove_vehicle(name2)
         
         # traffic light
         intersection1.edit_traffic_light("subject",red_start = 20.0,red_end = 40.0,yellow_start=0.0,yellow_end=20.0,green_start=40.0,green_end = 60.0)
@@ -1279,7 +1406,7 @@ def main():
         
         
     finally:
-        #time.sleep(10)
+        time.sleep(10)
         env.destroy_actors()
 
 if __name__ == '__main__':
