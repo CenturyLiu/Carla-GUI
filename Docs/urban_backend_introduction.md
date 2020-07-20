@@ -106,7 +106,7 @@ Backend supports 2 different type of vehicles:
     - Stop option when stop at red light:      
 
       normal stop (stop at the border line);    
-![normal stop](img/normal_stop.png)
+![normal stop](img/normal_stop.gif)
 
       abrupt stop (stop once light detected);    
 ![abrupt stop](img/abrupt_stop.gif) 
@@ -150,6 +150,9 @@ The normal intersections are intersections after the initial one. All vehicles a
 
 ![intersection_start](img/intersection_start.gif)
 > gif showing the start simulation condition of an intersection. The green rectangle represents a full path vehicle. The blue region is the region of interest defined by the user. Once a full path vehicle appears inside the region, the simulation in this intersection starts.
+
+![intersection_start_in_sim](img/intersection_start_in_sim.gif)
+> gif showing how simulation in a normal intersection is started in the simulation. The simulation in this gif starts when the lead vehicle (the white vehicle from left) comes into the intersection.
 
 ## Traffic light
 
