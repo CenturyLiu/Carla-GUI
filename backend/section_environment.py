@@ -22,6 +22,8 @@ from backend.section_definition import Section
 from backend.section_init_definition import InitSection
 from backend.generate_path_omit_regulation import generate_path
 from backend.intersection_definition import smooth_trajectory, get_trajectory
+from backend.multiple_vehicle_control import VehicleControl
+from backend.initial_intersection import get_ego_spectator, get_ego_left_spectator
 
 # color for debug use
 red = carla.Color(255, 0, 0)
@@ -75,6 +77,7 @@ class FreewayEnv(object):
         
         spectator = world.get_spectator()
         spectator.set_transform(carla.Transform(carla.Location(x=-170, y=-151, z=116.5), carla.Rotation(pitch=-33, yaw= 56.9, roll=0.0)))
+        self.spectator = spectator
         
         # create the environment
         self.env = CARLA_ENV(world)
@@ -91,11 +94,105 @@ class FreewayEnv(object):
         
         # create the simulation environment and generate the trajectory
         self._create_simulation_env()
+        
+        # give the trajectory and reference speed list to the initial intersection
+        self.section_list[0].get_full_path_trajectory(self.smoothed_full_trajectory, self.ref_speed_list, self.left_smoothed_full_trajectory, self.left_ref_speed_list)
+    
+        
     
     
     def __del__(self):
         self.env.destroy_actors()
     
+    # public methods
+    def get_section_list(self):
+        return self.section_list
+    
+    def SectionBackend(self):
+        '''
+        back end function for the freeway
+
+        Returns
+        -------
+        None.
+
+        '''
+        init_section = self.section_list[0]
+        ego_vehicle =  VehicleControl(self.env, init_section.ego_vehicle, self.env.delta_seconds)
+        ego_uniquename = init_section.ego_vehicle["uniquename"]
+        left_follow_vehicle = []
+        subject_follow_vehicle = []
+        left_lead_vehicle = []
+        subject_lead_vehicle = []
+        
+        # check whether ego vehicle comes to destination
+        ego_end = False
+        
+        # create vehicle control object
+        for vehicle_config in init_section.left_follow_vehicle:
+            left_follow_vehicle.append(VehicleControl(self.env, vehicle_config, self.env.delta_seconds))
+            
+        for vehicle_config in init_section.subject_follow_vehicle:
+            subject_follow_vehicle.append(VehicleControl(self.env, vehicle_config, self.env.delta_seconds))
+            
+        for vehicle_config in init_section.left_lead_vehicle:
+            left_lead_vehicle.append(VehicleControl(self.env, vehicle_config, self.env.delta_seconds))
+            
+        for vehicle_config in init_section.subject_lead_vehicle:
+            subject_lead_vehicle.append(VehicleControl(self.env, vehicle_config, self.env.delta_seconds))
+            
+            
+        # main loop for control    
+        while True:
+            self.env.world.tick()
+            
+            # update the distance between vehicles after each tick
+            self.env.update_vehicle_distance()
+            
+            # change spectator view
+            if self.env.vehicle_available(ego_uniquename):
+                 spectator_vehicle_transform = self.env.get_transform_3d(ego_uniquename)
+                 spectator_transform = get_ego_spectator(spectator_vehicle_transform,distance = -10)
+                 self.spectator.set_transform(spectator_transform)
+            
+            # section based control
+            # implement later
+                
+            # apply control to vehicles
+            if not ego_end:
+                ego_end = ego_vehicle.pure_pursuit_control_wrapper()
+            
+            for jj in range(len(left_follow_vehicle) - 1,-1,-1):
+                vehicle = left_follow_vehicle[jj]
+                end_trajectory = vehicle.pure_pursuit_control_wrapper()
+                if end_trajectory:
+                    left_follow_vehicle.pop(jj)
+                    
+            for jj in range(len(subject_follow_vehicle) - 1,-1,-1):
+                vehicle = left_follow_vehicle[jj]
+                end_trajectory = vehicle.pure_pursuit_control_wrapper()
+                if end_trajectory:
+                    left_follow_vehicle.pop(jj)
+                    
+            for jj in range(len(left_lead_vehicle) - 1,-1,-1):
+                vehicle = left_follow_vehicle[jj]
+                end_trajectory = vehicle.pure_pursuit_control_wrapper()
+                if end_trajectory:
+                    left_follow_vehicle.pop(jj)
+                    
+            for jj in range(len(subject_lead_vehicle) - 1,-1,-1):
+                vehicle = left_follow_vehicle[jj]
+                end_trajectory = vehicle.pure_pursuit_control_wrapper()
+                if end_trajectory:
+                    left_follow_vehicle.pop(jj)
+            
+            if ego_end and len(left_follow_vehicle) == 0 and len(subject_follow_vehicle) == 0 and len(left_lead_vehicle) == 0 and len(subject_lead_vehicle) == 0:
+                # exit simulation when all vehicles have arrived at their destination
+                break
+                
+        
+    
+    # private methods
     def _create_simulation_env(self):
         # create the freeway environment
         # this function is the counterpart of the "create_intersections" 
@@ -259,7 +356,10 @@ class FreewayEnv(object):
     
 def main():
     try:
-        FreewayEnv(4)
+        freewayenv = FreewayEnv(15)
+        section_list = freewayenv.get_section_list()
+        section_list[0].add_ego_vehicle()
+        freewayenv.SectionBackend()
     finally:
         time.sleep(10)
         

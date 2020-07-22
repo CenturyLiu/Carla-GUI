@@ -64,7 +64,7 @@ class Section(object):
         # variable for storing the vehicles in subject lane and left lane
         self.subject_lead_vehicle = [] # for normal section, adding vehicle is currently not allowed
         self.subject_follow_vehicle = []
-        self.left_lane_vehicle = []  # vehicles will be loaded in from init sections
+        self.left_lead_vehicle = []  # vehicles will be loaded in from init sections
         self.left_follow_vehicle = []
         self.ego_vehicle = None
             
@@ -136,5 +136,25 @@ class Section(object):
         return self.reference_way_points
         
     def load_vehicle_settings(self, ego, subject_lead, subject_follow, left_lead, left_follow):
+        '''
+        load in the vehicle settings from initial intersection
+
+        Parameters
+        ----------
+        ego : ConfigObj
+            DESCRIPTION.
+        subject_lead : TYPE
+            DESCRIPTION.
+        subject_follow : TYPE
+            DESCRIPTION.
+        left_lead : TYPE
+            DESCRIPTION.
+        left_follow : TYPE
+            DESCRIPTION.
+
+        Returns
+        -------
+        None.
+
+        '''
         pass
-        
