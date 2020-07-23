@@ -139,4 +139,121 @@ class FullPathVehicleControl(VehicleControl):
         self.local_time = local_time
         if self.command == "lane" and self.command_start_time <= self.local_time:
             self._change_lane()
+
+        if self.command == "distance" and self.command_start_time <= self.local_time:
+            self._keep_distance()
     
+    def _keep_distance(self):
+        pass
+
+class LeadFollowVehicleControl(FullPathVehicleControl):
+    def __init__(self, env, vehicle_config, delta_seconds):
+        super().__init__(env, vehicle_config, delta_seconds)
+        
+        # store the vehicle type
+        self.vehicle_type = self.vehicle_config["vehicle_type"]
+    
+        
+        # store the constant distance
+        self.lead_follow_distance = self.vehicle_config["lead_follow_distance"]
+        if self.vehicle_type == "lead":
+            self.lead_follow_distance = - self.lead_follow_distance # if the vehicle is of "lead" type, the lead distance is negative
+        self.lead_follow_far_limit = 1.05 * self.lead_follow_distance
+        self.lead_follow_close_limit = 0.95 * self.lead_follow_distance
+    
+    
+        # store variable indicating whether the current vehicle and the ego vehicle are within desired range
+        self.within_desired_range = False
+    
+    def update_distance_with_ego(self, ego_transform):
+        ego_location = ego_transform.location
+        
+        # get local location
+        local_transform = self.env.get_transform_3d(self.model_uniquename)
+        local_location = local_transform.location
+        forward_vector = local_transform.get_forward_vector()
+        forward_vector_2d = np.array([forward_vector.x,forward_vector.y])
+        unit_forward_vector_2d =  forward_vector_2d / np.linalg.norm(forward_vector_2d)
+        
+        vec_loc_target = np.array([ego_location.x - local_location.x,ego_location.y - local_location.y])
+        distance = np.dot(vec_loc_target,unit_forward_vector_2d)
+        
+        self.distance_with_ego = distance
+    
+    def _keep_distance(self):
+        # keep constant distance between the current vehicle and the ego vehicle
+        if self.vehicle_type == "lead":
+            if self.distance_with_ego <= self.lead_follow_far_limit: # the vehicle is leading the ego vehicle and far away
+                # deccelerate
+                if self.current_lane == "subject":
+                    self.ref_speed_list = copy.copy(self.subject_min_ref_speed) # decelerate to the min speed
+                elif self.current_lane == "left":
+                    self.ref_speed_list = copy.copy(self.left_min_ref_speed) # decelerate to the min speed
+                    
+                self.within_desired_range = False
+            
+            elif self.distance_with_ego > self.lead_follow_close_limit and self.distance_with_ego < 0: # the vehicle is leading 
+                                                                                                       # and close to ego
+                # accelerate
+                if self.current_lane == "subject":
+                    self.ref_speed_list = copy.copy(self.subject_max_ref_speed) # accelerate to the max speed
+                elif self.current_lane == "left":
+                    self.ref_speed_list = copy.copy(self.left_max_ref_speed) # accelerate to the max speed
+            
+                self.within_desired_range = False
+            
+            else:
+                # vehicle within expected range or lead vehicle behind the ego vehicle, which could happen due to change lane
+                # keep normal navigation speed
+                if self.current_lane == "subject":
+                    self.ref_speed_list = copy.copy(self.subject_ref_speed) # keep constant speed
+                elif self.current_lane == "left":
+                    self.ref_speed_list = copy.copy(self.left_ref_speed) # keep constant speed
+            
+                if self.within_desired_range == False: # just come into the desired range, set the speed
+                    local_transform = self.env.get_transform_3d(self.model_uniquename)
+                    forward_vector = local_transform.get_forward_vector()
+                    vehicle_velocity = carla.Vector3D(x = forward_vector.x * self.subject_ref_speed[0], y = forward_vector.y * self.subject_ref_speed[0], z = forward_vector.z * self.subject_ref_speed[0])
+                    self.env.set_vehicle_velocity(self.model_uniquename , vehicle_velocity) # set the velocity
+                
+                self.within_desired_range = True
+            
+            
+            
+        else: # "follow" vehicle
+            if self.distance_with_ego >= self.lead_follow_far_limit: # the vehicle is following the ego vehicle and far away
+                # accelerate
+                if self.current_lane == "subject":
+                    self.ref_speed_list = copy.copy(self.subject_max_ref_speed) # accelerate to the max speed
+                elif self.current_lane == "left":
+                    self.ref_speed_list = copy.copy(self.left_max_ref_speed) # accelerate to the max speed
+                self.within_desired_range = False
+            
+            elif self.distance_with_ego < self.lead_follow_close_limit and self.distance_with_ego > 0: # the vehicle is following 
+                                                                                                       # and close to ego
+                # deccelerate
+                if self.current_lane == "subject":
+                    self.ref_speed_list = copy.copy(self.subject_min_ref_speed) # decelerate to the min speed
+                elif self.current_lane == "left":
+                    self.ref_speed_list = copy.copy(self.left_min_ref_speed) # decelerate to the min speed
+                self.within_desired_range = False
+            
+            else:
+                # vehicle within expected range or follow vehicle before the ego vehicle, which could happen due to change lane
+                # keep normal navigation speed
+                if self.current_lane == "subject":
+                    self.ref_speed_list = copy.copy(self.subject_ref_speed) # keep constant speed
+                elif self.current_lane == "left":
+                    self.ref_speed_list = copy.copy(self.left_ref_speed) # keep constant speed
+    
+                if self.within_desired_range == False: # just come into the desired range, set the speed
+                    local_transform = self.env.get_transform_3d(self.model_uniquename)
+                    forward_vector = local_transform.get_forward_vector()
+                    vehicle_velocity = carla.Vector3D(x = forward_vector.x * self.subject_ref_speed[0], y = forward_vector.y * self.subject_ref_speed[0], z = forward_vector.z * self.subject_ref_speed[0])
+                    self.env.set_vehicle_velocity(self.model_uniquename , vehicle_velocity) # set the velocity
+                
+                self.within_desired_range = True
+            
+    
+    
+        print("distance with ego == ", self.distance_with_ego)
