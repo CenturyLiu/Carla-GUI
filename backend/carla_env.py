@@ -404,7 +404,109 @@ class CARLA_ENV():
             
         return has_vehicle_in_front, distance
         
+    def check_vehicle_in_right(self, uniquename, safety_distance = 6):
+        '''
+        function checking whether a right vehicle is too close to the current vehicle
+        this function is primarily designed to help decide whether a vehicle can safely change lane
+
+        Parameters
+        ----------
+        uniquename : str
+            name of the vehicle.
+            
+        safety_distance: float
+            allowed closest distance between two vehicles
+
+        Returns
+        -------
+        has_vehicle_in_right : bool
+            whether there exists a vehicle within safety distance
+        distance: float
+            distance between this vehicle and the vehicle to the right
+
+        '''
+        # get the distance between this vehicle and other vehicles
+        distance_with_other_vehicle = self.distance_between_vehicles[uniquename]
         
+        # get the bounding box of this vehicle
+        vehicle_bb = self.vehicle_dict[uniquename].bounding_box.extent
+        safety_distance += vehicle_bb.x / 2 # add the half length of the vehicle
+        
+        has_vehicle_in_right = False
+        distance = None
+        
+        vehicle_1 = self.vehicle_dict[uniquename]
+        location_1 = vehicle_1.get_transform().location
+        forward_vector = vehicle_1.get_transform().get_forward_vector()
+        forward_vector_2d = np.array([forward_vector.x, forward_vector.y])
+        forward_vector_3d = np.array([forward_vector.x, forward_vector.y, 0])
+        
+        for name in distance_with_other_vehicle:
+            if name != uniquename and distance_with_other_vehicle[name] < safety_distance and name in self.vehicle_dict: # a possible vehicle
+                print(distance_with_other_vehicle[name])
+            
+                location_2 = self.vehicle_dict[name].get_transform().location
+                vec1_2 = np.array([location_2.x - location_1.x, location_2.y - location_1.y, 0])
+                vec1_2_2d = np.array([location_2.x - location_1.x, location_2.y - location_1.y])
+                cross_product = np.cross(forward_vector_3d, vec1_2)
+                if cross_product[2] > 0: # left hand system
+                    has_vehicle_in_right = True
+                    distance = np.dot(forward_vector_2d, vec1_2_2d)
+                    break
+                
+        return has_vehicle_in_right, distance
+
+    def check_vehicle_in_left(self, uniquename, safety_distance = 6):
+        '''
+        function checking whether a left vehicle is too close to the current vehicle
+        this function is primarily designed to help decide whether a vehicle can safely change lane
+
+        Parameters
+        ----------
+        uniquename : str
+            name of the vehicle.
+            
+        safety_distance: float
+            allowed closest distance between two vehicles
+
+        Returns
+        -------
+        has_vehicle_in_left : bool
+            whether there exists a vehicle within safety distance
+        distance: float
+            distance between this vehicle and the vehicle to the right
+
+        '''
+        # get the distance between this vehicle and other vehicles
+        distance_with_other_vehicle = self.distance_between_vehicles[uniquename]
+        
+        # get the bounding box of this vehicle
+        vehicle_bb = self.vehicle_dict[uniquename].bounding_box.extent
+        safety_distance += vehicle_bb.x / 2 # add the half length of the vehicle
+        
+        has_vehicle_in_left = False
+        distance = None
+        
+        vehicle_1 = self.vehicle_dict[uniquename]
+        location_1 = vehicle_1.get_transform().location
+        forward_vector = vehicle_1.get_transform().get_forward_vector()
+        forward_vector_2d = np.array([forward_vector.x, forward_vector.y])
+        forward_vector_3d = np.array([forward_vector.x, forward_vector.y, 0])
+        
+        for name in distance_with_other_vehicle:
+            if name != uniquename and distance_with_other_vehicle[name] < safety_distance and name in self.vehicle_dict: # a possible vehicle
+                print(distance_with_other_vehicle[name])    
+            
+                location_2 = self.vehicle_dict[name].get_transform().location
+                vec1_2 = np.array([location_2.x - location_1.x, location_2.y - location_1.y, 0])
+                vec1_2_2d = np.array([location_2.x - location_1.x, location_2.y - location_1.y])
+                cross_product = np.cross(forward_vector_3d, vec1_2)
+                if cross_product[2] < 0: # this is the only difference between the check_vehicle_in_left / check_vehicle_in_right function 
+                    has_vehicle_in_left = True
+                    distance = np.dot(forward_vector_2d, vec1_2_2d)
+                    break
+                
+        return has_vehicle_in_left, distance
 
     
     def get_traffic_light_state(self, uniquename):

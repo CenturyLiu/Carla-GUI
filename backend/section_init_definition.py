@@ -24,6 +24,7 @@ import copy
 from backend.section_definition import Section
 
 
+
 # define a class for defining the initial section
 # add vehicles is allowed in this section
 class InitSection(Section):
@@ -53,8 +54,12 @@ class InitSection(Section):
         '''
         self.subject_trajectory = subject_trajectory
         self.subject_ref_speed = subject_ref_speed
+        self.subject_max_speed_list = subject_ref_speed / 0.75
+        self.subject_min_speed_list = subject_ref_speed / 0.75 * 0.5
         self.left_trajectory = left_trajectory
         self.left_ref_speed = left_ref_speed
+        self.left_max_speed_list = left_ref_speed / 0.75
+        self.left_min_speed_list = left_ref_speed / 0.75 * 0.5
     
     def add_ego_vehicle(self, model_name = "vehicle.tesla.model3", safety_distance = 15.0, vehicle_color = None):
         '''
@@ -243,8 +248,12 @@ class InitSection(Section):
         
         vehicle["subject_trajectory"] = self.subject_trajectory
         vehicle["subject_ref_speed_list"] = self.subject_ref_speed
+        vehicle["subject_max_speed_list"] = self.subject_max_speed_list
+        vehicle["subject_min_speed_list"] = self.subject_min_speed_list
         vehicle["left_trajectory"] = self.left_trajectory
         vehicle["left_ref_speed_list"] = self.left_ref_speed
+        vehicle["left_max_speed_list"] = self.left_max_speed_list
+        vehicle["left_min_speed_list"] = self.left_min_speed_list
         
         new_bb = self.env.get_vehicle_bounding_box(uniquename)
         vehicle["bounding_box"] = new_bb

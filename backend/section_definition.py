@@ -73,6 +73,9 @@ class Section(object):
         self.left_trajectory = None # keep these variables in case adding section only vehicles is allowed in the future
     
     
+        # variable to count the time elapsed after simulation starts in this section
+        self.time_count = 0
+    
     def _get_next_waypoint(self,curr_waypoint,distance = 4):
         '''
         
@@ -135,6 +138,14 @@ class Section(object):
         # get the reference points of this section for use outside
         return self.reference_way_points
         
+    def tick(self):
+        # increment the time_count by one step
+        # return the elapsed time in terms of seconds
+        ret_val = self.time_count * self.env.delta_seconds
+        self.time_count += 1
+        return ret_val
+    
+    
     def load_vehicle_settings(self, ego, subject_lead, subject_follow, left_lead, left_follow):
         '''
         load in the vehicle settings from initial intersection

@@ -25,6 +25,7 @@ from backend.intersection_definition import smooth_trajectory, get_trajectory
 from backend.multiple_vehicle_control import VehicleControl
 from backend.multiple_vehicle_control_debug import VehicleControl_debug
 from backend.initial_intersection import get_ego_spectator, get_ego_left_spectator
+from backend.section_vehicle_control import FullPathVehicleControl
 
 # color for debug use
 red = carla.Color(255, 0, 0)
@@ -117,18 +118,22 @@ class FreewayEnv(object):
         
         # create vehicle control object
         for vehicle_config in init_section.left_follow_vehicle:
-            left_follow_vehicle.append(VehicleControl(self.env, vehicle_config, self.env.delta_seconds))
+            left_follow_vehicle.append(FullPathVehicleControl(self.env, vehicle_config, self.env.delta_seconds))
             
         for vehicle_config in init_section.subject_follow_vehicle:
-            subject_follow_vehicle.append(VehicleControl(self.env, vehicle_config, self.env.delta_seconds))
+            subject_follow_vehicle.append(FullPathVehicleControl(self.env, vehicle_config, self.env.delta_seconds))
             
         for vehicle_config in init_section.left_lead_vehicle:
-            left_lead_vehicle.append(VehicleControl_debug(self.env, vehicle_config, self.env.delta_seconds))
+            left_lead_vehicle.append(FullPathVehicleControl(self.env, vehicle_config, self.env.delta_seconds))
             
         for vehicle_config in init_section.subject_lead_vehicle:
-            subject_lead_vehicle.append(VehicleControl(self.env, vehicle_config, self.env.delta_seconds))
+            subject_lead_vehicle.append(FullPathVehicleControl(self.env, vehicle_config, self.env.delta_seconds))
             
-            
+        
+        # store the current section that is functioning
+        curr_section = init_section
+        self.section_list.pop(0)
+        
         # main loop for control    
         while True:
             self.env.world.tick()
@@ -137,14 +142,31 @@ class FreewayEnv(object):
             self.env.update_vehicle_distance()
             
             # change spectator view
-            
+            '''
             if self.env.vehicle_available(ego_uniquename):
                  spectator_vehicle_transform = self.env.get_transform_3d(ego_uniquename)
                  spectator_transform = get_ego_spectator(spectator_vehicle_transform,distance = -40)
                  self.spectator.set_transform(spectator_transform)
-            
+            '''
             # section based control
-            # implement later
+            # update the elapsed time of the current section
+            local_time = curr_section.tick()
+            
+            for vehicle in left_follow_vehicle:
+                vehicle.update_local_time(local_time)
+                
+            for vehicle in subject_follow_vehicle:
+                vehicle.update_local_time(local_time)
+                
+            for vehicle in left_lead_vehicle:
+                vehicle.update_local_time(local_time)
+            
+            for vehicle in subject_lead_vehicle:
+                vehicle.update_local_time(local_time)
+            
+            # apply section control, implement later
+            
+            
                 
             # apply control to vehicles
             if not ego_end:
@@ -186,6 +208,9 @@ class FreewayEnv(object):
                 # exit simulation when all vehicles have arrived at their destination
                 break
                 
+            
+            # check whether the subject vehicle is in the next section, if that's the case, change the curr_section
+            # implement later
         
     
     # private methods
@@ -381,14 +406,17 @@ def main():
         freewayenv = FreewayEnv(env,3)
         section_list = freewayenv.get_section_list()
         section_list[0].add_ego_vehicle()
-        section_list[0].add_full_path_vehicle(vehicle_type = "lead",choice = "left")
-        section_list[0].add_full_path_vehicle(vehicle_type = "lead",choice = "left", vehicle_color = '255,255,255')
-        section_list[0].add_full_path_vehicle(vehicle_type = "follow",choice = "subject")
-        section_list[0].add_full_path_vehicle(vehicle_type = "follow",choice = "subject", vehicle_color = '255,255,255')
-        section_list[0].add_full_path_vehicle(vehicle_type = "follow",choice = "left")
-        section_list[0].add_full_path_vehicle(vehicle_type = "follow",choice = "left", vehicle_color = '255,255,255')
+        
+        section_list[0].add_full_path_vehicle(vehicle_type = "lead", gap = 10.0 ,choice = "left", command = "lane", command_start_time = 2.0)
+        
+        section_list[0].add_full_path_vehicle(vehicle_type = "lead",choice = "left", command = "lane", command_start_time = 2.0, vehicle_color = '255,255,255')
+        section_list[0].add_full_path_vehicle(vehicle_type = "follow",choice = "subject", command = "lane", command_start_time = 2.0)
+        section_list[0].add_full_path_vehicle(vehicle_type = "follow",choice = "subject", vehicle_color = '255,255,255', command = "lane", command_start_time = 2.0)
+        section_list[0].add_full_path_vehicle(vehicle_type = "follow",choice = "left", command = "lane", command_start_time = 2.0)
+        section_list[0].add_full_path_vehicle(vehicle_type = "follow",choice = "left", vehicle_color = '255,255,255', command = "lane", command_start_time = 2.0)
         section_list[0].add_full_path_vehicle()
-        section_list[0].add_full_path_vehicle(vehicle_color = '255,255,255')
+        section_list[0].add_full_path_vehicle(vehicle_color = '255,255,255', command = "lane", command_start_time = 2.0)
+        
         freewayenv.SectionBackend()
     finally:
         time.sleep(10)
