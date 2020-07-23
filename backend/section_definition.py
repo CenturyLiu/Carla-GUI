@@ -58,6 +58,8 @@ class Section(object):
         # get the central point of the Section, which will be the reference for subject waypoint 
         self.subject_waypoint = world_waypoint
         
+        self.section_location = self.subject_waypoint.transform.location
+        
         # get the reference points of the Section, which will be used to form trajectory
         self._get_section_trajectory_points()
         
@@ -134,6 +136,155 @@ class Section(object):
             
         self.reference_way_points = reference_way_points
         
+    def _add_full_path_vehicle_normal(self, uniquename, vehicle_type, choice, command = "speed", command_start_time = 0.0):
+        '''
+        Create a setting place holder of the vehicle that has been added to the initial section
+        The command and command start time will be kept as default
+        
+        Front end user should not use this function
+
+        Parameters
+        ----------
+        uniquename : string
+            the name of the vehicle
+        vehicle_type : string, 
+            the vehicle type, valid values : "lead", "follow". 
+        choice : string, 
+            the lane choice, valid values are "subject", "left". 
+        command : string, optional
+            the command the vehicle is going to execute in this section. Valid values: "speed", "lane", "distance". The default is "speed".
+        command_start_time : string, optional
+            the time at which the command should be executed. The default is 0.0.
+
+        Returns
+        -------
+        None.
+
+        '''
+        if vehicle_type == "lead" and choice == "subject":
+            vehicle_set = self.subject_lead_vehicle
+            
+        elif vehicle_type == "lead" and choice == "left":
+            vehicle_set = self.left_lead_vehicle
+            
+        elif vehicle_type == "follow" and choice == "subject":
+            vehicle_set = self.subject_follow_vehicle
+            
+        elif vehicle_type == "follow" and choice == "left":
+            vehicle_set = self.left_follow_vehicle
+            
+        vehicle_local_config = ConfigObj()
+        vehicle_local_config["uniquename"] = uniquename
+        vehicle_local_config["command"] = command
+        vehicle_local_config["command_start_time"] = command_start_time
+        
+        vehicle_set.append(vehicle_local_config)
+    
+    def _update_vehicle_uniquename(self, vehicle_type, choice, index, uniquename):
+        '''
+        Private function for updating the uniquename of the vehicle in case uniquename is changed
+
+        Parameters
+        ----------
+        vehicle_type : string, 
+            the vehicle type, valid values : "lead", "follow". 
+        choice : string, 
+            the lane choice, valid values are "subject", "left". 
+        index : int
+            the index of the vehicle inside a specific lane. 
+        uniquename : string
+            the name of the vehicle
+
+        Returns
+        -------
+        None.
+
+        '''
+        if vehicle_type == "lead" and choice == "subject":
+            vehicle_set = self.subject_lead_vehicle
+            
+        elif vehicle_type == "lead" and choice == "left":
+            vehicle_set = self.left_lead_vehicle
+            
+        elif vehicle_type == "follow" and choice == "subject":
+            vehicle_set = self.subject_follow_vehicle
+            
+        elif vehicle_type == "follow" and choice == "left":
+            vehicle_set = self.left_follow_vehicle
+            
+        if len(vehicle_set) <= index:
+            print("Invalid index")
+            return
+        
+        vehicle_local_config = vehicle_set[index]
+        vehicle_local_config["uniquename"] = uniquename
+    
+    def edit_full_path_vehicle_local_setting(self, vehicle_type, choice, index , command = "speed", command_start_time = 0.0):
+        '''
+        API for the users to edit settings of a given vehicle 
+
+        Parameters
+        ----------
+        vehicle_type : string, 
+            the vehicle type, valid values : "lead", "follow". 
+        choice : string, 
+            the lane choice, valid values are "subject", "left". 
+        index : int
+            the index of the vehicle inside a specific lane. 
+        command : string, optional
+            the command the vehicle is going to execute in this section. Valid values: "speed", "lane", "distance". The default is "speed".
+        command_start_time : string, optional
+            the time at which the command should be executed. The default is 0.0.
+
+        Returns
+        -------
+        None.
+
+        '''
+        if vehicle_type == "lead" and choice == "subject":
+            vehicle_set = self.subject_lead_vehicle
+            
+        elif vehicle_type == "lead" and choice == "left":
+            vehicle_set = self.left_lead_vehicle
+            
+        elif vehicle_type == "follow" and choice == "subject":
+            vehicle_set = self.subject_follow_vehicle
+            
+        elif vehicle_type == "follow" and choice == "left":
+            vehicle_set = self.left_follow_vehicle
+        
+        if len(vehicle_set) <= index:
+            print("Invalid index")
+            return
+        
+        vehicle_local_config = vehicle_set[index]
+        vehicle_local_config["command"] = command
+        vehicle_local_config["command_start_time"] = command_start_time
+    
+    def get_full_path_vehicle_local_setting(self, vehicle_type, choice, index):
+        # get the settings of the vehicle based on lane and index
+        # return the command and corresponding start time
+        if vehicle_type == "lead" and choice == "subject":
+            vehicle_set = self.subject_lead_vehicle
+            
+        elif vehicle_type == "lead" and choice == "left":
+            vehicle_set = self.left_lead_vehicle
+            
+        elif vehicle_type == "follow" and choice == "subject":
+            vehicle_set = self.subject_follow_vehicle
+            
+        elif vehicle_type == "follow" and choice == "left":
+            vehicle_set = self.left_follow_vehicle
+        
+        if len(vehicle_set) <= index:
+            print("Invalid index")
+            return None, None
+        
+        vehicle_local_config = vehicle_set[index]
+        command = vehicle_local_config["command"]
+        command_start_time = vehicle_local_config["command_start_time"]
+        return command, command_start_time
+    
     def get_section_trajectory_points(self):
         # get the reference points of this section for use outside
         return self.reference_way_points
@@ -145,27 +296,27 @@ class Section(object):
         self.time_count += 1
         return ret_val
     
-    
-    def load_vehicle_settings(self, ego, subject_lead, subject_follow, left_lead, left_follow):
+    def section_start(self, ego_transform):
         '''
-        load in the vehicle settings from initial intersection
+        function deciding whether this section should start
 
         Parameters
         ----------
-        ego : ConfigObj
-            DESCRIPTION.
-        subject_lead : TYPE
-            DESCRIPTION.
-        subject_follow : TYPE
-            DESCRIPTION.
-        left_lead : TYPE
-            DESCRIPTION.
-        left_follow : TYPE
-            DESCRIPTION.
+        ego_transform : carla.Transform
+            the transform of the ego vehicle.
 
         Returns
         -------
         None.
 
         '''
-        pass
+        ego_location = ego_transform.location
+        
+        # get the distance between the ego vehicle and center of section
+        distance_2d = math.sqrt( (ego_location.x - self.section_location.x) ** 2 + (ego_location.y - self.section_location.y) ** 2)
+    
+        if distance_2d < 3.0: # the ego vehicle is close enough to the section reference point
+            return True
+        else:
+            return False
+    
