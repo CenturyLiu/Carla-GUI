@@ -23,6 +23,7 @@ from backend.section_init_definition import InitSection
 from backend.generate_path_omit_regulation import generate_path
 from backend.intersection_definition import smooth_trajectory, get_trajectory
 from backend.multiple_vehicle_control import VehicleControl
+from backend.multiple_vehicle_control_debug import VehicleControl_debug
 from backend.initial_intersection import get_ego_spectator, get_ego_left_spectator
 
 # color for debug use
@@ -37,7 +38,7 @@ white = carla.Color(255, 255, 255)
 
 class FreewayEnv(object):
     # this class holds all methods related to create a simulation environment for freeway
-    def __init__(self, number_of_sections, max_speed = 30.0):
+    def __init__(self, env, number_of_sections, max_speed = 30.0):
         '''
         initialize the freeway simulation environment
 
@@ -63,25 +64,11 @@ class FreewayEnv(object):
         # store the number of sections
         self.number_of_sections = number_of_sections
         
-        # create the CARLA_ENV helper 
-        client = carla.Client("localhost",2000)
-        client.set_timeout(10.0)
-        world = client.load_world('Town04') # use Town 04 which contains a freeway
+        self.env = env
         
-        # default the weather to be a fine day
-        weather = carla.WeatherParameters(
-            cloudiness=10.0,
-            precipitation=0.0,
-            sun_altitude_angle=90.0)
-        world.set_weather(weather)
+        self.spectator = self.env.world.get_spectator()
         
-        spectator = world.get_spectator()
-        spectator.set_transform(carla.Transform(carla.Location(x=-170, y=-151, z=116.5), carla.Rotation(pitch=-33, yaw= 56.9, roll=0.0)))
-        self.spectator = spectator
         
-        # create the environment
-        self.env = CARLA_ENV(world)
-        time.sleep(2) # sleep for 2 seconds, wait the initialization to finish
         
         self.carla_map = self.env.world.get_map()
         
@@ -101,8 +88,8 @@ class FreewayEnv(object):
         
     
     
-    def __del__(self):
-        self.env.destroy_actors()
+    #def __del__(self):
+    #    self.env.destroy_actors()
     
     # public methods
     def get_section_list(self):
@@ -136,7 +123,7 @@ class FreewayEnv(object):
             subject_follow_vehicle.append(VehicleControl(self.env, vehicle_config, self.env.delta_seconds))
             
         for vehicle_config in init_section.left_lead_vehicle:
-            left_lead_vehicle.append(VehicleControl(self.env, vehicle_config, self.env.delta_seconds))
+            left_lead_vehicle.append(VehicleControl_debug(self.env, vehicle_config, self.env.delta_seconds))
             
         for vehicle_config in init_section.subject_lead_vehicle:
             subject_lead_vehicle.append(VehicleControl(self.env, vehicle_config, self.env.delta_seconds))
@@ -150,9 +137,10 @@ class FreewayEnv(object):
             self.env.update_vehicle_distance()
             
             # change spectator view
+            
             if self.env.vehicle_available(ego_uniquename):
                  spectator_vehicle_transform = self.env.get_transform_3d(ego_uniquename)
-                 spectator_transform = get_ego_spectator(spectator_vehicle_transform,distance = -10)
+                 spectator_transform = get_ego_spectator(spectator_vehicle_transform,distance = -40)
                  self.spectator.set_transform(spectator_transform)
             
             # section based control
@@ -162,6 +150,14 @@ class FreewayEnv(object):
             if not ego_end:
                 ego_end = ego_vehicle.pure_pursuit_control_wrapper()
             
+            '''
+            print("--------")
+            print("len(left_follow_vehicle) == ", len(left_follow_vehicle))
+            print("len(subject_follow_vehicle) == ", len(subject_follow_vehicle))
+            print("len(left_lead_vehicle) == ", len(left_lead_vehicle))
+            print("len(subject_lead_vehicle) == ", len(subject_lead_vehicle))
+            '''
+            
             for jj in range(len(left_follow_vehicle) - 1,-1,-1):
                 vehicle = left_follow_vehicle[jj]
                 end_trajectory = vehicle.pure_pursuit_control_wrapper()
@@ -169,22 +165,22 @@ class FreewayEnv(object):
                     left_follow_vehicle.pop(jj)
                     
             for jj in range(len(subject_follow_vehicle) - 1,-1,-1):
-                vehicle = left_follow_vehicle[jj]
+                vehicle = subject_follow_vehicle[jj]
                 end_trajectory = vehicle.pure_pursuit_control_wrapper()
                 if end_trajectory:
-                    left_follow_vehicle.pop(jj)
+                    subject_follow_vehicle.pop(jj)
                     
             for jj in range(len(left_lead_vehicle) - 1,-1,-1):
-                vehicle = left_follow_vehicle[jj]
+                vehicle = left_lead_vehicle[jj]
                 end_trajectory = vehicle.pure_pursuit_control_wrapper()
                 if end_trajectory:
-                    left_follow_vehicle.pop(jj)
+                    left_lead_vehicle.pop(jj)
                     
             for jj in range(len(subject_lead_vehicle) - 1,-1,-1):
-                vehicle = left_follow_vehicle[jj]
+                vehicle = subject_lead_vehicle[jj]
                 end_trajectory = vehicle.pure_pursuit_control_wrapper()
                 if end_trajectory:
-                    left_follow_vehicle.pop(jj)
+                    subject_lead_vehicle.pop(jj)
             
             if ego_end and len(left_follow_vehicle) == 0 and len(subject_follow_vehicle) == 0 and len(left_lead_vehicle) == 0 and len(subject_lead_vehicle) == 0:
                 # exit simulation when all vehicles have arrived at their destination
@@ -229,7 +225,7 @@ class FreewayEnv(object):
                 loc1 = self.subject_point_list[ii].transform.location
                 self.env.world.debug.draw_point(loc1, size = 0.1, color = color, life_time=0.0, persistent_lines=True)
         
-            
+        
         # connect all reference points for all sections
         full_trajectory = generate_path(self.env, self.trajectory_ref_point_list[0] , self.trajectory_ref_point_list[1], waypoint_separation = 4)
         for ii in range(1, len(self.trajectory_ref_point_list) - 1):
@@ -237,6 +233,12 @@ class FreewayEnv(object):
             full_trajectory += trajectory[1:]
             
         self.section_subject_trajectory = full_trajectory
+        '''
+        full_trajectory = []
+        for pt in self.trajectory_ref_point_list:
+            location = pt.transform.location
+            full_trajectory.append((location.x,location.y))
+        '''
         
         # create smoothed trajectory and reference speed list
         whole_trajectory = [((pt[0],pt[1]),self.navigation_speed) for pt in full_trajectory]
@@ -356,12 +358,41 @@ class FreewayEnv(object):
     
 def main():
     try:
-        freewayenv = FreewayEnv(15)
+        
+        # create the CARLA_ENV helper 
+        client = carla.Client("localhost",2000)
+        client.set_timeout(10.0)
+        world = client.load_world('Town04') # use Town 04 which contains a freeway
+        
+        # default the weather to be a fine day
+        weather = carla.WeatherParameters(
+            cloudiness=10.0,
+            precipitation=0.0,
+            sun_altitude_angle=90.0)
+        world.set_weather(weather)
+        
+        spectator = world.get_spectator()
+        spectator.set_transform(carla.Transform(carla.Location(x=-170, y=-151, z=116.5), carla.Rotation(pitch=-33, yaw= 56.9, roll=0.0)))
+        
+        # create the environment
+        env = CARLA_ENV(world)
+        time.sleep(2) # sleep for 2 seconds, wait the initialization to finish
+        
+        freewayenv = FreewayEnv(env,3)
         section_list = freewayenv.get_section_list()
         section_list[0].add_ego_vehicle()
+        section_list[0].add_full_path_vehicle(vehicle_type = "lead",choice = "left")
+        section_list[0].add_full_path_vehicle(vehicle_type = "lead",choice = "left", vehicle_color = '255,255,255')
+        section_list[0].add_full_path_vehicle(vehicle_type = "follow",choice = "subject")
+        section_list[0].add_full_path_vehicle(vehicle_type = "follow",choice = "subject", vehicle_color = '255,255,255')
+        section_list[0].add_full_path_vehicle(vehicle_type = "follow",choice = "left")
+        section_list[0].add_full_path_vehicle(vehicle_type = "follow",choice = "left", vehicle_color = '255,255,255')
+        section_list[0].add_full_path_vehicle()
+        section_list[0].add_full_path_vehicle(vehicle_color = '255,255,255')
         freewayenv.SectionBackend()
     finally:
         time.sleep(10)
+        env.destroy_actors()
         
     
 if __name__ == '__main__':

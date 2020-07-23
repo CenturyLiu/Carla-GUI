@@ -123,7 +123,7 @@ class Section(object):
         reference_way_points.append(self.subject_waypoint)
         curr_waypoint = self.subject_waypoint
         
-        for ii in range(80):
+        for ii in range(90):
             distance = 4
             next_waypoint = self._get_next_waypoint(curr_waypoint, distance = distance)
             reference_way_points.append(next_waypoint)
