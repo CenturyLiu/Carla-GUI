@@ -35,7 +35,24 @@ yellow = carla.Color(255, 255, 0)
 orange = carla.Color(255, 162, 0)
 white = carla.Color(255, 255, 255)
 
-class FullPathVehicleControl(VehicleControl):
+
+class VehicleControlFreeway(VehicleControl):
+    def __init__(self, env, vehicle_config, delta_seconds):
+        super().__init__(env, vehicle_config, delta_seconds)
+        
+    def _obey_safety_distance(self, current_ref_speed):
+        # override the _obey_safety_distance method
+        has_vehicle_in_front, distance = self.env.check_vehicle_in_front_freeway(self.model_uniquename, self.safety_distance)
+        if has_vehicle_in_front: 
+            return 0.0
+        
+        return current_ref_speed
+    
+
+
+
+
+class FullPathVehicleControl(VehicleControlFreeway):
     def __init__(self, env, vehicle_config, delta_seconds):
         super().__init__(env,vehicle_config,delta_seconds)
         
@@ -77,11 +94,11 @@ class FullPathVehicleControl(VehicleControl):
         # check whether the vehicle is safe to change lane
         if not self.lane_change_available:
             if self.current_lane == "subject":
-                has_vehicle_in_left, distance = self.env.check_vehicle_in_left(self.model_uniquename, safety_distance = 6)
+                has_vehicle_in_left, distance = self.env.check_vehicle_in_left(self.model_uniquename, safety_distance = 10)
                 
-                #print("--------")
-                #print("has_vehicle_in_left : ", has_vehicle_in_left)
-                #print("distance: ", distance)
+                print("--------")
+                print("has_vehicle_in_left : ", has_vehicle_in_left)
+                print("distance: ", distance)
                 if has_vehicle_in_left:
                     if distance < 0:
                         self.ref_speed_list = copy.copy(self.subject_max_ref_speed) # accelerate to max speed if the close vehicle is behind
@@ -94,11 +111,11 @@ class FullPathVehicleControl(VehicleControl):
                     self.lane_change_available = True # no close vehicle in left lane, enable lane change
             else:
                 # vehicle currently in right lane
-                has_vehicle_in_right, distance = self.env.check_vehicle_in_right(self.model_uniquename, safety_distance = 6)
+                has_vehicle_in_right, distance = self.env.check_vehicle_in_right(self.model_uniquename, safety_distance = 10)
                 
-                #print("--------")
-                #print("has_vehicle_in_right : ", has_vehicle_in_right)
-                #print("distance: ", distance)
+                print("--------")
+                print("has_vehicle_in_right : ", has_vehicle_in_right)
+                print("distance: ", distance)
                 
                 if has_vehicle_in_right:
                     if distance < 0:
@@ -183,6 +200,12 @@ class LeadFollowVehicleControl(FullPathVehicleControl):
     def _keep_distance(self):
         # keep constant distance between the current vehicle and the ego vehicle
         if self.vehicle_type == "lead":
+            # for lead vehicle, check if there exists vehicle in the back
+            has_vehicle_in_back, distance = self.env.check_vehicle_in_back_freeway(self.model_uniquename,abs(self.lead_follow_distance))
+            
+            if has_vehicle_in_back:
+                self.distance_with_ego = distance # if there's a vehicle in the back, keep constant distance with the one in the back
+            
             if self.distance_with_ego <= self.lead_follow_far_limit: # the vehicle is leading the ego vehicle and far away
                 # deccelerate
                 if self.current_lane == "subject":
@@ -219,8 +242,14 @@ class LeadFollowVehicleControl(FullPathVehicleControl):
                 self.within_desired_range = True
             
             
+
             
         else: # "follow" vehicle
+           # for follow vehicle, check if there exists vehicle in the front
+            has_vehicle_in_front, distance = self.env.check_vehicle_in_front_freeway(self.model_uniquename, abs(self.lead_follow_distance))
+            if has_vehicle_in_front:
+                self.distance_with_ego = distance
+        
             if self.distance_with_ego >= self.lead_follow_far_limit: # the vehicle is following the ego vehicle and far away
                 # accelerate
                 if self.current_lane == "subject":
@@ -256,4 +285,4 @@ class LeadFollowVehicleControl(FullPathVehicleControl):
             
     
     
-        print("distance with ego == ", self.distance_with_ego)
+        #print("distance with ego == ", self.distance_with_ego)

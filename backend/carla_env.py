@@ -403,6 +403,116 @@ class CARLA_ENV():
                     break
             
         return has_vehicle_in_front, distance
+    
+    def check_vehicle_in_front_freeway(self, uniquename, safety_distance):
+        '''
+        greatly narrow the front view for freeway
+        
+
+        Parameters
+        ----------
+        uniquename : str
+            name of the vehicle.
+            
+        safety_distance: float
+            allowed closest distance between two vehicles
+
+        Returns
+        -------
+        has_vehicle_in_front : bool
+            whether there exists a vehicle within safety distance
+        distance: float
+            distance between this vehicle and the vehicle in the front
+
+        '''
+        # get the distance between this vehicle and other vehicles
+        distance_with_other_vehicle = self.distance_between_vehicles[uniquename]
+        
+        # get the bounding box of this vehicle
+        vehicle_bb = self.vehicle_dict[uniquename].bounding_box.extent
+        safety_distance += vehicle_bb.x / 2 # add the half length of the vehicle
+        
+        has_vehicle_in_front = False
+        distance = None
+        
+        vehicle_1 = self.vehicle_dict[uniquename]
+        location_1 = vehicle_1.get_transform().location
+        forward_vector = vehicle_1.get_transform().get_forward_vector()
+        
+        for name in distance_with_other_vehicle:
+            if name != uniquename and distance_with_other_vehicle[name] < safety_distance and name in self.vehicle_dict: # a possible vehicle
+                location_2 = self.vehicle_dict[name].get_transform().location
+                vec1_2 = np.array([location_2.x - location_1.x, location_2.y - location_1.y])
+                forward_vector_2d = np.array([forward_vector.x, forward_vector.y])
+                
+                norm_vec1_2 = vec1_2 / np.linalg.norm(vec1_2)
+                norm_forward_vector_2d = forward_vector_2d / np.linalg.norm(forward_vector_2d)
+                dot_product = np.dot(norm_vec1_2,norm_forward_vector_2d)
+                angle = np.arccos(dot_product)
+                
+                
+                
+                if angle < np.arcsin((vehicle_bb.y  / 2) / distance_with_other_vehicle[name]):#np.arcsin((vehicle_bb.y  + 1) / distance_with_other_vehicle[name]):#np.arctan(vehicle_bb.y / vehicle_bb.x): 
+                    has_vehicle_in_front = True
+                    distance = np.dot(vec1_2,forward_vector_2d)
+                    break
+            
+        return has_vehicle_in_front, distance
+    
+    def check_vehicle_in_back_freeway(self, uniquename, safety_distance):
+        '''
+        
+        
+
+        Parameters
+        ----------
+        uniquename : str
+            name of the vehicle.
+            
+        safety_distance: float
+            allowed closest distance between two vehicles
+
+        Returns
+        -------
+        has_vehicle_in_back : bool
+            whether there exists a vehicle within safety distance
+        distance: float
+            distance between this vehicle and the vehicle in the front
+
+        '''
+        # get the distance between this vehicle and other vehicles
+        distance_with_other_vehicle = self.distance_between_vehicles[uniquename]
+        
+        # get the bounding box of this vehicle
+        vehicle_bb = self.vehicle_dict[uniquename].bounding_box.extent
+        safety_distance += vehicle_bb.x / 2 # add the half length of the vehicle
+        
+        has_vehicle_in_back = False
+        distance = None
+        
+        vehicle_1 = self.vehicle_dict[uniquename]
+        location_1 = vehicle_1.get_transform().location
+        forward_vector = vehicle_1.get_transform().get_forward_vector()
+        
+        for name in distance_with_other_vehicle:
+            if name != uniquename and distance_with_other_vehicle[name] < safety_distance and name in self.vehicle_dict: # a possible vehicle
+                location_2 = self.vehicle_dict[name].get_transform().location
+                vec1_2 = np.array([location_2.x - location_1.x, location_2.y - location_1.y])
+                forward_vector_2d = np.array([forward_vector.x, forward_vector.y])
+                
+                norm_vec1_2 = vec1_2 / np.linalg.norm(vec1_2)
+                norm_forward_vector_2d = forward_vector_2d / np.linalg.norm(forward_vector_2d)
+                dot_product = np.dot(norm_vec1_2,norm_forward_vector_2d)
+                angle = np.arccos(dot_product)
+                
+                
+                
+                if angle > np.pi - np.arcsin((vehicle_bb.y  / 2) / distance_with_other_vehicle[name]):#np.arcsin((vehicle_bb.y  + 1) / distance_with_other_vehicle[name]):#np.arctan(vehicle_bb.y / vehicle_bb.x): 
+                    has_vehicle_in_back = True
+                    distance = np.dot(vec1_2,forward_vector_2d)
+                    break
+            
+        return has_vehicle_in_back, distance
         
     def check_vehicle_in_right(self, uniquename, safety_distance = 6):
         '''
@@ -435,6 +545,8 @@ class CARLA_ENV():
         has_vehicle_in_right = False
         distance = None
         
+        smallest_distance = np.inf
+        
         vehicle_1 = self.vehicle_dict[uniquename]
         location_1 = vehicle_1.get_transform().location
         forward_vector = vehicle_1.get_transform().get_forward_vector()
@@ -452,9 +564,11 @@ class CARLA_ENV():
                 if cross_product[2] > 0: # left hand system
                     has_vehicle_in_right = True
                     distance = np.dot(forward_vector_2d, vec1_2_2d)
-                    break
+                    if abs(distance) <= smallest_distance:
+                        smallest_distance = distance
+                    
                 
-        return has_vehicle_in_right, distance
+        return has_vehicle_in_right, smallest_distance
 
     def check_vehicle_in_left(self, uniquename, safety_distance = 6):
         '''
@@ -486,6 +600,7 @@ class CARLA_ENV():
         
         has_vehicle_in_left = False
         distance = None
+        smallest_distance = np.inf
         
         vehicle_1 = self.vehicle_dict[uniquename]
         location_1 = vehicle_1.get_transform().location
@@ -504,9 +619,10 @@ class CARLA_ENV():
                 if cross_product[2] < 0: # this is the only difference between the check_vehicle_in_left / check_vehicle_in_right function 
                     has_vehicle_in_left = True
                     distance = np.dot(forward_vector_2d, vec1_2_2d)
-                    break
+                    if abs(distance) <= smallest_distance:
+                        smallest_distance = distance
                 
-        return has_vehicle_in_left, distance
+        return has_vehicle_in_left, smallest_distance
 
     
     def get_traffic_light_state(self, uniquename):
