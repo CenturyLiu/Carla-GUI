@@ -94,7 +94,7 @@ class FullPathVehicleControl(VehicleControlFreeway):
         # check whether the vehicle is safe to change lane
         if not self.lane_change_available:
             if self.current_lane == "subject":
-                has_vehicle_in_left, distance = self.env.check_vehicle_in_left(self.model_uniquename, safety_distance = 10)
+                has_vehicle_in_left, distance = self.env.check_vehicle_in_left(self.model_uniquename, safety_distance = 15)
                 
                 print("--------")
                 print("has_vehicle_in_left : ", has_vehicle_in_left)
@@ -111,7 +111,7 @@ class FullPathVehicleControl(VehicleControlFreeway):
                     self.lane_change_available = True # no close vehicle in left lane, enable lane change
             else:
                 # vehicle currently in right lane
-                has_vehicle_in_right, distance = self.env.check_vehicle_in_right(self.model_uniquename, safety_distance = 10)
+                has_vehicle_in_right, distance = self.env.check_vehicle_in_right(self.model_uniquename, safety_distance = 15)
                 
                 print("--------")
                 print("has_vehicle_in_right : ", has_vehicle_in_right)

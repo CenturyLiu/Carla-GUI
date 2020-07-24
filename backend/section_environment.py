@@ -124,6 +124,29 @@ class FreewayEnv(object):
         uniquename = self.section_list[0].add_ego_vehicle(model_name = model_name, safety_distance = safety_distance, vehicle_color = vehicle_color)
         return uniquename
     
+    def edit_ego_vehicle(self, model_name = "vehicle.tesla.model3", safety_distance = 15.0, vehicle_color = None):
+        # wrapper for edit_ego_vehicle function of the init_section
+        '''
+        edit the ego vheicle setting by delete the original ego vehicle and add a new one
+        
+        Parameters
+        ----------
+        model_name : string, optional
+            vehicle type. The default is "vehicle.tesla.model3".
+        safety_distance : float, optional
+            smallest distance between this vehicle and vehicle ahead
+        vehicle_color : string
+            the RGB representation of the vehicle color. e.g. '255,255,255'
+
+        Returns
+        -------
+        uniquename : string
+            the name of the vehicle
+
+        '''
+        uniquename = self.section_list[0].edit_ego_vehicle(model_name = model_name, safety_distance = safety_distance, vehicle_color = vehicle_color)
+        return uniquename
+    
     def add_full_path_vehicle(self, model_name = "vehicle.tesla.model3", vehicle_type ="lead", choice = "subject", command = "speed", command_start_time = 0.0, gap = 10.0, safety_distance = 15.0, lead_follow_distance = 20.0, vehicle_color = None):
         # wrapper for add_full_path_vehicle of the init_section
         '''
@@ -164,6 +187,79 @@ class FreewayEnv(object):
             self.section_list[ii]._add_full_path_vehicle_normal(uniquename, vehicle_type, choice)
     
         return uniquename
+    
+    
+    def remove_full_path_vehicle(self, uniquename):
+        '''
+        remove a full path vehicle based on its uniquename
+        this includes the vehicle setting in init section and 
+        settings in other normal sections
+
+        Parameters
+        ----------
+        uniquename : string
+            name of the vehicle.
+
+        Returns
+        -------
+        removed : Bool
+            whether the given vehicle is found and removed
+
+        '''
+        removed, vehicle_type, choice, index = self.section_list[0].remove_full_path_vehicle(uniquename)
+        if removed:
+            for ii in range(1, len(self.section_list)):
+                self.section_list[ii]._remove_full_path_vehicle_normal(vehicle_type, choice, index) # remove the setting from normal
+                                                                                                    # sections
+        
+        return removed
+        
+    def edit_full_path_vehicle_init_setting(self, uniquename, vehicle_type, choice, model_name = "vehicle.tesla.model3",   command = "speed", command_start_time = 0.0, gap = 10.0, safety_distance = 15.0, lead_follow_distance = 20.0, vehicle_color = None):
+        # wrapper for the edit_full_path_vehicle function of the init section
+        '''
+        edit full path vehicle settings by deleting the original vehicle and then add a new one
+
+        Parameters
+        ----------
+        uniquename : string
+            the name of the vehicle
+        vehicle_type : string, 
+            the vehicle type, valid values : "lead", "follow". 
+        choice : string, optional
+            the lane choice, valid values are "subject", "left". 
+        model_name : string, optional
+            vehicle type. The default is "vehicle.tesla.model3".
+        command : string, optional
+            the command the vehicle is going to execute in this section. Valid values: "speed", "lane", "distance". The default is "speed".
+        command_start_time : string, optional
+            the time at which the command should be executed. The default is 0.0.
+        gap : float, optional
+            the gap between the vehicle and the one in the front of it when adding. The default is 10.0, unit: meter
+        safety_distance : float, optional
+            smallest distance between 2 vehicles when simulation is going. The default is 15.0, unit: meter
+        vehicle_color : string
+            the RGB representation of the vehicle color. e.g. '255,255,255'
+
+        Returns
+        -------
+        new_uniquename : string
+            the new_name of the vehicle
+
+
+        '''
+        
+        new_uniquename = self.section_list[0].edit_full_path_vehicle(uniquename = uniquename, 
+                                                                     vehicle_type = vehicle_type, 
+                                                                     choice = choice,
+                                                                     model_name = model_name,
+                                                                     command = command,
+                                                                     command_start_time = command_start_time,
+                                                                     gap = gap, 
+                                                                     safety_distance = safety_distance, 
+                                                                     lead_follow_distance = lead_follow_distance, 
+                                                                     vehicle_color = vehicle_color)
+        
+        return new_uniquename
     
     def edit_normal_section_setting(self, section_id, vehicle_type, choice, vehicle_index, command = "speed", command_start_time = 0.0):
         '''
@@ -244,12 +340,12 @@ class FreewayEnv(object):
             self.env.update_vehicle_distance()
             
             # change spectator view
-            
+            '''
             if self.env.vehicle_available(ego_uniquename):
                  spectator_vehicle_transform = self.env.get_transform_3d(ego_uniquename)
                  spectator_transform = get_ego_spectator(spectator_vehicle_transform,distance = -40)
                  self.spectator.set_transform(spectator_transform)
-            
+            '''
             # section based control
             
             # get ego vehicle transform
@@ -556,31 +652,45 @@ def main():
         
         # add ego vehicle
         freewayenv.add_ego_vehicle()
+        freewayenv.edit_ego_vehicle(vehicle_color = '255,255,255')
         
         # add 2 lead vehicle and 2 follow vehicle
-        freewayenv.add_full_path_vehicle(gap = 20.0, vehicle_type = "lead", choice = "subject")
-        freewayenv.add_full_path_vehicle(gap = 20.0, vehicle_type = "lead", choice = "left")
-        freewayenv.add_full_path_vehicle(vehicle_type = "follow", choice = "subject")
-        freewayenv.add_full_path_vehicle(vehicle_type = "follow", choice = "left")
+        name0 = freewayenv.add_full_path_vehicle(gap = 20.0, vehicle_type = "lead", choice = "subject")
+        name1 = freewayenv.add_full_path_vehicle(gap = 20.0, vehicle_type = "lead", choice = "left")
+        name2 = freewayenv.add_full_path_vehicle(vehicle_type = "follow", choice = "subject")
+        name3 = freewayenv.add_full_path_vehicle(vehicle_type = "follow", choice = "left")
+        name4 = freewayenv.add_full_path_vehicle(gap = 20.0, vehicle_type = "lead", choice = "subject")
         
         # adjust the lead and follow vehicle settings in the second section
-        freewayenv.edit_normal_section_setting(section_id = 2, vehicle_type = "lead", choice = "subject", vehicle_index = 0,command = "distance")
-        freewayenv.edit_normal_section_setting(section_id = 2, vehicle_type = "lead", choice = "left", vehicle_index = 0,command = "distance")
-        freewayenv.edit_normal_section_setting(section_id = 2, vehicle_type = "follow", choice = "subject", vehicle_index = 0,command = "distance")
-        freewayenv.edit_normal_section_setting(section_id = 2, vehicle_type = "follow", choice = "left", vehicle_index = 0,command = "distance")
+        freewayenv.edit_normal_section_setting(section_id = 3, vehicle_type = "lead", choice = "subject", vehicle_index = 0,command = "distance")
+        freewayenv.edit_normal_section_setting(section_id = 3, vehicle_type = "lead", choice = "left", vehicle_index = 0,command = "distance")
+        freewayenv.edit_normal_section_setting(section_id = 3, vehicle_type = "follow", choice = "subject", vehicle_index = 0,command = "distance")
+        freewayenv.edit_normal_section_setting(section_id = 3, vehicle_type = "follow", choice = "left", vehicle_index = 0,command = "distance")
+        freewayenv.edit_normal_section_setting(section_id = 3, vehicle_type = "lead", choice = "subject", vehicle_index = 1,command = "distance")
         
         # adjust the lead and follow vehicle settings in the third section
-        freewayenv.edit_normal_section_setting(section_id = 3, vehicle_type = "lead", choice = "subject", vehicle_index = 0,command = "lane", command_start_time = 0.0)
-        freewayenv.edit_normal_section_setting(section_id = 3, vehicle_type = "lead", choice = "left", vehicle_index = 0,command = "lane", command_start_time = 0.0)
-        freewayenv.edit_normal_section_setting(section_id = 3, vehicle_type = "follow", choice = "subject", vehicle_index = 0,command = "lane", command_start_time = 0.0)
-        freewayenv.edit_normal_section_setting(section_id = 3, vehicle_type = "follow", choice = "left", vehicle_index = 0,command = "lane", command_start_time = 0.0)
+        freewayenv.edit_normal_section_setting(section_id = 4, vehicle_type = "lead", choice = "subject", vehicle_index = 0,command = "speed", command_start_time = 0.0)
+        freewayenv.edit_normal_section_setting(section_id = 4, vehicle_type = "lead", choice = "left", vehicle_index = 0,command = "speed", command_start_time = 0.0)
+        freewayenv.edit_normal_section_setting(section_id = 4, vehicle_type = "follow", choice = "subject", vehicle_index = 0,command = "speed", command_start_time = 0.0)
+        freewayenv.edit_normal_section_setting(section_id = 4, vehicle_type = "follow", choice = "left", vehicle_index = 0,command = "speed", command_start_time = 0.0)
+        freewayenv.edit_normal_section_setting(section_id = 4, vehicle_type = "lead", choice = "subject", vehicle_index = 1,command = "lane")
+        
         
         # adjust the lead and follow vehicle settings in the fourth section
-        freewayenv.edit_normal_section_setting(section_id = 4, vehicle_type = "lead", choice = "subject", vehicle_index = 0,command = "speed")
-        freewayenv.edit_normal_section_setting(section_id = 4, vehicle_type = "lead", choice = "left", vehicle_index = 0,command = "speed")
-        freewayenv.edit_normal_section_setting(section_id = 4, vehicle_type = "follow", choice = "subject", vehicle_index = 0,command = "speed")
-        freewayenv.edit_normal_section_setting(section_id = 4, vehicle_type = "follow", choice = "left", vehicle_index = 0,command = "speed")
+        freewayenv.edit_normal_section_setting(section_id = 6, vehicle_type = "lead", choice = "subject", vehicle_index = 0,command = "lane")
+        freewayenv.edit_normal_section_setting(section_id = 6, vehicle_type = "lead", choice = "left", vehicle_index = 0,command = "lane")
+        freewayenv.edit_normal_section_setting(section_id = 6, vehicle_type = "follow", choice = "subject", vehicle_index = 0,command = "lane")
+        freewayenv.edit_normal_section_setting(section_id = 6, vehicle_type = "follow", choice = "left", vehicle_index = 0,command = "lane")
+        freewayenv.edit_normal_section_setting(section_id = 6, vehicle_type = "lead", choice = "subject", vehicle_index = 1,command = "lane")
         
+        # test remove vehicle
+        #freewayenv.remove_full_path_vehicle(name4)
+        
+        # test editing vehicle settings
+        freewayenv.edit_full_path_vehicle_init_setting(name0, gap = 25.0, vehicle_type = "lead", choice = "subject", vehicle_color = '0,0,0')
+        freewayenv.edit_full_path_vehicle_init_setting(name1, gap = 25.0, vehicle_type = "lead", choice = "left", vehicle_color = '255,255,255')
+        freewayenv.edit_full_path_vehicle_init_setting(name2, gap = 25.0, vehicle_type = "follow", choice = "subject", vehicle_color = '0,0,0')
+        freewayenv.edit_full_path_vehicle_init_setting(name3, gap = 25.0, vehicle_type = "follow", choice = "left", vehicle_color = '255,255,255')
         
         freewayenv.SectionBackend()
     finally:

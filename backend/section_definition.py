@@ -180,6 +180,43 @@ class Section(object):
         
         vehicle_set.append(vehicle_local_config)
     
+    def _remove_full_path_vehicle_normal(self, vehicle_type, choice, index):
+        '''
+        remove a full path vehicle that does not exists anymore
+
+        Parameters
+        ----------
+        vehicle_type : string, 
+            the vehicle type, valid values : "lead", "follow". 
+        choice : string, 
+            the lane choice, valid values are "subject", "left". 
+        index : int
+            the index of the vehicle inside a specific lane. 
+
+        Returns
+        -------
+        None.
+
+        '''
+        if vehicle_type == "lead" and choice == "subject":
+            vehicle_set = self.subject_lead_vehicle
+            
+        elif vehicle_type == "lead" and choice == "left":
+            vehicle_set = self.left_lead_vehicle
+            
+        elif vehicle_type == "follow" and choice == "subject":
+            vehicle_set = self.subject_follow_vehicle
+            
+        elif vehicle_type == "follow" and choice == "left":
+            vehicle_set = self.left_follow_vehicle
+            
+        if len(vehicle_set) <= index:
+            print("Invalid index")
+            return
+        
+        vehicle_set.pop(index) # remove the setting from the list
+        
+    
     def _update_vehicle_uniquename(self, vehicle_type, choice, index, uniquename):
         '''
         Private function for updating the uniquename of the vehicle in case uniquename is changed
