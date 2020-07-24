@@ -452,7 +452,7 @@ class CARLA_ENV():
                 
                 
                 
-                if angle < np.arcsin((vehicle_bb.y  / 2) / distance_with_other_vehicle[name]):#np.arcsin((vehicle_bb.y  + 1) / distance_with_other_vehicle[name]):#np.arctan(vehicle_bb.y / vehicle_bb.x): 
+                if angle < np.pi / 36:#np.arcsin((vehicle_bb.y  / 2) / distance_with_other_vehicle[name]):#np.arcsin((vehicle_bb.y  + 1) / distance_with_other_vehicle[name]):#np.arctan(vehicle_bb.y / vehicle_bb.x): 
                     has_vehicle_in_front = True
                     distance = np.dot(vec1_2,forward_vector_2d)
                     break
@@ -489,6 +489,7 @@ class CARLA_ENV():
         
         has_vehicle_in_back = False
         distance = None
+        smallest_distance = np.inf
         
         vehicle_1 = self.vehicle_dict[uniquename]
         location_1 = vehicle_1.get_transform().location
@@ -510,9 +511,10 @@ class CARLA_ENV():
                 if angle > np.pi - np.arcsin((vehicle_bb.y  / 2) / distance_with_other_vehicle[name]):#np.arcsin((vehicle_bb.y  + 1) / distance_with_other_vehicle[name]):#np.arctan(vehicle_bb.y / vehicle_bb.x): 
                     has_vehicle_in_back = True
                     distance = np.dot(vec1_2,forward_vector_2d)
-                    break
+                    if abs(distance) < abs(smallest_distance):
+                        smallest_distance = distance
             
-        return has_vehicle_in_back, distance
+        return has_vehicle_in_back, smallest_distance
         
     def check_vehicle_in_right(self, uniquename, safety_distance = 6):
         '''

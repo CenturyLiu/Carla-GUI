@@ -354,7 +354,7 @@ class InitSection(Section):
         
         return uniquename
     
-    def edit_full_path_vehicle(self, uniquename, vehicle_type, choice, model_name = "vehicle.tesla.model3",   command = "speed", command_start_time = 0.0, gap = 10.0, safety_distance = 15.0, lead_follow_distance = 20.0, vehicle_color = None):
+    def edit_full_path_vehicle(self, uniquename, vehicle_type, choice, model_name = "vehicle.tesla.model3",   command = "speed", command_start_time = 0.0, gap = 10.0, safety_distance = 25.0, lead_follow_distance = 30.0, vehicle_color = None):
         '''
         edit full path vehicle settings by deleting the original vehicle and then add a new one
 

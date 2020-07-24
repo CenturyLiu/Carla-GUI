@@ -25,7 +25,7 @@ from backend.intersection_definition import smooth_trajectory, get_trajectory
 from backend.multiple_vehicle_control import VehicleControl
 from backend.multiple_vehicle_control_debug import VehicleControl_debug
 from backend.initial_intersection import get_ego_spectator, get_ego_left_spectator
-from backend.section_vehicle_control import FullPathVehicleControl, LeadFollowVehicleControl
+from backend.section_vehicle_control import VehicleControlFreeway, FullPathVehicleControl, LeadFollowVehicleControl
 
 # color for debug use
 red = carla.Color(255, 0, 0)
@@ -304,7 +304,7 @@ class FreewayEnv(object):
 
         '''
         init_section = self.section_list[0]
-        ego_vehicle =  VehicleControl(self.env, init_section.ego_vehicle, self.env.delta_seconds)
+        ego_vehicle =  VehicleControlFreeway(self.env, init_section.ego_vehicle, self.env.delta_seconds)
         ego_uniquename = init_section.ego_vehicle["uniquename"]
         left_follow_vehicle = []
         subject_follow_vehicle = []
@@ -647,8 +647,8 @@ def main():
         env = CARLA_ENV(world)
         time.sleep(2) # sleep for 2 seconds, wait the initialization to finish
         
-        # create a 14 section environment (support up to 14)
-        freewayenv = FreewayEnv(env,15)
+        # create a 14 section environment (support up to 7)
+        freewayenv = FreewayEnv(env,7)
         
         # add ego vehicle
         freewayenv.add_ego_vehicle()
@@ -660,37 +660,41 @@ def main():
         name2 = freewayenv.add_full_path_vehicle(vehicle_type = "follow", choice = "subject")
         name3 = freewayenv.add_full_path_vehicle(vehicle_type = "follow", choice = "left")
         name4 = freewayenv.add_full_path_vehicle(gap = 20.0, vehicle_type = "lead", choice = "subject")
+        name5 = freewayenv.add_full_path_vehicle(vehicle_type = "follow", choice = "subject")
         
-        # adjust the lead and follow vehicle settings in the second section
+        # adjust the lead and follow vehicle settings in the third section
         freewayenv.edit_normal_section_setting(section_id = 3, vehicle_type = "lead", choice = "subject", vehicle_index = 0,command = "distance")
         freewayenv.edit_normal_section_setting(section_id = 3, vehicle_type = "lead", choice = "left", vehicle_index = 0,command = "distance")
         freewayenv.edit_normal_section_setting(section_id = 3, vehicle_type = "follow", choice = "subject", vehicle_index = 0,command = "distance")
         freewayenv.edit_normal_section_setting(section_id = 3, vehicle_type = "follow", choice = "left", vehicle_index = 0,command = "distance")
         freewayenv.edit_normal_section_setting(section_id = 3, vehicle_type = "lead", choice = "subject", vehicle_index = 1,command = "distance")
+        freewayenv.edit_normal_section_setting(section_id = 3, vehicle_type = "follow", choice = "subject", vehicle_index = 1,command = "distance")
         
-        # adjust the lead and follow vehicle settings in the third section
+        # adjust the lead and follow vehicle settings in the fourth section
         freewayenv.edit_normal_section_setting(section_id = 4, vehicle_type = "lead", choice = "subject", vehicle_index = 0,command = "speed", command_start_time = 0.0)
         freewayenv.edit_normal_section_setting(section_id = 4, vehicle_type = "lead", choice = "left", vehicle_index = 0,command = "speed", command_start_time = 0.0)
         freewayenv.edit_normal_section_setting(section_id = 4, vehicle_type = "follow", choice = "subject", vehicle_index = 0,command = "speed", command_start_time = 0.0)
         freewayenv.edit_normal_section_setting(section_id = 4, vehicle_type = "follow", choice = "left", vehicle_index = 0,command = "speed", command_start_time = 0.0)
         freewayenv.edit_normal_section_setting(section_id = 4, vehicle_type = "lead", choice = "subject", vehicle_index = 1,command = "lane")
+        freewayenv.edit_normal_section_setting(section_id = 4, vehicle_type = "follow", choice = "subject", vehicle_index = 1,command = "lane")
         
-        
-        # adjust the lead and follow vehicle settings in the fourth section
+        # adjust the lead and follow vehicle settings in the sixth section
         freewayenv.edit_normal_section_setting(section_id = 6, vehicle_type = "lead", choice = "subject", vehicle_index = 0,command = "lane")
         freewayenv.edit_normal_section_setting(section_id = 6, vehicle_type = "lead", choice = "left", vehicle_index = 0,command = "lane")
         freewayenv.edit_normal_section_setting(section_id = 6, vehicle_type = "follow", choice = "subject", vehicle_index = 0,command = "lane")
         freewayenv.edit_normal_section_setting(section_id = 6, vehicle_type = "follow", choice = "left", vehicle_index = 0,command = "lane")
         freewayenv.edit_normal_section_setting(section_id = 6, vehicle_type = "lead", choice = "subject", vehicle_index = 1,command = "lane")
-        
+        freewayenv.edit_normal_section_setting(section_id = 6, vehicle_type = "follow", choice = "subject", vehicle_index = 1,command = "lane")
         # test remove vehicle
         #freewayenv.remove_full_path_vehicle(name4)
         
+        
+        
         # test editing vehicle settings
-        freewayenv.edit_full_path_vehicle_init_setting(name0, gap = 25.0, vehicle_type = "lead", choice = "subject", vehicle_color = '0,0,0')
-        freewayenv.edit_full_path_vehicle_init_setting(name1, gap = 25.0, vehicle_type = "lead", choice = "left", vehicle_color = '255,255,255')
-        freewayenv.edit_full_path_vehicle_init_setting(name2, gap = 25.0, vehicle_type = "follow", choice = "subject", vehicle_color = '0,0,0')
-        freewayenv.edit_full_path_vehicle_init_setting(name3, gap = 25.0, vehicle_type = "follow", choice = "left", vehicle_color = '255,255,255')
+        #freewayenv.edit_full_path_vehicle_init_setting(name0, gap = 25.0, vehicle_type = "lead", choice = "subject", vehicle_color = '0,0,0')
+        #freewayenv.edit_full_path_vehicle_init_setting(name1, gap = 25.0, vehicle_type = "lead", choice = "left", vehicle_color = '255,255,255')
+        #freewayenv.edit_full_path_vehicle_init_setting(name2, gap = 25.0, vehicle_type = "follow", choice = "subject", vehicle_color = '0,0,0')
+        #freewayenv.edit_full_path_vehicle_init_setting(name3, gap = 25.0, vehicle_type = "follow", choice = "left", vehicle_color = '255,255,255')
         
         freewayenv.SectionBackend()
     finally:
