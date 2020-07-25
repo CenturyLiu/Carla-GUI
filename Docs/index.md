@@ -8,9 +8,9 @@ available on [Carla_GUI/backend](https://github.com/CenturyLiu/Carla-GUI/tree/ma
 
 - [Installation guide](installation_guide.md)
 - [Urban Backend Introduction](urban_backend_introduction.md)
-- Urban Backend API
-- Freeway Backend Introduction
-- Freeway Backend API
+- [Urban Backend API](urban_backend_api.md)
+- [Freeway Backend Introduction](freeway_backend_introduction.md)
+- [Freeway Backend API](freeway_backend_api.md)
 
 ---
 author: shijiliu
