@@ -219,7 +219,7 @@ def main():
         
         traffic_light_list = get_traffic_lights(world.get_actors())
         
-        intersection_list = create_intersections(env, 4, traffic_light_list)
+        intersection_list = create_intersections(env, 4, traffic_light_list, navigation_speed = 15.0)
         init_intersection = intersection_list[0]
         normal_intersections = intersection_list[1:]
         init_intersection.add_ego_vehicle(safety_distance = 15.0, stop_choice = "abrupt", vehicle_color = '255,255,255')

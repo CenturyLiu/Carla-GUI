@@ -37,8 +37,8 @@ white = carla.Color(255, 255, 255)
 
 
 class Init_Intersection(Intersection):
-    def __init__(self, env, world_pos, traffic_light_list, waypoint_list, subject_traffic_light_list):
-        super().__init__(env, world_pos, traffic_light_list)
+    def __init__(self, env, world_pos, traffic_light_list, waypoint_list, subject_traffic_light_list, navigation_speed = 10.0):
+        super().__init__(env, world_pos, traffic_light_list,navigation_speed = navigation_speed)
         self.waypoint_list = waypoint_list
         self.start_sim = True # the init intersection will start as soon as the simulation begins
         self.subject_traffic_light_list = subject_traffic_light_list
@@ -340,6 +340,9 @@ class Init_Intersection(Intersection):
         '''
         intersection_settings = ConfigObj()
         
+        # general
+        intersection_settings["navigation_speed"] = self.navigation_speed
+        
         # vehicles
         intersection_settings["subject_vehicle"] = []
         intersection_settings["left_vehicle"] = []
@@ -427,6 +430,8 @@ class Init_Intersection(Intersection):
         
         # import all settings
        
+        self.navigation_speed = float(intersection_settings["navigation_speed"])
+       
         '''
         for vehicle_config in intersection_settings["subject_vehicle"]:
             # add vehicles according to imported settings
@@ -506,7 +511,7 @@ class Init_Intersection(Intersection):
         return new_intersection_setting
     
     
-def create_intersections(env, number_of_intersections, traffic_light_list):
+def create_intersections(env, number_of_intersections, traffic_light_list, navigation_speed):
     '''
     
 
@@ -516,6 +521,8 @@ def create_intersections(env, number_of_intersections, traffic_light_list):
         sself-written simulation help class.
     number_of_intersections : int
         number of intersection.
+    navigation_speed : float
+        the navigation speed of the vehicle
 
     Returns
     -------
@@ -531,14 +538,14 @@ def create_intersections(env, number_of_intersections, traffic_light_list):
     intersection_list = []
     
     for ii in range(1,number_of_intersections):
-        normal_intersection = Intersection(env,world_pos_list[ii],traffic_light_list)
+        normal_intersection = Intersection(env,world_pos_list[ii],traffic_light_list,navigation_speed = navigation_speed)
         waypoint_list += normal_intersection.get_subject_waypoints() # get the three points representing the path
         subject_traffic_light_list.append(normal_intersection.get_subject_traffic_light())
         intersection_list.append(normal_intersection)
         
     
     
-    init_intersection = Init_Intersection(env,world_pos_list[0],traffic_light_list,waypoint_list,subject_traffic_light_list)
+    init_intersection = Init_Intersection(env,world_pos_list[0],traffic_light_list,waypoint_list,subject_traffic_light_list, navigation_speed = navigation_speed)
     intersection_list.insert(0,init_intersection)
     return intersection_list
 

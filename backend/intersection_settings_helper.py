@@ -31,6 +31,9 @@ def read_intersection_settings(config_filename):
     # create the return config
     intersection_settings = ConfigObj()
     
+    # general
+    intersection_settings["navigation_speed"] = float(intersection_config_raw["navigation_speed"])
+    
     # vehicles
     intersection_settings["subject_vehicle"] = []
     intersection_settings["left_vehicle"] = []

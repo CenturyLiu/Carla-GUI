@@ -150,7 +150,7 @@ def get_trajectory(way_points):
     return trajectory, ref_speed_list
 
 class Intersection():
-    def __init__(self, env, world_pos, traffic_light_list, distance = 75.0, yaw = 0.0, start_sim_distance = 40):
+    def __init__(self, env, world_pos, traffic_light_list, distance = 75.0, yaw = 0.0, start_sim_distance = 40, navigation_speed = 10.0):
         '''
         
 
@@ -166,7 +166,8 @@ class Intersection():
             width and height of the intersection. The default is 75.0 (m).
         yaw : float, optional
             define the direction the ego vehicle will pass through the intersection. The default is 0.
-
+        navigation_speed : float
+            the navigation speed of the vehicle
         Returns
         -------
         None.
@@ -192,6 +193,8 @@ class Intersection():
         self.start_sim = False # whether the simulation at this intersection should start or not
         
         self.DEBUG_TRAJECTORY = True
+        
+        self.navigation_speed = navigation_speed
         
     def start_simulation(self, full_path_vehicle_name):
         '''
@@ -793,7 +796,7 @@ class Intersection():
         trajectory3 = generate_path(self.env, second_waypoint, third_waypoint)
         full_trajectory = trajectory1 + trajectory2[1:] + trajectory3[1:] # append the full trajectory
         
-        trajectory = [((pt[0],pt[1]),10.0) for pt in full_trajectory]
+        trajectory = [((pt[0],pt[1]),self.navigation_speed) for pt in full_trajectory]
         
         smoothed_full_trajectory, ref_speed_list = get_trajectory(trajectory) 
         
@@ -1153,6 +1156,9 @@ class Intersection():
         '''
         intersection_settings = ConfigObj()
         
+        # general setting
+        intersection_settings["navigation_speed"] = self.navigation_speed
+        
         # vehicles
         intersection_settings["subject_vehicle"] = []
         intersection_settings["left_vehicle"] = []
@@ -1231,6 +1237,10 @@ class Intersection():
         
         # import all settings
        
+        # general settings
+        self.navigation_speed = intersection_settings["navigation_speed"]
+       
+        # vehicles
         
         for vehicle_config in intersection_settings["subject_vehicle"]:
             # add vehicles according to imported settings
