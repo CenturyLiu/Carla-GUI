@@ -314,15 +314,21 @@ class FreewayEnv(object):
         # edit the section settings
         section.edit_full_path_vehicle_local_setting(vehicle_type, choice, vehicle_index, command = command, command_start_time = command_start_time)
     
-    def SectionBackend(self):
+    def SectionBackend(self, spectator_mode = None):
         '''
         back end function for the freeway
+
+        Parameters
+        ----------
+        spectator_mode : string, optional
+            the spectator mode, valid value is "first_person". The default is None.
 
         Returns
         -------
         None.
 
         '''
+        
         init_section = self.section_list[0]
         ego_vehicle =  VehicleControlFreeway(self.env, init_section.ego_vehicle, self.env.delta_seconds)
         ego_uniquename = init_section.ego_vehicle["uniquename"]
@@ -361,7 +367,7 @@ class FreewayEnv(object):
             
             # change spectator view
             
-            if self.env.vehicle_available(ego_uniquename):
+            if self.env.vehicle_available(ego_uniquename) and spectator_mode == "first_person" :
                  spectator_vehicle_transform = self.env.get_transform_3d(ego_uniquename)
                  spectator_transform = get_ego_spectator(spectator_vehicle_transform,distance = -40)
                  self.spectator.set_transform(spectator_transform)
@@ -751,7 +757,7 @@ def main():
         #freewayenv.edit_full_path_vehicle_init_setting(name3, gap = 25.0, vehicle_type = "follow", choice = "left", vehicle_color = '255,255,255')
         
         
-        freewayenv.SectionBackend()
+        freewayenv.SectionBackend(spectator_mode = "first_person")
     finally:
         time.sleep(10)
         env.destroy_actors()
