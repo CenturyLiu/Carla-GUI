@@ -1312,6 +1312,25 @@ class Intersection():
         return new_intersection_setting
     
 
+    def get_vehicle_bounding_box(self, uniquename):
+        '''
+        get the bounding box of the vehicle by uniquename
+
+        Parameters
+        ----------
+        uniquename : string
+            the uniquename of the vehicle.
+
+        Returns
+        -------
+        new_bb : carla.Vector3D
+            the bounding box of the vehicle, new_bb.x is the length, new_bb.y is the width, new_bb.z is the height
+
+        '''
+        new_bb = self.env.get_vehicle_bounding_box(uniquename)
+        return new_bb
+
+
     def _copy_vehicle_settings(self,vehicle_config):
         new_vehicle = copy.copy(vehicle_config)
             

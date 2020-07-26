@@ -92,6 +92,7 @@ def IntersectionBackend(env,intersection_list):
         vehicle_list.append(vehicle)
     
     
+    
     while True:
         env.world.tick()
         
@@ -223,7 +224,7 @@ def main():
         normal_intersections = intersection_list[1:]
         init_intersection.add_ego_vehicle(safety_distance = 15.0, stop_choice = "abrupt", vehicle_color = '255,255,255')
         init_intersection.add_follow_vehicle(follow_distance = 20.0, stop_choice = "penetrate", penetrate_distance = 2.0)
-        init_intersection.add_lead_vehicle(lead_distance = 20.0, stop_choice = "abrupt")
+        init_intersection.add_lead_vehicle(lead_distance = 20.0, stop_choice = "abrupt", vehicle_color = '255,255,255')
         init_intersection.add_vehicle(choice = "left", stop_choice = "abrupt", vehicle_color = '255,255,255')
         init_intersection.add_vehicle(choice = "right",command="left")
         
@@ -231,13 +232,16 @@ def main():
         name1 = init_intersection.add_vehicle(choice = "ahead",command="left")
         name2 = init_intersection.add_vehicle(choice = "ahead",command = "right")
         
-        init_intersection.edit_vehicle_settings(name1, choice = "ahead", vehicle_color = '128,128,128')
-        init_intersection.edit_vehicle_settings(name2, choice = "ahead", gap = 15.0, vehicle_color = '128,128,128')
+        name1 = init_intersection.edit_vehicle_settings(name1, choice = "ahead", vehicle_color = '128,128,128')
+        name2 = init_intersection.edit_vehicle_settings(name2, choice = "ahead", gap = 15.0, vehicle_color = '128,128,128')
         #init_intersection.edit_traffic_light("subject")
         #init_intersection.edit_traffic_light("left",red_start = 40.0,red_end = 60.0,yellow_start=30.0,yellow_end=40.0,green_start=0.0,green_end = 30.0)
         #init_intersection.edit_traffic_light("right",red_start = 0.0,red_end = 10.0,yellow_start=10.0,yellow_end=20.0,green_start=20.0,green_end = 40.0)
         #init_intersection.edit_traffic_light("ahead",red_start = 20.0,red_end = 40.0,yellow_start=10.0,yellow_end=20.0,green_start=0.0,green_end = 10.0)
         
+        # get bounding box
+        bb = init_intersection.get_vehicle_bounding_box(name1)
+        print("bb.x = %f, bb.y = %f, bb.z = %f" % (bb.x, bb.y, bb.z))
         
         intersection_list[1].add_vehicle(choice = "ahead")
         intersection_list[1].add_vehicle(choice = "left",command="left")
