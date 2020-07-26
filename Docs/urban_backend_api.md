@@ -525,6 +525,16 @@ Here is an example of the whole work flow of creating an urban simulation. This 
 	if __name__ == '__main__':
 	    main()
 
+Note:
+
+    Note: the first time you run the code, the following error may occur:
+
+        RuntimeError: time-out of 10000ms while waiting for the simulator, make sure the simulator is ready and connected to localhost:2000
+
+        UnboundLocalError: local variable 'env' referenced before assignment
+
+    This is because the carla client failed to connect to the carla server. Just run the code again and it should be fine.
+
 
 
 ---
