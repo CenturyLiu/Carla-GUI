@@ -384,6 +384,8 @@ class InitSection(Section):
         new_uniquename : string
             the new_name of the vehicle
 
+        index: int
+            the index of the vehicle to be changed
 
         '''
         if vehicle_type == "lead" and choice == "subject":
@@ -474,7 +476,7 @@ class InitSection(Section):
         elif vehicle_type == "follow" and choice == "left":
             self.left_follow_vehicle += vehicles_after_current
             
-        return new_uniquename
+        return new_uniquename, index
     
     
     def _shift_vehicles(self, length, vehicle_type, choice, index = 0):
