@@ -42,7 +42,7 @@ def main():
 
 
         # get intersection list
-        intersection_list = create_intersections(env, 4, traffic_light_list)
+        intersection_list = create_intersections(env, 4, traffic_light_list, navigation_speed = 10.0)
         
         # edit intersection
         # these should be done with the help of the front end gui
