@@ -23,6 +23,10 @@ The Intersection class defines a **normal intersection** as is discussed in [urb
 - **<font color="#f8805a">start_sim_distance</font>**(float)		
   Variable to determine the start simulation condition of an Intersection (i.e. the blue region shown in the gif in [Normal Intersection introduction](urban_backend_introduction.md#init-intersection-and-normal-intersection))
 
+
+- **<font color="#f8805a">navigation_speed</font>**(float)		
+  The max speed for the vehicle to navigate in the this section.
+
 ### Method
 
 - **<font color="#7fb800">add_vehicle</font>**(<font color="#00a6ed">**self, gap = 10.0, model_name = "vehicle.tesla.model3", choice = "subject", command = "straight", stop_choice = "normal", penetrate_distance = None,obey_traffic_lights = True, run = True, safety_distance = 15.0, vehicle_color = None**</font>)		
@@ -208,6 +212,10 @@ Init intersection class is inherited from the Intersection class, only new metho
 
 - **<font color="#f8805a">subject_traffic_light_list</font>** (list of carla.TrafficLight)		
     The list of traffic lights along the full navigation path.
+
+- **<font color="#f8805a">navigation_speed</font>**(float)		
+  The max speed for the vehicle to navigate in the this section. This speed is also applied to the full path vehicles (i.e. ego, lead and follow vehicle, all are added in the init intersection)
+
 ### Methods
 
 - **<font color="#7fb800">add_ego_vehicle</font>**(<font color="#00a6ed">**self, gap = 10.0,model_name = "vehicle.tesla.model3", stop_choice = "abrupt", penetrate_distance = None, obey_traffic_lights = True, run = True, safety_distance = 0.0, vehicle_color = None**</font>)		
@@ -361,12 +369,12 @@ all traffic lights inside the carla world, used to assign traffic light to inter
 
 ### create_intersections
  
-- **<font color="#7fb800">create_intersections</font>**(<font color="#00a6ed">**env, number_of_intersections, traffic_light_list**</font>)
+- **<font color="#7fb800">create_intersections</font>**(<font color="#00a6ed">**env, number_of_intersections, traffic_light_list, navigation_speed**</font>)
 
     create the intersections that form the base of an urban simulation scenario
 
        - **Parameters**
-        - `env` : CARLA_ENV	
+        - `env` : CARLA_ENV		
 self-written simulation help class.
 
         - `number_of_intersections` : int	
@@ -375,6 +383,9 @@ number of intersection. **Maximum number is 4**
         - `traffic_light_list` : list carla.TrafficLight 	
 all traffic lights inside the carla world, used to assign traffic light to intersections.
     
+        - `navigation_speed` : float	
+the maximum speed vehicles in the urban environment can achieve. This value is applied to all vehicles in the urban environment
+
        - **Returns**
          - `Intersections` : list of intersections, [Init_Intersection,Intersection,Intersection,...,Intersection]
 
@@ -472,7 +483,7 @@ Here is an example of the whole work flow of creating an urban simulation. This 
 
 
 			# get intersection list
-			intersection_list = create_intersections(env, 4, traffic_light_list)
+			intersection_list = create_intersections(env, 4, traffic_light_list, navigation_speed = 10.0)
 			
 			# edit intersection
 			# these should be done with the help of the front end gui
