@@ -167,6 +167,19 @@ The FreewayEnv class is the container for the freeway simulation environment. Us
 - **<font color="#7fb800">SectionBackend</font>**(<font color="#00a6ed">**self**</font>)		
    main function for starting the simulation.
 
+
+- **<font color="#7fb800">get_vehicle_bounding_box</font>**(<font color="#00a6ed">**self, uniquename**</font>)		
+    get the bounding box of the vehicle specified by the uniquename
+
+       - **Parameters**
+        - `uniquename` : string	
+the uniquename of the vehicle
+
+       - **Returns**
+        - `new_bb` : carla.Vector3D	
+the bounding box of the vehicle. new_bb.x is the length, new_bb.y is the width, new_bb.z is the height
+
+
 ---
 ## Demo Code Recipe
 
@@ -225,7 +238,10 @@ Here is a demo for using the back end. The code below creates a 7-section enviro
 			name3 = freewayenv.add_full_path_vehicle(vehicle_type = "follow", choice = "left")
 			name4 = freewayenv.add_full_path_vehicle(gap = 20.0, vehicle_type = "lead", choice = "subject")
 			name5 = freewayenv.add_full_path_vehicle(vehicle_type = "follow", choice = "subject")
-			
+		
+			# get bounding box
+			bb = freewayenv.get_vehicle_bounding_box(name1)
+			print("bb.x = %f, bb.y = %f, bb.z = %f" % (bb.x,bb.y,bb.z)
 			
 			
 			# adjust the lead and follow vehicle settings in the third section
