@@ -52,7 +52,9 @@ def main():
         name4 = freewayenv.add_full_path_vehicle(gap = 20.0, vehicle_type = "lead", choice = "subject")
         name5 = freewayenv.add_full_path_vehicle(vehicle_type = "follow", choice = "subject")
         
-        
+        # get bounding box
+        bb = freewayenv.get_vehicle_bounding_box(name1)
+        print("bb.x = %f, bb.y = %f, bb.z = %f" % (bb.x,bb.y,bb.z))
         
         # adjust the lead and follow vehicle settings in the third section
         freewayenv.edit_normal_section_setting(section_id = 3, vehicle_type = "lead", choice = "subject", vehicle_index = 0,command = "distance")
@@ -90,7 +92,7 @@ def main():
         #freewayenv.edit_full_path_vehicle_init_setting(name3, gap = 25.0, vehicle_type = "follow", choice = "left", vehicle_color = '255,255,255')
         
         
-        freewayenv.SectionBackend()
+        freewayenv.SectionBackend(spectator_mode = "first_person")
     finally:
         time.sleep(10)
         env.destroy_actors()
