@@ -37,12 +37,19 @@ white = carla.Color(255, 255, 255)
 
 
 class VehicleControlFreeway(VehicleControl):
-    def __init__(self, env, vehicle_config, delta_seconds):
-        super().__init__(env, vehicle_config, delta_seconds)
+    def __init__(self, env, vehicle_config, delta_seconds, allow_collision = True):
+        super().__init__(env, vehicle_config, delta_seconds, allow_collision = True)
         
     def _obey_safety_distance(self, current_ref_speed):
         # override the _obey_safety_distance method
         has_vehicle_in_front, distance = self.env.check_vehicle_in_front_freeway(self.model_uniquename, self.safety_distance) #self.env.check_vehicle_in_front_freeway(self.model_uniquename, self.safety_distance)
+        
+        if has_vehicle_in_front and abs(distance) < self.L / 2 + 1.0 and not self.allow_collision:
+            # if vehicle is about to collide with other vehicle and collision is not allowed
+            # set the vehicle velocity to 0
+            abrupt_stop_vel = carla.Vector3D(x = 0,y = 0,z = 0)
+            self.env.set_vehicle_velocity(self.model_uniquename, abrupt_stop_vel) # set the velocity of vehicle
+        
         
         if has_vehicle_in_front: 
             #print("---")
@@ -57,8 +64,8 @@ class VehicleControlFreeway(VehicleControl):
 
 
 class FullPathVehicleControl(VehicleControlFreeway):
-    def __init__(self, env, vehicle_config, delta_seconds):
-        super().__init__(env,vehicle_config,delta_seconds)
+    def __init__(self, env, vehicle_config, delta_seconds, allow_collision = True):
+        super().__init__(env,vehicle_config,delta_seconds, allow_collision = True)
         
         # store the subject trajectory and left trajectory
         self.subject_trajectory = copy.copy(self.vehicle_config["subject_trajectory"])
@@ -177,8 +184,8 @@ class FullPathVehicleControl(VehicleControlFreeway):
         pass
 
 class LeadFollowVehicleControl(FullPathVehicleControl):
-    def __init__(self, env, vehicle_config, delta_seconds):
-        super().__init__(env, vehicle_config, delta_seconds)
+    def __init__(self, env, vehicle_config, delta_seconds, allow_collision = True):
+        super().__init__(env, vehicle_config, delta_seconds, allow_collision = True)
         
         # store the vehicle type
         self.vehicle_type = self.vehicle_config["vehicle_type"]

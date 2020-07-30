@@ -39,8 +39,8 @@ class LeadVehicleControl(VehicleControl):
     # pause mode: vehicle stop to the right of the lane,
     #             waiting for the ego vehicle to come
     
-    def __init__(self,env,vehicle_config, delta_seconds):
-        super().__init__(env, vehicle_config, delta_seconds)
+    def __init__(self,env,vehicle_config, delta_seconds, allow_collision = True):
+        super().__init__(env, vehicle_config, delta_seconds, allow_collision)
         
         # copy the full path trajectory
         self.full_path_trajectory = copy.copy(self.trajectory)
@@ -227,8 +227,8 @@ class FollowVehicleControl(VehicleControl):
     #    - speed control mode, when the vehicle is not following another vehicle
     #    - distance control mode, when the vehicle is following another vehicle
     
-    def __init__(self,env,vehicle_config, delta_seconds):
-        super().__init__(env, vehicle_config, delta_seconds)
+    def __init__(self,env,vehicle_config, delta_seconds, allow_collision = True):
+        super().__init__(env, vehicle_config, delta_seconds, allow_collision)
         
         # control mode
         self.mode = "speed"

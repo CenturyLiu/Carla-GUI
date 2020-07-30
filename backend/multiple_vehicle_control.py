@@ -30,7 +30,7 @@ orange = carla.Color(255, 162, 0)
 white = carla.Color(255, 255, 255)
 
 class VehicleControl(object):
-    def __init__(self,env,vehicle_config, delta_seconds):
+    def __init__(self,env,vehicle_config, delta_seconds, allow_collision = True):
         '''
         
 
@@ -110,6 +110,9 @@ class VehicleControl(object):
         # indication of whether the vehicle stops at traffic light
         self.blocked_by_light = False
         
+        # allow collision or not
+        # if collision is not allowed, vehicle will abruptly stop when too close to another vehicle
+        self.allow_collision = allow_collision
         
     def get_vehicle_transform(self):
         transform = self.env.get_transform_3d(self.model_uniquename)
@@ -450,6 +453,14 @@ class VehicleControl(object):
     def _obey_safety_distance(self, current_ref_speed):
         
         has_vehicle_in_front, distance = self.env.check_vehicle_in_front(self.model_uniquename, self.safety_distance)
+        
+        if has_vehicle_in_front and abs(distance) < self.L / 2 + 1.0 and not self.allow_collision:
+            # if vehicle is about to collide with other vehicle and collision is not allowed
+            # set the vehicle velocity to 0
+            abrupt_stop_vel = carla.Vector3D(x = 0,y = 0,z = 0)
+            self.env.set_vehicle_velocity(self.model_uniquename, abrupt_stop_vel) # set the velocity of vehicle
+        
+        
         if has_vehicle_in_front: 
             return 0.0
         

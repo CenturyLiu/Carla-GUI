@@ -32,7 +32,7 @@ class InitSection(Section):
         super().__init__(env, world_waypoint)
         self.left_ref_waypoint = self._get_left_waypoint(self.subject_waypoint)
         
-    def get_full_path_trajectory(self, subject_trajectory, subject_ref_speed, left_trajectory, left_ref_speed):
+    def get_full_path_trajectory(self, subject_trajectory, subject_ref_speed, left_trajectory, left_ref_speed, ref_speed, max_speed,min_speed):
         '''
         
 
@@ -46,6 +46,12 @@ class InitSection(Section):
             the left trajectory.
         left_ref_speed : list 
             reference speed for left trajectory
+        ref_speed : float
+            the average of the max and min speed
+        max_speed : float
+            the max speed of the vehicle
+        min_speed : float
+            the minimum speed of the vehicle
 
         Returns
         -------
@@ -54,12 +60,12 @@ class InitSection(Section):
         '''
         self.subject_trajectory = subject_trajectory
         self.subject_ref_speed = subject_ref_speed
-        self.subject_max_speed_list = subject_ref_speed / 0.75
-        self.subject_min_speed_list = subject_ref_speed / 0.75 * 0.5
+        self.subject_max_speed_list = subject_ref_speed / ref_speed * max_speed
+        self.subject_min_speed_list = subject_ref_speed / ref_speed * min_speed
         self.left_trajectory = left_trajectory
         self.left_ref_speed = left_ref_speed
-        self.left_max_speed_list = left_ref_speed / 0.75
-        self.left_min_speed_list = left_ref_speed / 0.75 * 0.5
+        self.left_max_speed_list = left_ref_speed / ref_speed * max_speed
+        self.left_min_speed_list = left_ref_speed / ref_speed * min_speed
     
     def add_ego_vehicle(self, model_name = "vehicle.tesla.model3", safety_distance = 15.0, vehicle_color = None):
         '''

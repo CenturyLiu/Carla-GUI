@@ -33,7 +33,7 @@ from backend.intersection_settings_helper import write_intersection_settings, re
     
 
 
-def IntersectionBackend(env,intersection_list):
+def IntersectionBackend(env,intersection_list, allow_collision = True):
     vehicle_list = [] # list of "other" type vehicle
     started_intersection_list = []
     ego_vehicle_config = intersection_list[0].ego_vehicle #init_intersection.ego_vehicle
@@ -47,21 +47,21 @@ def IntersectionBackend(env,intersection_list):
     if  lead_vehicle_config != None:
         first_full_path_vehicle_name = lead_vehicle_config["uniquename"]
         
-        lead_vehicle = LeadVehicleControl(env,lead_vehicle_config,env.delta_seconds)
-        ego_vehicle = FollowVehicleControl(env, ego_vehicle_config, env.delta_seconds)
+        lead_vehicle = LeadVehicleControl(env,lead_vehicle_config,env.delta_seconds,allow_collision)
+        ego_vehicle = FollowVehicleControl(env, ego_vehicle_config, env.delta_seconds,allow_collision)
         end_lead = False
         ego_vehicle.use_distance_mode(ego_vehicle_config["lead_distance"]) #use distance control mode with lead_distance
         
     else:
         first_full_path_vehicle_name = ego_vehicle_config["uniquename"]
-        ego_vehicle = FollowVehicleControl(env, ego_vehicle_config, env.delta_seconds)
+        ego_vehicle = FollowVehicleControl(env, ego_vehicle_config, env.delta_seconds,allow_collision)
         end_lead = True
         ego_vehicle.use_speed_mode()
     
     # assign the vehicle for the spectator to follow
     if follow_vehicle_config != None:
         spectator_vehicle = follow_vehicle_config
-        follow_vehicle = FollowVehicleControl(env, follow_vehicle_config, env.delta_seconds)
+        follow_vehicle = FollowVehicleControl(env, follow_vehicle_config, env.delta_seconds,allow_collision)
         end_follow = False
         follow_vehicle.use_distance_mode(ego_vehicle_config["follow_distance"])
     else:
@@ -76,19 +76,19 @@ def IntersectionBackend(env,intersection_list):
     for vehicle_config in init_intersection.subject_vehicle:
         # initialize vehicles by different type (ego,lead,follow,other)
         if vehicle_config["vehicle_type"] == "other":
-            vehicle = VehicleControl(env, vehicle_config, env.delta_seconds)
+            vehicle = VehicleControl(env, vehicle_config, env.delta_seconds,allow_collision)
             vehicle_list.append(vehicle)
     
     for vehicle_config in init_intersection.left_vehicle:
-        vehicle = VehicleControl(env, vehicle_config, env.delta_seconds)
+        vehicle = VehicleControl(env, vehicle_config, env.delta_seconds,allow_collision)
         vehicle_list.append(vehicle)
                     
     for vehicle_config in init_intersection.right_vehicle:
-        vehicle = VehicleControl(env, vehicle_config, env.delta_seconds)
+        vehicle = VehicleControl(env, vehicle_config, env.delta_seconds,allow_collision)
         vehicle_list.append(vehicle)
         
     for vehicle_config in init_intersection.ahead_vehicle:
-        vehicle = VehicleControl(env, vehicle_config, env.delta_seconds)
+        vehicle = VehicleControl(env, vehicle_config, env.delta_seconds,allow_collision)
         vehicle_list.append(vehicle)
     
     
@@ -117,19 +117,19 @@ def IntersectionBackend(env,intersection_list):
             intersection_list[ii].start_simulation(first_full_path_vehicle_name)
             if intersection_list[ii].start_sim:
                 for vehicle_config in intersection_list[ii].subject_vehicle:
-                    vehicle = VehicleControl(env, vehicle_config, env.delta_seconds)
+                    vehicle = VehicleControl(env, vehicle_config, env.delta_seconds,allow_collision)
                     vehicle_list.append(vehicle)
                     
                 for vehicle_config in intersection_list[ii].left_vehicle:
-                    vehicle = VehicleControl(env, vehicle_config, env.delta_seconds)
+                    vehicle = VehicleControl(env, vehicle_config, env.delta_seconds,allow_collision)
                     vehicle_list.append(vehicle)
                     
                 for vehicle_config in intersection_list[ii].right_vehicle:
-                    vehicle = VehicleControl(env, vehicle_config, env.delta_seconds)
+                    vehicle = VehicleControl(env, vehicle_config, env.delta_seconds,allow_collision)
                     vehicle_list.append(vehicle)
         
                 for vehicle_config in intersection_list[ii].ahead_vehicle:
-                    vehicle = VehicleControl(env, vehicle_config, env.delta_seconds)
+                    vehicle = VehicleControl(env, vehicle_config, env.delta_seconds,allow_collision)
                     vehicle_list.append(vehicle)
                 
                 # move the intersection to started intersection list
@@ -219,7 +219,7 @@ def main():
         
         traffic_light_list = get_traffic_lights(world.get_actors())
         
-        intersection_list = create_intersections(env, 4, traffic_light_list, navigation_speed = 15.0)
+        intersection_list = create_intersections(env, 4, traffic_light_list, navigation_speed = 30.0)
         init_intersection = intersection_list[0]
         normal_intersections = intersection_list[1:]
         init_intersection.add_ego_vehicle(safety_distance = 15.0, stop_choice = "abrupt", vehicle_color = '255,255,255')
@@ -276,7 +276,7 @@ def main():
         
         
         
-        IntersectionBackend(env,intersection_list)
+        IntersectionBackend(env,intersection_list,allow_collision = False)
     finally:
         time.sleep(10)
         env.destroy_actors()

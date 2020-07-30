@@ -39,7 +39,7 @@ white = carla.Color(255, 255, 255)
 
 class FreewayEnv(object):
     # this class holds all methods related to create a simulation environment for freeway
-    def __init__(self, env, number_of_sections, max_speed = 30.0):
+    def __init__(self, env, number_of_sections, max_speed = 30.0, min_speed = 15.0):
         '''
         initialize the freeway simulation environment
 
@@ -49,9 +49,11 @@ class FreewayEnv(object):
             number of sections for the freeway environment.
 
         max_speed : float
-            the max speed of vehicle. Default to be 30.0. Vehicle will go at 75% of its max speed when
-            under speed control mode
-            
+            the max speed of vehicle. Default to be 30.0. 
+        
+        min_speed : float
+            the min speed of vehicle. Default to be 15.0. Vehicle will go under the average of max_speed and min_speed under speed mode
+        
         Returns
         -------
         None
@@ -78,13 +80,14 @@ class FreewayEnv(object):
         
         # store the reference speed
         self.max_speed = max_speed
-        self.navigation_speed = self.max_speed * 0.75
+        self.min_speed = min_speed
+        self.navigation_speed = (self.max_speed + self.min_speed) * 0.5
         
         # create the simulation environment and generate the trajectory
         self._create_simulation_env()
         
         # give the trajectory and reference speed list to the initial intersection
-        self.section_list[0].get_full_path_trajectory(self.smoothed_full_trajectory, self.ref_speed_list, self.left_smoothed_full_trajectory, self.left_ref_speed_list)
+        self.section_list[0].get_full_path_trajectory(self.smoothed_full_trajectory, self.ref_speed_list, self.left_smoothed_full_trajectory, self.left_ref_speed_list, self.navigation_speed, self.max_speed, self.min_speed)
     
         
     
@@ -314,7 +317,7 @@ class FreewayEnv(object):
         # edit the section settings
         section.edit_full_path_vehicle_local_setting(vehicle_type, choice, vehicle_index, command = command, command_start_time = command_start_time)
     
-    def SectionBackend(self, spectator_mode = None):
+    def SectionBackend(self, spectator_mode = None, allow_collision = True):
         '''
         back end function for the freeway
 
@@ -323,6 +326,9 @@ class FreewayEnv(object):
         spectator_mode : string, optional
             the spectator mode, valid value is "first_person". The default is None.
 
+        allow_collision : bool, optional
+            whether collision is allowed during simulation
+
         Returns
         -------
         None.
@@ -330,7 +336,7 @@ class FreewayEnv(object):
         '''
         
         init_section = self.section_list[0]
-        ego_vehicle =  VehicleControlFreeway(self.env, init_section.ego_vehicle, self.env.delta_seconds)
+        ego_vehicle =  VehicleControlFreeway(self.env, init_section.ego_vehicle, self.env.delta_seconds, allow_collision)
         ego_uniquename = init_section.ego_vehicle["uniquename"]
         left_follow_vehicle = []
         subject_follow_vehicle = []
@@ -342,16 +348,16 @@ class FreewayEnv(object):
         
         # create vehicle control object
         for vehicle_config in init_section.left_follow_vehicle:
-            left_follow_vehicle.append(LeadFollowVehicleControl(self.env, vehicle_config, self.env.delta_seconds))
+            left_follow_vehicle.append(LeadFollowVehicleControl(self.env, vehicle_config, self.env.delta_seconds,allow_collision))
             
         for vehicle_config in init_section.subject_follow_vehicle:
-            subject_follow_vehicle.append(LeadFollowVehicleControl(self.env, vehicle_config, self.env.delta_seconds))
+            subject_follow_vehicle.append(LeadFollowVehicleControl(self.env, vehicle_config, self.env.delta_seconds,allow_collision))
             
         for vehicle_config in init_section.left_lead_vehicle:
-            left_lead_vehicle.append(LeadFollowVehicleControl(self.env, vehicle_config, self.env.delta_seconds))
+            left_lead_vehicle.append(LeadFollowVehicleControl(self.env, vehicle_config, self.env.delta_seconds,allow_collision))
             
         for vehicle_config in init_section.subject_lead_vehicle:
-            subject_lead_vehicle.append(LeadFollowVehicleControl(self.env, vehicle_config, self.env.delta_seconds))
+            subject_lead_vehicle.append(LeadFollowVehicleControl(self.env, vehicle_config, self.env.delta_seconds,allow_collision))
             
         
         # store the current section that is functioning
@@ -757,7 +763,7 @@ def main():
         #freewayenv.edit_full_path_vehicle_init_setting(name3, gap = 25.0, vehicle_type = "follow", choice = "left", vehicle_color = '255,255,255')
         
         
-        freewayenv.SectionBackend(spectator_mode = "first_person")
+        freewayenv.SectionBackend(spectator_mode = "first_person",allow_collision = False)
     finally:
         time.sleep(10)
         env.destroy_actors()
