@@ -392,7 +392,7 @@ the maximum speed vehicles in the urban environment can achieve. This value is a
 
 ###  IntersectionBackend
 
-- **<font color="#7fb800">IntersectionBackend</font>**(<font color="#00a6ed">**env, intersection_list**</font>)
+- **<font color="#7fb800">IntersectionBackend</font>**(<font color="#00a6ed">**env, intersection_list, allow_collision = True**</font>)
 
     function for having the simulation run
 
@@ -402,6 +402,8 @@ self-written simulation help class.
 
         - `intersection_list` : list of intersections, [Init_Intersection,Intersection,Intersection,...,Intersection]
 
+        - `allow_collision` : bool, optional	
+whether collision is allowed in during simulation. The default value is True. <font color="#ff0000">**This method is not stable. There's no guarantee that vehicle will not collide if this value is set to be False** </font>
 
 ---
 ## Store and read Intersection settings in file format
