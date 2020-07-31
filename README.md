@@ -55,6 +55,8 @@ The [CARLA simulator](https://carla.org/) is a powerful open source tool develop
  
  For more information about urban simulation scenario, see [freeway back end](https://carla-gui.readthedocs.io/en/latest/freeway_backend_introduction/)
 
+ To view the full process of creating and conducting an urban simulation, please refer to [freeway demo video](https://youtu.be/z3-JaiWRf4g)
+
  ## Installation
  
  - step 1: download this repository and put it to your desired location on your device (currently support windows and linux)
