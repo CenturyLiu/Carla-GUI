@@ -1,6 +1,12 @@
 # Carla-GUI
 GUI tool helping vehicle-human interaction researchers to design and conduct traffic experiments with [CARLA simulator](https://carla.org/).
 
+## Team Member
+
+- [Grant Barry](https://github.com/grantbarry29/Carla-GUI)
+- [Shiji Liu](https://github.com/CenturyLiu)
+- [Weixin Feng(Targy)](https://github.com/Targy/Carla-GUI)
+
 ## Project Purpose
 
 The [CARLA simulator](https://carla.org/) is a powerful open source tool developed to "support development, training, and validation of autonomous driving systems". To properly utilize the powerful function provided by the CARLA simulator, however, users need to have 
@@ -33,7 +39,7 @@ The [CARLA simulator](https://carla.org/) is a powerful open source tool develop
  
  For more information about urban simulation scenario, see [urban back end](https://carla-gui.readthedocs.io/en/latest/urban_backend_introduction/)
  
-
+ To view the full process of creating and conducting an urban simulation, please refer to [urban demo video](https://youtu.be/DvECte5iaRw)
  
  ### Freeway simulation
  
