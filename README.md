@@ -23,12 +23,31 @@ The [CARLA simulator](https://carla.org/) is a powerful open source tool develop
  
  The GUI for urban simulation is still under development, documents will soon be available.
  
+ Here is a demo of back end function for the Urban GUI:
  
+ ![urban add vehicle](https://github.com/CenturyLiu/Carla-GUI/blob/master/Docs/img/intersection_add_vehicle.gif)
+ > add vehicles inside the urban simulation environment
  
+ ![urban simulation start](https://github.com/CenturyLiu/Carla-GUI/blob/master/Docs/img/intersection_start_in_sim.gif)
+ > simulation starts inside the CARLA enviroment
+ 
+ For more information about urban simulation scenario, see [urban back end](https://carla-gui.readthedocs.io/en/latest/urban_backend_introduction/)
+ 
+
  
  ### Freeway simulation
  
  The GUI for freeway simulation is still under development, documents will soon be available.
+ 
+  Here is a demo of back end function for the Freeway GUI:
+ 
+ ![freeway add vehicle](https://github.com/CenturyLiu/Carla-GUI/blob/master/Docs/img/add_vehicle_demo.gif)
+ > add vehicles inside the freeway simulation environment
+ 
+ ![freeway simulation snapshort](https://github.com/CenturyLiu/Carla-GUI/blob/master/Docs/img/distance_demo_first_persom.gif)
+ > demo of freeway simulation
+ 
+ For more information about urban simulation scenario, see [freeway back end](https://carla-gui.readthedocs.io/en/latest/freeway_backend_introduction/)
 
  ## Installation
  
