@@ -1,7 +1,7 @@
 # Carla-GUI
-GUI tool helping vehicle-human interaction researchers to design and conduct traffic experiments with [CARLA simulator](https://carla.org/).
+GUI tool to help human-vehicle interaction researchers design and conduct traffic experiments with [CARLA real-time driving simulator](https://carla.org/).
 
-## Team Member
+## Team Memberw
 
 - [Grant Barry](https://github.com/grantbarry29/Carla-GUI)
 - [Shiji Liu](https://github.com/CenturyLiu)
@@ -9,13 +9,13 @@ GUI tool helping vehicle-human interaction researchers to design and conduct tra
 
 ## Project Purpose
 
-The [CARLA simulator](https://carla.org/) is a powerful open source tool developed to "support development, training, and validation of autonomous driving systems". To properly utilize the powerful function provided by the CARLA simulator, however, users need to have 
+The [CARLA simulator](https://carla.org/) is a powerful open source tool developed to "support development, training, and validation of autonomous driving systems" ([introduction, CARLA Simulator](https://carla.org/)). To properly utilize the powerful functionality provided by the CARLA simulator, however, users need to have: 
 
-   - in depth understanding about the function provided by the simulator
+   - an in depth understanding about the function provided by the simulator
    - basic knowledge about vehicle control
    - basic knowledge about python
    
- Meeting all these requirements is definitely not a easy job for beginner researchers in the field of vehicle-human interaction. To make life **easier** for those researchers, we are here to present our **simple GUI**, which is an interface for users to create and conduct experiments inside the CARLA simulator.
+ Meeting all these requirements is definitely not easy for begining researchers in the field of human-vehicle interaction. To make life **easier** for those researchers, a **simple GUI** has been developed, which provides an interface for users to create and conduct experiments using the CARLA simulator.
  
  ## Function introduction
  
