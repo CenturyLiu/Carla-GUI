@@ -1,10 +1,6 @@
 # Carla-GUI
 GUI tool to help human-vehicle interaction researchers design and conduct traffic experiments with [CARLA real-time driving simulator](https://carla.org/).
 
-## Poster
-![Poster](https://github.com/CenturyLiu/Carla-GUI/blob/master/Docs/img/poster.PNG)
-> The poster briefly describing the project
-
 ## Team Members
 
 - [Grant Barry](https://github.com/grantbarry29/Carla-GUI)
@@ -67,6 +63,11 @@ The [CARLA simulator](https://carla.org/) is a powerful open source tool develop
  - step 2: follow instructions on [PyQt5 website](https://pypi.org/project/PyQt5/) to install PyQt5, which is the tool we used to create the GUI
  - step 3: follow instructions on [back end installation guide](https://carla-gui.readthedocs.io/en/latest/installation_guide/) to install tools essential for the back end.
  
+ 
+## Poster
+![Poster](https://github.com/CenturyLiu/Carla-GUI/blob/master/Docs/img/poster.PNG)
+> The poster briefly describing the project
+
  ---
  author: shiji liu
  email: shijiliu@umich.edu
