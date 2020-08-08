@@ -1,6 +1,10 @@
 # Carla-GUI
 GUI tool to help human-vehicle interaction researchers design and conduct traffic experiments with [CARLA real-time driving simulator](https://carla.org/).
 
+## Poster
+![Poster](https://github.com/CenturyLiu/Carla-GUI/blob/master/Docs/img/poster.PNG)
+> The poster briefly describing the project
+
 ## Team Members
 
 - [Grant Barry](https://github.com/grantbarry29/Carla-GUI)
