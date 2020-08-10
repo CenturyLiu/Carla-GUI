@@ -152,7 +152,7 @@ class Init_Intersection(Intersection):
         None.
 
         '''
-        right_shift_value = 1.6
+        right_shift_value = 0.0#1.6
         
         vehicle = ConfigObj()
         
@@ -181,14 +181,18 @@ class Init_Intersection(Intersection):
             bb = vehicle_set[-1]["bounding_box"]
             
             right_shift_value = right_shift_value #- bb.y / 2
-            gap += bb.x
             
+            
+            
+            gap += bb.x
+        
+        
         else:
             if gap < 10.0:
                 gap = 10.0 # add a constraint to the gap between the first vehicle and the lane 
                            # reference point. Add a vehicle too close to reference point
                            # will lead to vehicle not detecting the traffic light
-                           
+                        
         # use the original reference point to get the new reference point
         # reference point is in the middle of the lane
         # function same as self._get_next_waypoint

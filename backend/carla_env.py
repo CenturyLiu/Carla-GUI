@@ -118,7 +118,7 @@ class CARLA_ENV():
         if spawn_point == None:
             spawn_point = random.choice(self.world.get_map().get_spawn_points())
         
-        if color != None:
+        if color != None and bp.has_attribute('color'):
             bp.set_attribute('color',color)
         
         

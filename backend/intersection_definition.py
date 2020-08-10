@@ -42,7 +42,7 @@ START2 = -15.5#-15.5#-16.0
 '''
 
 # right shift from the center of the lane when spawning
-RIGHT_SHIFT = 1.6 # 0.0 if requirements changed to spawn in the middle of the lane#
+RIGHT_SHIFT = 0.0#1.6 # 0.0 if requirements changed to spawn in the middle of the lane#
 
 def get_traffic_lights(actor_list):
     # get all the available traffic lights
