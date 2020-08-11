@@ -178,7 +178,7 @@ What view mode will be used inside the simulation, valid value is "first_person"
 whether collision is allowed in during simulation. The default value is True. <font color="#ff0000">**This method is not stable. There's no guarantee that vehicle will not collide if this value is set to be False** </font>
 
     - `enable_human_control` : bool, optional	
-Parameter indicating whether ego vehicle is controlled by human driver. The default value is **False**. If value is True, then human will be responsible for controlling the vehicle. <font color="#ff0000">Note: 1. if value is True, human command is needed. See the human-ego tutorial for more detail. 2. if value is True, the spectator mode will be automatically set to **"human_driving"** no matter what value is entered </font>
+Parameter indicating whether ego vehicle is controlled by human driver. The default value is **False**. If value is True, then human will be responsible for controlling the vehicle. <font color="#ff0000">Note: 1. if value is True, human command is needed. See the [human-ego tutorial](human_control_ego_vehicle.md) for more detail. 2. if value is True, the spectator mode will be automatically set to **"human_driving"** no matter what value is entered </font>
 
 - **<font color="#7fb800">get_vehicle_bounding_box</font>**(<font color="#00a6ed">**self, uniquename**</font>)		
     get the bounding box of the vehicle specified by the uniquename

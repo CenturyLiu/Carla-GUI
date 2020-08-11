@@ -409,7 +409,7 @@ whether collision is allowed in during simulation. The default value is True. <f
 the spectator mode, valid value is "first_person" or "left" or "human_driving". The default is None. spectator will be fixed at 10 meters after the last full-path vehicle is "first_person" is chosen; spectator will be looking at the ego vehicle from the left if "left" is chosen. If "human_driving" is chosen, the spectator will be set at the position of the human driver.
 
         - `enable_human_control` : bool, optional	
-Parameter indicating whether ego vehicle is controlled by human driver. The default value is **False**. If value is True, then human will be responsible for controlling the vehicle. <font color="#ff0000">Note: 1. if value is True, human command is needed. See the human-ego tutorial for more detail. 2. if value is True, the spectator mode will be automatically set to **"human_driving"** no matter what value is entered </font>
+Parameter indicating whether ego vehicle is controlled by human driver. The default value is **False**. If value is True, then human will be responsible for controlling the vehicle. <font color="#ff0000">Note: 1. if value is True, human command is needed. See the [human-ego tutorial](human_control_ego_vehicle.md) for more detail. 2. if value is True, the spectator mode will be automatically set to **"human_driving"** no matter what value is entered </font>
 
 ---
 ## Store and read Intersection settings in file format
