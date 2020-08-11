@@ -392,7 +392,7 @@ the maximum speed vehicles in the urban environment can achieve. This value is a
 
 ###  IntersectionBackend
 
-- **<font color="#7fb800">IntersectionBackend</font>**(<font color="#00a6ed">**env, intersection_list, allow_collision = True, spectator_mode = None**</font>)
+- **<font color="#7fb800">IntersectionBackend</font>**(<font color="#00a6ed">**env, intersection_list, allow_collision = True, spectator_mode = None, enable_human_control = False**</font>)
 
     function for having the simulation run
 
@@ -406,7 +406,10 @@ self-written simulation help class.
 whether collision is allowed in during simulation. The default value is True. <font color="#ff0000">**This method is not stable. There's no guarantee that vehicle will not collide if this value is set to be False** </font>
 
         - `spectator_mode` : string	
-the spectator mode, valid value is "first_person" or "left". The default is None. spectator will be fixed at 10 meters after the last full-path vehicle is "first_person" is chosen; spectator will be looking at the ego vehicle from the left if "left" is chosen.
+the spectator mode, valid value is "first_person" or "left" or "human_driving". The default is None. spectator will be fixed at 10 meters after the last full-path vehicle is "first_person" is chosen; spectator will be looking at the ego vehicle from the left if "left" is chosen. If "human_driving" is chosen, the spectator will be set at the position of the human driver.
+
+        - `enable_human_control` : bool, optional	
+Parameter indicating whether ego vehicle is controlled by human driver. The default value is **False**. If value is True, then human will be responsible for controlling the vehicle. <font color="#ff0000">Note: 1. if value is True, human command is needed. See the human-ego tutorial for more detail. 2. if value is True, the spectator mode will be automatically set to **"human_driving"** no matter what value is entered </font>
 
 ---
 ## Store and read Intersection settings in file format

@@ -168,15 +168,17 @@ The FreewayEnv class is the container for the freeway simulation environment. Us
 
 <font color="#ff0000">**Note: uniquename is used to reference a vehicle in the backend. Please store the uniquename. If users want to give the vehicle their own name, keep that name seperate from the uniquename.**</font>
 
-- **<font color="#7fb800">SectionBackend</font>**(<font color="#00a6ed">**self,spectator_mode = None,allow_collision = True**</font>)		
+- **<font color="#7fb800">SectionBackend</font>**(<font color="#00a6ed">**self,spectator_mode = None,allow_collision = True, enable_human_control = False**</font>)		
    main function for starting the simulation.
 
     - `spectator_mode` : string, optional	
-What view mode will be used inside the simulation, valid value is "first_person". The default value is None, i.e. the spectator will not follow the vehicle.
+What view mode will be used inside the simulation, valid value is "first_person" (i.e. spectator will be fixed at 10 meters after the last full-path vehicle), "human_driving" (spectator will be put at the position of the human driver). The default value is None, i.e. the spectator will not follow the vehicle.
 
     - `allow_collision` : bool, optional	
 whether collision is allowed in during simulation. The default value is True. <font color="#ff0000">**This method is not stable. There's no guarantee that vehicle will not collide if this value is set to be False** </font>
 
+    - `enable_human_control` : bool, optional	
+Parameter indicating whether ego vehicle is controlled by human driver. The default value is **False**. If value is True, then human will be responsible for controlling the vehicle. <font color="#ff0000">Note: 1. if value is True, human command is needed. See the human-ego tutorial for more detail. 2. if value is True, the spectator mode will be automatically set to **"human_driving"** no matter what value is entered </font>
 
 - **<font color="#7fb800">get_vehicle_bounding_box</font>**(<font color="#00a6ed">**self, uniquename**</font>)		
     get the bounding box of the vehicle specified by the uniquename
