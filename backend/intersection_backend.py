@@ -33,7 +33,25 @@ from backend.intersection_settings_helper import write_intersection_settings, re
     
 
 
-def IntersectionBackend(env,intersection_list, allow_collision = True):
+def IntersectionBackend(env,intersection_list, allow_collision = True, spectator_mode = None):
+    
+    '''
+    back end function for the Intersection
+
+    Parameters
+    ----------
+    spectator_mode : string, optional
+        the spectator mode, valid value is "first_person" or "left". The default is None.
+
+    allow_collision : bool, optional
+        whether collision is allowed during simulation
+
+    Returns
+    -------
+    None.
+
+    '''
+    
     vehicle_list = [] # list of "other" type vehicle
     started_intersection_list = []
     ego_vehicle_config = intersection_list[0].ego_vehicle #init_intersection.ego_vehicle
@@ -100,13 +118,17 @@ def IntersectionBackend(env,intersection_list, allow_collision = True):
         env.update_vehicle_distance()
         
         # update the ego spectator
-        '''
+        
         if env.vehicle_available(spectator_vehicle["uniquename"]):
             spectator_vehicle_transform = env.get_transform_3d(spectator_vehicle["uniquename"])
             #spectator_transform = get_ego_spectator(spectator_vehicle_transform,distance = -10)
-            spectator_transform = get_ego_left_spectator(spectator_vehicle_transform)
-            spectator.set_transform(spectator_transform)
-        '''
+            if spectator_mode == "first_person":
+                spectator_transform = get_ego_spectator(spectator_vehicle_transform, distance = -10)
+                spectator.set_transform(spectator_transform)
+            elif spectator_mode == "left":
+                spectator_transform = get_ego_left_spectator(spectator_vehicle_transform)
+                spectator.set_transform(spectator_transform)
+        
         #else:
         #    spectator_transform = carla.Transform(carla.Location(x= 25.4, y=1.29, z=75.0), carla.Rotation(pitch=-88.0, yaw= -1.85, roll=1.595))
         #spectator.set_transform(spectator_transform)
