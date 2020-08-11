@@ -184,15 +184,17 @@ class Init_Intersection(Intersection):
             
             
             
-            gap += bb.x
+            curr_length = self.env.get_vehicle_model_length(model_name)
+            
+            gap += bb.x / 2 + curr_length / 2
         
-        
+        '''
         else:
             if gap < 10.0:
                 gap = 10.0 # add a constraint to the gap between the first vehicle and the lane 
                            # reference point. Add a vehicle too close to reference point
                            # will lead to vehicle not detecting the traffic light
-                        
+        '''                
         # use the original reference point to get the new reference point
         # reference point is in the middle of the lane
         # function same as self._get_next_waypoint

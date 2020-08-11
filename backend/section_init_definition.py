@@ -314,10 +314,15 @@ class InitSection(Section):
         if len(vehicle_set) != 0:
             ref_waypoint = vehicle_set[-1]["ref_waypoint"]
             bb = vehicle_set[-1]["bounding_box"]
-            gap += bb.x
+            
+            curr_length = self.env.get_vehicle_model_length(model_name)
+            
+            gap += bb.x / 2 + curr_length / 2
+        '''
         else:
             if gap < 10.0:
                 gap = 10.0
+        '''
         
         forward_vector = ref_waypoint.transform.get_forward_vector()
 

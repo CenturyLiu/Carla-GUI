@@ -83,6 +83,12 @@ class CARLA_ENV():
         
         self.distance_between_vehicles = ConfigObj() # store the distance between vehicles
         
+        # get the length of all vehicles
+        currentDirectory = d = os.path.dirname(os.getcwd()) +  "/backend/vehicle_length_config.txt"
+        print(currentDirectory)
+        self.vehicle_model_length_config = ConfigObj(currentDirectory)
+        print(self.vehicle_model_length_config)
+        
         
     def config_env(self, synchrony = False, delta_seconds = 0.02):
 
@@ -151,6 +157,29 @@ class CARLA_ENV():
         if uniquename in self.vehicle_dict:
             self.vehicle_dict[uniquename].destroy() # destroy the vehicle in carla
             self.vehicle_dict.pop(uniquename) # remove the vehicle from dictionary
+    
+    def get_vehicle_model_length(self, model_name):
+        '''
+        
+
+        Parameters
+        ----------
+        model_name : string
+            the model name of a vehicle model, or type_id of a vehicle
+
+        Returns
+        -------
+        the length of the vehicle, or bounding_box.extent.x
+
+        '''
+        length = None
+        if model_name in self.vehicle_model_length_config:
+            length = float(self.vehicle_model_length_config[model_name])
+        else:
+            print(model_name)
+            print("Error: invalid model_name entered to get vehicle model length")
+        
+        return length
     
     def get_vehicle_bounding_box(self, uniquename):
         '''
