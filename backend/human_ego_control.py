@@ -53,6 +53,7 @@ class HumanEgoControlServer():
                     human_command = self._decode_command(data)
                     conn.sendall(b'Command received')
                     conn.close()
+                    print("human command: throttle == ", human_command[0], " steer == ", human_command[1], " brake == ", human_command[2])
                     return human_command
                 else:
                     print("Invalid input, waiting for valid commands")

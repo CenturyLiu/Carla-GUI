@@ -25,15 +25,16 @@ from backend.multiple_vehicle_control import VehicleControl
 
 import copy
 
-from backend.initial_intersection import Init_Intersection, create_intersections, get_ego_spectator, get_ego_left_spectator
+from backend.initial_intersection import Init_Intersection, create_intersections, get_ego_spectator, get_ego_left_spectator, get_ego_driving_spectator
 from backend.full_path_vehicle import LeadVehicleControl, FollowVehicleControl
 
 from backend.intersection_settings_helper import write_intersection_settings, read_intersection_settings
 
+from backend.human_ego_control import HumanEgoControlServer
     
 
 
-def IntersectionBackend(env,intersection_list, allow_collision = True, spectator_mode = None):
+def IntersectionBackend(env,intersection_list, allow_collision = True, spectator_mode = None, enable_human_control = False):
     
     '''
     back end function for the Intersection
@@ -45,6 +46,9 @@ def IntersectionBackend(env,intersection_list, allow_collision = True, spectator
 
     allow_collision : bool, optional
         whether collision is allowed during simulation
+
+    enable_human_control : bool, optional
+        whether ego vehicle is controlled by human
 
     Returns
     -------
@@ -59,6 +63,12 @@ def IntersectionBackend(env,intersection_list, allow_collision = True, spectator
     follow_vehicle_config = intersection_list[0].follow_vehicle
     
     spectator = env.world.get_spectator()
+    
+    # if enable_human_control, get the ego vehicle from the environment
+    if enable_human_control:
+        ego_vehicle_uniquename = ego_vehicle_config["uniquename"]
+        human_control_server = HumanEgoControlServer() # create the server for receiving the human command
+        spectator_mode = "human_driving"
     
     # assign the first full path vehicle, to determine whether 
     # each intersection should start
@@ -79,12 +89,19 @@ def IntersectionBackend(env,intersection_list, allow_collision = True, spectator
     # assign the vehicle for the spectator to follow
     if follow_vehicle_config != None:
         spectator_vehicle = follow_vehicle_config
+        spectator_bb = follow_vehicle_config["bounding_box"]
         follow_vehicle = FollowVehicleControl(env, follow_vehicle_config, env.delta_seconds,allow_collision)
         end_follow = False
         follow_vehicle.use_distance_mode(ego_vehicle_config["follow_distance"])
     else:
         spectator_vehicle = ego_vehicle_config
+        spectator_bb = ego_vehicle_config["bounding_box"]
         end_follow = True
+    
+    if enable_human_control:
+        spectator_bb = ego_vehicle_config["bounding_box"]
+    
+        
     
     end_ego = False
     # get the init intersection
@@ -128,7 +145,10 @@ def IntersectionBackend(env,intersection_list, allow_collision = True, spectator
             elif spectator_mode == "left":
                 spectator_transform = get_ego_left_spectator(spectator_vehicle_transform)
                 spectator.set_transform(spectator_transform)
-        
+            elif spectator_mode == "human_driving":
+                spectator_vehicle_transform = env.get_transform_3d(ego_vehicle_uniquename)
+                spectator_transform = get_ego_driving_spectator( spectator_vehicle_transform, spectator_bb)
+                spectator.set_transform(spectator_transform)
         #else:
         #    spectator_transform = carla.Transform(carla.Location(x= 25.4, y=1.29, z=75.0), carla.Rotation(pitch=-88.0, yaw= -1.85, roll=1.595))
         #spectator.set_transform(spectator_transform)
@@ -188,9 +208,23 @@ def IntersectionBackend(env,intersection_list, allow_collision = True, spectator
         
         
         # apply control to ego vehicle, get whether it stops at traffic light
-        if not end_ego:        
-            end_ego = ego_vehicle.pure_pursuit_control_wrapper()
-            ego_stop_at_light = ego_vehicle.blocked_by_light
+        if not end_ego:
+            if not enable_human_control:
+                # use the automatic control provided by the back-end, which is set as default
+                end_ego = ego_vehicle.pure_pursuit_control_wrapper()
+                ego_stop_at_light = ego_vehicle.blocked_by_light
+            else:
+                # get control from human
+                human_command = human_control_server.get_human_command()
+                # format the command into carla.VehicleControl
+                ego_vehicle_control = carla.VehicleControl(throttle = human_command[0] ,steer=human_command[1],brake = human_command[2])
+                # apply control to the vehicle
+                env.apply_vehicle_control(ego_vehicle_uniquename , ego_vehicle_control)
+                
+                
+                end_ego = ego_vehicle.fake_pure_pursuit_control_wrapper() # change all internal settings as the real wrapper, but 
+                                                                          # don't apply control to vehicle
+                ego_stop_at_light = ego_vehicle.blocked_by_light                                                          
         
         # apply control to lead vehicle
         if not end_lead:

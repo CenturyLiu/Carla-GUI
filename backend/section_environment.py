@@ -24,8 +24,9 @@ from backend.generate_path_omit_regulation import generate_path
 from backend.intersection_definition import smooth_trajectory, get_trajectory
 from backend.multiple_vehicle_control import VehicleControl
 from backend.multiple_vehicle_control_debug import VehicleControl_debug
-from backend.initial_intersection import get_ego_spectator, get_ego_left_spectator
+from backend.initial_intersection import get_ego_spectator, get_ego_left_spectator, get_ego_driving_spectator
 from backend.section_vehicle_control import VehicleControlFreeway, FullPathVehicleControl, LeadFollowVehicleControl
+from backend.human_ego_control import HumanEgoControlServer
 
 # color for debug use
 red = carla.Color(255, 0, 0)
@@ -317,7 +318,7 @@ class FreewayEnv(object):
         # edit the section settings
         section.edit_full_path_vehicle_local_setting(vehicle_type, choice, vehicle_index, command = command, command_start_time = command_start_time)
     
-    def SectionBackend(self, spectator_mode = None, allow_collision = True):
+    def SectionBackend(self, spectator_mode = None, allow_collision = True, enable_human_control = False):
         '''
         back end function for the freeway
 
@@ -328,6 +329,9 @@ class FreewayEnv(object):
 
         allow_collision : bool, optional
             whether collision is allowed during simulation
+            
+        enable_human_control : bool, optional
+            whether ego vehicle is controlled by human
 
         Returns
         -------
@@ -338,6 +342,7 @@ class FreewayEnv(object):
         init_section = self.section_list[0]
         ego_vehicle =  VehicleControlFreeway(self.env, init_section.ego_vehicle, self.env.delta_seconds, allow_collision)
         ego_uniquename = init_section.ego_vehicle["uniquename"]
+        ego_bb = init_section.ego_vehicle["bounding_box"]
         left_follow_vehicle = []
         subject_follow_vehicle = []
         left_lead_vehicle = []
@@ -364,6 +369,11 @@ class FreewayEnv(object):
         curr_section = init_section
         self.section_list.pop(0)
         
+            # if enable_human_control, get the ego vehicle from the environment
+        if enable_human_control:
+            human_control_server = HumanEgoControlServer() # create the server for receiving the human command
+            spectator_mode = "human_driving"
+        
         # main loop for control    
         while True:
             self.env.world.tick()
@@ -376,6 +386,11 @@ class FreewayEnv(object):
             if self.env.vehicle_available(ego_uniquename) and spectator_mode == "first_person" :
                  spectator_vehicle_transform = self.env.get_transform_3d(ego_uniquename)
                  spectator_transform = get_ego_spectator(spectator_vehicle_transform,distance = -40)
+                 self.spectator.set_transform(spectator_transform)
+            
+            if self.env.vehicle_available(ego_uniquename) and spectator_mode == "human_driving" :
+                 spectator_vehicle_transform = self.env.get_transform_3d(ego_uniquename)
+                 spectator_transform = get_ego_driving_spectator(spectator_vehicle_transform, ego_bb)
                  self.spectator.set_transform(spectator_transform)
             
             # section based control
@@ -411,7 +426,17 @@ class FreewayEnv(object):
                 
             # apply control to vehicles
             if not ego_end:
-                ego_end = ego_vehicle.pure_pursuit_control_wrapper()
+                if not enable_human_control:
+                    ego_end = ego_vehicle.pure_pursuit_control_wrapper()
+                else:
+                    # get control from human
+                    human_command = human_control_server.get_human_command()
+                    # format the command into carla.VehicleControl
+                    ego_vehicle_control = carla.VehicleControl(throttle = human_command[0] ,steer=human_command[1],brake = human_command[2])
+                    # apply control to the vehicle
+                    self.env.apply_vehicle_control(ego_uniquename , ego_vehicle_control)
+                    
+                    ego_end = ego_vehicle.fake_pure_pursuit_control_wrapper()
             
             '''
             print("--------")

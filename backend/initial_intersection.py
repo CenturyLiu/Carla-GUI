@@ -591,6 +591,18 @@ def get_ego_left_spectator(ego_transform,distance = -20):
     spectator_transform = carla.Transform(spectator_location,spectator_rotation)
     return spectator_transform
 
+def get_ego_driving_spectator(ego_transform, bounding_box):
+    
+    distance = bounding_box.x
+    left_shift = -bounding_box.y * 0.3
+    
+    forward_vector = ego_transform.get_forward_vector()
+
+    location = ego_transform.location
+    spectator_location = carla.Location(x = location.x + distance * forward_vector.x + left_shift * forward_vector.y , y = location.y + distance * forward_vector.y + left_shift * forward_vector.x, z = location.z + bounding_box.z * 1.5)
+    spectator_transform = carla.Transform(spectator_location,ego_transform.rotation)
+        
+    return spectator_transform
 
 def IntersectionBackend(env,intersection_list):
     vehicle_list = []

@@ -333,6 +333,74 @@ class VehicleControl(object):
         self.env.apply_vehicle_control(self.model_uniquename, vehicle_control) # apply control to vehicle
         return end_trajectory
     
+    def fake_pure_pursuit_control_wrapper(self):
+        '''
+        Get one step control to the vehicle, store essential information for further use
+        the control command is not applied to the vehicle
+
+        Returns
+        -------
+        end_trajectory : bool
+            whether this vehicle reaches its end
+
+        '''
+       
+        curr_speed = self.env.get_forward_speed(self.model_uniquename)
+        vehicle_pos_2d = self.env.get_transform_2d(self.model_uniquename) # the (x,y) location and yaw angle of the vehicle
+        self.speed.append(curr_speed)
+        self.curr_speeds.append(curr_speed)
+        
+        # draw real trajectory if debug is enabled
+        if self.debug_vehicle:
+            self.vehicle_pose.append(vehicle_pos_2d[0])
+            if len(self.vehicle_pose) == 2:
+                self.env.draw_real_trajectory(self.vehicle_pose)
+                
+            self._display_vehicle_type()
+                
+        # use pure-pursuit model to get the steer angle (in radius)
+        delta, current_ref_speed, index, end_trajectory = self.pure_pursuit_control(vehicle_pos_2d, curr_speed, self.trajectory, self.ref_speed_list, self.index)
+        self.index = index
+        steer = np.clip(delta,-1.0,1.0)
+        
+        
+        # If vehicle has safety distance set, check whether a vehicle is in the front
+        current_ref_speed = self._obey_safety_distance(current_ref_speed)
+        
+        # If vehicle obey traffic lights and is going straight / turning left, check the traffic light state
+        current_ref_speed = self._obey_traffic_light(current_ref_speed)
+        
+        #if self.debug_vehicle:
+        #    print("--------")
+        #    print("current_ref_speed == ",current_ref_speed)
+        #    print("current_speed ==",curr_speed)
+        
+        self.ref_speeds.append(current_ref_speed)
+        self.reference_speed.append(current_ref_speed)
+        
+        # get throttle to get the next reference speed 
+        throttle = self.speed_control() # get the throttle control based on reference and current speed
+        throttle = np.clip(throttle,0,1) # throttle value is [0,1]
+        self.throttles.append(throttle) # for visualization
+        
+        # check whether we are reaching the destination or not
+        if end_trajectory:
+            #vehicle_control = carla.VehicleControl(throttle = 0.0,steer=steer,brake = 1.0) # immediately stop the car
+            #self.env.apply_vehicle_control(self.model_uniquename, vehicle_control) # apply control to vehicle
+            self.run = False
+            self._destroy_vehicle()
+            return end_trajectory
+        
+        # apply throttle-steer-brake control
+        '''
+        if curr_speed <= current_ref_speed:
+            vehicle_control = carla.VehicleControl(throttle = throttle,steer=steer) 
+        else:
+            vehicle_control = carla.VehicleControl(throttle = throttle,steer=steer,brake = 0.5)
+        '''  
+        #self.env.apply_vehicle_control(self.model_uniquename, vehicle_control) # apply control to vehicle
+        return end_trajectory
+    
     
     def _obey_traffic_light(self, current_ref_speed):
         # the vehicle should take traffic lights into account when it is required 
@@ -387,6 +455,7 @@ class VehicleControl(object):
         if smallest_distance < 0.5 and smallest_distance > -10: 
             state = light.get_state()
             if state == carla.TrafficLightState.Red or state == carla.TrafficLightState.Yellow:
+                self.blocked_by_light = True # indicate the car is blocked by light
                 if self.stop_choice == "abrupt":
                     self.env.set_vehicle_velocity(self.model_uniquename , abrupt_stop_vel) # immediately stop vehicle
                     return 0.0 # abrupt stop
