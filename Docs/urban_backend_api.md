@@ -392,7 +392,7 @@ the maximum speed vehicles in the urban environment can achieve. This value is a
 
 ###  IntersectionBackend
 
-- **<font color="#7fb800">IntersectionBackend</font>**(<font color="#00a6ed">**env, intersection_list, allow_collision = True**</font>)
+- **<font color="#7fb800">IntersectionBackend</font>**(<font color="#00a6ed">**env, intersection_list, allow_collision = True, spectator_mode = None**</font>)
 
     function for having the simulation run
 
@@ -404,6 +404,9 @@ self-written simulation help class.
 
         - `allow_collision` : bool, optional	
 whether collision is allowed in during simulation. The default value is True. <font color="#ff0000">**This method is not stable. There's no guarantee that vehicle will not collide if this value is set to be False** </font>
+
+        - `spectator_mode` : string	
+the spectator mode, valid value is "first_person" or "left". The default is None. spectator will be fixed at 10 meters after the last full-path vehicle is "first_person" is chosen; spectator will be looking at the ego vehicle from the left if "left" is chosen.
 
 ---
 ## Store and read Intersection settings in file format
