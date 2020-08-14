@@ -74,7 +74,7 @@ The FreewayEnv class is the container for the freeway simulation environment. Us
 
 
         - `command` : string, optional		
-            the section based vehicle command, valid values: "speed", "lane", "distance", The default is "speed"
+            the section based vehicle command, valid values: "speed", "lane", "distance", The default is "speed". "speed" command means vehicle will keep constant navigation speed while navigating in this section, "lane" command means vehicle will try to change lane in this section. Note that vehicle will keep constant navigation speed after successfully changed lane. "distance" command means the vehicle will try to keep constant distance with the ego vehicle. This will only be true if there's no vehicle between the vehicle with "distance" command and the ego vehicle, otherwise the vehicle will abandon the "distance" command and keep navigating under constant speed.
 
 
         - `command_start_time` : float, optional	
@@ -120,7 +120,7 @@ The FreewayEnv class is the container for the freeway simulation environment. Us
 
 
         - `command` : string, optional		
-            the section based vehicle command, valid values: "speed", "lane", "distance", The default is "speed"
+            the section based vehicle command, valid values: "speed", "lane", "distance", The default is "speed". "speed" command means vehicle will keep constant navigation speed while navigating in this section, "lane" command means vehicle will try to change lane in this section. Note that vehicle will keep constant navigation speed after successfully changed lane. "distance" command means the vehicle will try to keep constant distance with the ego vehicle. This will only be true if there's no vehicle between the vehicle with "distance" command and the ego vehicle, otherwise the vehicle will abandon the "distance" command and keep navigating under constant speed.
 
 
         - `command_start_time` : float, optional	
@@ -161,7 +161,7 @@ The FreewayEnv class is the container for the freeway simulation environment. Us
             index of the vehicle in the specific lane, starting from 0.
 
         - `command` : string, optional		
-            the section based vehicle command, valid values: "speed", "lane", "distance", The default is "speed"
+            the section based vehicle command, valid values: "speed", "lane", "distance", The default is "speed". "speed" command means vehicle will keep constant navigation speed while navigating in this section, "lane" command means vehicle will try to change lane in this section. Note that vehicle will keep constant navigation speed after successfully changed lane. "distance" command means the vehicle will try to keep constant distance with the ego vehicle. This will only be true if there's no vehicle between the vehicle with "distance" command and the ego vehicle, otherwise the vehicle will abandon the "distance" command and keep navigating under constant speed.
 
         - `command_start_time` : float, optional	
             local time after which the command will be applied to the vehicle. This time is local, starting when the ego vehicle arrives at the section reference point of a section (for init section, ego vehicle is added at the reference point). The default is 0.0.
