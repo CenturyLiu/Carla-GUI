@@ -1344,6 +1344,49 @@ class Intersection():
         new_bb = self.env.get_vehicle_bounding_box(uniquename)
         return new_bb
 
+    def get_vehicle_settings(self, uniquename):
+        '''
+        Get the settings entered for a specific vehicle in this intersection based on uniquename
+
+        Parameters
+        ----------
+        uniquename : string
+            the uniquename of the vehicle..
+
+        Returns
+        -------
+        vehicle_settings : ConfigObj
+            the settings of the vehicle
+
+        '''
+        out_vehicle = None
+        
+        for vehicle in self.subject_vehicle:
+            # deep copy the vehicle settings
+            if uniquename == vehicle["uniquename"]:
+                out_vehicle = self._copy_vehicle_settings(vehicle)
+        
+        for vehicle in self.left_vehicle:
+            # deep copy the vehicle settings
+            if uniquename == vehicle["uniquename"]:
+                out_vehicle = self._copy_vehicle_settings(vehicle)
+            
+        for vehicle in self.right_vehicle:
+            # deep copy the vehicle settings
+            if uniquename == vehicle["uniquename"]:
+                out_vehicle = self._copy_vehicle_settings(vehicle)
+            
+        for vehicle in self.ahead_vehicle:
+            # deep copy the vehicle settings
+            if uniquename == vehicle["uniquename"]:
+                out_vehicle = self._copy_vehicle_settings(vehicle)
+    
+        if out_vehicle == None:
+            print("Invalid uniquename entered for getting vehicle setting")
+            return None
+        
+        return out_vehicle
+        
 
     def _copy_vehicle_settings(self,vehicle_config):
         new_vehicle = copy.copy(vehicle_config)
@@ -1393,6 +1436,7 @@ def main():
         name4 = intersection1.add_vehicle(gap = 5,choice = "left", vehicle_color='0,0,0')
         name5 = intersection1.add_vehicle(gap = 5, choice = "left",command = "left", vehicle_color='128,128,128')
         name6 = intersection1.add_vehicle(gap = 5,choice = "left",command = "right", vehicle_color='255,255,255')
+        
         '''
         intersection1.add_vehicle(choice = "right", vehicle_color='255,255,255')
         intersection1.add_vehicle(choice = "right",command = "left", vehicle_color='255,255,255')

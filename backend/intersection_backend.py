@@ -290,6 +290,10 @@ def main():
         
         name1 = init_intersection.edit_vehicle_settings(name1, choice = "ahead", vehicle_color = '128,128,128')
         name2 = init_intersection.edit_vehicle_settings(name2, choice = "ahead", gap = 15.0, vehicle_color = '128,128,128')
+        
+        vehicle_settings_entered = init_intersection.get_vehicle_settings(name2)
+        print(vehicle_settings_entered["gap"])
+        
         #init_intersection.edit_traffic_light("subject")
         #init_intersection.edit_traffic_light("left",red_start = 40.0,red_end = 60.0,yellow_start=30.0,yellow_end=40.0,green_start=0.0,green_end = 30.0)
         #init_intersection.edit_traffic_light("right",red_start = 0.0,red_end = 10.0,yellow_start=10.0,yellow_end=20.0,green_start=20.0,green_end = 40.0)
