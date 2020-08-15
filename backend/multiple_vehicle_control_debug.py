@@ -6,6 +6,8 @@ Created on Mon Jul  6 09:54:39 2020
 @author: shijiliu
 """
 
+import sys
+sys.path.append("..")
 
 import carla
 import matplotlib.pyplot as plt
@@ -17,7 +19,7 @@ import math
 import control # the python-control package, install first
 
 from backend.intersection_definition import Intersection, get_traffic_lights
-from carla_env import CARLA_ENV # self-written class that provides help functions, should be in the same folder
+from backend.carla_env import CARLA_ENV # self-written class that provides help functions, should be in the same folder
 from configobj import ConfigObj
 
 # color for debug use
