@@ -190,6 +190,38 @@ the uniquename of the vehicle
         - `new_bb` : carla.Vector3D	
 the bounding box of the vehicle. new_bb.x is the length, new_bb.y is the width, new_bb.z is the height
 
+- **<font color="#7fb800">get_vehicle_settings</font>**(<font color="#00a6ed">**self, uniquename**</font>)		
+    Get the settings entered for a specific vehicle in this intersection based on uniquename
+
+       - **Parameters**
+        - `uniquename` : string	
+the uniquename of the vehicle
+
+       - **Returns**
+        - `vehicle_settings` : ConfigObj	
+the settings of the vehicle that have been entered
+
+    <font color="#ff0000">**Note: to get the settings of the vehicle, following keyword are valid:**</font>
+
+    - "gap"
+    - "model"
+    - 'choice'
+    - 'command'
+    - 'stop_choice'
+    - 'penetrate_distance'
+    - 'obey_traffic_lights'
+    - 'safety_distance'
+    - 'vehicle_color'
+
+    Only those settings user entered are shown here. Internel settings are hidden from users. Follow the code recipe below to get setting:
+
+		vehicle_settings_entered = intersection.get_vehicle_settings(uniquename)
+		model = vehicle_settings_entered["model"]
+
+
+   
+
+
 
 ## Init Intersection
 
