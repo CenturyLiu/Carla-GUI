@@ -96,18 +96,17 @@ The Intersection class defines a **normal intersection** as is discussed in [urb
 
     - **Parameters**
         - `uniquename` : the uniquename of the vehicle
-        - `choice` : string, optional	
+        - `choice` : string		
             the lane this vehicle will be added, valid values: "subject", "left", "right", "ahead". 
 <font color="#ff0000"> **Note: 1. use " instead of ', 'subject' is invalid. This rule applies to all the string variables.  2. "ahead" is essentially the opposite direction as discussed in the [lane section](urban_backend_introduction.md#lane)**</font>
+            
 
         - `gap`  : float,optional		
             the distance between a vehicle and its previous one. Default is 10 meter
         - `model_name` : string, optional		
             vehicle model type. The default is "vehicle.tesla.model3".
 
-        - `choice` : string, optional	
-            the lane this vehicle will be added, valid values: "subject", "left", "right", "ahead". The default is "subject".	
-<font color="#ff0000"> **Note: 1. use " instead of ', 'subject' is invalid. This rule applies to all the string variables.  2. "ahead" is essentially the opposite direction as discussed in the [lane section](urban_backend_introduction.md#lane)**</font>
+
 
 
         - `command` : string, optional		
