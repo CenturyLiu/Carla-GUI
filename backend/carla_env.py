@@ -28,6 +28,8 @@ from collections import deque
 from configobj import ConfigObj
 import math
 
+from sys import platform
+
 # color for debug use
 red = carla.Color(255, 0, 0)
 green = carla.Color(0, 255, 0)
@@ -84,7 +86,14 @@ class CARLA_ENV():
         self.distance_between_vehicles = ConfigObj() # store the distance between vehicles
         
         # get the length of all vehicles
-        currentDirectory = d = os.path.dirname(os.getcwd()) +  "/backend/vehicle_length_config.txt"
+        
+        if platform == 'linux':
+            vehicle_length_config_directory = "/backend/vehicle_length_config.txt"
+        else:
+            vehicle_length_config_directory = "\backend\vehicle_length_config.txt"
+        
+        
+        currentDirectory = os.path.dirname(os.getcwd()) +  vehicle_length_config_directory
         print(currentDirectory)
         self.vehicle_model_length_config = ConfigObj(currentDirectory)
         print(self.vehicle_model_length_config)
