@@ -60,7 +60,7 @@ The [CARLA simulator](https://carla.org/) is a powerful open source tool develop
  ## Installation
  
  - step 1: download this repository and put it to your desired location on your device (currently support windows and linux)
- - step 2: follow instructions on [PyQt5 website](https://pypi.org/project/PyQt5/) to install PyQt5, which is the tool we used to create the GUI
+ - step 2: follow instructions on [PyQt5 website](https://pypi.org/project/PyQt5/) to install PyQt5, which is the tool we used to create the GUI. Note: if you have PyQt5 pre-installed, make sure the version is >= 5.15.0
  - step 3: follow instructions on [back end installation guide](https://carla-gui.readthedocs.io/en/latest/installation_guide/) to install tools essential for the back end.
  
  
