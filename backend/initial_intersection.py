@@ -213,7 +213,7 @@ class Init_Intersection(Intersection):
         
         new_location = new_ref_waypoint.transform.location
         
-        spawn_location = carla.Location(x = new_location.x - right_shift_value * right_vector[0], y = new_location.y -  right_shift_value * right_vector[1], z = new_location.z + 0.1)
+        spawn_location = carla.Location(x = new_location.x - right_shift_value * right_vector[0], y = new_location.y -  right_shift_value * right_vector[1], z = new_location.z + 0.2)
         spawn_rotation = new_ref_waypoint.transform.rotation
         
         uniquename = self.env.spawn_vehicle(model_name = model_name,spawn_point = carla.Transform(spawn_location,spawn_rotation), color = vehicle_color) 

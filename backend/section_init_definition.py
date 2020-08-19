@@ -97,7 +97,7 @@ class InitSection(Section):
         spawn_location = spawn_transform.location
         spawn_rotation = spawn_transform.rotation
         
-        spawn_location = carla.Location(x = spawn_location.x, y = spawn_location.y, z = spawn_location.z + 0.1)
+        spawn_location = carla.Location(x = spawn_location.x, y = spawn_location.y, z = spawn_location.z + 0.2)
         
         uniquename = self.env.spawn_vehicle(model_name = model_name,spawn_point = carla.Transform(spawn_location,spawn_rotation), color = vehicle_color)
         vehicle["uniquename"] = uniquename
@@ -318,11 +318,13 @@ class InitSection(Section):
             curr_length = self.env.get_vehicle_model_length(model_name)
             
             gap += bb.x / 2 + curr_length / 2
-        '''
+        
         else:
-            if gap < 10.0:
-                gap = 10.0
-        '''
+            bb = self.ego_vehicle["bounding_box"]
+            curr_length = self.env.get_vehicle_model_length(model_name)
+            gap += bb.x / 2 + curr_length / 2
+            #print(gap)
+        
         
         forward_vector = ref_waypoint.transform.get_forward_vector()
 
@@ -335,7 +337,7 @@ class InitSection(Section):
         spawn_location = spawn_transform.location
         spawn_rotation = spawn_transform.rotation
         
-        spawn_location = carla.Location(x = spawn_location.x, y = spawn_location.y, z = spawn_location.z + 0.1)
+        spawn_location = carla.Location(x = spawn_location.x, y = spawn_location.y, z = spawn_location.z + 0.2)
         
         uniquename = self.env.spawn_vehicle(model_name = model_name,spawn_point = carla.Transform(spawn_location,spawn_rotation) , color = vehicle_color)
         
