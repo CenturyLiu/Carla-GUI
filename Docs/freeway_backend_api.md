@@ -172,7 +172,7 @@ The FreewayEnv class is the container for the freeway simulation environment. Us
    main function for starting the simulation.
 
     - `spectator_mode` : string, optional	
-What view mode will be used inside the simulation, valid value is "first_person" (i.e. spectator will be fixed at 10 meters after the last full-path vehicle), "human_driving" (spectator will be put at the position of the human driver). The default value is None, i.e. the spectator will not follow the vehicle.
+What view mode will be used inside the simulation, valid value is "first_person" (i.e. spectator will be fixed at 10 meters after the ego vehicle), "human_driving" (spectator will be put at the position of the human driver). The default value is None, i.e. the spectator will not follow the vehicle.
 
     - `allow_collision` : bool, optional	
 whether collision is allowed in during simulation. The default value is True. <font color="#ff0000">**This method is not stable. There's no guarantee that vehicle will not collide if this value is set to be False** </font>
