@@ -279,7 +279,7 @@ Init intersection class is inherited from the Intersection class, only new metho
     - **Return**
         - `uniquename` : the uniquename of the ego vehicle		
 
-- **<font color="#7fb800">add_lead_vehicle</font>**(<font color="#00a6ed">**self, lead_distance, gap = 10.0,model_name = "vehicle.tesla.model3", stop_choice = "abrupt", penetrate_distance = None, obey_traffic_lights = True, run = True, safety_distance = 0.0, vehicle_color = None**</font>)		
+- **<font color="#7fb800">add_lead_vehicle</font>**(<font color="#00a6ed">**self, lead_distance, gap = 10.0,model_name = "vehicle.tesla.model3", stop_choice = "abrupt", penetrate_distance = None, obey_traffic_lights = True, run = True, safety_distance = 15.0, vehicle_color = None**</font>)		
     add the ego vehicle to the intersection
     - **Parameters**
         - `lead_distance` : float, 
@@ -308,7 +308,7 @@ Init intersection class is inherited from the Intersection class, only new metho
             whether the vehicle is running. Default is True
 
         - `safety_distance` : float, optional	
-            smallest distance between this vehicle and vehicle ahead. Default is 0.0 meters, means ego vehicle is highly likely to collide into other vehicles.
+            smallest distance between this vehicle and vehicle ahead. Default is 15.0 meters.
 
         - `vehicle_color` : string, optional	
             custom string representation of the RGB color of the vehicle. The string should be in the format 'R,G,B', where R,G,B are integer values. For example, blue is represented as (R,G,B) = (47, 210, 231), then the input string should be '47,210,231'. The default is None, meaning using the default color for the vehicle.
@@ -316,7 +316,7 @@ Init intersection class is inherited from the Intersection class, only new metho
     - **Return**
         - `uniquename` : the uniquename of the lead vehicle
 
-- **<font color="#7fb800">add_follow_vehicle</font>**(<font color="#00a6ed">**self, follow_distance, gap = 10.0,model_name = "vehicle.tesla.model3", stop_choice = "abrupt", penetrate_distance = None, obey_traffic_lights = True, run = True, safety_distance = 0.0, vehicle_color = None**</font>)		
+- **<font color="#7fb800">add_follow_vehicle</font>**(<font color="#00a6ed">**self, follow_distance, gap = 10.0,model_name = "vehicle.tesla.model3", stop_choice = "abrupt", penetrate_distance = None, obey_traffic_lights = True, run = True, safety_distance = 15.0, vehicle_color = None**</font>)		
     add the ego vehicle to the intersection
     - **Parameters**
         - `follow_distance` : float, 
@@ -345,7 +345,7 @@ Init intersection class is inherited from the Intersection class, only new metho
             whether the vehicle is running. Default is True
 
         - `safety_distance` : float, optional	
-            smallest distance between this vehicle and vehicle ahead. Default is 0.0 meters, means ego vehicle is highly likely to collide into other vehicles.
+            smallest distance between this vehicle and vehicle ahead. Default is 15.0 meters.
 
         - `vehicle_color` : string, optional	
             custom string representation of the RGB color of the vehicle. The string should be in the format 'R,G,B', where R,G,B are integer values. For example, blue is represented as (R,G,B) = (47, 210, 231), then the input string should be '47,210,231'. The default is None, meaning using the default color for the vehicle.
