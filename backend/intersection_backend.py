@@ -148,8 +148,9 @@ def IntersectionBackend(env,intersection_list, allow_collision = True, spectator
                     spectator_transform = get_ego_left_spectator(spectator_vehicle_transform)
                     spectator.set_transform(spectator_transform)
             elif spectator_mode == "human_driving":
-                if env.vehicle_available(ego_vehicle_uniquename):
-                    spectator_vehicle_transform = env.get_transform_3d(ego_vehicle_uniquename)
+                if env.vehicle_available(ego_vehicle_config["uniquename"]):
+                    spectator_vehicle_transform = env.get_transform_3d(ego_vehicle_config["uniquename"])
+                    #spectator_vehicle_transform = env.get_transform_3d(ego_vehicle_uniquename)
                     spectator_transform = get_ego_driving_spectator( spectator_vehicle_transform, spectator_bb)
                     spectator.set_transform(spectator_transform)
         #else:
