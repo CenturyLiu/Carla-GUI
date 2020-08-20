@@ -143,12 +143,15 @@ def IntersectionBackend(env,intersection_list, allow_collision = True, spectator
                 spectator_transform = get_ego_spectator(spectator_vehicle_transform, distance = -10)
                 spectator.set_transform(spectator_transform)
             elif spectator_mode == "left":
-                spectator_transform = get_ego_left_spectator(spectator_vehicle_transform)
-                spectator.set_transform(spectator_transform)
+                if env.vehicle_available(ego_vehicle_config["uniquename"]):
+                    spectator_vehicle_transform = env.get_transform_3d(ego_vehicle_config["uniquename"])
+                    spectator_transform = get_ego_left_spectator(spectator_vehicle_transform)
+                    spectator.set_transform(spectator_transform)
             elif spectator_mode == "human_driving":
-                spectator_vehicle_transform = env.get_transform_3d(ego_vehicle_uniquename)
-                spectator_transform = get_ego_driving_spectator( spectator_vehicle_transform, spectator_bb)
-                spectator.set_transform(spectator_transform)
+                if env.vehicle_available(ego_vehicle_uniquename):
+                    spectator_vehicle_transform = env.get_transform_3d(ego_vehicle_uniquename)
+                    spectator_transform = get_ego_driving_spectator( spectator_vehicle_transform, spectator_bb)
+                    spectator.set_transform(spectator_transform)
         #else:
         #    spectator_transform = carla.Transform(carla.Location(x= 25.4, y=1.29, z=75.0), carla.Rotation(pitch=-88.0, yaw= -1.85, roll=1.595))
         #spectator.set_transform(spectator_transform)
