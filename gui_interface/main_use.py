@@ -333,8 +333,10 @@ class Main(QMainWindow):
         self.inter.cobBoxIDInt.setCurrentIndex(num - 1)
         self.inter.cobBoxIDInt.blockSignals(False)
         self.inter.widgetFrontAll.hide()
+        self.clean_car()
+        self.show_car()        
         self.inter.widgetIntAll.show()
-        self.show_car()
+
 
     def inter_front(self):
         self.inter.widgetFrontAll.show()
@@ -677,16 +679,7 @@ class Main(QMainWindow):
         normal_count = 1
         RGB = None
         for i in range(len(self.car_list[self.cur_inter][0])):
-            
 
-            
-            
-
-                
-
-            
-            
-            
             name = "CarSub" + str(i + 1)
             tmp = self.inter.findChild(QLabel, name)
             if self.delete_car[self.cur_inter][0][i]:
@@ -755,6 +748,9 @@ class Main(QMainWindow):
                 tmp.setStyleSheet("background:rgb({},{},{}); color:{};".format(int(RGB[0]),int(RGB[1]),int(RGB[2]),(0,0,0)))
                 tmp.show()
 
+    
+
+
     def deleteCar(self):
         self.intersection_list[self.cur_inter].remove_vehicle(self.cur_ID[0])
         
@@ -796,19 +792,19 @@ class Main(QMainWindow):
     
     
     def clean_car(self):
-        for i in range(len(self.car_list[self.cur_inter][0])):
+        for i in range(4):
             name = "CarSub" + str(i + 1)
             tmp = self.inter.findChild(QLabel, name)
             tmp.hide()
-        for i in range(len(self.car_list[self.cur_inter][1])):
+        for i in range(4):
             name = "CarLeft" + str(i + 1)
             tmp = self.inter.findChild(QLabel, name)
             tmp.hide()
-        for i in range(len(self.car_list[self.cur_inter][2])):
+        for i in range(4):
             name = "CarAhead" + str(i + 1)
             tmp = self.inter.findChild(QLabel, name)
             tmp.hide()
-        for i in range(len(self.car_list[self.cur_inter][3])):
+        for i in range(4):
             name = "CarRight" + str(i + 1)
             tmp = self.inter.findChild(QLabel, name)
             tmp.hide()
