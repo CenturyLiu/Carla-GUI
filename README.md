@@ -65,6 +65,7 @@ The [CARLA simulator](https://carla.org/) is a powerful open source tool develop
 
 ## Tutorial video
 
+- [urban tutorial video](https://youtu.be/wL_OesdYEGg)
 - [freeway tutorial video](https://youtu.be/NmfEndjB0Tw)
  
 ## Poster
