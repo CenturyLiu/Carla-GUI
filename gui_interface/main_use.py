@@ -3,6 +3,7 @@
 import sys
 import glob
 from configobj import ConfigObj
+sys.path.append("..")
 sys.path.append("E:\WindowsNoEditor\PythonAPI\example\gui intersection")
 sys.path.append("E:\WindowsNoEditor\PythonAPI\example\backend")
 sys.path.append("E:\WindowsNoEditor\PythonAPI\example")
