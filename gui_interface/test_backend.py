@@ -114,7 +114,7 @@ def main():
 
     # with open('output_' + str(datetime.datetime.now()) +'.txt', 'w') as f:
         # sys.stdout = f # Change the standard output to the file we created.
-        # print(client.show_recorder_file_info("recording01.log"))
+        # print(client.show_recorder_file_info("output.log"))
         # Reset the standard output to its original value
         # print_to_file()
         # do some file parsing with f
