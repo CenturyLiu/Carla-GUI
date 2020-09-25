@@ -4,6 +4,7 @@ sys.path.append("..")
 
 import carla
 import time
+import datetime
 
 from backend.intersection_settings_helper import write_intersection_settings, read_intersection_settings
 
@@ -110,5 +111,13 @@ def main():
         time.sleep(10)
         env.destroy_actors()
 	# client.stop_recorder()
+
+    # with open('output_' + str(datetime.datetime.now()) +'.txt', 'w') as f:
+        # sys.stdout = f # Change the standard output to the file we created.
+        # print(client.show_recorder_file_info("recording01.log"))
+        # Reset the standard output to its original value
+        # print_to_file()
+        # do some file parsing with f
+
 if __name__ == '__main__':
     main()
