@@ -20,6 +20,7 @@ def main():
         client = carla.Client("localhost",2000)
         client.set_timeout(10.0)
         world = client.load_world('Town05')
+	client.start_recorder("output.log", True)	
 
         # set the weather
         weather = carla.WeatherParameters(
@@ -108,6 +109,6 @@ def main():
     finally:
         time.sleep(10)
         env.destroy_actors()
-
+	carla.stop_recorder()
 if __name__ == '__main__':
     main()
