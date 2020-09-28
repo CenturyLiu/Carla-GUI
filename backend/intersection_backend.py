@@ -131,8 +131,11 @@ def IntersectionBackend(env,intersection_list, allow_collision = True, spectator
     ego_uniquename = ego_vehicle_config["uniquename"]
     timestr = time.strftime("%Y%m%d-%H%M%S")
     file = open("../data_collection/Urb" + timestr + ".txt", "w+" )
-
+    world_snapshot = env.world.get_snapshot()
+    tm = world_snapshot.timestamp
+    file.write("the experiment starts from " + str(tm.elapsed_seconds) + "(seconds)\n")
     print("start urban recordings: ")
+    
     while True:
         world_snapshot = env.world.get_snapshot()
         ego_id = (int)(ego_uniquename.split("_")[1])
