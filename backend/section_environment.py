@@ -3,7 +3,7 @@
 """
 Created on Wed Jul 22 11:20:28 2020
 
-@author: shijiliu
+@author: shijiliu & zhiychen
 """
 
 # define a class for creating the simulation environment for the section
@@ -27,6 +27,7 @@ from backend.multiple_vehicle_control_debug import VehicleControl_debug
 from backend.initial_intersection import get_ego_spectator, get_ego_left_spectator, get_ego_driving_spectator
 from backend.section_vehicle_control import VehicleControlFreeway, FullPathVehicleControl, LeadFollowVehicleControl
 from backend.human_ego_control import HumanEgoControlServer
+
 
 # color for debug use
 red = carla.Color(255, 0, 0)
@@ -374,13 +375,41 @@ class FreewayEnv(object):
             human_control_server = HumanEgoControlServer() # create the server for receiving the human command
             spectator_mode = "human_driving"
         
+
+
+        timestr = time.strftime("%Y%m%d-%H%M%S")
+        file = open("../data_collection/FrW" + timestr + ".txt", "w+" )
+        
+        print("start freeway recordings: ")
+        
+        world_snapshot = self.env.world.get_snapshot()
+        tm = world_snapshot.timestamp
+        file.write("the experiment starts from " + str(tm.elapsed_seconds) + "(seconds)\n")
+        
         # main loop for control    
         while True:
-            self.env.world.tick()
+            world_snapshot = self.env.world.get_snapshot()
+            ego_id = (int)(ego_uniquename.split("_")[1])
+            ego_actor = world_snapshot.find(ego_id)
+
+            world_snapshot = self.env.world.get_snapshot()
+            tm = world_snapshot.timestamp
+            file.write("time: " + str(tm.elapsed_seconds)+"(seconds)\n")
+            ego_actor_transform = ego_actor.get_transform()
+            file.write("location: " + str(ego_actor_transform.location) + "(meters)\n" )
+            ego_actor_velocity = ego_actor.get_velocity()
+            file.write("Rotation: " + str(ego_actor_velocity) + "(degrees)\n")
+            ego_actor_angular_velocity = ego_actor.get_angular_velocity()
+            file.write("Angular velocity: " + str(ego_actor.get_angular_velocity()) + "(rad/s)\n")
+            ego_actor_acceleration = ego_actor.get_acceleration()
+            file.write("Acceleration: " + str(ego_actor.get_acceleration()) + "(m/s2)\n")
+
+        
             
+
+            self.env.world.tick()
             # update the distance between vehicles after each tick
             self.env.update_vehicle_distance()
-            
             # change spectator view
             
             if self.env.vehicle_available(ego_uniquename) and spectator_mode == "first_person" :
@@ -512,6 +541,8 @@ class FreewayEnv(object):
                         if command != None:
                             vehicle.command = command
                             vehicle.command_start_time = command_start_time
+
+        file.close()
         
     
     # private methods

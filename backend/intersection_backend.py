@@ -127,15 +127,35 @@ def IntersectionBackend(env,intersection_list, allow_collision = True, spectator
         vehicle_list.append(vehicle)
     
     
-    
+
+    ego_uniquename = ego_vehicle_config["uniquename"]
+    timestr = time.strftime("%Y%m%d-%H%M%S")
+    file = open("../data_collection/Urb" + timestr + ".txt", "w+" )
+
+    print("start urban recordings: ")
     while True:
+        world_snapshot = env.world.get_snapshot()
+        ego_id = (int)(ego_uniquename.split("_")[1])
+        ego_actor = world_snapshot.find(ego_id)
+
+        world_snapshot = env.world.get_snapshot()
+        tm = world_snapshot.timestamp
+
+        file.write("time: " + str(tm.elapsed_seconds)+"(seconds)\n")
+        ego_actor_transform = ego_actor.get_transform()
+        file.write("location: " + str(ego_actor_transform.location) + "(meters)\n" )
+        ego_actor_velocity = ego_actor.get_velocity()
+        file.write("Rotation: " + str(ego_actor_velocity) + "(degrees)\n")
+        ego_actor_angular_velocity = ego_actor.get_angular_velocity()
+        file.write("Angular velocity: " + str(ego_actor.get_angular_velocity()) + "(rad/s)\n")
+        ego_actor_acceleration = ego_actor.get_acceleration()
+        file.write("Acceleration: " + str(ego_actor.get_acceleration()) + "(m/s2)\n")
+
         env.world.tick()
-        
         # update the distance between vehicles after each tick
         env.update_vehicle_distance()
         
         # update the ego spectator
-        
         if env.vehicle_available(spectator_vehicle["uniquename"]):
             spectator_vehicle_transform = env.get_transform_3d(spectator_vehicle["uniquename"])
             #spectator_transform = get_ego_spectator(spectator_vehicle_transform,distance = -10)
