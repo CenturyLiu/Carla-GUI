@@ -3,6 +3,7 @@ GUI tool to help human-vehicle interaction researchers design and conduct traffi
 
 ## Team Members
 
+- [Zhiyang Chen](https://github.com/jeffchen006/Carla-GUI)
 - [Grant Barry](https://github.com/grantbarry29/Carla-GUI)
 - [Shiji Liu](https://github.com/CenturyLiu)
 - [Weixin Feng(Targy)](https://github.com/Targy/Carla-GUI)
