@@ -645,7 +645,7 @@ def IntersectionBackend(env,intersection_list):
         vehicle = VehicleControl(env, vehicle_config, env.delta_seconds)
         vehicle_list.append(vehicle)
     
-    
+
     while True:
         env.world.tick()
         
