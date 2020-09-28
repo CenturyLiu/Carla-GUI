@@ -1,9 +1,18 @@
 # Carla-GUI
 GUI tool to help human-vehicle interaction researchers design and conduct traffic experiments with [CARLA real-time driving simulator](https://carla.org/).
 
-## Team Members
+## Instructor
+- [Prof. Paul A. Green](https://ioe.engin.umich.edu/people/paul-a-green/)
 
+## Team Members
 - [Zhiyang Chen](https://github.com/jeffchen006/Carla-GUI)
+- [Brandon Snapp]
+- [Raeed Rasul]
+- [Yi Wu]
+- [Yifei He]
+- [Nihar Joshi]
+- [Jihyeong Ko]
+
 - [Grant Barry](https://github.com/grantbarry29/Carla-GUI)
 - [Shiji Liu](https://github.com/CenturyLiu)
 - [Weixin Feng(Targy)](https://github.com/Targy/Carla-GUI)
