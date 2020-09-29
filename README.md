@@ -6,9 +6,9 @@ GUI tool to help human-vehicle interaction researchers design and conduct traffi
 
 ## Team Members
 - [Zhiyang Chen](https://github.com/jeffchen006/Carla-GUI)
-- [Brandon Sapp]
+- [Brandon Sapp] 
 - [Raeed Rasul]
-- [Yi Wu]
+- [Yi Wu] 
 - [Yifei He]
 - [Nihar Joshi]
 - [Jihyeong Ko]
