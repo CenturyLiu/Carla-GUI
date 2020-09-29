@@ -5,17 +5,24 @@ GUI tool to help human-vehicle interaction researchers design and conduct traffi
 - [Prof. Paul A. Green](https://ioe.engin.umich.edu/people/paul-a-green/)
 
 ## Team Members
+
+### Summer Team (created Version 0.00 in summer 2020)
+
+- [Grant Barry](https://github.com/grantbarry29/Carla-GUI)
+- [Shiji Liu](https://github.com/CenturyLiu)
+- [Weixin Feng(Targy)](https://github.com/Targy/Carla-GUI)
+
+### Fall Team
+
 - [Zhiyang Chen](https://github.com/jeffchen006/Carla-GUI)
 - [Brandon Sapp] 
 - [Raeed Rasul]
 - [Yi Wu] 
 - [Yifei He]
-- [Nihar Joshi]
+- [Nihar Joshi](https://github.com/nihar-joshi)
 - [Jihyeong Ko]
 
-- [Grant Barry](https://github.com/grantbarry29/Carla-GUI)
-- [Shiji Liu](https://github.com/CenturyLiu)
-- [Weixin Feng(Targy)](https://github.com/Targy/Carla-GUI)
+
 
 ## Project Purpose
 
