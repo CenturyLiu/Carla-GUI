@@ -392,17 +392,36 @@ class FreewayEnv(object):
             ego_id = (int)(ego_uniquename.split("_")[1])
             ego_actor = world_snapshot.find(ego_id)
 
-            world_snapshot = self.env.world.get_snapshot()
-            tm = world_snapshot.timestamp
+            tm = world_snapshot.timestamp       
             file.write("time: " + str(tm.elapsed_seconds)+"(seconds)\n")
-            ego_actor_transform = ego_actor.get_transform()
-            file.write("location: " + str(ego_actor_transform.location) + "(meters)\n" )
-            ego_actor_velocity = ego_actor.get_velocity()
-            file.write("Rotation: " + str(ego_actor_velocity) + "(degrees)\n")
-            ego_actor_angular_velocity = ego_actor.get_angular_velocity()
-            file.write("Angular velocity: " + str(ego_actor.get_angular_velocity()) + "(rad/s)\n")
-            ego_actor_acceleration = ego_actor.get_acceleration()
-            file.write("Acceleration: " + str(ego_actor.get_acceleration()) + "(m/s2)\n")
+
+            for key in self.env.vehicle_dict.keys():
+                id = (int)(key.split("_")[1])
+                if(id == ego_id):
+                    file.write("ego id: " + key + "\n")
+                else:
+                    file.write("vehicle id: " + key + "\n")
+                actor = world_snapshot.find(id)
+                actor_transform = actor.get_transform()
+                x = round(actor_transform.location.x, 2)
+                y = round(actor_transform.location.y, 2)
+                z = round(actor_transform.location.z, 2)
+                file.write("location: x=" + str(x) + " y=" + str(y) + " z=" +str(z) + "(meters)\n" )
+                actor_velocity = actor.get_velocity()
+                x = round(actor_velocity.x, 2)
+                y = round(actor_velocity.y, 2)
+                z = round(actor_velocity.z, 2)
+                file.write("Rotation: x=" + str(x) + " y=" + str(y) + " z=" +str(z) + "(degrees)\n")
+                actor_angular_velocity = actor.get_angular_velocity()
+                x = round(actor_angular_velocity.x, 2)
+                y = round(actor_angular_velocity.y, 2)
+                z = round(actor_angular_velocity.z, 2)
+                file.write("Angular velocity: x=" + str(x) + " y=" + str(y) + " z=" +str(z) + "(rad/s)\n")
+                actor_acceleration = actor.get_acceleration()
+                x = round(actor_acceleration.x, 2)
+                y = round(actor_acceleration.y, 2)
+                z = round(actor_acceleration.z, 2)
+                file.write("Acceleration: x=" + str(x) + " y=" + str(y) + " z=" +str(z) + "(m/s2)\n")
 
         
             
