@@ -17,7 +17,11 @@ import math
 import time
 import numpy as np
 from configobj import ConfigObj
+import pandas as pd
 import copy
+from openpyxl import load_workbook
+from openpyxl import Workbook
+
 from backend.section_definition import Section
 from backend.section_init_definition import InitSection
 from backend.generate_path_omit_regulation import generate_path
@@ -27,6 +31,7 @@ from backend.multiple_vehicle_control_debug import VehicleControl_debug
 from backend.initial_intersection import get_ego_spectator, get_ego_left_spectator, get_ego_driving_spectator
 from backend.section_vehicle_control import VehicleControlFreeway, FullPathVehicleControl, LeadFollowVehicleControl
 from backend.human_ego_control import HumanEgoControlServer
+import pandas as pd
 
 
 # color for debug use
@@ -376,15 +381,30 @@ class FreewayEnv(object):
             spectator_mode = "human_driving"
         
 
-
+        # record 1: data on an plain text file
         timestr = time.strftime("%Y%m%d-%H%M%S")
         file = open("../data_collection/FrW" + timestr + ".txt", "w+" )
         
+        filename="../data_collection/FrW" + timestr + ".xlsx"
         print("start freeway recordings: ")
-        
         world_snapshot = self.env.world.get_snapshot()
         tm = world_snapshot.timestamp
         file.write("the experiment starts from " + str(tm.elapsed_seconds) + "(seconds)\n")
+
+
+        # record 2: data on an excel file
+        header_row = ['timestamp(sec)']
+        for key in self.env.vehicle_dict.keys():
+            header_row += [key+'-location_x(m)', key+'-location_y(m)', key+'location_z(m)', key+'-rotation_x(degrees)', key+'-rotation_y(degrees)', key+'rotation_y(degrees)', 
+                        key+'-angular_velocity_x(rad/s)', key+'-angular_velocity_y(rad/s)', key+'angular_velocity_z(rad/s)', key+'-acceleration_x(m/s2)', key+'-acceleration_y(m/s2)', key+'acceleration_z(m/s2)']
+        try:
+            wb = load_workbook(filename)
+            ws = wb.worksheets[0]
+        except FileNotFoundError:
+            wb = Workbook()
+            ws = wb.active
+        ws.append(header_row)
+        wb.save(filename)
         
         # main loop for control    
         while True:
@@ -395,7 +415,9 @@ class FreewayEnv(object):
             tm = world_snapshot.timestamp       
             file.write("time: " + str(tm.elapsed_seconds)+"(seconds)\n")
 
+            data = [str(tm.elapsed_seconds)]
             for key in self.env.vehicle_dict.keys():
+                vehicle_data = []
                 id = (int)(key.split("_")[1])
                 if(id == ego_id):
                     file.write("ego id: " + key + "\n")
@@ -406,25 +428,32 @@ class FreewayEnv(object):
                 x = round(actor_transform.location.x, 2)
                 y = round(actor_transform.location.y, 2)
                 z = round(actor_transform.location.z, 2)
+                vehicle_data+=[x, y, z]
                 file.write("location: x=" + str(x) + " y=" + str(y) + " z=" +str(z) + "(meters)\n" )
                 actor_velocity = actor.get_velocity()
                 x = round(actor_velocity.x, 2)
                 y = round(actor_velocity.y, 2)
                 z = round(actor_velocity.z, 2)
+                vehicle_data+=[x, y, z]
                 file.write("Rotation: x=" + str(x) + " y=" + str(y) + " z=" +str(z) + "(degrees)\n")
                 actor_angular_velocity = actor.get_angular_velocity()
                 x = round(actor_angular_velocity.x, 2)
                 y = round(actor_angular_velocity.y, 2)
                 z = round(actor_angular_velocity.z, 2)
+                vehicle_data+=[x, y, z]
                 file.write("Angular velocity: x=" + str(x) + " y=" + str(y) + " z=" +str(z) + "(rad/s)\n")
                 actor_acceleration = actor.get_acceleration()
                 x = round(actor_acceleration.x, 2)
                 y = round(actor_acceleration.y, 2)
                 z = round(actor_acceleration.z, 2)
+                vehicle_data+=[x, y, z]
                 file.write("Acceleration: x=" + str(x) + " y=" + str(y) + " z=" +str(z) + "(m/s2)\n")
+                data+=vehicle_data
+
+            ws.append(data)
+            wb.save(filename)
 
         
-            
 
             self.env.world.tick()
             # update the distance between vehicles after each tick

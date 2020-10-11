@@ -2,3 +2,4 @@
 backend/__pycache__/*
 gui_interface/__pycache__/*
 gui_interface/Intersection_1_cut.png
+data_collection/*

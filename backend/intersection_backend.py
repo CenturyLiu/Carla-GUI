@@ -3,7 +3,7 @@
 """
 Created on Wed Jul  8 14:20:00 2020
 
-@author: shijiliu
+@author: shijiliu & zhiychen
 """
 import sys
 sys.path.append("..")
