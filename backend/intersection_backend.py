@@ -13,6 +13,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from collections import deque
 import time
+from openpyxl import load_workbook
+from openpyxl import Workbook
 import math
 
 import control # the python-control package, install first
@@ -129,15 +131,29 @@ def IntersectionBackend(env,intersection_list, allow_collision = True, spectator
     # format of ego_vehicle = vehichle_type_id + "_" + uniqname
     ego_uniquename = ego_vehicle_config["uniquename"]
     timestr = time.strftime("%Y%m%d-%H%M%S")
+
+    # record 1: data on an plain text file
+    filename = "../data_collection/Urb" + timestr + ".xlsx"
     file = open("../data_collection/Urb" + timestr + ".txt", "w+" )
 
-    
-    
     world_snapshot = env.world.get_snapshot()
     tm = world_snapshot.timestamp
     file.write("the experiment starts from " + str(tm.elapsed_seconds) + "(seconds)\n")
     print("start urban recordings: ")
 
+     # record 2: data on an excel file
+    header_row = ['timestamp(sec)']
+    for key in env.vehicle_dict.keys():
+        header_row += [key+'-location_x(m)', key+'-location_y(m)', key+'location_z(m)', key+'-rotation_x(degrees)', key+'-rotation_y(degrees)', key+'rotation_y(degrees)', 
+                    key+'-angular_velocity_x(rad/s)', key+'-angular_velocity_y(rad/s)', key+'angular_velocity_z(rad/s)', key+'-acceleration_x(m/s2)', key+'-acceleration_y(m/s2)', key+'acceleration_z(m/s2)']
+    try:
+        wb = load_workbook(filename)
+        ws = wb.worksheets[0]
+    except FileNotFoundError:
+        wb = Workbook()
+        ws = wb.active
+    ws.append(header_row)
+    wb.save(filename)
     
     while True:
         world_snapshot = env.world.get_snapshot()
@@ -148,7 +164,9 @@ def IntersectionBackend(env,intersection_list, allow_collision = True, spectator
         
         file.write("time: " + str(tm.elapsed_seconds)+"(seconds)\n")
 
+        data = [str(tm.elapsed_seconds)]
         for key in env.vehicle_dict.keys():
+            vehicle_data = []
             id = (int)(key.split("_")[1])
             if(id == ego_id):
                 file.write("ego id: " + key + "\n")
@@ -159,22 +177,29 @@ def IntersectionBackend(env,intersection_list, allow_collision = True, spectator
             x = round(actor_transform.location.x, 2)
             y = round(actor_transform.location.y, 2)
             z = round(actor_transform.location.z, 2)
+            vehicle_data+=[x, y, z]
             file.write("location: x=" + str(x) + " y=" + str(y) + " z=" +str(z) + "(meters)\n" )
             actor_velocity = actor.get_velocity()
             x = round(actor_velocity.x, 2)
             y = round(actor_velocity.y, 2)
             z = round(actor_velocity.z, 2)
+            vehicle_data+=[x, y, z]
             file.write("Rotation: x=" + str(x) + " y=" + str(y) + " z=" +str(z) + "(degrees)\n")
             actor_angular_velocity = actor.get_angular_velocity()
             x = round(actor_angular_velocity.x, 2)
             y = round(actor_angular_velocity.y, 2)
             z = round(actor_angular_velocity.z, 2)
+            vehicle_data+=[x, y, z]
             file.write("Angular velocity: x=" + str(x) + " y=" + str(y) + " z=" +str(z) + "(rad/s)\n")
             actor_acceleration = actor.get_acceleration()
             x = round(actor_acceleration.x, 2)
             y = round(actor_acceleration.y, 2)
             z = round(actor_acceleration.z, 2)
+            vehicle_data+=[x, y, z]
             file.write("Acceleration: x=" + str(x) + " y=" + str(y) + " z=" +str(z) + "(m/s2)\n")
+            data+=vehicle_data
+        ws.append(data)
+        wb.save(filename)
         
 
         # Lane Logic
