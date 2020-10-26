@@ -389,14 +389,15 @@ class FreewayEnv(object):
         print("start freeway recordings: ")
         world_snapshot = self.env.world.get_snapshot()
         tm = world_snapshot.timestamp
-        file.write("the experiment starts from " + str(tm.elapsed_seconds) + "(seconds)\n")
+        file.write("the experiment starts from " + str(round(tm.elapsed_seconds, 3)) + "(seconds)\n")
 
 
         # record 2: data on an excel file
         header_row = ['timestamp(sec)']
         for key in self.env.vehicle_dict.keys():
-            header_row += [key+'-location_x(m)', key+'-location_y(m)', key+'location_z(m)', key+'-rotation_x(degrees)', key+'-rotation_y(degrees)', key+'rotation_y(degrees)', 
-                        key+'-angular_velocity_x(rad/s)', key+'-angular_velocity_y(rad/s)', key+'angular_velocity_z(rad/s)', key+'-acceleration_x(m/s2)', key+'-acceleration_y(m/s2)', key+'acceleration_z(m/s2)']
+            key = key[8:]
+            header_row += [key+'-location_x(m)', key+'-location_y(m)', key+'location_z(m)', key+'-roll(degrees)', key+'-pitch(degrees)', key+'yaw(degrees)',
+                           key+'-velocity_x(m/s)', key+'-velocity_y(m/s)', key+'velocity_z(m/s)', key+'-acceleration_x(m/s2)', key+'-acceleration_y(m/s2)', key+'acceleration_z(m/s2)']
         try:
             wb = load_workbook(filename)
             ws = wb.worksheets[0]
@@ -413,9 +414,9 @@ class FreewayEnv(object):
             ego_actor = world_snapshot.find(ego_id)
 
             tm = world_snapshot.timestamp       
-            file.write("time: " + str(tm.elapsed_seconds)+"(seconds)\n")
+            file.write("time: " + str(round(tm.elapsed_seconds, 3))+"(seconds)\n")
 
-            data = [str(tm.elapsed_seconds)]
+            data = [str(round(tm.elapsed_seconds, 3))]
             for key in self.env.vehicle_dict.keys():
                 vehicle_data = []
                 id = (int)(key.split("_")[1])
@@ -430,18 +431,20 @@ class FreewayEnv(object):
                 z = round(actor_transform.location.z, 2)
                 vehicle_data+=[x, y, z]
                 file.write("location: x=" + str(x) + " y=" + str(y) + " z=" +str(z) + "(meters)\n" )
+
+                x = round(actor_transform.rotation.roll, 2)
+                y = round(actor_transform.rotation.pitch, 2)
+                z = round(actor_transform.rotation.yaw, 2)
+                vehicle_data+=[x, y, z]
+                file.write("Rotation: roll=" + str(x) + " pitch=" + str(y) + " yaw=" +str(z) + "(degrees)\n")
+
                 actor_velocity = actor.get_velocity()
                 x = round(actor_velocity.x, 2)
                 y = round(actor_velocity.y, 2)
                 z = round(actor_velocity.z, 2)
                 vehicle_data+=[x, y, z]
-                file.write("Rotation: x=" + str(x) + " y=" + str(y) + " z=" +str(z) + "(degrees)\n")
-                actor_angular_velocity = actor.get_angular_velocity()
-                x = round(actor_angular_velocity.x, 2)
-                y = round(actor_angular_velocity.y, 2)
-                z = round(actor_angular_velocity.z, 2)
-                vehicle_data+=[x, y, z]
-                file.write("Angular velocity: x=" + str(x) + " y=" + str(y) + " z=" +str(z) + "(rad/s)\n")
+                file.write("Velocity: x=" + str(x) + " y=" + str(y) + " z=" +str(z) + "(m/s)\n")
+
                 actor_acceleration = actor.get_acceleration()
                 x = round(actor_acceleration.x, 2)
                 y = round(actor_acceleration.y, 2)

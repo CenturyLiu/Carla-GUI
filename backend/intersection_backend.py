@@ -138,14 +138,15 @@ def IntersectionBackend(env,intersection_list, allow_collision = True, spectator
 
     world_snapshot = env.world.get_snapshot()
     tm = world_snapshot.timestamp
-    file.write("the experiment starts from " + str(tm.elapsed_seconds) + "(seconds)\n")
+    file.write("the experiment starts from " + str(round(tm.elapsed_seconds, 3)) + "(seconds)\n")
     print("start urban recordings: ")
 
      # record 2: data on an excel file
     header_row = ['timestamp(sec)']
     for key in env.vehicle_dict.keys():
-        header_row += [key+'-location_x(m)', key+'-location_y(m)', key+'location_z(m)', key+'-rotation_x(degrees)', key+'-rotation_y(degrees)', key+'rotation_y(degrees)', 
-                    key+'-angular_velocity_x(rad/s)', key+'-angular_velocity_y(rad/s)', key+'angular_velocity_z(rad/s)', key+'-acceleration_x(m/s2)', key+'-acceleration_y(m/s2)', key+'acceleration_z(m/s2)']
+        key = key[7:]
+        header_row += [key+'-location_x(m)', key+'-location_y(m)', key+'location_z(m)', key+'-roll(degrees)', key+'-pitch(degrees)', key+'yaw(degrees)',
+                       key+'-velocity_x(m/s)', key+'-velocity_y(m/s)', key+'velocity_z(m/s)', key+'-acceleration_x(m/s2)', key+'-acceleration_y(m/s2)', key+'acceleration_z(m/s2)']
     try:
         wb = load_workbook(filename)
         ws = wb.worksheets[0]
@@ -162,11 +163,12 @@ def IntersectionBackend(env,intersection_list, allow_collision = True, spectator
 
         tm = world_snapshot.timestamp
         
-        file.write("time: " + str(tm.elapsed_seconds)+"(seconds)\n")
+        file.write("time: " + str(round(tm.elapsed_seconds, 3))+"(seconds)\n")
 
-        data = [str(tm.elapsed_seconds)]
+        data = [str(round(tm.elapsed_seconds, 3))]
         for key in env.vehicle_dict.keys():
             vehicle_data = []
+            key = key[8:]
             id = (int)(key.split("_")[1])
             if(id == ego_id):
                 file.write("ego id: " + key + "\n")
@@ -179,24 +181,28 @@ def IntersectionBackend(env,intersection_list, allow_collision = True, spectator
             z = round(actor_transform.location.z, 2)
             vehicle_data+=[x, y, z]
             file.write("location: x=" + str(x) + " y=" + str(y) + " z=" +str(z) + "(meters)\n" )
+            
+            x = round(actor_transform.rotation.roll, 2)
+            y = round(actor_transform.rotation.pitch, 2)
+            z = round(actor_transform.rotation.yaw, 2)
+            vehicle_data+=[x, y, z]
+            file.write("Rotation: roll=" + str(x) + " pitch=" + str(y) + " yaw=" +str(z) + "(degrees)\n")
+            
+
             actor_velocity = actor.get_velocity()
             x = round(actor_velocity.x, 2)
             y = round(actor_velocity.y, 2)
             z = round(actor_velocity.z, 2)
             vehicle_data+=[x, y, z]
-            file.write("Rotation: x=" + str(x) + " y=" + str(y) + " z=" +str(z) + "(degrees)\n")
-            actor_angular_velocity = actor.get_angular_velocity()
-            x = round(actor_angular_velocity.x, 2)
-            y = round(actor_angular_velocity.y, 2)
-            z = round(actor_angular_velocity.z, 2)
-            vehicle_data+=[x, y, z]
-            file.write("Angular velocity: x=" + str(x) + " y=" + str(y) + " z=" +str(z) + "(rad/s)\n")
+            file.write("Velocity: x=" + str(x) + " y=" + str(y) + " z=" +str(z) + "(m/s)\n")
+            
             actor_acceleration = actor.get_acceleration()
             x = round(actor_acceleration.x, 2)
             y = round(actor_acceleration.y, 2)
             z = round(actor_acceleration.z, 2)
             vehicle_data+=[x, y, z]
             file.write("Acceleration: x=" + str(x) + " y=" + str(y) + " z=" +str(z) + "(m/s2)\n")
+            
             data+=vehicle_data
         ws.append(data)
         wb.save(filename)
@@ -392,9 +398,9 @@ def main():
         intersection_list[1].add_vehicle(choice = "ahead")
         intersection_list[1].add_vehicle(choice = "left",command="left")
         intersection_list[1].add_vehicle(choice = "right",command = "left")
-        intersection_list[1].add_vehicle(choice = "right",command = "right")
+        intersection_list[1].add_vehicle(choice = "right")
         intersection_list[1]._shift_vehicles(-10, choice = "right",index = 0)
-        #intersection_list[1].edit_traffic_light("left")
+        #intersection_list[1].edit_traffic_light("left"),
         
         intersection_list[2].add_vehicle(choice = "ahead")
         intersection_list[2].add_vehicle(choice = "left",command="left")
@@ -410,7 +416,7 @@ def main():
         init_setting = init_intersection.export_settings()
         
         intersection_list[3].import_settings(init_setting)
-        intersection_list[3].add_vehicle(command = "left")
+        intersection_list[3].add_vehicle(command  = "left")
         intersection_list[3].add_vehicle()
         third_setting = intersection_list[3].export_settings()
         
