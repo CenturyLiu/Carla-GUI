@@ -145,7 +145,7 @@ def IntersectionBackend(env,intersection_list, allow_collision = True, spectator
     header_row = ['timestamp(sec)']
     for key in env.vehicle_dict.keys():
         key = key[7:]
-        header_row += [key+'-location_x(m)', key+'-location_y(m)', key+'location_z(m)', key+'-roll(degrees)', key+'-pitch(degrees)', key+'yaw(degrees)',
+        header_row += [key+'-lane_id', key+'-location_x(m)', key+'-location_y(m)', key+'location_z(m)', key+'-roll(degrees)', key+'-pitch(degrees)', key+'yaw(degrees)',
                        key+'-velocity_x(m/s)', key+'-velocity_y(m/s)', key+'velocity_z(m/s)', key+'-acceleration_x(m/s2)', key+'-acceleration_y(m/s2)', key+'acceleration_z(m/s2)']
     try:
         wb = load_workbook(filename)
@@ -175,6 +175,12 @@ def IntersectionBackend(env,intersection_list, allow_collision = True, spectator
             else:
                 file.write("vehicle id: " + key + "\n")
             actor = world_snapshot.find(id)
+
+            actor_location = actor.get_transform().location
+            lane = map.get_waypoint(actor_location).lane_id
+            file.write("lane: " + str(lane) + "\n")
+            vehicle_data+=[lane]
+
             actor_transform = actor.get_transform()
             x = round(actor_transform.location.x, 2)
             y = round(actor_transform.location.y, 2)

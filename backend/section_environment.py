@@ -396,7 +396,7 @@ class FreewayEnv(object):
         header_row = ['timestamp(sec)']
         for key in self.env.vehicle_dict.keys():
             key = key[8:]
-            header_row += [key+'-location_x(m)', key+'-location_y(m)', key+'location_z(m)', key+'-roll(degrees)', key+'-pitch(degrees)', key+'yaw(degrees)',
+            header_row += [key+ '-lane_id', key+'-location_x(m)', key+'-location_y(m)', key+'location_z(m)', key+'-roll(degrees)', key+'-pitch(degrees)', key+'yaw(degrees)',
                            key+'-velocity_x(m/s)', key+'-velocity_y(m/s)', key+'velocity_z(m/s)', key+'-acceleration_x(m/s2)', key+'-acceleration_y(m/s2)', key+'acceleration_z(m/s2)']
         try:
             wb = load_workbook(filename)
@@ -413,6 +413,7 @@ class FreewayEnv(object):
             ego_id = (int)(ego_uniquename.split("_")[1])
             ego_actor = world_snapshot.find(ego_id)
 
+            map = self.env.world.get_map()
             tm = world_snapshot.timestamp       
             file.write("time: " + str(round(tm.elapsed_seconds, 3))+"(seconds)\n")
 
@@ -420,11 +421,17 @@ class FreewayEnv(object):
             for key in self.env.vehicle_dict.keys():
                 vehicle_data = []
                 id = (int)(key.split("_")[1])
+                actor = world_snapshot.find(id)
                 if(id == ego_id):
                     file.write("ego id: " + key + "\n")
                 else:
                     file.write("vehicle id: " + key + "\n")
-                actor = world_snapshot.find(id)
+                
+                actor_location = actor.get_transform().location
+                lane = map.get_waypoint(actor_location).lane_id
+                file.write("lane: " + str(lane) + "\n")
+                vehicle_data+=[lane]
+
                 actor_transform = actor.get_transform()
                 x = round(actor_transform.location.x, 2)
                 y = round(actor_transform.location.y, 2)
