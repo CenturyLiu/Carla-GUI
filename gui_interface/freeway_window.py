@@ -50,6 +50,7 @@ class ExtendedQLabel(QLabel):
 
 
 
+
 class Freeway_Window(QMainWindow):
     """
     Freeway Window. Contains general settings and clickable map
@@ -59,7 +60,6 @@ class Freeway_Window(QMainWindow):
         self.setGeometry(0,0,primary.width,primary.height)
         self.setWindowTitle("Freeway")
         self.initUI()
-        self.carla_start()
 
 
     def carla_start(self):
@@ -465,9 +465,9 @@ class Freeway_Window(QMainWindow):
         else:
             index = int(index)
 
-        if self.num_sections.isEnabled() == True: #only create environment and spawn ego if it's first time going to edit_section
-            self.freewayenv = FreewayEnv(self.env,self.num_sections.value())
-            self.freewayenv.add_ego_vehicle()
+        # if self.num_sections.isEnabled() == True: #only create environment and spawn ego if it's first time going to edit_section
+        #     self.freewayenv = FreewayEnv(self.env, self.num_sections.value())
+        #     self.freewayenv.add_ego_vehicle()
 
         self.num_sections.setDisabled(True) #disable changing num_sections after editing sections
         self.vec_populate()
@@ -931,6 +931,16 @@ class Freeway_Window(QMainWindow):
         maximum_speed = self.max_speed.value()
         view = self.start_sim_pop_up.choose_view.currentIndex()
         control = self.start_sim_pop_up.choose_control.currentIndex()
+
+
+
+        self.carla_start()
+
+
+        self.freewayenv = FreewayEnv(self.env,self.num_sections.value())
+        self.freewayenv.add_ego_vehicle()
+
+
 
         try:
             #set environment min and max speeds

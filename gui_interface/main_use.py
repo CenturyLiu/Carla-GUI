@@ -164,7 +164,10 @@ class Main(QMainWindow):
         self.spectator.set_transform(carla.Transform(carla.Location(x=-190, y=1.29, z=75.0), carla.Rotation(pitch=-88.0, yaw= -1.85, roll=1.595)))
         self.env = CARLA_ENV(self.world)  
         self.traffic_light_list = get_traffic_lights(self.world.get_actors())
+        print("=========================")
+        print(self.traffic_light_list)
         self.intersection_list = create_intersections(self.env, 4, self.traffic_light_list, self.navigation_speed)
+        print(self.intersection_list)
         
         #lists initialized
         for i in range(4):
