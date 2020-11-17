@@ -41,7 +41,10 @@ class Add_Vehicles_Window(QWidget):
         self.back_button.clicked.connect(self.freeway_window.add_vehicle_edit_windows) 
         self.back_button.clicked.connect(self.freeway_window.copy_map_to_sections)   
         self.back_button.clicked.connect(self.freeway_window.hide_add_vehicles)
-        
+        self.back_button.setStyleSheet("QPushButton::hover"
+        "{"
+        "background-color : lightblue;"
+        "}")
 
         #map widget
         self.map_widget = QWidget()
@@ -134,6 +137,10 @@ class Add_Vehicles_Window(QWidget):
         self.subject_lane_add_vehicle.setMinimumWidth(primary.width/10)
         self.subject_lane_add_vehicle.move(primary.width/6,primary.height/5)
         self.subject_lane_add_vehicle.clicked.connect(self.add_vehicle_subject_lane_click)
+        self.subject_lane_add_vehicle.setStyleSheet("QPushButton::hover"
+        "{"
+        "background-color : lightblue;"
+        "}")
 
 
             #left lane
@@ -153,7 +160,10 @@ class Add_Vehicles_Window(QWidget):
         self.left_lane_add_vehicle.setMinimumWidth(primary.width/10)
         self.left_lane_add_vehicle.move(primary.width/6,primary.height/2.5)
         self.left_lane_add_vehicle.clicked.connect(self.add_vehicle_left_lane_click)
-
+        self.left_lane_add_vehicle.setStyleSheet("QPushButton::hover"
+        "{"
+        "background-color : lightblue;"
+        "}")
 
 
         #GRID SETTINGS

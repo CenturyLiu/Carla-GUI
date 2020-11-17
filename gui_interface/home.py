@@ -40,7 +40,10 @@ class Start_Window(QMainWindow):
         self.fway_button.setMaximumWidth(int(width/7))
         self.fway_button.setMaximumHeight(int(height/10))
         self.fway_button.clicked.connect(self.go_to_freeway)
-        
+        self.fway_button.setStyleSheet("QPushButton::hover"
+        "{"
+        "background-color : lightblue;"
+        "}")
 
         #intersection button
         self.inter_button = QPushButton()
@@ -49,7 +52,10 @@ class Start_Window(QMainWindow):
         self.inter_button.setMaximumWidth(int(width/7))
         self.inter_button.setMaximumHeight(int(height/10))
         self.inter_button.clicked.connect(self.go_to_intersection)
-        
+        self.inter_button.setStyleSheet("QPushButton::hover"
+        "{"
+        "background-color : lightblue;"
+        "}")
 
         #version text
         self.version_text = QLabel()

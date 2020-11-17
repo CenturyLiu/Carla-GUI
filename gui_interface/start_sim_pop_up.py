@@ -55,7 +55,10 @@ class Start_Sim_Pop_Up(QDialog):
         self.start_simulation_button = QPushButton()
         self.start_simulation_button.setText("Start Simulation")
         self.start_simulation_button.clicked.connect(self.process_start)
-
+        self.start_simulation_button.setStyleSheet("QPushButton::hover"
+        "{"
+        "background-color : lightblue;"
+        "}")
 
 
         #GRID SETTINGS

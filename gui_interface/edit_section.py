@@ -48,7 +48,10 @@ class Edit_Section_Window(QWidget):
         self.back_button.setMaximumWidth(primary.width/10)
         self.back_button.setMaximumHeight(primary.height/26)
         self.back_button.clicked.connect(self.freeway_window.go_to_general_settings)
-
+        self.back_button.setStyleSheet("QPushButton::hover"
+        "{"
+        "background-color : lightblue;"
+        "}")
 
         #intersection id
         self.section_id_text = QLabel()
@@ -75,6 +78,10 @@ class Edit_Section_Window(QWidget):
         self.import_settings_button.setText("Import Settings")
         self.import_settings_button.setFont(QFont("Arial", 16))
         self.import_settings_button.clicked.connect(self.import_settings_click)
+        self.import_settings_button.setStyleSheet("QPushButton::hover"
+        "{"
+        "background-color : lightblue;"
+        "}")
         self.import_settings_button.setToolTip("Replaces section's vehicle behavior settings with those of the selected section.")
 
 
@@ -126,7 +133,10 @@ class Edit_Section_Window(QWidget):
         self.ego_vehicle.setFont(QFont("Arial", 10))
         self.ego_vehicle.move(self.map_background.width()/1.48,primary.height/3.06)
         self.ego_vehicle.clicked.connect(self.show_edit_ego_vehicle)
-
+        self.ego_vehicle.setStyleSheet("QPushButton::hover"
+        "{"
+        "background-color : lightblue;"
+        "}")
 
         #bottom spacer
         self.spacer = QLabel()
@@ -144,7 +154,10 @@ class Edit_Section_Window(QWidget):
         self.add_vehicles.setText("Add Vehicles")
         self.add_vehicles.setFont(QFont("Arial", 16))
         self.add_vehicles.clicked.connect(self.freeway_window.show_add_vehicles)
-
+        self.add_vehicles.setStyleSheet("QPushButton::hover"
+        "{"
+        "background-color : lightblue;"
+        "}")
 
         #EDIT EGO VEHICLE WINDOW
         self.edit_vehicle_window = edit_vehicle.Edit_Vehicle_Widget(self)

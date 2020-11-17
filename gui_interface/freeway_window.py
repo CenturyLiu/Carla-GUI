@@ -116,7 +116,10 @@ class Freeway_Window(QMainWindow):
         self.back_button.setMaximumWidth(primary.width/10)
         self.back_button.setMaximumHeight(primary.height/26)
         self.back_button.clicked.connect(self.show_back_button_pop_up)
-        
+        self.back_button.setStyleSheet("QPushButton::hover"
+        "{"
+        "background-color : lightblue;"
+        "}")
 
 
         #General Settings text
@@ -218,7 +221,10 @@ class Freeway_Window(QMainWindow):
         self.start_simulation.setMaximumWidth(primary.width/6)
         self.start_simulation.setMinimumHeight(primary.height/25)
         self.start_simulation.clicked.connect(self.show_start_sim_pop_up)
-
+        self.start_simulation.setStyleSheet("QPushButton::hover"
+        "{"
+        "background-color : lightblue;"
+        "}")
 
 
 
@@ -262,19 +268,34 @@ class Freeway_Window(QMainWindow):
         self.right_arrow = ExtendedQLabel(self.map_widget)
         self.right_arrow.setPixmap(self.arrow_pixmap)
         self.right_arrow.clicked.connect(self.single_right)
-
+        self.right_arrow.setStyleSheet("QPushButton::hover"
+        "{"
+        "background-color : lightblue;"
+        "}")
+        
         self.double_arrow_right = ExtendedQLabel(self.map_widget)
         self.double_arrow_right.setPixmap(self.double_arrow_pixmap)
         self.double_arrow_right.clicked.connect(self.double_right)
-
+        self.double_arrow_right.setStyleSheet("QPushButton::hover"
+        "{"
+        "background-color : lightblue;"
+        "}")
+        
         self.left_arrow = ExtendedQLabel(self.map_widget)
         self.left_arrow.setPixmap(self.arrow_pixmap_left)
         self.left_arrow.clicked.connect(self.single_left)
-
+        self.left_arrow.setStyleSheet("QPushButton::hover"
+        "{"
+        "background-color : lightblue;"
+        "}")
+        
         self.double_arrow_left = ExtendedQLabel(self.map_widget)
         self.double_arrow_left.setPixmap(self.double_arrow_pixmap_left)
         self.double_arrow_left.clicked.connect(self.double_left)
-
+        self.double_arrow_left.setStyleSheet("QPushButton::hover"
+        "{"
+        "background-color : lightblue;"
+        "}")
 
             #clickable buttons on road sections
         self.road_array = ["-","-","-","-","1"]
@@ -286,7 +307,11 @@ class Freeway_Window(QMainWindow):
         self.road_button1.setMinimumHeight(primary.height/25)
         self.road_button1.setText(str(self.road_array[0]))
         self.road_button1.clicked.connect(self.road_button_click_1)
-
+        self.road_button1.setStyleSheet("QPushButton::hover"
+        "{"
+        "background-color : lightblue;"
+        "}")
+        
         self.road_button2 = QPushButton(self.map_widget)
         self.road_button2.setMaximumWidth(primary.width/30)
         self.road_button2.setMinimumWidth(primary.width/30)
@@ -294,6 +319,10 @@ class Freeway_Window(QMainWindow):
         self.road_button2.setMinimumHeight(primary.height/25)
         self.road_button2.setText(str(self.road_array[1]))
         self.road_button2.clicked.connect(self.road_button_click_2)
+        self.road_button2.setStyleSheet("QPushButton::hover"
+        "{"
+        "background-color : lightblue;"
+        "}")
 
         self.road_button3 = QPushButton(self.map_widget)
         self.road_button3.setMaximumWidth(primary.width/30)
@@ -302,6 +331,10 @@ class Freeway_Window(QMainWindow):
         self.road_button3.setMinimumHeight(primary.height/25)
         self.road_button3.setText(str(self.road_array[2]))
         self.road_button3.clicked.connect(self.road_button_click_3)
+        self.road_button3.setStyleSheet("QPushButton::hover"
+        "{"
+        "background-color : lightblue;"
+        "}")
 
         self.road_button4 = QPushButton(self.map_widget)
         self.road_button4.setMaximumWidth(primary.width/30)
@@ -310,7 +343,11 @@ class Freeway_Window(QMainWindow):
         self.road_button4.setMinimumHeight(primary.height/25)
         self.road_button4.setText(str(self.road_array[3]))
         self.road_button4.clicked.connect(self.road_button_click_4)
-
+        self.road_button4.setStyleSheet("QPushButton::hover"
+        "{"
+        "background-color : lightblue;"
+        "}")
+        
         self.road_button5 = QPushButton(self.map_widget)
         self.road_button5.setMaximumWidth(primary.width/30)
         self.road_button5.setMinimumWidth(primary.width/30)
@@ -318,7 +355,10 @@ class Freeway_Window(QMainWindow):
         self.road_button5.setMinimumHeight(primary.height/25)
         self.road_button5.setText(str(self.road_array[4]))
         self.road_button5.clicked.connect(self.road_button_click_5)
-
+        self.road_button5.setStyleSheet("QPushButton::hover"
+        "{"
+        "background-color : lightblue;"
+        "}")
 
         #CONNECTED PAGES/WIDGETS
 
@@ -799,6 +839,11 @@ class Freeway_Window(QMainWindow):
                 #set object name for convenience
                 #set text of vehicle to z value, increment z by 1
                 car_copy.clicked.connect(partial(self.car_click,i,z-1) ) #each car is clickable to open up its edit_vehicle page    
+                car_copy.setStyleSheet("QPushButton::hover"
+                "{"
+                "background-color : lightblue;"
+                "}")
+                
                 car_copy.setObjectName("car")
                 car_copy.setText(str(z))
                 section_vector.page_list[i].vehicle_list.append(car_copy)
