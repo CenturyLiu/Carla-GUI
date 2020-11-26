@@ -41,7 +41,10 @@ class Edit_Vehicle_Ego_Widget(QFrame):
         self.close_button.setText("Close")
         self.close_button.setMaximumWidth(primary.width/15)
         self.close_button.clicked.connect(self.close)
-
+        self.close_button.setStyleSheet("QPushButton::hover"
+        "{"
+        "background-color : lightblue;"
+        "}")
 
         #title text
         self.title_text = QLabel()

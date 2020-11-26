@@ -36,7 +36,10 @@ class Drop_Down_Window_Add(QDialog):
         self.close_button = QPushButton()
         self.close_button.setText("Close")
         self.close_button.clicked.connect(self.close)
-
+        self.close_button.setStyleSheet("QPushButton::hover"
+        "{"
+        "background-color : lightblue;"
+        "}")
 
         #gap size
         self.gap_text = QLabel()
@@ -119,7 +122,10 @@ class Drop_Down_Window_Add(QDialog):
             self.add_button.clicked.connect(self.parent_window.add_vehicle_left)
         else:
             self.add_button.clicked.connect(self.parent_window.add_vehicle_subject)
-        
+        self.add_button.setStyleSheet("QPushButton::hover"
+        "{"
+        "background-color : lightblue;"
+        "}")
 
 
         #GRID SETTINGS

@@ -4,7 +4,6 @@ from PyQt5.QtGui import QFont, QPixmap
 import sys
 import freeway_window as Fway
 import intersection_window as Inter
-import main_use as Inter_main
 
 import time
 import glob
@@ -13,7 +12,7 @@ import sys
 sys.path.append("..")
 
 
-
+#get user screen size
 app = QtWidgets.QApplication(sys.argv)
 screen = app.primaryScreen()
 width = screen.size().width()
@@ -42,10 +41,9 @@ class Start_Window(QMainWindow):
         self.fway_button.setMaximumHeight(int(height/10))
         self.fway_button.clicked.connect(self.go_to_freeway)
         self.fway_button.setStyleSheet("QPushButton::hover"
-							"{"
-							"background-color : lightblue;"
-							"}") 
-        
+        "{"
+        "background-color : lightblue;"
+        "}")
 
         #intersection button
         self.inter_button = QPushButton()
@@ -54,7 +52,10 @@ class Start_Window(QMainWindow):
         self.inter_button.setMaximumWidth(int(width/7))
         self.inter_button.setMaximumHeight(int(height/10))
         self.inter_button.clicked.connect(self.go_to_intersection)
-        
+        self.inter_button.setStyleSheet("QPushButton::hover"
+        "{"
+        "background-color : lightblue;"
+        "}")
 
         #version text
         self.version_text = QLabel()
@@ -98,18 +99,28 @@ class Start_Window(QMainWindow):
         
 
     def go_to_freeway(self):
+        """
+        connected: self.freeway_button
+        function: destroys self and goes to freeway gui
+        """
         self.new = Fway.Freeway_Window(self)
         self.close()
         self.new.show()
 
     def go_to_intersection(self):
-        #self.new = Inter.Intersection_Window(self)
-        #self.close()
-        #self.new.show()
-        self.new = Inter_main.Main()
+        """
+        connected: self.intersection_button
+        function: destroys self and goes to urban gui
+        """
+        self.new = Inter.Intersection_Window(self)
         self.close()
+        self.new.show()
 
 
+
+
+
+        
 
 
 def main():

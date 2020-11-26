@@ -46,7 +46,10 @@ class Back_Home_Pop_Up(QDialog):
         self.back_button.setText("Go Back")
         self.back_button.setMaximumWidth(self.width()/1.4)
         self.back_button.clicked.connect(self.parent_window.back_to_start)
-
+        self.back_button.setStyleSheet("QPushButton::hover"
+        "{"
+        "background-color : lightblue;"
+        "}")
 
 
         #GRID SETTINGS

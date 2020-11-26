@@ -54,6 +54,10 @@ class Drop_Down_Window_Edit(QDialog):
                 self.delete_button = QPushButton()
                 self.delete_button.setText("Delete")
                 self.delete_button.clicked.connect(self.delete_car(index,"subject"))
+                self.delete_button.setStyleSheet("QPushButton::hover"
+                "{"
+                "background-color : lightblue;"
+                "}")
                 self.subject_delete_buttons.append(self.delete_button)
 
                 self.grid.addWidget(self.car_label,         index+1,0,1,1)
@@ -67,6 +71,10 @@ class Drop_Down_Window_Edit(QDialog):
                 self.delete_button = QPushButton()
                 self.delete_button.setText("Delete")
                 self.delete_button.clicked.connect(self.delete_car(index,"left"))
+                self.delete_button.setStyleSheet("QPushButton::hover"
+                "{"
+                "background-color : lightblue;"
+                "}")
                 self.left_delete_buttons.append(self.delete_button)
 
 

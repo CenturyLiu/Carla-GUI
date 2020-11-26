@@ -20,7 +20,7 @@ GUI tool to help human-vehicle interaction researchers design and conduct traffi
 - [Yi Wu] 
 - [Yifei He]
 - [Nihar Joshi](https://github.com/nihar-joshi)
-- [Jihyeong Ko]
+- [Jihyeong Ko](https://github.com/jhyeongk)
 
 
 

@@ -43,7 +43,10 @@ class Edit_Vehicle_Widget(QFrame):
         self.close_button.setText("Close")
         self.close_button.setMaximumWidth(primary.width/15)
         self.close_button.clicked.connect(self.close)
-
+        self.close_button.setStyleSheet("QPushButton::hover"
+        "{"
+        "background-color : lightblue;"
+        "}")
 
         #title text
         self.title_text = QLabel()
@@ -89,10 +92,18 @@ class Edit_Vehicle_Widget(QFrame):
         self.lane_change_no.setText("No")
         self.lane_change_no.setChecked(True)
         self.lane_change_no.clicked.connect(self.lane_no_click)
-
+        self.lane_change_no.setStyleSheet("QPushButton::hover"
+        "{"
+        "background-color : lightblue;"
+        "}")
+        
         self.lane_change_yes = QRadioButton()
         self.lane_change_yes.setText("Yes")
         self.lane_change_yes.clicked.connect(self.lane_yes_click)
+        self.lane_change_yes.setStyleSheet("QPushButton::hover"
+        "{"
+        "background-color : lightblue;"
+        "}")
         
         self.lane_change_widget = QWidget()
         self.lane_change_grid = QHBoxLayout()
@@ -137,7 +148,10 @@ class Edit_Vehicle_Widget(QFrame):
         self.delete_button.setText("Delete")
         self.delete_button.setMaximumWidth(primary.width/15)
         self.delete_button.clicked.connect(self.car_delete)
-
+        self.delete_button.setStyleSheet("QPushButton::hover"
+        "{"
+        "background-color : lightblue;"
+        "}")
 
         #vehicle color
         self.vehicle_color_text = QLabel()

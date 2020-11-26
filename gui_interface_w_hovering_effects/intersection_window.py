@@ -24,7 +24,11 @@ class Intersection_Window(QMainWindow):
         self.back_button = QPushButton()
         self.back_button.setText("Back to Start")
         self.back_button.clicked.connect(self.back_to_start)
-
+        self.back_button.setStyleSheet("QPushButton::hover"
+        "{"
+        "background-color : lightblue;"
+        "}")
+        
         #text
         self.num_sections_box = QLineEdit()
 
