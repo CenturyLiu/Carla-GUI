@@ -52,6 +52,7 @@ class Section(object):
         self.env = env
         
         
+        
         # get the world map
         self.carla_map = self.env.world.get_map()
         

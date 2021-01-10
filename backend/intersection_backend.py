@@ -128,90 +128,95 @@ def IntersectionBackend(env,intersection_list, allow_collision = True, spectator
     for vehicle_config in init_intersection.ahead_vehicle:
         vehicle = VehicleControl(env, vehicle_config, env.delta_seconds,allow_collision)
 
-    # format of ego_vehicle = vehichle_type_id + "_" + uniqname
-    ego_uniquename = ego_vehicle_config["uniquename"]
-    timestr = time.strftime("%Y%m%d-%H%M%S")
 
-    # record 1: data on an plain text file
-    filename = "../data_collection/Urb" + timestr + ".xlsx"
-    file = open("../data_collection/Urb" + timestr + ".txt", "w+" )
+    RECORD_ENABLE = False
 
-    world_snapshot = env.world.get_snapshot()
-    tm = world_snapshot.timestamp
-    file.write("the experiment starts from " + str(round(tm.elapsed_seconds, 3)) + "(seconds)\n")
-    print("start urban recordings: ")
+    if RECORD_ENABLE:
+        # format of ego_vehicle = vehichle_type_id + "_" + uniqname
+        ego_uniquename = ego_vehicle_config["uniquename"]
+        timestr = time.strftime("%Y%m%d-%H%M%S")
 
-     # record 2: data on an excel file
-    header_row = ['timestamp(sec)']
-    for key in env.vehicle_dict.keys():
-        key = key[7:]
-        header_row += [key+'-lane_id', key+'-location_x(m)', key+'-location_y(m)', key+'location_z(m)', key+'-roll(degrees)', key+'-pitch(degrees)', key+'yaw(degrees)',
-                       key+'-velocity_x(m/s)', key+'-velocity_y(m/s)', key+'velocity_z(m/s)', key+'-acceleration_x(m/s2)', key+'-acceleration_y(m/s2)', key+'acceleration_z(m/s2)']
-    try:
-        wb = load_workbook(filename)
-        ws = wb.worksheets[0]
-    except FileNotFoundError:
-        wb = Workbook()
-        ws = wb.active
-    ws.append(header_row)
-    wb.save(filename)
+        # record 1: data on an plain text file
+        filename = "../data_collection/Urb" + timestr + ".xlsx"
+        file = open("../data_collection/Urb" + timestr + ".txt", "w+" )
+
+        world_snapshot = env.world.get_snapshot()
+        tm = world_snapshot.timestamp
+        file.write("the experiment starts from " + str(round(tm.elapsed_seconds, 3)) + "(seconds)\n")
+        print("start urban recordings: ")
+
+        # record 2: data on an excel file
+        header_row = ['timestamp(sec)']
+        for key in env.vehicle_dict.keys():
+            key = key[7:]
+            header_row += [key+'-lane_id', key+'-location_x(m)', key+'-location_y(m)', key+'location_z(m)', key+'-roll(degrees)', key+'-pitch(degrees)', key+'yaw(degrees)',
+                        key+'-velocity_x(m/s)', key+'-velocity_y(m/s)', key+'velocity_z(m/s)', key+'-acceleration_x(m/s2)', key+'-acceleration_y(m/s2)', key+'acceleration_z(m/s2)']
+        try:
+            wb = load_workbook(filename)
+            ws = wb.worksheets[0]
+        except FileNotFoundError:
+            wb = Workbook()
+            ws = wb.active
+        ws.append(header_row)
+        wb.save(filename)
     
     while True:
-        world_snapshot = env.world.get_snapshot()
-        ego_id = (int)(ego_uniquename.split("_")[1])
-        ego_actor = world_snapshot.find(ego_id)
 
-        tm = world_snapshot.timestamp
-        
-        file.write("time: " + str(round(tm.elapsed_seconds, 3))+"(seconds)\n")
+        if RECORD_ENABLE:
+            world_snapshot = env.world.get_snapshot()
+            ego_id = (int)(ego_uniquename.split("_")[1])
+            ego_actor = world_snapshot.find(ego_id)
 
-        data = [str(round(tm.elapsed_seconds, 3))]
-        for key in env.vehicle_dict.keys():
-            vehicle_data = []
-            key = key[8:]
-            id = (int)(key.split("_")[1])
-            if(id == ego_id):
-                file.write("ego id: " + key + "\n")
-            else:
-                file.write("vehicle id: " + key + "\n")
-            actor = world_snapshot.find(id)
+            tm = world_snapshot.timestamp
+            file.write("time: " + str(round(tm.elapsed_seconds, 3))+"(seconds)\n")
 
-            actor_location = actor.get_transform().location
-            lane = map.get_waypoint(actor_location).lane_id
-            file.write("lane: " + str(lane) + "\n")
-            vehicle_data+=[lane]
+            data = [str(round(tm.elapsed_seconds, 3))]
+            for key in env.vehicle_dict.keys():
+                vehicle_data = []
+                key = key[8:]
+                id = (int)(key.split("_")[1])
+                if(id == ego_id):
+                    file.write("ego id: " + key + "\n")
+                else:
+                    file.write("vehicle id: " + key + "\n")
+                actor = world_snapshot.find(id)
 
-            actor_transform = actor.get_transform()
-            x = round(actor_transform.location.x, 2)
-            y = round(actor_transform.location.y, 2)
-            z = round(actor_transform.location.z, 2)
-            vehicle_data+=[x, y, z]
-            file.write("location: x=" + str(x) + " y=" + str(y) + " z=" +str(z) + "(meters)\n" )
-            
-            x = round(actor_transform.rotation.roll, 2)
-            y = round(actor_transform.rotation.pitch, 2)
-            z = round(actor_transform.rotation.yaw, 2)
-            vehicle_data+=[x, y, z]
-            file.write("Rotation: roll=" + str(x) + " pitch=" + str(y) + " yaw=" +str(z) + "(degrees)\n")
-            
+                actor_location = actor.get_transform().location
+                lane = map.get_waypoint(actor_location).lane_id
+                file.write("lane: " + str(lane) + "\n")
+                vehicle_data+=[lane]
 
-            actor_velocity = actor.get_velocity()
-            x = round(actor_velocity.x, 2)
-            y = round(actor_velocity.y, 2)
-            z = round(actor_velocity.z, 2)
-            vehicle_data+=[x, y, z]
-            file.write("Velocity: x=" + str(x) + " y=" + str(y) + " z=" +str(z) + "(m/s)\n")
-            
-            actor_acceleration = actor.get_acceleration()
-            x = round(actor_acceleration.x, 2)
-            y = round(actor_acceleration.y, 2)
-            z = round(actor_acceleration.z, 2)
-            vehicle_data+=[x, y, z]
-            file.write("Acceleration: x=" + str(x) + " y=" + str(y) + " z=" +str(z) + "(m/s2)\n")
-            
-            data+=vehicle_data
-        ws.append(data)
-        wb.save(filename)
+                actor_transform = actor.get_transform()
+                x = round(actor_transform.location.x, 2)
+                y = round(actor_transform.location.y, 2)
+                z = round(actor_transform.location.z, 2)
+                vehicle_data+=[x, y, z]
+                file.write("location: x=" + str(x) + " y=" + str(y) + " z=" +str(z) + "(meters)\n" )
+                
+                x = round(actor_transform.rotation.roll, 2)
+                y = round(actor_transform.rotation.pitch, 2)
+                z = round(actor_transform.rotation.yaw, 2)
+                vehicle_data+=[x, y, z]
+                file.write("Rotation: roll=" + str(x) + " pitch=" + str(y) + " yaw=" +str(z) + "(degrees)\n")
+                
+
+                actor_velocity = actor.get_velocity()
+                x = round(actor_velocity.x, 2)
+                y = round(actor_velocity.y, 2)
+                z = round(actor_velocity.z, 2)
+                vehicle_data+=[x, y, z]
+                file.write("Velocity: x=" + str(x) + " y=" + str(y) + " z=" +str(z) + "(m/s)\n")
+                
+                actor_acceleration = actor.get_acceleration()
+                x = round(actor_acceleration.x, 2)
+                y = round(actor_acceleration.y, 2)
+                z = round(actor_acceleration.z, 2)
+                vehicle_data+=[x, y, z]
+                file.write("Acceleration: x=" + str(x) + " y=" + str(y) + " z=" +str(z) + "(m/s2)\n")
+                
+                data+=vehicle_data
+            ws.append(data)
+            wb.save(filename)
         
 
         # Lane Logic

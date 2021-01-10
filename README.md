@@ -86,6 +86,16 @@ The [CARLA simulator](https://carla.org/) is a powerful open source tool develop
 
         python gui_test.py
 
+- Some reminders:
+(1) In Freeway mode, remember entering any section at least once, otherwise FreeWayenv might fail to be detected. 
+(2) In Intersection mode, remember to enter the first intersection and spawn ego vehicle. Otherwose some errors will happen. 
+
+
+## Data Collection
+For now, data collection feature can be enabled/disabled by changing boolean values 'RECORD_ENABLE' in intersection_backend.py and 'self.RECORD_ENABLE' in section_environment.py
+
+Note for now data_collection feature might make carla slower. Some optimizations need to be made soon.
+
 
 ## Tutorial video
 
@@ -96,6 +106,5 @@ The [CARLA simulator](https://carla.org/) is a powerful open source tool develop
 ![Poster](https://github.com/CenturyLiu/Carla-GUI/blob/master/Docs/img/poster.PNG)
 > The poster briefly describing the project
 
- ---
- author: shiji liu
- email: shijiliu@umich.edu
+--
+SIM team

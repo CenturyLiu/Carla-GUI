@@ -86,21 +86,17 @@ class CARLA_ENV():
         self.distance_between_vehicles = ConfigObj() # store the distance between vehicles
         
         # get the length of all vehicles
+
+
+        vehicle_length_config_directory = os.path.join('backend', 'vehicle_length_config.txt')
         
-        if platform == 'linux':
-            vehicle_length_config_directory = "/backend/vehicle_length_config.txt"
-        else:
-            vehicle_length_config_directory = "\backend\vehicle_length_config.txt"
-        
-        
-        currentDirectory = os.path.dirname(os.getcwd()) +  vehicle_length_config_directory
+        currentDirectory = os.path.join(os.path.dirname(os.getcwd()),  vehicle_length_config_directory)
         print(currentDirectory)
         self.vehicle_model_length_config = ConfigObj(currentDirectory)
         print(self.vehicle_model_length_config)
         
-        
-    def config_env(self, synchrony = False, delta_seconds = 0.02):
 
+    def config_env(self, synchrony = False, delta_seconds = 0.02):
         
         self.synchrony = synchrony
         self.delta_seconds = delta_seconds
@@ -273,7 +269,7 @@ class CARLA_ENV():
 
         '''
         vehicle = self.vehicle_dict[uniquename]
-        vehicle.set_velocity(vehicle_velocity)
+        vehicle.set_target_velocity(vehicle_velocity)
         
         
     def get_forward_speed(self, uniquename):
