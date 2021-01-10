@@ -1,0 +1,1810 @@
+the experiment starts from 84.301(seconds)
+time: 84.341(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-80.0 y=9.34 z=9.62(meters)
+Rotation: roll=0.09 pitch=-0.97 yaw=-179.92(degrees)
+Velocity: x=0.0 y=0.0 z=0.0(m/s)
+Acceleration: x=0.0 y=0.0 z=0.0(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-102.12 y=9.31 z=9.2(meters)
+Rotation: roll=-0.04 pitch=-1.05 yaw=-179.92(degrees)
+Velocity: x=0.0 y=0.0 z=0.0(m/s)
+Acceleration: x=0.0 y=0.0 z=0.0(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-102.13 y=12.81 z=9.2(meters)
+Rotation: roll=-0.05 pitch=-1.05 yaw=-179.93(degrees)
+Velocity: x=0.0 y=0.0 z=0.0(m/s)
+Acceleration: x=0.0 y=0.0 z=0.0(m/s2)
+time: 84.681(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-80.0 y=9.34 z=9.62(meters)
+Rotation: roll=0.09 pitch=-0.97 yaw=-179.92(degrees)
+Velocity: x=0.0 y=0.0 z=0.0(m/s)
+Acceleration: x=0.0 y=0.0 z=0.0(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-102.12 y=9.31 z=9.2(meters)
+Rotation: roll=-0.04 pitch=-1.05 yaw=-179.92(degrees)
+Velocity: x=0.0 y=0.0 z=0.0(m/s)
+Acceleration: x=0.0 y=0.0 z=0.0(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-102.13 y=12.81 z=9.2(meters)
+Rotation: roll=-0.05 pitch=-1.05 yaw=-179.93(degrees)
+Velocity: x=0.0 y=0.0 z=0.0(m/s)
+Acceleration: x=0.0 y=0.0 z=0.0(m/s2)
+time: 85.081(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-80.0 y=9.34 z=9.62(meters)
+Rotation: roll=0.09 pitch=-0.97 yaw=-179.92(degrees)
+Velocity: x=-0.0 y=-0.0 z=0.0(m/s)
+Acceleration: x=0.0 y=0.0 z=-0.0(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-102.12 y=9.31 z=9.2(meters)
+Rotation: roll=-0.04 pitch=-1.05 yaw=-179.92(degrees)
+Velocity: x=-0.0 y=-0.0 z=0.0(m/s)
+Acceleration: x=0.0 y=0.0 z=0.0(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-102.13 y=12.81 z=9.2(meters)
+Rotation: roll=-0.05 pitch=-1.05 yaw=-179.93(degrees)
+Velocity: x=-0.0 y=-0.0 z=0.0(m/s)
+Acceleration: x=-0.0 y=-0.0 z=0.0(m/s2)
+time: 85.561(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-80.0 y=9.34 z=9.62(meters)
+Rotation: roll=0.09 pitch=-0.97 yaw=-179.92(degrees)
+Velocity: x=-0.0 y=-0.0 z=0.0(m/s)
+Acceleration: x=-0.0 y=-0.0 z=0.0(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-102.12 y=9.31 z=9.2(meters)
+Rotation: roll=-0.04 pitch=-1.05 yaw=-179.92(degrees)
+Velocity: x=-0.0 y=-0.0 z=0.0(m/s)
+Acceleration: x=-0.0 y=0.0 z=-0.0(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-102.13 y=12.81 z=9.2(meters)
+Rotation: roll=-0.05 pitch=-1.05 yaw=-179.93(degrees)
+Velocity: x=-0.0 y=0.0 z=0.0(m/s)
+Acceleration: x=-0.0 y=-0.0 z=0.0(m/s2)
+time: 85.941(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-80.0 y=9.34 z=9.62(meters)
+Rotation: roll=0.09 pitch=-0.97 yaw=-179.92(degrees)
+Velocity: x=0.0 y=0.0 z=0.0(m/s)
+Acceleration: x=0.0 y=0.0 z=-0.0(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-102.12 y=9.31 z=9.2(meters)
+Rotation: roll=-0.04 pitch=-1.05 yaw=-179.92(degrees)
+Velocity: x=0.0 y=0.0 z=0.0(m/s)
+Acceleration: x=0.0 y=0.0 z=-0.0(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-102.13 y=12.81 z=9.2(meters)
+Rotation: roll=-0.05 pitch=-1.05 yaw=-179.93(degrees)
+Velocity: x=0.0 y=0.0 z=0.0(m/s)
+Acceleration: x=0.0 y=-0.0 z=-0.0(m/s2)
+time: 86.341(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-80.29 y=9.34 z=9.62(meters)
+Rotation: roll=0.08 pitch=-0.87 yaw=-179.91(degrees)
+Velocity: x=-2.57 y=-0.01 z=-0.04(m/s)
+Acceleration: x=-9.82 y=-0.03 z=-0.17(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-102.29 y=9.31 z=9.19(meters)
+Rotation: roll=-0.04 pitch=-0.46 yaw=-179.91(degrees)
+Velocity: x=-1.89 y=-0.01 z=-0.04(m/s)
+Acceleration: x=-10.65 y=-0.04 z=-0.2(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-102.36 y=12.81 z=9.19(meters)
+Rotation: roll=-0.07 pitch=-0.38 yaw=-179.92(degrees)
+Velocity: x=-2.2 y=-0.01 z=-0.04(m/s)
+Acceleration: x=-10.3 y=-0.03 z=-0.2(m/s2)
+time: 86.701(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-81.71 y=9.34 z=9.59(meters)
+Rotation: roll=0.08 pitch=-0.88 yaw=-179.88(degrees)
+Velocity: x=-4.97 y=-0.01 z=-0.08(m/s)
+Acceleration: x=-5.19 y=-0.02 z=-0.09(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-103.59 y=9.31 z=9.16(meters)
+Rotation: roll=-0.04 pitch=-0.26 yaw=-179.87(degrees)
+Velocity: x=-5.04 y=-0.02 z=-0.09(m/s)
+Acceleration: x=-7.18 y=-0.03 z=-0.13(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-103.75 y=12.81 z=9.16(meters)
+Rotation: roll=-0.1 pitch=-0.33 yaw=-179.9(degrees)
+Velocity: x=-5.25 y=-0.01 z=-0.1(m/s)
+Acceleration: x=-6.94 y=-0.02 z=-0.21(m/s2)
+time: 87.101(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-84.09 y=9.33 z=9.55(meters)
+Rotation: roll=0.08 pitch=-0.91 yaw=-179.85(degrees)
+Velocity: x=-6.85 y=-0.02 z=-0.12(m/s)
+Acceleration: x=-4.44 y=-0.02 z=-0.07(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-106.09 y=9.3 z=9.12(meters)
+Rotation: roll=-0.09 pitch=-0.59 yaw=-179.83(degrees)
+Velocity: x=-7.17 y=-0.02 z=-0.14(m/s)
+Acceleration: x=-3.83 y=-0.02 z=-0.08(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-106.31 y=12.8 z=9.11(meters)
+Rotation: roll=-0.12 pitch=-0.69 yaw=-179.89(degrees)
+Velocity: x=-7.28 y=-0.01 z=-0.15(m/s)
+Acceleration: x=-3.64 y=-0.02 z=-0.08(m/s2)
+time: 87.501(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-87.18 y=9.32 z=9.5(meters)
+Rotation: roll=-0.05 pitch=-0.97 yaw=-179.89(degrees)
+Velocity: x=-8.57 y=-0.0 z=-0.17(m/s)
+Acceleration: x=-4.21 y=0.16 z=-0.22(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-109.2 y=9.29 z=9.06(meters)
+Rotation: roll=-0.12 pitch=-0.89 yaw=-179.87(degrees)
+Velocity: x=-8.25 y=-0.02 z=-0.17(m/s)
+Acceleration: x=-1.9 y=0.0 z=-0.05(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-109.46 y=12.8 z=9.05(meters)
+Rotation: roll=-0.12 pitch=-0.9 yaw=-179.9(degrees)
+Velocity: x=-8.31 y=-0.01 z=-0.17(m/s)
+Acceleration: x=-1.8 y=0.0 z=-0.04(m/s2)
+time: 87.881(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-90.74 y=9.32 z=9.43(meters)
+Rotation: roll=-0.55 pitch=-1.16 yaw=-179.93(degrees)
+Velocity: x=-10.13 y=-0.0 z=-0.23(m/s)
+Acceleration: x=-4.03 y=-0.06 z=-0.21(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-112.42 y=9.29 z=9.0(meters)
+Rotation: roll=-0.11 pitch=-1.07 yaw=-179.91(degrees)
+Velocity: x=-8.55 y=-0.01 z=-0.17(m/s)
+Acceleration: x=0.04 y=0.02 z=0.17(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-112.69 y=12.79 z=8.99(meters)
+Rotation: roll=-0.07 pitch=-0.95 yaw=-179.92(degrees)
+Velocity: x=-8.55 y=-0.02 z=-0.1(m/s)
+Acceleration: x=-0.0 y=0.04 z=-0.0(m/s2)
+time: 88.261(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-94.88 y=9.31 z=9.34(meters)
+Rotation: roll=-0.07 pitch=-1.07 yaw=-179.87(degrees)
+Velocity: x=-11.62 y=-0.04 z=-0.24(m/s)
+Acceleration: x=-3.83 y=-0.07 z=-0.13(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-115.68 y=9.28 z=8.92(meters)
+Rotation: roll=-0.1 pitch=-1.82 yaw=-179.93(degrees)
+Velocity: x=-8.83 y=-0.01 z=-0.27(m/s)
+Acceleration: x=-4.53 y=0.03 z=-0.66(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-115.95 y=12.79 z=8.91(meters)
+Rotation: roll=-0.1 pitch=-1.83 yaw=-179.92(degrees)
+Velocity: x=-8.97 y=-0.01 z=-0.29(m/s)
+Acceleration: x=-4.75 y=-0.0 z=-0.47(m/s2)
+time: 88.641(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-99.58 y=9.3 z=9.25(meters)
+Rotation: roll=0.03 pitch=-1.0 yaw=-179.85(degrees)
+Velocity: x=-13.03 y=-0.03 z=-0.24(m/s)
+Acceleration: x=-3.65 y=-0.01 z=-0.08(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-119.41 y=9.28 z=8.79(meters)
+Rotation: roll=-0.05 pitch=-1.57 yaw=-179.94(degrees)
+Velocity: x=-10.82 y=-0.01 z=-0.41(m/s)
+Acceleration: x=-5.41 y=-0.06 z=0.25(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-119.75 y=12.78 z=8.78(meters)
+Rotation: roll=-0.05 pitch=-1.74 yaw=-179.93(degrees)
+Velocity: x=-10.97 y=-0.01 z=-0.42(m/s)
+Acceleration: x=-5.29 y=0.04 z=-0.56(m/s2)
+time: 89.041(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-105.09 y=9.29 z=9.15(meters)
+Rotation: roll=0.02 pitch=-1.01 yaw=-179.96(degrees)
+Velocity: x=-14.46 y=-0.01 z=-0.27(m/s)
+Acceleration: x=-3.49 y=0.1 z=-0.17(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-124.13 y=9.27 z=8.6(meters)
+Rotation: roll=-0.14 pitch=-2.12 yaw=-179.94(degrees)
+Velocity: x=-12.63 y=-0.01 z=-0.57(m/s)
+Acceleration: x=-3.82 y=-0.02 z=-0.34(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-124.51 y=12.78 z=8.58(meters)
+Rotation: roll=-0.22 pitch=-2.39 yaw=-179.94(degrees)
+Velocity: x=-12.74 y=-0.01 z=-0.62(m/s)
+Acceleration: x=-3.74 y=-0.09 z=-0.06(m/s2)
+time: 89.421(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-110.83 y=9.29 z=9.04(meters)
+Rotation: roll=-0.06 pitch=-1.11 yaw=-179.97(degrees)
+Velocity: x=-15.76 y=-0.01 z=-0.32(m/s)
+Acceleration: x=-3.34 y=-0.02 z=-0.07(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-129.18 y=9.27 z=8.36(meters)
+Rotation: roll=-0.1 pitch=-2.27 yaw=-179.94(degrees)
+Velocity: x=-13.84 y=-0.02 z=-0.63(m/s)
+Acceleration: x=-2.66 y=-0.03 z=0.12(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-129.6 y=12.77 z=8.34(meters)
+Rotation: roll=-0.06 pitch=-2.19 yaw=-179.93(degrees)
+Velocity: x=-13.92 y=-0.02 z=-0.6(m/s)
+Acceleration: x=-2.58 y=0.0 z=-0.08(m/s2)
+time: 89.801(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-117.06 y=9.28 z=8.89(meters)
+Rotation: roll=-0.01 pitch=-1.84 yaw=-179.89(degrees)
+Velocity: x=-17.01 y=-0.04 z=-0.53(m/s)
+Acceleration: x=-3.25 y=-0.09 z=-1.2(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-134.6 y=9.26 z=8.11(meters)
+Rotation: roll=-0.06 pitch=-2.82 yaw=-179.93(degrees)
+Velocity: x=-14.53 y=-0.02 z=-0.75(m/s)
+Acceleration: x=-0.09 y=-0.01 z=-0.45(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-135.04 y=12.76 z=8.09(meters)
+Rotation: roll=-0.06 pitch=-2.88 yaw=-179.92(degrees)
+Velocity: x=-14.53 y=-0.02 z=-0.76(m/s)
+Acceleration: x=-0.1 y=-0.01 z=-0.28(m/s2)
+time: 90.201(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-124.13 y=9.27 z=8.61(meters)
+Rotation: roll=-0.08 pitch=-2.52 yaw=-179.9(degrees)
+Velocity: x=-18.31 y=-0.03 z=-0.82(m/s)
+Acceleration: x=-3.23 y=0.04 z=-0.6(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-140.42 y=9.25 z=7.81(meters)
+Rotation: roll=-0.06 pitch=-2.96 yaw=-179.94(degrees)
+Velocity: x=-14.58 y=-0.02 z=-0.76(m/s)
+Acceleration: x=-0.12 y=0.01 z=0.02(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-140.86 y=12.76 z=7.79(meters)
+Rotation: roll=-0.06 pitch=-2.95 yaw=-179.93(degrees)
+Velocity: x=-14.61 y=-0.02 z=-0.76(m/s)
+Acceleration: x=-1.29 y=0.01 z=-0.04(m/s2)
+time: 90.601(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-131.71 y=9.26 z=8.26(meters)
+Rotation: roll=0.02 pitch=-2.5 yaw=179.98(degrees)
+Velocity: x=-19.58 y=0.0 z=-0.9(m/s)
+Acceleration: x=-3.08 y=0.12 z=-1.44(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-146.54 y=9.25 z=7.49(meters)
+Rotation: roll=-0.06 pitch=-2.59 yaw=-179.96(degrees)
+Velocity: x=-16.12 y=-0.01 z=-0.84(m/s)
+Acceleration: x=-4.59 y=0.02 z=-0.24(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-147.03 y=12.75 z=7.46(meters)
+Rotation: roll=-0.06 pitch=-2.58 yaw=-179.95(degrees)
+Velocity: x=-16.26 y=-0.01 z=-0.84(m/s)
+Acceleration: x=-4.61 y=0.01 z=-0.24(m/s2)
+time: 91.061(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-140.59 y=9.26 z=7.81(meters)
+Rotation: roll=-0.0 pitch=-3.03 yaw=-179.92(degrees)
+Velocity: x=-18.26 y=-0.02 z=-0.95(m/s)
+Acceleration: x=6.72 y=-0.09 z=0.4(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-154.45 y=9.24 z=7.08(meters)
+Rotation: roll=-0.06 pitch=-2.54 yaw=-179.95(degrees)
+Velocity: x=-18.21 y=-0.02 z=-0.94(m/s)
+Acceleration: x=-4.25 y=-0.02 z=-0.22(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-155.0 y=12.74 z=7.05(meters)
+Rotation: roll=-0.06 pitch=-2.54 yaw=-179.94(degrees)
+Velocity: x=-18.34 y=-0.02 z=-0.95(m/s)
+Acceleration: x=-4.18 y=-0.02 z=-0.22(m/s2)
+time: 91.441(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-146.98 y=9.25 z=7.48(meters)
+Rotation: roll=-0.01 pitch=-3.06 yaw=-179.83(degrees)
+Velocity: x=-15.37 y=-0.04 z=-0.8(m/s)
+Acceleration: x=7.98 y=-0.03 z=0.42(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-161.66 y=9.23 z=6.71(meters)
+Rotation: roll=-0.07 pitch=-2.6 yaw=-179.93(degrees)
+Velocity: x=-19.66 y=-0.03 z=-1.02(m/s)
+Acceleration: x=-3.41 y=-0.03 z=-0.18(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-162.26 y=12.73 z=6.67(meters)
+Rotation: roll=-0.07 pitch=-2.61 yaw=-179.92(degrees)
+Velocity: x=-19.76 y=-0.03 z=-1.02(m/s)
+Acceleration: x=-3.35 y=-0.02 z=-0.17(m/s2)
+time: 91.821(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-152.24 y=9.24 z=7.21(meters)
+Rotation: roll=0.01 pitch=-3.07 yaw=-179.96(degrees)
+Velocity: x=-12.38 y=-0.01 z=-0.64(m/s)
+Acceleration: x=7.69 y=0.1 z=0.4(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-169.35 y=9.23 z=6.31(meters)
+Rotation: roll=-0.06 pitch=-2.73 yaw=-179.94(degrees)
+Velocity: x=-20.6 y=-0.02 z=-1.07(m/s)
+Acceleration: x=0.06 y=0.02 z=0.0(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-169.97 y=12.72 z=6.28(meters)
+Rotation: roll=-0.06 pitch=-2.76 yaw=-179.93(degrees)
+Velocity: x=-20.59 y=-0.03 z=-1.07(m/s)
+Acceleration: x=0.08 y=0.02 z=0.0(m/s2)
+time: 92.281(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-157.54 y=9.24 z=6.93(meters)
+Rotation: roll=0.01 pitch=-2.98 yaw=179.97(degrees)
+Velocity: x=-11.51 y=0.01 z=-0.6(m/s)
+Acceleration: x=-2.16 y=0.03 z=-0.11(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-178.82 y=9.22 z=5.82(meters)
+Rotation: roll=-0.05 pitch=-2.94 yaw=-179.97(degrees)
+Velocity: x=-20.65 y=-0.01 z=-1.07(m/s)
+Acceleration: x=-2.4 y=0.02 z=-0.12(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-179.44 y=12.71 z=5.79(meters)
+Rotation: roll=-0.06 pitch=-2.91 yaw=-179.95(degrees)
+Velocity: x=-20.73 y=-0.02 z=-1.07(m/s)
+Acceleration: x=-2.71 y=0.01 z=-0.14(m/s2)
+time: 92.681(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-162.38 y=9.24 z=6.68(meters)
+Rotation: roll=-0.0 pitch=-2.94 yaw=-179.92(degrees)
+Velocity: x=-12.75 y=-0.02 z=-0.66(m/s)
+Acceleration: x=-3.52 y=-0.08 z=-0.18(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-187.34 y=9.21 z=5.37(meters)
+Rotation: roll=-0.07 pitch=-2.65 yaw=-179.95(degrees)
+Velocity: x=-21.94 y=-0.02 z=-1.14(m/s)
+Acceleration: x=-3.48 y=-0.03 z=-0.18(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-187.99 y=12.7 z=5.34(meters)
+Rotation: roll=-0.07 pitch=-2.66 yaw=-179.93(degrees)
+Velocity: x=-21.97 y=-0.03 z=-1.14(m/s)
+Acceleration: x=-3.19 y=-0.03 z=-0.16(m/s2)
+time: 93.101(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-168.06 y=9.23 z=6.39(meters)
+Rotation: roll=-0.0 pitch=-2.93 yaw=-179.9(degrees)
+Velocity: x=-14.27 y=-0.02 z=-0.74(m/s)
+Acceleration: x=-3.65 y=-0.0 z=-0.19(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-196.66 y=9.2 z=4.89(meters)
+Rotation: roll=-0.08 pitch=-2.97 yaw=-179.9(degrees)
+Velocity: x=-22.06 y=-0.04 z=-1.14(m/s)
+Acceleration: x=1.44 y=-0.05 z=0.07(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-197.3 y=12.69 z=4.86(meters)
+Rotation: roll=-0.07 pitch=-2.99 yaw=-179.9(degrees)
+Velocity: x=-22.0 y=-0.04 z=-1.14(m/s)
+Acceleration: x=1.56 y=-0.03 z=0.08(m/s2)
+time: 93.501(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-174.07 y=9.22 z=6.07(meters)
+Rotation: roll=0.01 pitch=-2.93 yaw=-179.99(degrees)
+Velocity: x=-15.71 y=-0.0 z=-0.81(m/s)
+Acceleration: x=-3.55 y=0.07 z=-0.18(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-205.33 y=9.18 z=4.45(meters)
+Rotation: roll=-0.06 pitch=-3.13 yaw=-179.92(degrees)
+Velocity: x=-21.32 y=-0.03 z=-1.11(m/s)
+Acceleration: x=1.96 y=0.03 z=0.1(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-205.96 y=12.68 z=4.41(meters)
+Rotation: roll=-0.06 pitch=-3.11 yaw=-179.92(degrees)
+Velocity: x=-21.31 y=-0.03 z=-1.1(m/s)
+Acceleration: x=1.74 y=0.03 z=0.09(m/s2)
+time: 93.901(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-180.64 y=9.22 z=5.73(meters)
+Rotation: roll=0.0 pitch=-2.93 yaw=-179.96(degrees)
+Velocity: x=-17.1 y=-0.01 z=-0.89(m/s)
+Acceleration: x=-3.4 y=-0.04 z=-0.18(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-213.81 y=9.18 z=4.01(meters)
+Rotation: roll=-0.05 pitch=-2.97 yaw=-179.97(degrees)
+Velocity: x=-21.16 y=-0.01 z=-1.1(m/s)
+Acceleration: x=0.1 y=0.05 z=0.01(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-214.43 y=12.67 z=3.97(meters)
+Rotation: roll=-0.05 pitch=-2.97 yaw=-179.97(degrees)
+Velocity: x=-21.17 y=-0.01 z=-1.1(m/s)
+Acceleration: x=0.1 y=0.04 z=0.0(m/s2)
+time: 94.301(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-187.75 y=9.21 z=5.36(meters)
+Rotation: roll=-0.01 pitch=-2.93 yaw=-179.88(degrees)
+Velocity: x=-18.43 y=-0.04 z=-0.96(m/s)
+Acceleration: x=-3.25 y=-0.08 z=-0.17(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-222.26 y=9.17 z=3.57(meters)
+Rotation: roll=-0.07 pitch=-2.88 yaw=-179.93(degrees)
+Velocity: x=-21.12 y=-0.02 z=-1.07(m/s)
+Acceleration: x=-0.13 y=-0.05 z=0.18(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-222.89 y=12.66 z=3.54(meters)
+Rotation: roll=-0.07 pitch=-2.87 yaw=-179.92(degrees)
+Velocity: x=-21.15 y=-0.03 z=-1.06(m/s)
+Acceleration: x=-0.48 y=-0.06 z=0.1(m/s2)
+time: 94.721(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-195.78 y=9.2 z=4.95(meters)
+Rotation: roll=0.0 pitch=-2.93 yaw=-179.94(degrees)
+Velocity: x=-19.77 y=-0.02 z=-1.02(m/s)
+Acceleration: x=-3.13 y=0.07 z=-0.16(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-231.25 y=9.15 z=3.12(meters)
+Rotation: roll=-0.08 pitch=-2.53 yaw=-179.86(degrees)
+Velocity: x=-21.72 y=-0.05 z=-1.03(m/s)
+Acceleration: x=-1.76 y=-0.07 z=0.11(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-231.9 y=12.64 z=3.09(meters)
+Rotation: roll=-0.08 pitch=-2.53 yaw=-179.84(degrees)
+Velocity: x=-21.75 y=-0.06 z=-1.02(m/s)
+Acceleration: x=-1.67 y=-0.07 z=0.03(m/s2)
+time: 95.101(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-203.52 y=9.19 z=4.55(meters)
+Rotation: roll=0.01 pitch=-2.93 yaw=-180.0(degrees)
+Velocity: x=-20.94 y=-0.0 z=-1.09(m/s)
+Acceleration: x=-3.05 y=0.04 z=-0.16(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-239.56 y=9.13 z=2.74(meters)
+Rotation: roll=-0.06 pitch=-2.47 yaw=-179.88(degrees)
+Velocity: x=-21.89 y=-0.05 z=-0.97(m/s)
+Acceleration: x=0.16 y=0.04 z=0.16(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-240.21 y=12.62 z=2.71(meters)
+Rotation: roll=-0.05 pitch=-2.48 yaw=-179.92(degrees)
+Velocity: x=-21.88 y=-0.04 z=-0.96(m/s)
+Acceleration: x=0.27 y=0.1 z=0.09(m/s2)
+time: 95.501(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-212.09 y=9.18 z=4.1(meters)
+Rotation: roll=-0.01 pitch=-2.94 yaw=-179.89(degrees)
+Velocity: x=-21.75 y=-0.03 z=-1.13(m/s)
+Acceleration: x=-1.23 y=-0.12 z=-0.06(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-248.27 y=9.12 z=2.36(meters)
+Rotation: roll=-0.05 pitch=-2.39 yaw=-179.93(degrees)
+Velocity: x=-21.64 y=-0.03 z=-0.89(m/s)
+Acceleration: x=0.78 y=0.05 z=0.11(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-248.92 y=12.61 z=2.34(meters)
+Rotation: roll=-0.04 pitch=-2.39 yaw=-179.99(degrees)
+Velocity: x=-21.62 y=-0.01 z=-0.89(m/s)
+Acceleration: x=0.76 y=0.06 z=0.06(m/s2)
+time: 95.901(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-220.76 y=9.17 z=3.65(meters)
+Rotation: roll=-0.01 pitch=-2.94 yaw=-179.85(degrees)
+Velocity: x=-21.32 y=-0.05 z=-1.09(m/s)
+Acceleration: x=2.62 y=-0.02 z=0.23(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-256.9 y=9.1 z=2.02(meters)
+Rotation: roll=-0.07 pitch=-2.17 yaw=-179.88(degrees)
+Velocity: x=-21.56 y=-0.04 z=-0.82(m/s)
+Acceleration: x=-0.01 y=-0.06 z=0.03(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-257.54 y=12.61 z=1.99(meters)
+Rotation: roll=-0.08 pitch=-2.17 yaw=-179.88(degrees)
+Velocity: x=-21.56 y=-0.04 z=-0.82(m/s)
+Acceleration: x=-0.05 y=-0.12 z=-0.0(m/s2)
+time: 96.321(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-229.49 y=9.15 z=3.22(meters)
+Rotation: roll=0.01 pitch=-2.78 yaw=-179.96(degrees)
+Velocity: x=-20.35 y=-0.02 z=-0.99(m/s)
+Acceleration: x=1.98 y=0.11 z=0.17(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-265.97 y=9.08 z=1.68(meters)
+Rotation: roll=-0.08 pitch=-1.97 yaw=-179.81(degrees)
+Velocity: x=-21.64 y=-0.07 z=-0.76(m/s)
+Acceleration: x=-0.26 y=-0.07 z=-0.03(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-266.62 y=12.58 z=1.66(meters)
+Rotation: roll=-0.09 pitch=-1.97 yaw=-179.79(degrees)
+Velocity: x=-21.64 y=-0.07 z=-0.76(m/s)
+Acceleration: x=-0.25 y=-0.07 z=-0.04(m/s2)
+time: 96.721(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-237.58 y=9.14 z=2.84(meters)
+Rotation: roll=0.0 pitch=-2.58 yaw=-179.97(degrees)
+Velocity: x=-20.32 y=-0.01 z=-0.92(m/s)
+Acceleration: x=-1.38 y=-0.01 z=-0.01(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-274.63 y=9.06 z=1.39(meters)
+Rotation: roll=-0.06 pitch=-1.81 yaw=-179.86(degrees)
+Velocity: x=-21.67 y=-0.06 z=-0.7(m/s)
+Acceleration: x=0.01 y=0.07 z=-0.03(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-275.28 y=12.56 z=1.37(meters)
+Rotation: roll=-0.04 pitch=-1.82 yaw=-179.93(degrees)
+Velocity: x=-21.66 y=-0.03 z=-0.7(m/s)
+Acceleration: x=0.02 y=0.16 z=-0.04(m/s2)
+time: 97.121(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-245.86 y=9.13 z=2.47(meters)
+Rotation: roll=-0.01 pitch=-2.37 yaw=-179.78(degrees)
+Velocity: x=-21.12 y=-0.07 z=-0.9(m/s)
+Acceleration: x=-2.38 y=-0.2 z=-0.06(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-283.29 y=9.04 z=1.13(meters)
+Rotation: roll=-0.04 pitch=-1.66 yaw=-179.95(degrees)
+Velocity: x=-21.62 y=-0.02 z=-0.64(m/s)
+Acceleration: x=0.15 y=0.08 z=-0.04(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-283.94 y=12.55 z=1.11(meters)
+Rotation: roll=-0.04 pitch=-1.66 yaw=179.98(degrees)
+Velocity: x=-21.62 y=0.0 z=-0.63(m/s)
+Acceleration: x=0.15 y=0.07 z=0.59(m/s2)
+time: 97.521(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-254.44 y=9.1 z=2.12(meters)
+Rotation: roll=-0.0 pitch=-2.19 yaw=-179.82(degrees)
+Velocity: x=-21.61 y=-0.07 z=-0.84(m/s)
+Acceleration: x=-0.28 y=0.08 z=0.5(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-291.94 y=9.03 z=0.89(meters)
+Rotation: roll=-0.07 pitch=-1.48 yaw=-179.9(degrees)
+Velocity: x=-21.61 y=-0.03 z=-0.56(m/s)
+Acceleration: x=0.0 y=-0.06 z=0.54(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-292.58 y=12.55 z=0.88(meters)
+Rotation: roll=-0.09 pitch=-1.45 yaw=-179.88(degrees)
+Velocity: x=-21.61 y=-0.04 z=-0.55(m/s)
+Acceleration: x=-0.0 y=-0.17 z=0.44(m/s2)
+time: 97.961(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-263.85 y=9.08 z=1.77(meters)
+Rotation: roll=0.01 pitch=-2.05 yaw=179.97(degrees)
+Velocity: x=-20.94 y=0.0 z=-0.74(m/s)
+Acceleration: x=2.56 y=0.19 z=0.22(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-301.45 y=9.01 z=0.67(meters)
+Rotation: roll=-0.08 pitch=-1.23 yaw=-179.85(degrees)
+Velocity: x=-21.61 y=-0.06 z=-0.47(m/s)
+Acceleration: x=0.01 y=-0.04 z=0.26(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-302.09 y=12.52 z=0.65(meters)
+Rotation: roll=-0.09 pitch=-1.19 yaw=-179.79(degrees)
+Velocity: x=-21.61 y=-0.08 z=-0.47(m/s)
+Acceleration: x=0.01 y=-0.06 z=0.16(m/s2)
+time: 98.361(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-272.08 y=9.08 z=1.49(meters)
+Rotation: roll=-0.01 pitch=-1.87 yaw=-179.86(degrees)
+Velocity: x=-20.38 y=-0.04 z=-0.66(m/s)
+Acceleration: x=0.39 y=-0.2 z=0.1(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-310.09 y=8.99 z=0.49(meters)
+Rotation: roll=-0.04 pitch=-1.02 yaw=-179.97(degrees)
+Velocity: x=-21.61 y=-0.02 z=-0.4(m/s)
+Acceleration: x=0.01 y=0.13 z=0.17(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-310.74 y=12.5 z=0.47(meters)
+Rotation: roll=-0.01 pitch=-0.99 yaw=179.96(degrees)
+Velocity: x=-21.61 y=0.0 z=-0.39(m/s)
+Acceleration: x=0.01 y=0.28 z=0.35(m/s2)
+time: 98.781(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-280.69 y=9.04 z=1.22(meters)
+Rotation: roll=-0.02 pitch=-1.68 yaw=-179.62(degrees)
+Velocity: x=-20.8 y=-0.13 z=-0.61(m/s)
+Acceleration: x=-1.85 y=-0.21 z=-0.02(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-319.17 y=8.99 z=0.33(meters)
+Rotation: roll=-0.03 pitch=-0.81 yaw=179.91(degrees)
+Velocity: x=-21.6 y=0.03 z=-0.33(m/s)
+Acceleration: x=0.06 y=0.11 z=0.27(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-319.82 y=12.52 z=0.32(meters)
+Rotation: roll=-0.03 pitch=-0.8 yaw=179.84(degrees)
+Velocity: x=-21.59 y=0.05 z=-0.32(m/s)
+Acceleration: x=0.06 y=0.08 z=0.16(m/s2)
+time: 99.201(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-289.59 y=9.01 z=0.96(meters)
+Rotation: roll=0.02 pitch=-1.5 yaw=179.95(degrees)
+Velocity: x=-21.51 y=-0.0 z=-0.57(m/s)
+Acceleration: x=-1.55 y=0.46 z=-0.04(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-328.24 y=9.0 z=0.2(meters)
+Rotation: roll=-0.07 pitch=-0.62 yaw=179.97(degrees)
+Velocity: x=-21.59 y=0.01 z=-0.26(m/s)
+Acceleration: x=-0.0 y=-0.08 z=0.11(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-328.89 y=12.52 z=0.19(meters)
+Rotation: roll=-0.12 pitch=-0.62 yaw=-179.87(degrees)
+Velocity: x=-21.59 y=-0.04 z=-0.25(m/s)
+Acceleration: x=-0.0 y=-0.31 z=0.05(m/s2)
+time: 99.681(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-299.91 y=9.03 z=0.71(meters)
+Rotation: roll=0.01 pitch=-1.35 yaw=179.87(degrees)
+Velocity: x=-21.2 y=0.05 z=-0.48(m/s)
+Acceleration: x=2.04 y=-0.02 z=0.55(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-338.6 y=9.01 z=0.09(meters)
+Rotation: roll=-0.06 pitch=-0.45 yaw=179.98(degrees)
+Velocity: x=-21.58 y=0.01 z=-0.19(m/s)
+Acceleration: x=0.04 y=0.01 z=-0.02(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-339.25 y=12.5 z=0.09(meters)
+Rotation: roll=-0.07 pitch=-0.46 yaw=-179.84(degrees)
+Velocity: x=-21.58 y=-0.06 z=-0.19(m/s)
+Acceleration: x=0.03 y=0.03 z=-0.04(m/s2)
+time: 100.121(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-309.07 y=9.02 z=0.52(meters)
+Rotation: roll=-0.03 pitch=-1.13 yaw=-179.61(degrees)
+Velocity: x=-20.49 y=-0.12 z=-0.39(m/s)
+Acceleration: x=1.29 y=-0.48 z=0.19(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-348.1 y=9.03 z=0.04(meters)
+Rotation: roll=-0.02 pitch=-0.16 yaw=179.74(degrees)
+Velocity: x=-21.57 y=0.09 z=-0.08(m/s)
+Acceleration: x=0.01 y=0.23 z=-0.06(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-348.74 y=12.5 z=0.04(meters)
+Rotation: roll=0.04 pitch=-0.17 yaw=179.65(degrees)
+Velocity: x=-21.57 y=0.11 z=-0.08(m/s)
+Acceleration: x=0.01 y=0.49 z=-0.07(m/s2)
+time: 100.541(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-317.66 y=8.97 z=0.36(meters)
+Rotation: roll=0.0 pitch=-0.91 yaw=-179.81(degrees)
+Velocity: x=-20.63 y=-0.08 z=-0.33(m/s)
+Acceleration: x=-1.49 y=0.27 z=0.06(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-357.16 y=9.07 z=0.0(meters)
+Rotation: roll=-0.04 pitch=-0.18 yaw=179.64(degrees)
+Velocity: x=-21.57 y=0.13 z=-0.09(m/s)
+Acceleration: x=0.01 y=0.07 z=-0.0(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-357.8 y=12.55 z=0.0(meters)
+Rotation: roll=-0.07 pitch=-0.18 yaw=179.72(degrees)
+Velocity: x=-21.57 y=0.11 z=-0.09(m/s)
+Acceleration: x=-0.0 y=-0.16 z=-0.0(m/s2)
+time: 100.981(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-326.92 y=8.99 z=0.23(meters)
+Rotation: roll=0.05 pitch=-0.66 yaw=179.22(degrees)
+Velocity: x=-21.48 y=0.24 z=-0.27(m/s)
+Acceleration: x=-2.15 y=0.92 z=0.42(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-366.65 y=9.12 z=-0.01(meters)
+Rotation: roll=-0.07 pitch=0.04 yaw=179.8(degrees)
+Velocity: x=-21.57 y=0.08 z=-0.01(m/s)
+Acceleration: x=-0.0 y=-0.16 z=-0.06(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-367.29 y=12.57 z=-0.01(meters)
+Rotation: roll=-0.14 pitch=0.03 yaw=-179.78(degrees)
+Velocity: x=-21.57 y=-0.06 z=-0.01(m/s)
+Acceleration: x=0.0 y=-0.46 z=-0.08(m/s2)
+time: 101.441(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-336.87 y=9.06 z=0.12(meters)
+Rotation: roll=-0.04 pitch=-0.52 yaw=-179.72(degrees)
+Velocity: x=-21.44 y=-0.05 z=-0.19(m/s)
+Acceleration: x=1.73 y=-1.13 z=0.07(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-376.57 y=9.16 z=-0.02(meters)
+Rotation: roll=-0.05 pitch=0.05 yaw=179.8(degrees)
+Velocity: x=-21.56 y=0.07 z=-0.0(m/s)
+Acceleration: x=0.03 y=0.03 z=0.1(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-377.21 y=12.56 z=-0.01(meters)
+Rotation: roll=0.04 pitch=0.03 yaw=179.75(degrees)
+Velocity: x=-21.56 y=0.07 z=-0.01(m/s)
+Acceleration: x=0.03 y=0.55 z=0.14(m/s2)
+time: 101.861(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-345.69 y=9.01 z=0.06(meters)
+Rotation: roll=-0.02 pitch=-0.25 yaw=-179.43(degrees)
+Velocity: x=-20.55 y=-0.19 z=-0.08(m/s)
+Acceleration: x=2.25 y=-0.06 z=0.02(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-385.62 y=9.2 z=-0.01(meters)
+Rotation: roll=-0.02 pitch=0.1 yaw=179.59(degrees)
+Velocity: x=-21.56 y=0.14 z=0.01(m/s)
+Acceleration: x=-0.03 y=0.21 z=-0.01(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-386.27 y=12.63 z=-0.01(meters)
+Rotation: roll=0.07 pitch=0.1 yaw=179.17(degrees)
+Velocity: x=-21.56 y=0.28 z=0.01(m/s)
+Acceleration: x=-0.02 y=0.5 z=-0.01(m/s2)
+time: 102.341(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-355.46 y=9.03 z=0.02(meters)
+Rotation: roll=0.07 pitch=-0.24 yaw=178.69(degrees)
+Velocity: x=-20.47 y=0.39 z=-0.09(m/s)
+Acceleration: x=-1.32 y=1.63 z=-0.01(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-395.98 y=9.26 z=-0.01(meters)
+Rotation: roll=-0.1 pitch=0.07 yaw=179.78(degrees)
+Velocity: x=-21.56 y=0.09 z=0.0(m/s)
+Acceleration: x=0.01 y=-0.22 z=-0.03(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-396.62 y=12.74 z=-0.01(meters)
+Rotation: roll=-0.15 pitch=0.07 yaw=179.68(degrees)
+Velocity: x=-21.56 y=0.15 z=0.0(m/s)
+Acceleration: x=0.01 y=-0.54 z=-0.04(m/s2)
+time: 102.841(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-365.93 y=9.2 z=-0.0(meters)
+Rotation: roll=-0.02 pitch=-0.01 yaw=179.84(degrees)
+Velocity: x=-21.45 y=0.13 z=-0.01(m/s)
+Acceleration: x=-2.26 y=-1.25 z=-0.05(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-406.76 y=9.27 z=-0.01(meters)
+Rotation: roll=-0.14 pitch=0.07 yaw=-179.78(degrees)
+Velocity: x=-21.57 y=-0.07 z=-0.0(m/s)
+Acceleration: x=-0.02 y=-0.34 z=0.0(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-407.4 y=12.79 z=-0.01(meters)
+Rotation: roll=-0.11 pitch=0.07 yaw=179.95(degrees)
+Velocity: x=-21.57 y=0.03 z=-0.0(m/s)
+Acceleration: x=-0.03 y=-0.14 z=0.0(m/s2)
+time: 103.301(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-375.87 y=9.14 z=-0.01(meters)
+Rotation: roll=-0.04 pitch=-0.02 yaw=-178.79(degrees)
+Velocity: x=-21.47 y=-0.38 z=-0.0(m/s)
+Acceleration: x=1.61 y=-1.02 z=0.07(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-416.68 y=9.27 z=-0.01(meters)
+Rotation: roll=0.04 pitch=0.07 yaw=179.64(degrees)
+Velocity: x=-21.56 y=0.11 z=0.0(m/s)
+Acceleration: x=0.03 y=0.61 z=-0.0(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-417.32 y=12.87 z=-0.01(meters)
+Rotation: roll=0.17 pitch=0.07 yaw=178.71(degrees)
+Velocity: x=-21.56 y=0.42 z=-0.0(m/s)
+Acceleration: x=0.06 y=1.19 z=-0.0(m/s2)
+time: 103.761(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-385.53 y=9.1 z=-0.0(meters)
+Rotation: roll=0.1 pitch=0.0 yaw=178.53(degrees)
+Velocity: x=-20.48 y=0.39 z=0.01(m/s)
+Acceleration: x=2.45 y=2.52 z=-0.01(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-426.59 y=9.48 z=-0.01(meters)
+Rotation: roll=0.42 pitch=0.07 yaw=177.14(degrees)
+Velocity: x=-21.54 y=0.96 z=-0.0(m/s)
+Acceleration: x=0.1 y=2.26 z=0.0(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-427.23 y=13.11 z=-0.01(meters)
+Rotation: roll=0.02 pitch=0.07 yaw=178.35(degrees)
+Velocity: x=-21.56 y=0.61 z=0.0(m/s)
+Acceleration: x=-0.03 y=0.14 z=-0.0(m/s2)
+time: 104.201(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-394.44 y=9.34 z=0.0(meters)
+Rotation: roll=0.02 pitch=0.02 yaw=178.36(degrees)
+Velocity: x=-20.31 y=0.57 z=0.0(m/s)
+Acceleration: x=-1.18 y=-0.26 z=-0.04(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-436.04 y=10.25 z=-0.01(meters)
+Rotation: roll=1.03 pitch=0.07 yaw=171.77(degrees)
+Velocity: x=-21.33 y=2.8 z=-0.0(m/s)
+Acceleration: x=0.76 y=4.85 z=0.0(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-436.69 y=13.7 z=-0.01(meters)
+Rotation: roll=1.03 pitch=0.06 yaw=172.75(degrees)
+Velocity: x=-21.37 y=2.41 z=-0.0(m/s)
+Acceleration: x=0.81 y=5.41 z=-0.0(m/s2)
+time: 104.721(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-405.22 y=9.27 z=0.0(meters)
+Rotation: roll=-0.19 pitch=0.03 yaw=-176.22(degrees)
+Velocity: x=-21.2 y=-1.14 z=-0.0(m/s)
+Acceleration: x=-1.88 y=-4.41 z=0.0(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-446.98 y=12.46 z=-0.01(meters)
+Rotation: roll=1.57 pitch=0.08 yaw=162.66(degrees)
+Velocity: x=-20.61 y=5.99 z=-0.0(m/s)
+Acceleration: x=1.95 y=6.47 z=0.0(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-447.52 y=16.09 z=-0.01(meters)
+Rotation: roll=2.65 pitch=0.06 yaw=157.25(degrees)
+Velocity: x=-19.88 y=7.4 z=-0.0(m/s)
+Acceleration: x=4.71 y=10.71 z=0.0(m/s2)
+time: 105.161(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-414.66 y=8.96 z=0.0(meters)
+Rotation: roll=0.19 pitch=0.01 yaw=178.35(degrees)
+Velocity: x=-21.48 y=0.29 z=-0.0(m/s)
+Acceleration: x=0.81 y=5.95 z=0.0(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-455.9 y=15.56 z=-0.01(meters)
+Rotation: roll=1.27 pitch=0.09 yaw=156.72(degrees)
+Velocity: x=-19.89 y=8.23 z=0.0(m/s)
+Acceleration: x=1.63 y=4.52 z=-0.0(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-456.09 y=19.91 z=-0.01(meters)
+Rotation: roll=1.2 pitch=0.16 yaw=152.51(degrees)
+Velocity: x=-19.21 y=9.75 z=0.0(m/s)
+Acceleration: x=0.19 y=2.85 z=-0.0(m/s2)
+time: 105.621(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-424.37 y=9.54 z=0.0(meters)
+Rotation: roll=0.23 pitch=-0.02 yaw=173.11(degrees)
+Velocity: x=-20.57 y=2.22 z=0.0(m/s)
+Acceleration: x=2.66 y=3.4 z=0.0(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-464.89 y=19.75 z=-0.01(meters)
+Rotation: roll=1.04 pitch=0.08 yaw=151.49(degrees)
+Velocity: x=-19.07 y=10.07 z=0.0(m/s)
+Acceleration: x=1.93 y=3.78 z=-0.0(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-465.07 y=24.2 z=-0.01(meters)
+Rotation: roll=-0.93 pitch=0.09 yaw=157.66(degrees)
+Velocity: x=-19.94 y=8.51 z=-0.0(m/s)
+Acceleration: x=-1.95 y=-4.61 z=-0.0(m/s2)
+time: 106.101(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-434.14 y=10.34 z=0.0(meters)
+Rotation: roll=-0.2 pitch=0.0 yaw=179.11(degrees)
+Velocity: x=-20.42 y=0.59 z=-0.0(m/s)
+Acceleration: x=-0.84 y=-5.57 z=0.0(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-473.73 y=25.09 z=-0.01(meters)
+Rotation: roll=1.46 pitch=0.06 yaw=143.64(degrees)
+Velocity: x=-17.53 y=12.41 z=-0.0(m/s)
+Acceleration: x=3.92 y=5.09 z=0.0(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-474.27 y=28.87 z=-0.01(meters)
+Rotation: roll=2.39 pitch=0.02 yaw=143.6(degrees)
+Velocity: x=-17.63 y=11.84 z=-0.0(m/s)
+Acceleration: x=8.48 y=9.85 z=-0.0(m/s2)
+time: 106.561(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-443.62 y=11.07 z=0.0(meters)
+Rotation: roll=0.37 pitch=0.02 yaw=168.53(degrees)
+Velocity: x=-20.67 y=3.54 z=-0.0(m/s)
+Acceleration: x=0.54 y=10.72 z=-0.0(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-481.41 y=31.28 z=-0.01(meters)
+Rotation: roll=1.52 pitch=0.09 yaw=135.97(degrees)
+Velocity: x=-15.71 y=14.65 z=0.0(m/s)
+Acceleration: x=4.13 y=4.61 z=0.0(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-481.38 y=35.32 z=-0.01(meters)
+Rotation: roll=3.87 pitch=0.08 yaw=123.75(degrees)
+Velocity: x=-12.63 y=16.48 z=-0.0(m/s)
+Acceleration: x=12.69 y=8.92 z=0.0(m/s2)
+time: 107.021(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-452.7 y=14.11 z=0.0(meters)
+Rotation: roll=0.88 pitch=0.01 yaw=145.87(degrees)
+Velocity: x=-17.99 y=10.17 z=-0.0(m/s)
+Acceleration: x=10.13 y=14.75 z=0.0(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-488.34 y=38.34 z=-0.01(meters)
+Rotation: roll=0.97 pitch=0.09 yaw=131.28(degrees)
+Velocity: x=-14.39 y=16.08 z=0.0(m/s)
+Acceleration: x=2.42 y=2.5 z=-0.0(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-486.83 y=43.39 z=-0.01(meters)
+Rotation: roll=0.45 pitch=0.31 yaw=123.21(degrees)
+Velocity: x=-11.86 y=18.2 z=0.0(m/s)
+Acceleration: x=-3.65 y=0.69 z=-0.01(m/s2)
+time: 107.521(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-461.64 y=19.52 z=0.0(meters)
+Rotation: roll=-0.23 pitch=0.03 yaw=154.66(degrees)
+Velocity: x=-18.88 y=9.66 z=-0.0(m/s)
+Acceleration: x=-6.18 y=-10.03 z=-0.0(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-495.14 y=46.71 z=-0.01(meters)
+Rotation: roll=1.14 pitch=0.06 yaw=124.92(degrees)
+Velocity: x=-12.58 y=17.49 z=-0.0(m/s)
+Acceleration: x=4.18 y=2.81 z=0.0(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-493.65 y=51.82 z=-0.01(meters)
+Rotation: roll=-3.09 pitch=0.03 yaw=140.6(degrees)
+Velocity: x=-15.8 y=14.49 z=-0.0(m/s)
+Acceleration: x=-8.01 y=-11.42 z=0.0(m/s2)
+time: 108.021(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-471.57 y=23.26 z=0.0(meters)
+Rotation: roll=-0.53 pitch=0.01 yaw=168.39(degrees)
+Velocity: x=-20.55 y=5.01 z=0.0(m/s)
+Acceleration: x=-1.22 y=-9.05 z=-0.0(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-500.89 y=55.63 z=-0.01(meters)
+Rotation: roll=-4.25 pitch=-0.87 yaw=125.97(degrees)
+Velocity: x=-12.24 y=15.84 z=-0.11(m/s)
+Acceleration: x=9.79 y=6.75 z=2.76(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -3
+location: x=-501.09 y=59.37 z=-0.01(meters)
+Rotation: roll=3.15 pitch=0.08 yaw=120.8(degrees)
+Velocity: x=-12.01 y=17.07 z=-0.01(m/s)
+Acceleration: x=16.28 y=8.48 z=-0.02(m/s2)
+time: 108.561(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -4
+location: x=-481.68 y=27.27 z=0.0(meters)
+Rotation: roll=1.07 pitch=-0.02 yaw=133.14(degrees)
+Velocity: x=-14.73 y=11.73 z=-0.0(m/s)
+Acceleration: x=20.75 y=14.59 z=0.0(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-507.05 y=64.68 z=-0.01(meters)
+Rotation: roll=2.71 pitch=0.29 yaw=112.78(degrees)
+Velocity: x=-9.03 y=18.55 z=-0.0(m/s)
+Acceleration: x=14.78 y=8.02 z=-0.07(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -3
+location: x=-504.75 y=69.14 z=-0.01(meters)
+Rotation: roll=6.42 pitch=0.11 yaw=78.66(degrees)
+Velocity: x=-0.11 y=18.06 z=-0.06(m/s)
+Acceleration: x=24.42 y=-6.04 z=0.57(m/s2)
+time: 109.141(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-486.32 y=35.38 z=0.0(meters)
+Rotation: roll=1.55 pitch=-0.01 yaw=77.31(degrees)
+Velocity: x=-0.02 y=14.41 z=-0.0(m/s)
+Acceleration: x=25.98 y=-6.19 z=0.0(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-509.08 y=75.92 z=-0.01(meters)
+Rotation: roll=6.41 pitch=0.05 yaw=71.3(degrees)
+Velocity: x=3.25 y=18.8 z=-0.05(m/s)
+Acceleration: x=19.79 y=-7.03 z=-0.72(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -1
+location: x=-502.56 y=79.55 z=-0.01(meters)
+Rotation: roll=0.8 pitch=0.44 yaw=74.25(degrees)
+Velocity: x=5.31 y=18.56 z=0.01(m/s)
+Acceleration: x=-2.87 y=4.37 z=-0.08(m/s2)
+time: 109.701(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -1
+location: x=-485.63 y=43.4 z=0.0(meters)
+Rotation: roll=-0.73 pitch=0.04 yaw=102.7(degrees)
+Velocity: x=-2.95 y=13.92 z=-0.0(m/s)
+Acceleration: x=-22.49 y=-7.77 z=-0.0(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -2
+location: x=-506.5 y=86.68 z=-0.01(meters)
+Rotation: roll=-2.48 pitch=0.43 yaw=87.15(degrees)
+Velocity: x=2.18 y=20.24 z=-0.0(m/s)
+Acceleration: x=-16.79 y=2.63 z=-0.05(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -1
+location: x=-502.12 y=89.95 z=-0.01(meters)
+Rotation: roll=-6.51 pitch=-0.04 yaw=117.41(degrees)
+Velocity: x=-5.54 y=16.88 z=-0.05(m/s)
+Acceleration: x=-17.57 y=-11.31 z=-1.13(m/s2)
+time: 110.241(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -1
+location: x=-489.51 y=48.57 z=0.0(meters)
+Rotation: roll=-1.45 pitch=-0.04 yaw=168.13(degrees)
+Velocity: x=-10.25 y=3.08 z=-0.0(m/s)
+Acceleration: x=-1.89 y=-25.44 z=0.0(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -3
+location: x=-508.76 y=95.79 z=0.19(meters)
+Rotation: roll=-15.74 pitch=2.21 yaw=141.27(degrees)
+Velocity: x=-11.56 y=10.17 z=0.5(m/s)
+Acceleration: x=-5.8 y=-8.0 z=-4.94(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-507.52 y=97.91 z=-0.05(meters)
+Rotation: roll=0.25 pitch=0.97 yaw=129.84(degrees)
+Velocity: x=-13.8 y=14.51 z=0.06(m/s)
+Acceleration: x=-5.36 y=-0.75 z=2.15(m/s2)
+time: 110.741(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-495.28 y=48.83 z=0.0(meters)
+Rotation: roll=-0.2 pitch=0.07 yaw=-178.35(degrees)
+Velocity: x=-12.97 y=-0.09 z=0.0(m/s)
+Acceleration: x=-5.21 y=3.25 z=-0.0(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-514.72 y=100.49 z=0.01(meters)
+Rotation: roll=-3.8 pitch=1.84 yaw=147.79(degrees)
+Velocity: x=-12.16 y=8.71 z=-1.31(m/s)
+Acceleration: x=3.43 y=1.55 z=-4.5(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -4
+location: x=-512.69 y=106.19 z=-0.01(meters)
+Rotation: roll=6.04 pitch=-0.07 yaw=97.84(degrees)
+Velocity: x=-4.81 y=18.22 z=-0.0(m/s)
+Acceleration: x=23.79 y=1.47 z=-0.07(m/s2)
+time: 111.201(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -4
+location: x=-501.0 y=50.23 z=0.0(meters)
+Rotation: roll=1.02 pitch=0.0 yaw=145.29(degrees)
+Velocity: x=-10.13 y=7.49 z=-0.0(m/s)
+Acceleration: x=15.36 y=17.0 z=0.0(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-516.02 y=102.83 z=-0.02(meters)
+Rotation: roll=-1.86 pitch=1.03 yaw=145.11(degrees)
+Velocity: x=-1.75 y=3.09 z=0.03(m/s)
+Acceleration: x=-6.38 y=7.17 z=-0.28(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -4
+location: x=-512.81 y=114.01 z=-0.01(meters)
+Rotation: roll=6.36 pitch=0.03 yaw=59.95(degrees)
+Velocity: x=5.15 y=14.61 z=-0.06(m/s)
+Acceleration: x=19.57 y=-14.43 z=0.68(m/s2)
+time: 111.761(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -4
+location: x=-503.69 y=55.83 z=0.0(meters)
+Rotation: roll=1.36 pitch=-0.03 yaw=78.86(degrees)
+Velocity: x=2.21 y=10.64 z=-0.0(m/s)
+Acceleration: x=22.95 y=-6.82 z=0.0(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-516.11 y=103.24 z=-0.0(meters)
+Rotation: roll=-0.67 pitch=0.76 yaw=146.17(degrees)
+Velocity: x=-0.0 y=0.04 z=0.0(m/s)
+Acceleration: x=-0.01 y=0.06 z=-0.02(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-507.47 y=120.63 z=-0.01(meters)
+Rotation: roll=4.61 pitch=0.29 yaw=31.97(degrees)
+Velocity: x=13.49 y=8.57 z=0.01(m/s)
+Acceleration: x=10.08 y=-10.99 z=-0.04(m/s2)
+time: 112.301(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-501.52 y=61.97 z=0.0(meters)
+Rotation: roll=-0.03 pitch=0.06 yaw=71.28(degrees)
+Velocity: x=4.04 y=12.76 z=-0.0(m/s)
+Acceleration: x=-4.01 y=5.76 z=-0.0(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-516.11 y=103.24 z=-0.0(meters)
+Rotation: roll=-0.49 pitch=0.34 yaw=146.28(degrees)
+Velocity: x=-0.0 y=-0.02 z=-0.02(m/s)
+Acceleration: x=0.02 y=-0.02 z=0.02(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -1
+location: x=-501.04 y=126.35 z=-0.01(meters)
+Rotation: roll=-5.4 pitch=0.01 yaw=65.74(degrees)
+Velocity: x=7.28 y=13.75 z=-0.01(m/s)
+Acceleration: x=-22.14 y=7.61 z=0.01(m/s2)
+time: 112.861(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -2
+location: x=-501.7 y=69.11 z=0.0(meters)
+Rotation: roll=-1.18 pitch=-0.02 yaw=120.65(degrees)
+Velocity: x=-6.35 y=10.6 z=-0.0(m/s)
+Acceleration: x=-18.78 y=-14.74 z=0.0(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-516.1 y=103.26 z=-0.01(meters)
+Rotation: roll=0.08 pitch=0.42 yaw=146.44(degrees)
+Velocity: x=0.0 y=0.05 z=-0.0(m/s)
+Acceleration: x=0.22 y=-0.02 z=0.01(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -1
+location: x=-500.33 y=133.59 z=-0.01(meters)
+Rotation: roll=-5.66 pitch=-0.33 yaw=108.05(degrees)
+Velocity: x=-5.09 y=11.09 z=0.01(m/s)
+Acceleration: x=-18.29 y=-8.5 z=0.07(m/s2)
+time: 113.461(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -3
+location: x=-507.81 y=73.19 z=0.0(meters)
+Rotation: roll=-1.05 pitch=0.02 yaw=172.54(degrees)
+Velocity: x=-13.04 y=1.64 z=0.0(m/s)
+Acceleration: x=-4.21 y=-17.24 z=-0.0(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-516.1 y=103.29 z=-0.01(meters)
+Rotation: roll=0.2 pitch=0.45 yaw=146.73(degrees)
+Velocity: x=-0.0 y=0.06 z=-0.0(m/s)
+Acceleration: x=-0.03 y=0.07 z=-0.02(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-505.58 y=138.92 z=-0.01(meters)
+Rotation: roll=-4.94 pitch=0.1 yaw=159.59(degrees)
+Velocity: x=-12.6 y=4.45 z=-0.0(m/s)
+Acceleration: x=-7.37 y=-16.82 z=0.0(m/s2)
+time: 113.941(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -4
+location: x=-512.52 y=74.26 z=-0.04(meters)
+Rotation: roll=-0.4 pitch=0.83 yaw=167.37(degrees)
+Velocity: x=-0.69 y=1.11 z=0.02(m/s)
+Acceleration: x=-21.32 y=-13.91 z=3.11(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-516.1 y=103.31 z=-0.01(meters)
+Rotation: roll=0.22 pitch=0.45 yaw=146.94(degrees)
+Velocity: x=-0.0 y=0.06 z=0.0(m/s)
+Acceleration: x=-0.04 y=0.84 z=0.02(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -3
+location: x=-511.44 y=141.77 z=-0.01(meters)
+Rotation: roll=4.14 pitch=0.07 yaw=137.37(degrees)
+Velocity: x=-9.65 y=9.46 z=-0.01(m/s)
+Acceleration: x=16.2 y=14.26 z=-0.01(m/s2)
+time: 114.461(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -4
+location: x=-512.7 y=74.5 z=-0.0(meters)
+Rotation: roll=0.45 pitch=0.25 yaw=165.16(degrees)
+Velocity: x=-0.0 y=0.06 z=0.01(m/s)
+Acceleration: x=-0.01 y=-0.01 z=-0.08(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-516.1 y=103.31 z=-0.01(meters)
+Rotation: roll=-0.13 pitch=0.1 yaw=146.99(degrees)
+Velocity: x=0.0 y=0.01 z=0.0(m/s)
+Acceleration: x=-0.0 y=0.71 z=0.05(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -4
+location: x=-513.99 y=147.43 z=-0.01(meters)
+Rotation: roll=6.24 pitch=0.01 yaw=76.36(degrees)
+Velocity: x=1.75 y=10.98 z=-0.01(m/s)
+Acceleration: x=23.15 y=-8.94 z=-0.24(m/s2)
+time: 114.981(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -4
+location: x=-512.7 y=74.52 z=0.0(meters)
+Rotation: roll=0.47 pitch=0.17 yaw=165.67(degrees)
+Velocity: x=-0.0 y=0.02 z=0.0(m/s)
+Acceleration: x=-0.03 y=-0.09 z=-0.04(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-516.1 y=103.35 z=-0.01(meters)
+Rotation: roll=0.49 pitch=0.41 yaw=147.39(degrees)
+Velocity: x=0.0 y=0.04 z=-0.0(m/s)
+Acceleration: x=0.15 y=-2.0 z=-0.08(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -3
+location: x=-510.99 y=151.69 z=-0.01(meters)
+Rotation: roll=5.77 pitch=0.0 yaw=25.9(degrees)
+Velocity: x=9.85 y=3.78 z=-0.01(m/s)
+Acceleration: x=8.4 y=-16.98 z=-0.02(m/s2)
+time: 115.501(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -4
+location: x=-512.7 y=74.54 z=-0.0(meters)
+Rotation: roll=0.46 pitch=0.21 yaw=166.01(degrees)
+Velocity: x=-0.0 y=0.02 z=-0.0(m/s)
+Acceleration: x=-0.07 y=-0.29 z=0.09(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-516.09 y=103.39 z=-0.01(meters)
+Rotation: roll=0.59 pitch=0.45 yaw=147.83(degrees)
+Velocity: x=-0.0 y=0.08 z=-0.0(m/s)
+Acceleration: x=-0.04 y=-0.21 z=-0.17(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-505.83 y=154.47 z=-0.01(meters)
+Rotation: roll=-3.13 pitch=0.27 yaw=40.9(degrees)
+Velocity: x=8.46 y=8.48 z=-0.01(m/s)
+Acceleration: x=-9.08 y=12.43 z=0.01(m/s2)
+time: 116.001(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -4
+location: x=-512.7 y=74.55 z=-0.0(meters)
+Rotation: roll=0.41 pitch=0.22 yaw=166.31(degrees)
+Velocity: x=0.0 y=0.02 z=0.0(m/s)
+Acceleration: x=-0.02 y=-0.15 z=0.04(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-516.09 y=103.42 z=-0.01(meters)
+Rotation: roll=0.45 pitch=0.5 yaw=148.1(degrees)
+Velocity: x=0.0 y=0.02 z=0.01(m/s)
+Acceleration: x=-0.06 y=-0.05 z=0.2(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -1
+location: x=-503.52 y=159.58 z=-0.01(meters)
+Rotation: roll=-5.93 pitch=-0.19 yaw=93.11(degrees)
+Velocity: x=-1.14 y=11.26 z=-0.02(m/s)
+Acceleration: x=-21.74 y=-3.82 z=0.02(m/s2)
+time: 116.541(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -4
+location: x=-512.7 y=74.57 z=-0.0(meters)
+Rotation: roll=0.39 pitch=0.22 yaw=166.64(degrees)
+Velocity: x=0.0 y=0.02 z=0.0(m/s)
+Acceleration: x=0.18 y=-0.06 z=0.0(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-516.09 y=103.43 z=-0.01(meters)
+Rotation: roll=0.1 pitch=0.12 yaw=148.2(degrees)
+Velocity: x=-0.0 y=0.06 z=-0.02(m/s)
+Acceleration: x=-0.2 y=0.37 z=-0.24(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-506.39 y=164.86 z=-0.01(meters)
+Rotation: roll=-5.31 pitch=0.02 yaw=143.93(degrees)
+Velocity: x=-9.99 y=6.52 z=0.0(m/s)
+Acceleration: x=-11.31 y=-14.35 z=-0.01(m/s2)
+time: 117.141(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -4
+location: x=-512.7 y=74.58 z=-0.0(meters)
+Rotation: roll=0.38 pitch=0.21 yaw=167.01(degrees)
+Velocity: x=0.0 y=0.02 z=-0.0(m/s)
+Acceleration: x=-0.01 y=-0.54 z=-0.03(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-516.09 y=103.49 z=-0.02(meters)
+Rotation: roll=0.72 pitch=0.72 yaw=148.77(degrees)
+Velocity: x=0.0 y=0.1 z=0.0(m/s)
+Acceleration: x=0.06 y=-0.07 z=0.0(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -3
+location: x=-511.64 y=169.94 z=-0.01(meters)
+Rotation: roll=4.75 pitch=0.04 yaw=112.72(degrees)
+Velocity: x=-4.25 y=11.65 z=-0.01(m/s)
+Acceleration: x=19.85 y=6.71 z=0.02(m/s2)
+time: 117.661(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -4
+location: x=-512.7 y=74.59 z=-0.0(meters)
+Rotation: roll=0.33 pitch=0.2 yaw=167.27(degrees)
+Velocity: x=0.0 y=0.03 z=-0.0(m/s)
+Acceleration: x=-0.01 y=0.01 z=-0.02(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-516.08 y=103.55 z=-0.02(meters)
+Rotation: roll=0.77 pitch=0.78 yaw=149.44(degrees)
+Velocity: x=0.0 y=0.09 z=0.0(m/s)
+Acceleration: x=-0.11 y=0.07 z=0.01(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -3
+location: x=-511.38 y=175.74 z=-0.01(meters)
+Rotation: roll=6.07 pitch=0.03 yaw=52.49(degrees)
+Velocity: x=6.51 y=8.72 z=0.0(m/s)
+Acceleration: x=17.38 y=-16.5 z=-0.22(m/s2)
+time: 118.161(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -4
+location: x=-512.7 y=74.61 z=-0.0(meters)
+Rotation: roll=0.3 pitch=0.19 yaw=167.58(degrees)
+Velocity: x=0.0 y=0.03 z=0.0(m/s)
+Acceleration: x=-0.0 y=0.16 z=0.04(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-516.08 y=103.58 z=-0.01(meters)
+Rotation: roll=0.24 pitch=0.35 yaw=149.98(degrees)
+Velocity: x=0.0 y=0.01 z=0.02(m/s)
+Acceleration: x=-0.01 y=-0.08 z=-0.05(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-507.03 y=179.67 z=-0.01(meters)
+Rotation: roll=0.97 pitch=0.43 yaw=36.62(degrees)
+Velocity: x=10.3 y=7.65 z=0.0(m/s)
+Acceleration: x=3.05 y=2.69 z=-0.02(m/s2)
+time: 118.701(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -4
+location: x=-512.7 y=74.62 z=-0.0(meters)
+Rotation: roll=0.3 pitch=0.19 yaw=167.85(degrees)
+Velocity: x=0.0 y=0.02 z=0.0(m/s)
+Acceleration: x=-0.0 y=0.38 z=-0.01(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-516.08 y=103.6 z=-0.02(meters)
+Rotation: roll=0.56 pitch=0.51 yaw=150.3(degrees)
+Velocity: x=0.0 y=0.08 z=-0.02(m/s)
+Acceleration: x=-0.09 y=0.26 z=0.05(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -1
+location: x=-502.95 y=185.06 z=-0.01(meters)
+Rotation: roll=-5.52 pitch=-0.12 yaw=77.88(degrees)
+Velocity: x=2.22 y=12.29 z=-0.01(m/s)
+Acceleration: x=-21.82 y=2.36 z=0.02(m/s2)
+time: 119.221(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -4
+location: x=-512.7 y=74.63 z=-0.0(meters)
+Rotation: roll=0.29 pitch=0.19 yaw=168.15(degrees)
+Velocity: x=0.0 y=0.03 z=-0.0(m/s)
+Acceleration: x=0.02 y=0.02 z=-0.0(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-516.07 y=103.66 z=-0.02(meters)
+Rotation: roll=0.94 pitch=0.86 yaw=151.2(degrees)
+Velocity: x=0.0 y=0.09 z=0.0(m/s)
+Acceleration: x=0.04 y=-0.07 z=0.0(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -1
+location: x=-504.18 y=190.94 z=-0.01(meters)
+Rotation: roll=-6.26 pitch=0.02 yaw=134.5(degrees)
+Velocity: x=-7.98 y=8.32 z=0.04(m/s)
+Acceleration: x=-15.24 y=-16.9 z=2.81(m/s2)
+time: 119.761(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -4
+location: x=-512.7 y=74.65 z=-0.0(meters)
+Rotation: roll=0.29 pitch=0.19 yaw=168.48(degrees)
+Velocity: x=0.0 y=0.03 z=-0.0(m/s)
+Acceleration: x=0.01 y=0.33 z=-0.09(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-516.07 y=103.71 z=-0.02(meters)
+Rotation: roll=0.97 pitch=0.89 yaw=152.36(degrees)
+Velocity: x=0.0 y=0.08 z=0.0(m/s)
+Acceleration: x=-0.06 y=-0.0 z=0.0(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-508.93 y=195.68 z=-0.01(meters)
+Rotation: roll=2.1 pitch=0.4 yaw=126.86(degrees)
+Velocity: x=-7.6 y=10.95 z=-0.01(m/s)
+Acceleration: x=8.99 y=9.75 z=0.0(m/s2)
+time: 120.281(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -4
+location: x=-512.7 y=74.66 z=-0.0(meters)
+Rotation: roll=0.29 pitch=0.2 yaw=168.75(degrees)
+Velocity: x=-0.0 y=0.02 z=-0.0(m/s)
+Acceleration: x=0.01 y=-0.29 z=-0.05(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-516.06 y=103.75 z=-0.01(meters)
+Rotation: roll=0.11 pitch=0.23 yaw=152.5(degrees)
+Velocity: x=0.0 y=0.01 z=0.02(m/s)
+Acceleration: x=0.03 y=-0.09 z=-0.08(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -3
+location: x=-510.7 y=202.02 z=-0.01(meters)
+Rotation: roll=5.94 pitch=-0.13 yaw=78.11(degrees)
+Velocity: x=2.63 y=12.39 z=-0.01(m/s)
+Acceleration: x=20.43 y=-6.08 z=-0.18(m/s2)
+time: 120.821(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -4
+location: x=-512.7 y=74.67 z=-0.0(meters)
+Rotation: roll=0.28 pitch=0.19 yaw=169.06(degrees)
+Velocity: x=-0.0 y=0.02 z=0.0(m/s)
+Acceleration: x=-0.0 y=0.1 z=-0.01(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-516.07 y=103.8 z=-0.02(meters)
+Rotation: roll=0.97 pitch=0.74 yaw=152.48(degrees)
+Velocity: x=0.0 y=0.07 z=-0.0(m/s)
+Acceleration: x=0.01 y=-0.06 z=0.15(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-507.24 y=208.14 z=-0.01(meters)
+Rotation: roll=3.83 pitch=0.27 yaw=42.63(degrees)
+Velocity: x=10.46 y=9.33 z=0.0(m/s)
+Acceleration: x=10.79 y=-7.46 z=-0.01(m/s2)
+time: 121.361(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -4
+location: x=-512.7 y=74.68 z=-0.0(meters)
+Rotation: roll=0.28 pitch=0.19 yaw=169.38(degrees)
+Velocity: x=-0.0 y=0.02 z=-0.0(m/s)
+Acceleration: x=0.01 y=-0.06 z=0.02(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-516.07 y=103.89 z=-0.02(meters)
+Rotation: roll=1.04 pitch=0.92 yaw=152.43(degrees)
+Velocity: x=0.0 y=0.09 z=0.0(m/s)
+Acceleration: x=0.07 y=-0.39 z=0.23(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -1
+location: x=-502.72 y=214.18 z=-0.01(meters)
+Rotation: roll=-5.28 pitch=-0.04 yaw=76.54(degrees)
+Velocity: x=3.28 y=13.36 z=-0.01(m/s)
+Acceleration: x=-22.35 y=2.97 z=0.01(m/s2)
+time: 121.961(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -4
+location: x=-512.7 y=74.7 z=-0.0(meters)
+Rotation: roll=0.3 pitch=0.19 yaw=169.66(degrees)
+Velocity: x=-0.0 y=0.02 z=-0.0(m/s)
+Acceleration: x=0.12 y=0.28 z=0.02(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-516.07 y=103.99 z=-0.02(meters)
+Rotation: roll=1.01 pitch=1.0 yaw=152.4(degrees)
+Velocity: x=-0.01 y=0.25 z=-0.0(m/s)
+Acceleration: x=-0.0 y=-0.15 z=-0.21(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -1
+location: x=-504.11 y=221.21 z=-0.01(meters)
+Rotation: roll=-6.37 pitch=0.02 yaw=142.05(degrees)
+Velocity: x=-8.35 y=7.5 z=-0.02(m/s)
+Acceleration: x=-10.66 y=-17.57 z=-1.09(m/s2)
+time: 122.501(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -4
+location: x=-512.7 y=74.71 z=-0.0(meters)
+Rotation: roll=0.29 pitch=0.19 yaw=169.95(degrees)
+Velocity: x=-0.0 y=0.01 z=0.0(m/s)
+Acceleration: x=0.01 y=-0.51 z=0.01(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-516.06 y=103.99 z=-0.01(meters)
+Rotation: roll=-0.01 pitch=0.06 yaw=152.77(degrees)
+Velocity: x=-0.0 y=0.0 z=0.0(m/s)
+Acceleration: x=-0.0 y=-0.01 z=-0.03(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-509.43 y=225.04 z=-0.01(meters)
+Rotation: roll=1.23 pitch=0.45 yaw=140.24(degrees)
+Velocity: x=-9.87 y=8.75 z=-0.0(m/s)
+Acceleration: x=3.84 y=9.53 z=-0.03(m/s2)
+time: 123.021(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -4
+location: x=-512.7 y=74.72 z=-0.0(meters)
+Rotation: roll=0.3 pitch=0.2 yaw=170.27(degrees)
+Velocity: x=-0.0 y=0.02 z=-0.0(m/s)
+Acceleration: x=0.03 y=-0.29 z=0.07(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-516.06 y=104.04 z=-0.02(meters)
+Rotation: roll=1.01 pitch=0.68 yaw=153.33(degrees)
+Velocity: x=-0.0 y=0.03 z=0.01(m/s)
+Acceleration: x=-0.06 y=-1.13 z=-0.06(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -3
+location: x=-512.66 y=230.67 z=-0.01(meters)
+Rotation: roll=5.9 pitch=-0.19 yaw=92.43(degrees)
+Velocity: x=-0.37 y=12.3 z=-0.02(m/s)
+Acceleration: x=21.32 y=-1.96 z=-0.27(m/s2)
+time: 123.561(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -4
+location: x=-512.7 y=74.74 z=-0.0(meters)
+Rotation: roll=0.39 pitch=0.23 yaw=170.22(degrees)
+Velocity: x=-0.02 y=0.05 z=0.0(m/s)
+Acceleration: x=0.13 y=0.0 z=-0.01(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-516.06 y=104.07 z=-0.02(meters)
+Rotation: roll=0.92 pitch=0.59 yaw=154.17(degrees)
+Velocity: x=0.0 y=0.05 z=-0.0(m/s)
+Acceleration: x=-0.03 y=0.15 z=0.04(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -3
+location: x=-510.36 y=236.39 z=-0.01(meters)
+Rotation: roll=6.06 pitch=0.03 yaw=36.24(degrees)
+Velocity: x=9.46 y=6.78 z=0.0(m/s)
+Acceleration: x=12.08 y=-17.28 z=-0.25(m/s2)
+time: 124.101(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -4
+location: x=-512.71 y=74.76 z=-0.0(meters)
+Rotation: roll=0.41 pitch=0.25 yaw=170.27(degrees)
+Velocity: x=-0.0 y=0.02 z=0.0(m/s)
+Acceleration: x=-0.06 y=0.01 z=-0.0(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-516.05 y=104.09 z=-0.01(meters)
+Rotation: roll=0.75 pitch=0.5 yaw=154.92(degrees)
+Velocity: x=0.01 y=0.02 z=0.01(m/s)
+Acceleration: x=0.1 y=0.11 z=0.13(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -1
+location: x=-505.34 y=240.66 z=-0.01(meters)
+Rotation: roll=-3.74 pitch=0.23 yaw=56.11(degrees)
+Velocity: x=6.53 y=10.92 z=-0.01(m/s)
+Acceleration: x=-15.42 y=10.45 z=0.01(m/s2)
+time: 124.661(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -4
+location: x=-512.71 y=74.78 z=-0.0(meters)
+Rotation: roll=0.34 pitch=0.25 yaw=170.51(degrees)
+Velocity: x=-0.0 y=0.03 z=-0.0(m/s)
+Acceleration: x=-0.12 y=-0.02 z=0.01(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-516.05 y=104.1 z=-0.01(meters)
+Rotation: roll=0.38 pitch=0.27 yaw=155.07(degrees)
+Velocity: x=-0.0 y=0.03 z=-0.02(m/s)
+Acceleration: x=-0.01 y=0.05 z=-0.1(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -1
+location: x=-504.51 y=247.1 z=-0.01(meters)
+Rotation: roll=-6.19 pitch=-0.07 yaw=116.88(degrees)
+Velocity: x=-5.11 y=10.27 z=-0.02(m/s)
+Acceleration: x=-18.1 y=-11.89 z=-0.46(m/s2)
+time: 125.221(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -4
+location: x=-512.71 y=74.79 z=-0.0(meters)
+Rotation: roll=0.37 pitch=0.27 yaw=170.58(degrees)
+Velocity: x=-0.01 y=0.03 z=0.0(m/s)
+Acceleration: x=0.15 y=-0.08 z=-0.02(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-516.05 y=104.15 z=-0.02(meters)
+Rotation: roll=1.33 pitch=0.88 yaw=156.21(degrees)
+Velocity: x=0.0 y=0.06 z=0.0(m/s)
+Acceleration: x=-0.0 y=0.03 z=0.0(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-508.94 y=252.43 z=-0.01(meters)
+Rotation: roll=-1.35 pitch=0.41 yaw=136.95(degrees)
+Velocity: x=-10.03 y=9.19 z=0.0(m/s)
+Acceleration: x=-4.23 y=1.37 z=-0.02(m/s2)
+time: 125.761(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -4
+location: x=-512.71 y=74.81 z=-0.0(meters)
+Rotation: roll=0.4 pitch=0.28 yaw=170.68(degrees)
+Velocity: x=-0.01 y=0.03 z=-0.0(m/s)
+Acceleration: x=-0.43 y=0.23 z=0.05(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-516.05 y=104.19 z=-0.02(meters)
+Rotation: roll=1.37 pitch=0.88 yaw=157.5(degrees)
+Velocity: x=-0.0 y=0.06 z=0.0(m/s)
+Acceleration: x=-0.06 y=-0.02 z=-0.0(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -4
+location: x=-512.65 y=258.5 z=-0.01(meters)
+Rotation: roll=5.63 pitch=-0.15 yaw=95.63(degrees)
+Velocity: x=-1.15 y=12.89 z=-0.01(m/s)
+Acceleration: x=22.68 y=-0.5 z=0.01(m/s2)
+time: 126.381(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -4
+location: x=-512.72 y=74.83 z=-0.0(meters)
+Rotation: roll=0.37 pitch=0.29 yaw=170.83(degrees)
+Velocity: x=-0.01 y=0.04 z=-0.0(m/s)
+Acceleration: x=-0.01 y=0.98 z=-0.14(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-516.04 y=104.21 z=-0.01(meters)
+Rotation: roll=0.13 pitch=0.14 yaw=158.31(degrees)
+Velocity: x=-0.0 y=0.02 z=0.01(m/s)
+Acceleration: x=-0.04 y=-0.05 z=-0.06(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -3
+location: x=-510.03 y=265.05 z=-0.01(meters)
+Rotation: roll=6.17 pitch=0.06 yaw=28.14(degrees)
+Velocity: x=9.71 y=5.44 z=0.02(m/s)
+Acceleration: x=9.67 y=-20.9 z=-0.35(m/s2)
+time: 126.921(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -4
+location: x=-512.72 y=74.85 z=-0.0(meters)
+Rotation: roll=0.38 pitch=0.29 yaw=170.87(degrees)
+Velocity: x=-0.0 y=0.02 z=0.0(m/s)
+Acceleration: x=-0.11 y=-0.12 z=0.03(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-516.04 y=104.24 z=-0.02(meters)
+Rotation: roll=1.23 pitch=0.85 yaw=158.95(degrees)
+Velocity: x=-0.01 y=0.06 z=-0.01(m/s)
+Acceleration: x=-0.19 y=0.0 z=0.07(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-504.45 y=268.24 z=-0.01(meters)
+Rotation: roll=-2.99 pitch=0.33 yaw=41.6(degrees)
+Velocity: x=8.97 y=8.91 z=-0.01(m/s)
+Acceleration: x=-9.79 y=12.87 z=-0.0(m/s2)
+time: 127.481(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -4
+location: x=-512.72 y=74.86 z=-0.0(meters)
+Rotation: roll=0.35 pitch=0.29 yaw=171.02(degrees)
+Velocity: x=-0.0 y=0.03 z=0.0(m/s)
+Acceleration: x=0.01 y=0.0 z=-0.01(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-516.04 y=104.29 z=-0.02(meters)
+Rotation: roll=1.52 pitch=1.0 yaw=160.41(degrees)
+Velocity: x=-0.0 y=0.06 z=0.0(m/s)
+Acceleration: x=0.2 y=0.01 z=-0.0(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -1
+location: x=-501.94 y=274.32 z=-0.01(meters)
+Rotation: roll=-6.17 pitch=-0.13 yaw=99.34(degrees)
+Velocity: x=-2.01 y=11.63 z=-0.01(m/s)
+Acceleration: x=-21.54 y=-5.67 z=0.02(m/s2)
+time: 128.021(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -4
+location: x=-512.73 y=74.88 z=-0.0(meters)
+Rotation: roll=0.36 pitch=0.3 yaw=171.16(degrees)
+Velocity: x=-0.0 y=0.02 z=-0.0(m/s)
+Acceleration: x=0.01 y=-0.18 z=-0.02(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-516.04 y=104.34 z=-0.02(meters)
+Rotation: roll=1.53 pitch=1.01 yaw=161.87(degrees)
+Velocity: x=-0.01 y=0.06 z=0.0(m/s)
+Acceleration: x=-0.0 y=0.01 z=0.01(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -2
+location: x=-504.65 y=280.58 z=-0.01(meters)
+Rotation: roll=-2.11 pitch=0.38 yaw=123.29(degrees)
+Velocity: x=-7.76 y=11.42 z=0.0(m/s)
+Acceleration: x=-6.53 y=0.34 z=-0.0(m/s2)
+time: 128.561(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -4
+location: x=-512.73 y=74.9 z=-0.0(meters)
+Rotation: roll=0.37 pitch=0.31 yaw=171.35(degrees)
+Velocity: x=-0.01 y=0.05 z=0.0(m/s)
+Acceleration: x=-0.38 y=0.83 z=0.1(m/s2)
+vehicle id: vehicle.audi.a2_571
+lane: -4
+location: x=-516.04 y=104.34 z=-0.01(meters)
+Rotation: roll=-0.01 pitch=0.06 yaw=162.16(degrees)
+Velocity: x=-0.0 y=0.0 z=0.0(m/s)
+Acceleration: x=-0.01 y=-0.03 z=-0.03(m/s2)
+vehicle id: vehicle.audi.a2_572
+lane: -3
+location: x=-507.14 y=287.49 z=-0.01(meters)
+Rotation: roll=5.37 pitch=-0.06 yaw=85.24(degrees)
+Velocity: x=1.11 y=13.4 z=-0.01(m/s)
+Acceleration: x=22.0 y=-3.94 z=0.01(m/s2)
+time: 129.121(seconds)
+ego id: vehicle.tesla.model3_570
+lane: -4
+location: x=-512.73 y=74.92 z=-0.0(meters)
