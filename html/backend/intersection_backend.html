@@ -1,0 +1,958 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.2" />
+<title>backend.intersection_backend API documentation</title>
+<meta name="description" content="Created on Wed Jul
+8 14:20:00 2020 …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>backend.intersection_backend</code></h1>
+</header>
+<section id="section-intro">
+<p>Created on Wed Jul
+8 14:20:00 2020</p>
+<p>@author: shijiliu &amp; zhiychen</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+&#34;&#34;&#34;
+Created on Wed Jul  8 14:20:00 2020
+
+@author: shijiliu &amp; zhiychen
+&#34;&#34;&#34;
+import sys
+sys.path.append(&#34;..&#34;)
+
+import carla
+import matplotlib.pyplot as plt
+import numpy as np
+from collections import deque
+import time
+from openpyxl import load_workbook
+from openpyxl import Workbook
+import math
+
+import control # the python-control package, install first
+
+from backend.generate_path_omit_regulation import generate_path
+from backend.intersection_definition import Intersection, get_traffic_lights, get_trajectory, smooth_trajectory
+from backend.carla_env import CARLA_ENV # self-written class that provides help functions, should be in the same folder
+from configobj import ConfigObj
+from backend.multiple_vehicle_control import VehicleControl
+
+import copy
+
+from backend.initial_intersection import Init_Intersection, create_intersections, get_ego_spectator, get_ego_left_spectator, get_ego_driving_spectator
+from backend.full_path_vehicle import LeadVehicleControl, FollowVehicleControl
+
+from backend.intersection_settings_helper import write_intersection_settings, read_intersection_settings
+
+from backend.human_ego_control import HumanEgoControlServer
+    
+
+
+def IntersectionBackend(env,intersection_list, allow_collision = True, spectator_mode = None, enable_human_control = False):
+    
+    &#39;&#39;&#39;
+    back end function for the Intersection
+
+    Parameters
+    ----------
+    spectator_mode : string, optional
+        the spectator mode, valid value is &#34;first_person&#34; or &#34;left&#34;. The default is None.
+
+    allow_collision : bool, optional
+        whether collision is allowed during simulation
+
+    enable_human_control : bool, optional
+        whether ego vehicle is controlled by human
+
+    Returns
+    -------
+    None.
+
+    &#39;&#39;&#39;
+    
+    vehicle_list = [] # list of &#34;other&#34; type vehicle
+    started_intersection_list = []
+    ego_vehicle_config = intersection_list[0].ego_vehicle #init_intersection.ego_vehicle
+    lead_vehicle_config = intersection_list[0].lead_vehicle
+    follow_vehicle_config = intersection_list[0].follow_vehicle
+    
+    spectator = env.world.get_spectator()
+    
+    # if enable_human_control, get the ego vehicle from the environment
+    if enable_human_control:
+        ego_vehicle_uniquename = ego_vehicle_config[&#34;uniquename&#34;]
+        human_control_server = HumanEgoControlServer() # create the server for receiving the human command
+        spectator_mode = &#34;human_driving&#34;
+    
+    # assign the first full path vehicle, to determine whether 
+    # each intersection should start
+    if  lead_vehicle_config != None:
+        first_full_path_vehicle_name = lead_vehicle_config[&#34;uniquename&#34;]
+        
+        lead_vehicle = LeadVehicleControl(env,lead_vehicle_config,env.delta_seconds,allow_collision)
+        ego_vehicle = FollowVehicleControl(env, ego_vehicle_config, env.delta_seconds,allow_collision)
+        end_lead = False
+        ego_vehicle.use_distance_mode(ego_vehicle_config[&#34;lead_distance&#34;]) #use distance control mode with lead_distance
+        
+    else:
+        first_full_path_vehicle_name = ego_vehicle_config[&#34;uniquename&#34;]
+        ego_vehicle = FollowVehicleControl(env, ego_vehicle_config, env.delta_seconds,allow_collision)
+        end_lead = True
+        ego_vehicle.use_speed_mode()
+    
+    # assign the vehicle for the spectator to follow
+    if follow_vehicle_config != None:
+        spectator_vehicle = follow_vehicle_config
+        spectator_bb = follow_vehicle_config[&#34;bounding_box&#34;]
+        follow_vehicle = FollowVehicleControl(env, follow_vehicle_config, env.delta_seconds,allow_collision)
+        end_follow = False
+        follow_vehicle.use_distance_mode(ego_vehicle_config[&#34;follow_distance&#34;])
+    else:
+        spectator_vehicle = ego_vehicle_config
+        spectator_bb = ego_vehicle_config[&#34;bounding_box&#34;]
+        end_follow = True
+    
+    if enable_human_control:
+        spectator_bb = ego_vehicle_config[&#34;bounding_box&#34;]
+    
+        
+    
+    end_ego = False
+    # get the init intersection
+    init_intersection = intersection_list.pop(0)
+    started_intersection_list.append(init_intersection)
+    
+    for vehicle_config in init_intersection.subject_vehicle:
+        # initialize vehicles by different type (ego,lead,follow,other)
+        if vehicle_config[&#34;vehicle_type&#34;] == &#34;other&#34;:
+            vehicle = VehicleControl(env, vehicle_config, env.delta_seconds,allow_collision)
+            vehicle_list.append(vehicle)
+
+
+    for vehicle_config in init_intersection.left_vehicle:
+        vehicle = VehicleControl(env, vehicle_config, env.delta_seconds,allow_collision)
+        vehicle_list.append(vehicle)
+                    
+    for vehicle_config in init_intersection.right_vehicle:
+        vehicle = VehicleControl(env, vehicle_config, env.delta_seconds,allow_collision)
+        vehicle_list.append(vehicle)
+        
+    for vehicle_config in init_intersection.ahead_vehicle:
+        vehicle = VehicleControl(env, vehicle_config, env.delta_seconds,allow_collision)
+
+
+    RECORD_ENABLE = False
+
+    if RECORD_ENABLE:
+        # format of ego_vehicle = vehichle_type_id + &#34;_&#34; + uniqname
+        ego_uniquename = ego_vehicle_config[&#34;uniquename&#34;]
+        timestr = time.strftime(&#34;%Y%m%d-%H%M%S&#34;)
+
+        # record 1: data on an plain text file
+        filename = &#34;../data_collection/Urb&#34; + timestr + &#34;.xlsx&#34;
+        file = open(&#34;../data_collection/Urb&#34; + timestr + &#34;.txt&#34;, &#34;w+&#34; )
+
+        world_snapshot = env.world.get_snapshot()
+        tm = world_snapshot.timestamp
+        file.write(&#34;the experiment starts from &#34; + str(round(tm.elapsed_seconds, 3)) + &#34;(seconds)\n&#34;)
+        print(&#34;start urban recordings: &#34;)
+
+        # record 2: data on an excel file
+        header_row = [&#39;timestamp(sec)&#39;]
+        for key in env.vehicle_dict.keys():
+            key = key[7:]
+            header_row += [key+&#39;-lane_id&#39;, key+&#39;-location_x(m)&#39;, key+&#39;-location_y(m)&#39;, key+&#39;location_z(m)&#39;, key+&#39;-roll(degrees)&#39;, key+&#39;-pitch(degrees)&#39;, key+&#39;yaw(degrees)&#39;,
+                        key+&#39;-velocity_x(m/s)&#39;, key+&#39;-velocity_y(m/s)&#39;, key+&#39;velocity_z(m/s)&#39;, key+&#39;-acceleration_x(m/s2)&#39;, key+&#39;-acceleration_y(m/s2)&#39;, key+&#39;acceleration_z(m/s2)&#39;]
+        try:
+            wb = load_workbook(filename)
+            ws = wb.worksheets[0]
+        except FileNotFoundError:
+            wb = Workbook()
+            ws = wb.active
+        ws.append(header_row)
+        wb.save(filename)
+    
+    while True:
+
+        if RECORD_ENABLE:
+            world_snapshot = env.world.get_snapshot()
+            ego_id = (int)(ego_uniquename.split(&#34;_&#34;)[1])
+            ego_actor = world_snapshot.find(ego_id)
+
+            tm = world_snapshot.timestamp
+            file.write(&#34;time: &#34; + str(round(tm.elapsed_seconds, 3))+&#34;(seconds)\n&#34;)
+
+            data = [str(round(tm.elapsed_seconds, 3))]
+            for key in env.vehicle_dict.keys():
+                vehicle_data = []
+                key = key[8:]
+                id = (int)(key.split(&#34;_&#34;)[1])
+                if(id == ego_id):
+                    file.write(&#34;ego id: &#34; + key + &#34;\n&#34;)
+                else:
+                    file.write(&#34;vehicle id: &#34; + key + &#34;\n&#34;)
+                actor = world_snapshot.find(id)
+
+                actor_location = actor.get_transform().location
+                lane = map.get_waypoint(actor_location).lane_id
+                file.write(&#34;lane: &#34; + str(lane) + &#34;\n&#34;)
+                vehicle_data+=[lane]
+
+                actor_transform = actor.get_transform()
+                x = round(actor_transform.location.x, 2)
+                y = round(actor_transform.location.y, 2)
+                z = round(actor_transform.location.z, 2)
+                vehicle_data+=[x, y, z]
+                file.write(&#34;location: x=&#34; + str(x) + &#34; y=&#34; + str(y) + &#34; z=&#34; +str(z) + &#34;(meters)\n&#34; )
+                
+                x = round(actor_transform.rotation.roll, 2)
+                y = round(actor_transform.rotation.pitch, 2)
+                z = round(actor_transform.rotation.yaw, 2)
+                vehicle_data+=[x, y, z]
+                file.write(&#34;Rotation: roll=&#34; + str(x) + &#34; pitch=&#34; + str(y) + &#34; yaw=&#34; +str(z) + &#34;(degrees)\n&#34;)
+                
+
+                actor_velocity = actor.get_velocity()
+                x = round(actor_velocity.x, 2)
+                y = round(actor_velocity.y, 2)
+                z = round(actor_velocity.z, 2)
+                vehicle_data+=[x, y, z]
+                file.write(&#34;Velocity: x=&#34; + str(x) + &#34; y=&#34; + str(y) + &#34; z=&#34; +str(z) + &#34;(m/s)\n&#34;)
+                
+                actor_acceleration = actor.get_acceleration()
+                x = round(actor_acceleration.x, 2)
+                y = round(actor_acceleration.y, 2)
+                z = round(actor_acceleration.z, 2)
+                vehicle_data+=[x, y, z]
+                file.write(&#34;Acceleration: x=&#34; + str(x) + &#34; y=&#34; + str(y) + &#34; z=&#34; +str(z) + &#34;(m/s2)\n&#34;)
+                
+                data+=vehicle_data
+            ws.append(data)
+            wb.save(filename)
+        
+
+        # Lane Logic
+        # waypoint = env.world.get_map().get_waypoint(vehicle.get_location(),project_to_road=True, lane_type=(carla.LaneType.Driving | carla.LaneType.Shoulder | carla.LaneType.Sidewalk))
+        # print(&#34;Current lane type: &#34; + str(waypoint.lane_type))
+        # # Check current lane change allowed
+        # print(&#34;Current Lane change:  &#34; + str(waypoint.lane_change))
+        # # Left and Right lane markings
+        # print(&#34;L lane marking type: &#34; + str(waypoint.left_lane_marking.type))
+        # print(&#34;L lane marking change: &#34; + str(waypoint.left_lane_marking.lane_change))
+        # print(&#34;R lane marking type: &#34; + str(waypoint.right_lane_marking.type))
+        # print(&#34;R lane marking change: &#34; + str(waypoint.right_lane_marking.lane_change))
+        # ...
+        env.world.tick()
+        # update the distance between vehicles after each tick
+        env.update_vehicle_distance()
+        
+        # update the ego spectator
+        if env.vehicle_available(spectator_vehicle[&#34;uniquename&#34;]):
+            spectator_vehicle_transform = env.get_transform_3d(spectator_vehicle[&#34;uniquename&#34;])
+            #spectator_transform = get_ego_spectator(spectator_vehicle_transform,distance = -10)
+            if spectator_mode == &#34;first_person&#34;:
+                spectator_transform = get_ego_spectator(spectator_vehicle_transform, distance = -10)
+                spectator.set_transform(spectator_transform)
+            elif spectator_mode == &#34;left&#34;:
+                if env.vehicle_available(ego_vehicle_config[&#34;uniquename&#34;]):
+                    spectator_vehicle_transform = env.get_transform_3d(ego_vehicle_config[&#34;uniquename&#34;])
+                    spectator_transform = get_ego_left_spectator(spectator_vehicle_transform)
+                    spectator.set_transform(spectator_transform)
+            elif spectator_mode == &#34;human_driving&#34;:
+                if env.vehicle_available(ego_vehicle_config[&#34;uniquename&#34;]):
+                    spectator_vehicle_transform = env.get_transform_3d(ego_vehicle_config[&#34;uniquename&#34;])
+                    #spectator_vehicle_transform = env.get_transform_3d(ego_vehicle_uniquename)
+                    spectator_transform = get_ego_driving_spectator( spectator_vehicle_transform, spectator_bb)
+                    spectator.set_transform(spectator_transform)
+        #else:
+        #    spectator_transform = carla.Transform(carla.Location(x= 25.4, y=1.29, z=75.0), carla.Rotation(pitch=-88.0, yaw= -1.85, roll=1.595))
+        #spectator.set_transform(spectator_transform)
+        
+        
+        for ii in range(len(intersection_list)-1,-1,-1):
+            # check whether the intersection should start
+            intersection_list[ii].start_simulation(first_full_path_vehicle_name)
+            if intersection_list[ii].start_sim:
+                for vehicle_config in intersection_list[ii].subject_vehicle:
+                    vehicle = VehicleControl(env, vehicle_config, env.delta_seconds,allow_collision)
+                    vehicle_list.append(vehicle)
+                    
+                for vehicle_config in intersection_list[ii].left_vehicle:
+                    vehicle = VehicleControl(env, vehicle_config, env.delta_seconds,allow_collision)
+                    vehicle_list.append(vehicle)
+                    
+                for vehicle_config in intersection_list[ii].right_vehicle:
+                    vehicle = VehicleControl(env, vehicle_config, env.delta_seconds,allow_collision)
+                    vehicle_list.append(vehicle)
+        
+                for vehicle_config in intersection_list[ii].ahead_vehicle:
+                    vehicle = VehicleControl(env, vehicle_config, env.delta_seconds,allow_collision)
+                    vehicle_list.append(vehicle)
+                
+                # move the intersection to started intersection list
+                intersection = intersection_list.pop(ii)
+                started_intersection_list.append(intersection)
+                
+        ego_stop_at_light = False        
+        
+        # set the traffic lights based on traffic light setting
+        for started_intsection in started_intersection_list:
+            started_intsection.set_intersection_traffic_lights()
+        
+        # check the current location of the lead vehicle and ego vehicle if they are available
+        # so as to update the curr_distance for ego, and follow vehicle
+        lead_transform = None
+        ego_transform = None
+        if not end_lead:
+            lead_transform = lead_vehicle.get_vehicle_transform()
+            
+        if not end_ego:
+            ego_transform = ego_vehicle.get_vehicle_transform()
+            if lead_transform != None:
+                ego_vehicle.get_current_distance(lead_transform)
+            else:
+                ego_vehicle.use_speed_mode() # no lead available, change to speed control
+            
+        if not end_follow:
+            if ego_transform != None:
+                follow_vehicle.get_current_distance(ego_transform)
+            else:
+                follow_vehicle.use_speed_mode()# no ego available, change to speed control
+        
+        
+        
+        
+        # apply control to ego vehicle, get whether it stops at traffic light
+        if not end_ego:
+            if not enable_human_control:
+                # use the automatic control provided by the back-end, which is set as default
+                end_ego = ego_vehicle.pure_pursuit_control_wrapper()
+                ego_stop_at_light = ego_vehicle.blocked_by_light
+            else:
+                # get control from human
+                human_command = human_control_server.get_human_command()
+                # format the command into carla.VehicleControl
+                ego_vehicle_control = carla.VehicleControl(throttle = human_command[0] ,steer=human_command[1],brake = human_command[2])
+                # apply control to the vehicle
+                env.apply_vehicle_control(ego_vehicle_uniquename , ego_vehicle_control)
+                
+                
+                end_ego = ego_vehicle.fake_pure_pursuit_control_wrapper() # change all internal settings as the real wrapper, but 
+                                                                          # don&#39;t apply control to vehicle
+                ego_stop_at_light = ego_vehicle.blocked_by_light                                                          
+        
+        # apply control to lead vehicle
+        if not end_lead:
+            if ego_stop_at_light and lead_vehicle.mode != &#34;pause&#34; : # lead is still in full path mode when ego stops
+                lead_vehicle.change_mode(&#34;pause&#34;)
+            elif not ego_stop_at_light and lead_vehicle.mode == &#34;pause&#34;:
+                lead_vehicle.change_mode(&#34;normal&#34;)
+                
+            end_lead = lead_vehicle.pure_pursuit_control_wrapper()
+            
+        # apply control to follow vehicle    
+        if not end_follow:
+            end_follow = follow_vehicle.pure_pursuit_control_wrapper()
+                
+            
+        
+        
+                
+        if len(vehicle_list) == 0 and end_lead and end_ego and end_follow: # all vehicle has stopped
+            break        
+                
+        for jj in range(len(vehicle_list) -1, -1, -1):
+            vehicle = vehicle_list[jj]
+            if vehicle.run:
+                end_trajectory = vehicle.pure_pursuit_control_wrapper()
+                if end_trajectory:
+                    vehicle_list.pop(jj)
+
+def main():
+    try:
+        client = carla.Client(&#34;localhost&#34;,2000)
+        client.set_timeout(10.0)
+        world = client.load_world(&#39;Town05&#39;)
+         
+        # set the weather
+        weather = carla.WeatherParameters(
+            cloudiness=10.0,
+            precipitation=0.0,
+            sun_altitude_angle=90.0)
+        world.set_weather(weather)
+        
+        # set the spectator position for demo purpose
+        spectator = world.get_spectator()
+        spectator.set_transform(carla.Transform(carla.Location(x=-190, y=1.29, z=75.0), carla.Rotation(pitch=-88.0, yaw= -1.85, roll=1.595))) # top view of intersection
+        
+        env = CARLA_ENV(world) 
+        time.sleep(2) # sleep for 2 seconds, wait the initialization to finish
+        
+        traffic_light_list = get_traffic_lights(world.get_actors())
+        
+        intersection_list = create_intersections(env, 4, traffic_light_list, navigation_speed = 30.0)
+        init_intersection = intersection_list[0]
+        normal_intersections = intersection_list[1:]
+        init_intersection.add_ego_vehicle(safety_distance = 15.0, stop_choice = &#34;abrupt&#34;, vehicle_color = &#39;255,255,255&#39;)
+        init_intersection.add_follow_vehicle(follow_distance = 20.0, stop_choice = &#34;penetrate&#34;, penetrate_distance = 2.0)
+        init_intersection.add_lead_vehicle(lead_distance = 20.0, stop_choice = &#34;abrupt&#34;, vehicle_color = &#39;255,255,255&#39;)
+        init_intersection.add_vehicle(choice = &#34;left&#34;, stop_choice = &#34;abrupt&#34;, vehicle_color = &#39;255,255,255&#39;)
+        init_intersection.add_vehicle(choice = &#34;right&#34;,command=&#34;left&#34;)
+        
+        # test edit settings
+        name1 = init_intersection.add_vehicle(choice = &#34;ahead&#34;,command=&#34;left&#34;)
+        name2 = init_intersection.add_vehicle(choice = &#34;ahead&#34;,command = &#34;right&#34;)
+        
+        name1 = init_intersection.edit_vehicle_settings(name1, choice = &#34;ahead&#34;, vehicle_color = &#39;128,128,128&#39;)
+        name2 = init_intersection.edit_vehicle_settings(name2, choice = &#34;ahead&#34;, gap = 15.0, vehicle_color = &#39;128,128,128&#39;)
+        
+        vehicle_settings_entered = init_intersection.get_vehicle_settings(name2)
+        print(vehicle_settings_entered[&#34;gap&#34;])
+        
+        #init_intersection.edit_traffic_light(&#34;subject&#34;)
+        #init_intersection.edit_traffic_light(&#34;left&#34;,red_start = 40.0,red_end = 60.0,yellow_start=30.0,yellow_end=40.0,green_start=0.0,green_end = 30.0)
+        #init_intersection.edit_traffic_light(&#34;right&#34;,red_start = 0.0,red_end = 10.0,yellow_start=10.0,yellow_end=20.0,green_start=20.0,green_end = 40.0)
+        #init_intersection.edit_traffic_light(&#34;ahead&#34;,red_start = 20.0,red_end = 40.0,yellow_start=10.0,yellow_end=20.0,green_start=0.0,green_end = 10.0)
+        
+        # get bounding box
+        bb = init_intersection.get_vehicle_bounding_box(name1)
+        print(&#34;bb.x = %f, bb.y = %f, bb.z = %f&#34; % (bb.x, bb.y, bb.z))
+        
+        intersection_list[1].add_vehicle(choice = &#34;ahead&#34;)
+        intersection_list[1].add_vehicle(choice = &#34;left&#34;,command=&#34;left&#34;)
+        intersection_list[1].add_vehicle(choice = &#34;right&#34;,command = &#34;left&#34;)
+        intersection_list[1].add_vehicle(choice = &#34;right&#34;)
+        intersection_list[1]._shift_vehicles(-10, choice = &#34;right&#34;,index = 0)
+        #intersection_list[1].edit_traffic_light(&#34;left&#34;),
+        
+        intersection_list[2].add_vehicle(choice = &#34;ahead&#34;)
+        intersection_list[2].add_vehicle(choice = &#34;left&#34;,command=&#34;left&#34;)
+        intersection_list[2].add_vehicle(choice = &#34;right&#34;,command = &#34;left&#34;)
+        intersection_list[2].add_vehicle(choice = &#34;right&#34;,command = &#34;right&#34;)
+        #intersection_list[2].edit_traffic_light(&#34;right&#34;)
+        
+        intersection_list[3].add_vehicle(command = &#34;left&#34;)
+        intersection_list[3].add_vehicle()
+        #intersection_list[3].edit_traffic_light(&#34;ahead&#34;)
+        
+        # test import/export
+        init_setting = init_intersection.export_settings()
+        
+        intersection_list[3].import_settings(init_setting)
+        intersection_list[3].add_vehicle(command  = &#34;left&#34;)
+        intersection_list[3].add_vehicle()
+        third_setting = intersection_list[3].export_settings()
+        
+        write_intersection_settings(&#34;third_intersection_setting&#34;,third_setting)
+        new_third_setting = read_intersection_settings(&#39;third_intersection_setting&#39;)
+        
+        intersection_list[2].import_settings(new_third_setting)
+        
+        
+        
+        
+        IntersectionBackend(env,intersection_list,allow_collision = False)
+    finally:
+        time.sleep(10)
+        env.destroy_actors()
+        
+if __name__ == &#39;__main__&#39;:
+    main()</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="backend.intersection_backend.IntersectionBackend"><code class="name flex">
+<span>def <span class="ident">IntersectionBackend</span></span>(<span>env, intersection_list, allow_collision=True, spectator_mode=None, enable_human_control=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>back end function for the Intersection</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>spectator_mode</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>the spectator mode, valid value is "first_person" or "left". The default is None.</dd>
+<dt><strong><code>allow_collision</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>whether collision is allowed during simulation</dd>
+<dt><strong><code>enable_human_control</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>whether ego vehicle is controlled by human</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>None.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def IntersectionBackend(env,intersection_list, allow_collision = True, spectator_mode = None, enable_human_control = False):
+    
+    &#39;&#39;&#39;
+    back end function for the Intersection
+
+    Parameters
+    ----------
+    spectator_mode : string, optional
+        the spectator mode, valid value is &#34;first_person&#34; or &#34;left&#34;. The default is None.
+
+    allow_collision : bool, optional
+        whether collision is allowed during simulation
+
+    enable_human_control : bool, optional
+        whether ego vehicle is controlled by human
+
+    Returns
+    -------
+    None.
+
+    &#39;&#39;&#39;
+    
+    vehicle_list = [] # list of &#34;other&#34; type vehicle
+    started_intersection_list = []
+    ego_vehicle_config = intersection_list[0].ego_vehicle #init_intersection.ego_vehicle
+    lead_vehicle_config = intersection_list[0].lead_vehicle
+    follow_vehicle_config = intersection_list[0].follow_vehicle
+    
+    spectator = env.world.get_spectator()
+    
+    # if enable_human_control, get the ego vehicle from the environment
+    if enable_human_control:
+        ego_vehicle_uniquename = ego_vehicle_config[&#34;uniquename&#34;]
+        human_control_server = HumanEgoControlServer() # create the server for receiving the human command
+        spectator_mode = &#34;human_driving&#34;
+    
+    # assign the first full path vehicle, to determine whether 
+    # each intersection should start
+    if  lead_vehicle_config != None:
+        first_full_path_vehicle_name = lead_vehicle_config[&#34;uniquename&#34;]
+        
+        lead_vehicle = LeadVehicleControl(env,lead_vehicle_config,env.delta_seconds,allow_collision)
+        ego_vehicle = FollowVehicleControl(env, ego_vehicle_config, env.delta_seconds,allow_collision)
+        end_lead = False
+        ego_vehicle.use_distance_mode(ego_vehicle_config[&#34;lead_distance&#34;]) #use distance control mode with lead_distance
+        
+    else:
+        first_full_path_vehicle_name = ego_vehicle_config[&#34;uniquename&#34;]
+        ego_vehicle = FollowVehicleControl(env, ego_vehicle_config, env.delta_seconds,allow_collision)
+        end_lead = True
+        ego_vehicle.use_speed_mode()
+    
+    # assign the vehicle for the spectator to follow
+    if follow_vehicle_config != None:
+        spectator_vehicle = follow_vehicle_config
+        spectator_bb = follow_vehicle_config[&#34;bounding_box&#34;]
+        follow_vehicle = FollowVehicleControl(env, follow_vehicle_config, env.delta_seconds,allow_collision)
+        end_follow = False
+        follow_vehicle.use_distance_mode(ego_vehicle_config[&#34;follow_distance&#34;])
+    else:
+        spectator_vehicle = ego_vehicle_config
+        spectator_bb = ego_vehicle_config[&#34;bounding_box&#34;]
+        end_follow = True
+    
+    if enable_human_control:
+        spectator_bb = ego_vehicle_config[&#34;bounding_box&#34;]
+    
+        
+    
+    end_ego = False
+    # get the init intersection
+    init_intersection = intersection_list.pop(0)
+    started_intersection_list.append(init_intersection)
+    
+    for vehicle_config in init_intersection.subject_vehicle:
+        # initialize vehicles by different type (ego,lead,follow,other)
+        if vehicle_config[&#34;vehicle_type&#34;] == &#34;other&#34;:
+            vehicle = VehicleControl(env, vehicle_config, env.delta_seconds,allow_collision)
+            vehicle_list.append(vehicle)
+
+
+    for vehicle_config in init_intersection.left_vehicle:
+        vehicle = VehicleControl(env, vehicle_config, env.delta_seconds,allow_collision)
+        vehicle_list.append(vehicle)
+                    
+    for vehicle_config in init_intersection.right_vehicle:
+        vehicle = VehicleControl(env, vehicle_config, env.delta_seconds,allow_collision)
+        vehicle_list.append(vehicle)
+        
+    for vehicle_config in init_intersection.ahead_vehicle:
+        vehicle = VehicleControl(env, vehicle_config, env.delta_seconds,allow_collision)
+
+
+    RECORD_ENABLE = False
+
+    if RECORD_ENABLE:
+        # format of ego_vehicle = vehichle_type_id + &#34;_&#34; + uniqname
+        ego_uniquename = ego_vehicle_config[&#34;uniquename&#34;]
+        timestr = time.strftime(&#34;%Y%m%d-%H%M%S&#34;)
+
+        # record 1: data on an plain text file
+        filename = &#34;../data_collection/Urb&#34; + timestr + &#34;.xlsx&#34;
+        file = open(&#34;../data_collection/Urb&#34; + timestr + &#34;.txt&#34;, &#34;w+&#34; )
+
+        world_snapshot = env.world.get_snapshot()
+        tm = world_snapshot.timestamp
+        file.write(&#34;the experiment starts from &#34; + str(round(tm.elapsed_seconds, 3)) + &#34;(seconds)\n&#34;)
+        print(&#34;start urban recordings: &#34;)
+
+        # record 2: data on an excel file
+        header_row = [&#39;timestamp(sec)&#39;]
+        for key in env.vehicle_dict.keys():
+            key = key[7:]
+            header_row += [key+&#39;-lane_id&#39;, key+&#39;-location_x(m)&#39;, key+&#39;-location_y(m)&#39;, key+&#39;location_z(m)&#39;, key+&#39;-roll(degrees)&#39;, key+&#39;-pitch(degrees)&#39;, key+&#39;yaw(degrees)&#39;,
+                        key+&#39;-velocity_x(m/s)&#39;, key+&#39;-velocity_y(m/s)&#39;, key+&#39;velocity_z(m/s)&#39;, key+&#39;-acceleration_x(m/s2)&#39;, key+&#39;-acceleration_y(m/s2)&#39;, key+&#39;acceleration_z(m/s2)&#39;]
+        try:
+            wb = load_workbook(filename)
+            ws = wb.worksheets[0]
+        except FileNotFoundError:
+            wb = Workbook()
+            ws = wb.active
+        ws.append(header_row)
+        wb.save(filename)
+    
+    while True:
+
+        if RECORD_ENABLE:
+            world_snapshot = env.world.get_snapshot()
+            ego_id = (int)(ego_uniquename.split(&#34;_&#34;)[1])
+            ego_actor = world_snapshot.find(ego_id)
+
+            tm = world_snapshot.timestamp
+            file.write(&#34;time: &#34; + str(round(tm.elapsed_seconds, 3))+&#34;(seconds)\n&#34;)
+
+            data = [str(round(tm.elapsed_seconds, 3))]
+            for key in env.vehicle_dict.keys():
+                vehicle_data = []
+                key = key[8:]
+                id = (int)(key.split(&#34;_&#34;)[1])
+                if(id == ego_id):
+                    file.write(&#34;ego id: &#34; + key + &#34;\n&#34;)
+                else:
+                    file.write(&#34;vehicle id: &#34; + key + &#34;\n&#34;)
+                actor = world_snapshot.find(id)
+
+                actor_location = actor.get_transform().location
+                lane = map.get_waypoint(actor_location).lane_id
+                file.write(&#34;lane: &#34; + str(lane) + &#34;\n&#34;)
+                vehicle_data+=[lane]
+
+                actor_transform = actor.get_transform()
+                x = round(actor_transform.location.x, 2)
+                y = round(actor_transform.location.y, 2)
+                z = round(actor_transform.location.z, 2)
+                vehicle_data+=[x, y, z]
+                file.write(&#34;location: x=&#34; + str(x) + &#34; y=&#34; + str(y) + &#34; z=&#34; +str(z) + &#34;(meters)\n&#34; )
+                
+                x = round(actor_transform.rotation.roll, 2)
+                y = round(actor_transform.rotation.pitch, 2)
+                z = round(actor_transform.rotation.yaw, 2)
+                vehicle_data+=[x, y, z]
+                file.write(&#34;Rotation: roll=&#34; + str(x) + &#34; pitch=&#34; + str(y) + &#34; yaw=&#34; +str(z) + &#34;(degrees)\n&#34;)
+                
+
+                actor_velocity = actor.get_velocity()
+                x = round(actor_velocity.x, 2)
+                y = round(actor_velocity.y, 2)
+                z = round(actor_velocity.z, 2)
+                vehicle_data+=[x, y, z]
+                file.write(&#34;Velocity: x=&#34; + str(x) + &#34; y=&#34; + str(y) + &#34; z=&#34; +str(z) + &#34;(m/s)\n&#34;)
+                
+                actor_acceleration = actor.get_acceleration()
+                x = round(actor_acceleration.x, 2)
+                y = round(actor_acceleration.y, 2)
+                z = round(actor_acceleration.z, 2)
+                vehicle_data+=[x, y, z]
+                file.write(&#34;Acceleration: x=&#34; + str(x) + &#34; y=&#34; + str(y) + &#34; z=&#34; +str(z) + &#34;(m/s2)\n&#34;)
+                
+                data+=vehicle_data
+            ws.append(data)
+            wb.save(filename)
+        
+
+        # Lane Logic
+        # waypoint = env.world.get_map().get_waypoint(vehicle.get_location(),project_to_road=True, lane_type=(carla.LaneType.Driving | carla.LaneType.Shoulder | carla.LaneType.Sidewalk))
+        # print(&#34;Current lane type: &#34; + str(waypoint.lane_type))
+        # # Check current lane change allowed
+        # print(&#34;Current Lane change:  &#34; + str(waypoint.lane_change))
+        # # Left and Right lane markings
+        # print(&#34;L lane marking type: &#34; + str(waypoint.left_lane_marking.type))
+        # print(&#34;L lane marking change: &#34; + str(waypoint.left_lane_marking.lane_change))
+        # print(&#34;R lane marking type: &#34; + str(waypoint.right_lane_marking.type))
+        # print(&#34;R lane marking change: &#34; + str(waypoint.right_lane_marking.lane_change))
+        # ...
+        env.world.tick()
+        # update the distance between vehicles after each tick
+        env.update_vehicle_distance()
+        
+        # update the ego spectator
+        if env.vehicle_available(spectator_vehicle[&#34;uniquename&#34;]):
+            spectator_vehicle_transform = env.get_transform_3d(spectator_vehicle[&#34;uniquename&#34;])
+            #spectator_transform = get_ego_spectator(spectator_vehicle_transform,distance = -10)
+            if spectator_mode == &#34;first_person&#34;:
+                spectator_transform = get_ego_spectator(spectator_vehicle_transform, distance = -10)
+                spectator.set_transform(spectator_transform)
+            elif spectator_mode == &#34;left&#34;:
+                if env.vehicle_available(ego_vehicle_config[&#34;uniquename&#34;]):
+                    spectator_vehicle_transform = env.get_transform_3d(ego_vehicle_config[&#34;uniquename&#34;])
+                    spectator_transform = get_ego_left_spectator(spectator_vehicle_transform)
+                    spectator.set_transform(spectator_transform)
+            elif spectator_mode == &#34;human_driving&#34;:
+                if env.vehicle_available(ego_vehicle_config[&#34;uniquename&#34;]):
+                    spectator_vehicle_transform = env.get_transform_3d(ego_vehicle_config[&#34;uniquename&#34;])
+                    #spectator_vehicle_transform = env.get_transform_3d(ego_vehicle_uniquename)
+                    spectator_transform = get_ego_driving_spectator( spectator_vehicle_transform, spectator_bb)
+                    spectator.set_transform(spectator_transform)
+        #else:
+        #    spectator_transform = carla.Transform(carla.Location(x= 25.4, y=1.29, z=75.0), carla.Rotation(pitch=-88.0, yaw= -1.85, roll=1.595))
+        #spectator.set_transform(spectator_transform)
+        
+        
+        for ii in range(len(intersection_list)-1,-1,-1):
+            # check whether the intersection should start
+            intersection_list[ii].start_simulation(first_full_path_vehicle_name)
+            if intersection_list[ii].start_sim:
+                for vehicle_config in intersection_list[ii].subject_vehicle:
+                    vehicle = VehicleControl(env, vehicle_config, env.delta_seconds,allow_collision)
+                    vehicle_list.append(vehicle)
+                    
+                for vehicle_config in intersection_list[ii].left_vehicle:
+                    vehicle = VehicleControl(env, vehicle_config, env.delta_seconds,allow_collision)
+                    vehicle_list.append(vehicle)
+                    
+                for vehicle_config in intersection_list[ii].right_vehicle:
+                    vehicle = VehicleControl(env, vehicle_config, env.delta_seconds,allow_collision)
+                    vehicle_list.append(vehicle)
+        
+                for vehicle_config in intersection_list[ii].ahead_vehicle:
+                    vehicle = VehicleControl(env, vehicle_config, env.delta_seconds,allow_collision)
+                    vehicle_list.append(vehicle)
+                
+                # move the intersection to started intersection list
+                intersection = intersection_list.pop(ii)
+                started_intersection_list.append(intersection)
+                
+        ego_stop_at_light = False        
+        
+        # set the traffic lights based on traffic light setting
+        for started_intsection in started_intersection_list:
+            started_intsection.set_intersection_traffic_lights()
+        
+        # check the current location of the lead vehicle and ego vehicle if they are available
+        # so as to update the curr_distance for ego, and follow vehicle
+        lead_transform = None
+        ego_transform = None
+        if not end_lead:
+            lead_transform = lead_vehicle.get_vehicle_transform()
+            
+        if not end_ego:
+            ego_transform = ego_vehicle.get_vehicle_transform()
+            if lead_transform != None:
+                ego_vehicle.get_current_distance(lead_transform)
+            else:
+                ego_vehicle.use_speed_mode() # no lead available, change to speed control
+            
+        if not end_follow:
+            if ego_transform != None:
+                follow_vehicle.get_current_distance(ego_transform)
+            else:
+                follow_vehicle.use_speed_mode()# no ego available, change to speed control
+        
+        
+        
+        
+        # apply control to ego vehicle, get whether it stops at traffic light
+        if not end_ego:
+            if not enable_human_control:
+                # use the automatic control provided by the back-end, which is set as default
+                end_ego = ego_vehicle.pure_pursuit_control_wrapper()
+                ego_stop_at_light = ego_vehicle.blocked_by_light
+            else:
+                # get control from human
+                human_command = human_control_server.get_human_command()
+                # format the command into carla.VehicleControl
+                ego_vehicle_control = carla.VehicleControl(throttle = human_command[0] ,steer=human_command[1],brake = human_command[2])
+                # apply control to the vehicle
+                env.apply_vehicle_control(ego_vehicle_uniquename , ego_vehicle_control)
+                
+                
+                end_ego = ego_vehicle.fake_pure_pursuit_control_wrapper() # change all internal settings as the real wrapper, but 
+                                                                          # don&#39;t apply control to vehicle
+                ego_stop_at_light = ego_vehicle.blocked_by_light                                                          
+        
+        # apply control to lead vehicle
+        if not end_lead:
+            if ego_stop_at_light and lead_vehicle.mode != &#34;pause&#34; : # lead is still in full path mode when ego stops
+                lead_vehicle.change_mode(&#34;pause&#34;)
+            elif not ego_stop_at_light and lead_vehicle.mode == &#34;pause&#34;:
+                lead_vehicle.change_mode(&#34;normal&#34;)
+                
+            end_lead = lead_vehicle.pure_pursuit_control_wrapper()
+            
+        # apply control to follow vehicle    
+        if not end_follow:
+            end_follow = follow_vehicle.pure_pursuit_control_wrapper()
+                
+            
+        
+        
+                
+        if len(vehicle_list) == 0 and end_lead and end_ego and end_follow: # all vehicle has stopped
+            break        
+                
+        for jj in range(len(vehicle_list) -1, -1, -1):
+            vehicle = vehicle_list[jj]
+            if vehicle.run:
+                end_trajectory = vehicle.pure_pursuit_control_wrapper()
+                if end_trajectory:
+                    vehicle_list.pop(jj)</code></pre>
+</details>
+</dd>
+<dt id="backend.intersection_backend.main"><code class="name flex">
+<span>def <span class="ident">main</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def main():
+    try:
+        client = carla.Client(&#34;localhost&#34;,2000)
+        client.set_timeout(10.0)
+        world = client.load_world(&#39;Town05&#39;)
+         
+        # set the weather
+        weather = carla.WeatherParameters(
+            cloudiness=10.0,
+            precipitation=0.0,
+            sun_altitude_angle=90.0)
+        world.set_weather(weather)
+        
+        # set the spectator position for demo purpose
+        spectator = world.get_spectator()
+        spectator.set_transform(carla.Transform(carla.Location(x=-190, y=1.29, z=75.0), carla.Rotation(pitch=-88.0, yaw= -1.85, roll=1.595))) # top view of intersection
+        
+        env = CARLA_ENV(world) 
+        time.sleep(2) # sleep for 2 seconds, wait the initialization to finish
+        
+        traffic_light_list = get_traffic_lights(world.get_actors())
+        
+        intersection_list = create_intersections(env, 4, traffic_light_list, navigation_speed = 30.0)
+        init_intersection = intersection_list[0]
+        normal_intersections = intersection_list[1:]
+        init_intersection.add_ego_vehicle(safety_distance = 15.0, stop_choice = &#34;abrupt&#34;, vehicle_color = &#39;255,255,255&#39;)
+        init_intersection.add_follow_vehicle(follow_distance = 20.0, stop_choice = &#34;penetrate&#34;, penetrate_distance = 2.0)
+        init_intersection.add_lead_vehicle(lead_distance = 20.0, stop_choice = &#34;abrupt&#34;, vehicle_color = &#39;255,255,255&#39;)
+        init_intersection.add_vehicle(choice = &#34;left&#34;, stop_choice = &#34;abrupt&#34;, vehicle_color = &#39;255,255,255&#39;)
+        init_intersection.add_vehicle(choice = &#34;right&#34;,command=&#34;left&#34;)
+        
+        # test edit settings
+        name1 = init_intersection.add_vehicle(choice = &#34;ahead&#34;,command=&#34;left&#34;)
+        name2 = init_intersection.add_vehicle(choice = &#34;ahead&#34;,command = &#34;right&#34;)
+        
+        name1 = init_intersection.edit_vehicle_settings(name1, choice = &#34;ahead&#34;, vehicle_color = &#39;128,128,128&#39;)
+        name2 = init_intersection.edit_vehicle_settings(name2, choice = &#34;ahead&#34;, gap = 15.0, vehicle_color = &#39;128,128,128&#39;)
+        
+        vehicle_settings_entered = init_intersection.get_vehicle_settings(name2)
+        print(vehicle_settings_entered[&#34;gap&#34;])
+        
+        #init_intersection.edit_traffic_light(&#34;subject&#34;)
+        #init_intersection.edit_traffic_light(&#34;left&#34;,red_start = 40.0,red_end = 60.0,yellow_start=30.0,yellow_end=40.0,green_start=0.0,green_end = 30.0)
+        #init_intersection.edit_traffic_light(&#34;right&#34;,red_start = 0.0,red_end = 10.0,yellow_start=10.0,yellow_end=20.0,green_start=20.0,green_end = 40.0)
+        #init_intersection.edit_traffic_light(&#34;ahead&#34;,red_start = 20.0,red_end = 40.0,yellow_start=10.0,yellow_end=20.0,green_start=0.0,green_end = 10.0)
+        
+        # get bounding box
+        bb = init_intersection.get_vehicle_bounding_box(name1)
+        print(&#34;bb.x = %f, bb.y = %f, bb.z = %f&#34; % (bb.x, bb.y, bb.z))
+        
+        intersection_list[1].add_vehicle(choice = &#34;ahead&#34;)
+        intersection_list[1].add_vehicle(choice = &#34;left&#34;,command=&#34;left&#34;)
+        intersection_list[1].add_vehicle(choice = &#34;right&#34;,command = &#34;left&#34;)
+        intersection_list[1].add_vehicle(choice = &#34;right&#34;)
+        intersection_list[1]._shift_vehicles(-10, choice = &#34;right&#34;,index = 0)
+        #intersection_list[1].edit_traffic_light(&#34;left&#34;),
+        
+        intersection_list[2].add_vehicle(choice = &#34;ahead&#34;)
+        intersection_list[2].add_vehicle(choice = &#34;left&#34;,command=&#34;left&#34;)
+        intersection_list[2].add_vehicle(choice = &#34;right&#34;,command = &#34;left&#34;)
+        intersection_list[2].add_vehicle(choice = &#34;right&#34;,command = &#34;right&#34;)
+        #intersection_list[2].edit_traffic_light(&#34;right&#34;)
+        
+        intersection_list[3].add_vehicle(command = &#34;left&#34;)
+        intersection_list[3].add_vehicle()
+        #intersection_list[3].edit_traffic_light(&#34;ahead&#34;)
+        
+        # test import/export
+        init_setting = init_intersection.export_settings()
+        
+        intersection_list[3].import_settings(init_setting)
+        intersection_list[3].add_vehicle(command  = &#34;left&#34;)
+        intersection_list[3].add_vehicle()
+        third_setting = intersection_list[3].export_settings()
+        
+        write_intersection_settings(&#34;third_intersection_setting&#34;,third_setting)
+        new_third_setting = read_intersection_settings(&#39;third_intersection_setting&#39;)
+        
+        intersection_list[2].import_settings(new_third_setting)
+        
+        
+        
+        
+        IntersectionBackend(env,intersection_list,allow_collision = False)
+    finally:
+        time.sleep(10)
+        env.destroy_actors()</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="backend" href="index.html">backend</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="backend.intersection_backend.IntersectionBackend" href="#backend.intersection_backend.IntersectionBackend">IntersectionBackend</a></code></li>
+<li><code><a title="backend.intersection_backend.main" href="#backend.intersection_backend.main">main</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,1162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.2" />
+<title>backend.pure_pursuit_with_auto_trajectory_generation API documentation</title>
+<meta name="description" content="Created on Mon Jun 15 20:50:23 2020 …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>backend.pure_pursuit_with_auto_trajectory_generation</code></h1>
+</header>
+<section id="section-intro">
+<p>Created on Mon Jun 15 20:50:23 2020</p>
+<p>@author: shijiliu</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+&#34;&#34;&#34;
+Created on Mon Jun 15 20:50:23 2020
+
+@author: shijiliu
+&#34;&#34;&#34;
+
+
+
+
+import carla
+import matplotlib.pyplot as plt
+import numpy as np
+from collections import deque
+import time
+from scipy.interpolate import UnivariateSpline
+import math
+
+import control # the python-control package, install first
+from backend.carla_env import CARLA_ENV # self-written class that provides help functions, should be in the same folder
+
+from backend.generate_path_omit_regulation import generate_path # function for auto-path generation
+# PI controller constants
+KI = 0.02
+KP = 0.5
+
+# pure-pursuit model constants
+k = 0.1 # coefficient for look ahead
+Lfc = 4.0 # look ahead distance
+L = 2.88 # wheelbase
+
+# distance between two near way points
+waypoint_separation = 4.0
+# enable/disable debug mode to draw trajectory points in carla
+DEBUG = True
+
+def get_PI_controller(delta_seconds):
+    &#39;&#39;&#39;
+    Effects: create a discrete state-space PI controller
+    &#39;&#39;&#39;
+    num_pi = [KP, KI] # numerator of the PI transfer function (KP*s + KI)
+    den_pi = [1.0, 0.01*KI/KP] # denominator of PI transfer function (s + 0.01*KI/KP)
+
+    sys = control.tf(num_pi,den_pi) # get transfer function for PI controller (since the denominator has a small term 0.01*KI/KP, it is actually a lag-compensator)
+    sys = control.sample_system(sys, delta_seconds) # discretize the transfer function (from s-domain which is continuous to z-domain)
+                                                        #since our simulation is discrete
+    sys = control.tf2ss(sys) # transform transfer function into state space.
+    return sys
+
+def speed_control(sys, ref_speeds, curr_speeds, init_values):
+    &#39;&#39;&#39;
+    Effects: get the reference speed, current (measured) speed and initial values
+             Use the difference 
+                               e = ref_speeds - curr_speeds 
+             as the input for the PI controller, derive the new throttle
+
+    Parameters
+    ----------
+    sys : control.ss 
+        state space controller 
+    ref_speeds : list of float
+        the desired speed we need
+    curr_speeds : list of float
+        the current speed
+    init_values : the initial_values of the system
+        DESCRIPTION.
+
+    Returns
+    -------
+    throttle : float type
+        DESCRIPTION.
+
+    &#39;&#39;&#39;
+    U0 = np.array(ref_speeds) - np.array(curr_speeds)
+    #print(U0)
+    _,y0,x0 = control.forced_response(sys,U = U0,X0 = init_values[0]) # y0 is the next values, x0 is the state evolution
+                                                                      # see https://python-control.readthedocs.io/en/0.8.3/generated/control.forced_response.html#control.forced_response 
+    init_values.append(x0[-1])
+    throttle = y0[-1]
+    return throttle, init_values
+
+def get_trajectory(way_points):
+    &#39;&#39;&#39;
+    
+
+    Parameters
+    ----------
+    way_points : list
+        A list of (way_point, reference_speed) tuple, 
+        where way_points is a tuple of floats (x,y), the first point must be the **current point** of the vehicle
+              reference speed is the desired speed for the vehicle after this way point and before the next way point
+        e.g. [((0.0,0.0),10.0),((0.0,10.0),1.0)]
+
+    Returns
+    -------
+    trajectory : numpy 2d array
+        the interpolated trajectory.
+    ref_speed_list : list
+        the speed correspoding to the interpolated trajectory
+
+    &#39;&#39;&#39;
+    points, speed = zip(*way_points)
+    points = np.array([[pt[0], pt[1]] for pt in points])
+    
+    # apply average smoothing of the points
+    points = smooth_trajectory(points)
+    
+    # linear length along the line (reference: https://stackoverflow.com/questions/52014197/how-to-interpolate-a-2d-curve-in-python)
+    distance = np.cumsum( np.sqrt(np.sum( np.diff(points,axis=0)**2, axis = 1)))
+    distance = np.insert(distance, 0, 0)/distance[-1]
+    
+    &#39;&#39;&#39;
+    # define interpolation method
+    interpolation_method = &#39;slinear&#39; #&#39;quadratic&#39;
+    
+    alpha = np.linspace(0,1, 2 * len(distance))
+    
+    interpolator = interp1d(distance, points, kind = interpolation_method, axis = 0)
+    trajectory = interpolator(alpha)
+    &#39;&#39;&#39;
+    
+    # Build a list of the spline function, one for each dimension:
+    splines = [UnivariateSpline(distance, coords, k=1, s=.2) for coords in points.T]
+    
+    alpha = np.linspace(0,1.02, 2 * len(distance))
+    trajectory = np.vstack( [spl(alpha) for spl in splines] ).T
+    
+    
+    nearest_index = []
+    for pt in points:
+        nearest_distance = np.inf
+        index = 0
+        count = 0
+        for trajectory_pt in trajectory:
+            dist_2 = sum((trajectory_pt - pt)**2)
+            if dist_2 &lt; nearest_distance:
+                nearest_distance = dist_2
+                index = count
+            count += 1
+        nearest_index.append(index)
+        
+    ref_speed_list = np.zeros(len(trajectory))
+    for ii in range(1,len(nearest_index)):
+        ref_speed_list[nearest_index[ii - 1]:nearest_index[ii]] = speed[ii - 1]
+    
+    #plt.plot(trajectory[:,0],trajectory[:,1],&#39;.&#39;)
+    #print(ref_speed_list)
+    
+    return trajectory, ref_speed_list
+
+def get_target_index(location_2d, current_forward_speed, trajectory):
+    &#39;&#39;&#39;
+    Get the target for the vehicle to navigate to
+
+    Parameters
+    ----------
+    location_2d : (x,y)
+        current location of the vehicle.
+    current_forward_speed : float
+        current speed of the vehicle.
+    trajectory : numpy 2d array
+        interpolated waypoints.
+
+    Returns
+    -------
+    ind : TYPE
+        DESCRIPTION.
+    end_trajectory : TYPE
+        DESCRIPTION.
+
+    &#39;&#39;&#39;
+    
+    
+    distance = np.sum((trajectory - location_2d)**2,axis = 1)**0.5
+    ind = np.argmin(distance)
+    l0 = 0.0
+    
+    Lf = k * current_forward_speed + Lfc
+    
+    while Lf &gt; l0 and (ind + 1) &lt; len(trajectory):
+        delta_d = sum((trajectory[ind + 1] - trajectory[ind])**2)**0.5
+        l0 += delta_d
+        ind += 1
+    
+    if ind &gt;= len(trajectory) - 1:
+        end_trajectory = True
+    else:
+        end_trajectory = False
+        
+    return ind, end_trajectory
+    
+
+def smooth_trajectory(trajectory):
+    &#39;&#39;&#39;
+    
+
+    Parameters
+    ----------
+    trajectory : [(float,float),...,(float,float)]
+        2d trajectory.
+
+    Returns
+    -------
+    smoothed_trajectory : [(float,float),...,(float,float)]
+        the smoother trajectory
+
+    &#39;&#39;&#39;
+    smoothed_trajectory = []
+    smoothed_trajectory.append(trajectory[0])
+    
+    num = 3
+    
+    for ii in range(num - 1,len(trajectory)):
+        avg_pt = (trajectory[ii - 2] + trajectory[ii - 1] + trajectory[ii]) / num
+        smoothed_trajectory.append(avg_pt)
+    
+    smoothed_trajectory.append(trajectory[-1])
+    return np.array(smoothed_trajectory)
+
+
+def pure_pursuit_control(vehicle_pos_2d, current_forward_speed, trajectory, ref_speed_list, prev_index):
+    &#39;&#39;&#39;
+    
+
+    Parameters
+    ----------
+    vehicle_pos_2d : (location_2d,yaw)
+        tuple of vehicle location and heading in 2d.
+        location_2d : (x,y), both x and y are in meter
+        yaw : heading angle **Note** yaw is in degree
+    current_forward_speed : float
+        the current velocity of the vehicle.
+    trajectory : numpy 2d array
+        interpolated waypoints.
+    ref_speed_list : list
+        the reference speed corresponding to each way point
+    prev_index : int
+        the previous index
+    Returns
+    -------
+    delta : float
+        steer angle of the vehicle.
+    current_ref_speed : the reference speed
+        DESCRIPTION.
+    index : int
+        the index of the target.
+    end_trajectory : boolean
+        whether we have reached clos enough to the destination.
+
+    &#39;&#39;&#39;
+    
+    
+    
+    location_2d, yaw = vehicle_pos_2d
+    yaw = np.deg2rad(yaw) # change the unit the radius
+    index, end_trajectory = get_target_index(location_2d, current_forward_speed, trajectory)
+    
+    if prev_index &gt;= index:
+        index = prev_index
+        
+    if index &lt; len(trajectory):
+        tx = trajectory[index][0]
+        ty = trajectory[index][1]
+    else:
+        tx = trajectory[-1][0]
+        ty = trajectory[-1][1] 
+    
+    alpha = math.atan2(ty - location_2d[1],tx - location_2d[0]) - yaw
+    
+    if current_forward_speed &lt; 0: #back, should not happen in our case
+        alpha = math.pi - alpha
+    
+    Lf = k * current_forward_speed + Lfc
+    
+    delta = math.atan2(2.0 * L * math.sin(alpha) / Lf, 1.0)
+    #print(&#34;delta == &#34;, delta, &#34;yaw == &#34;, yaw)
+    
+    current_ref_speed = ref_speed_list[index]
+    
+    return delta, current_ref_speed, index, end_trajectory
+
+def generate_waypoints(env, start, end, constant_speed):
+    &#39;&#39;&#39;
+    
+
+    Parameters
+    ----------
+    env : CARLA_ENV
+        The simulation environment
+    
+    start : (float,float)
+        2d position of the start point
+    
+    end : (float,float)
+        2d position of destination
+
+    Returns
+    -------
+    way_points : list
+        A list of (way_point, reference_speed) tuple, 
+        where way_points is a tuple of floats (x,y), the first point must be the **current point** of the vehicle
+              reference speed is the desired speed for the vehicle after this way point and before the next way point
+        e.g. [((0.0,0.0),10.0),((0.0,10.0),1.0)]
+
+    &#39;&#39;&#39;
+    
+    # get the waypoint from carla map
+    carla_map = env.world.get_map()
+    
+    start_raw = carla.Location(x = start[0], y = start[1], z = 0.0)
+    end_raw = carla.Location(x = end[0], y = end[1], z = 0.0)
+    
+    start_waypoint = carla_map.get_waypoint(start_raw)
+    end_waypoint = carla_map.get_waypoint(end_raw)
+    
+    trajectory = generate_path(env,start_waypoint, end_waypoint, waypoint_separation = waypoint_separation)
+    
+    # generate way_points
+    way_points = []
+    
+    for ii in range(len(trajectory) - 1):
+        way_points.append((trajectory[ii],constant_speed))
+    
+    way_points.append((trajectory[-1], 0.0)) # set the speed at destination to be 0
+    
+    return way_points
+
+
+
+    
+
+def pure_pursuit_control_wrapper(env,start,end,model_uniquename, constant_speed):
+    &#39;&#39;&#39;
+    
+
+    Parameters
+    ----------
+    env : CARLA_ENV
+        The simulation environment
+    
+    start : (float,float)
+        2d position of the start point
+    
+    end : (float,float)
+        2d position of destination
+    
+    model_uniquename : str
+        the name of the vehicle we want to control.
+
+    constant_speed : float
+        the speed of the vehicle, assume constant
+    Returns
+    -------
+    None.
+
+    &#39;&#39;&#39;
+    
+    # create control system
+    sys = get_PI_controller(env.delta_seconds)
+    
+    # essential storages for the controller to work
+    init_values = deque(maxlen = 2) # the state space values of the system. For a control system to be fully functional
+                                    # we need to give initial value
+    ref_speeds = deque(maxlen = 2) # the reference / target speed
+    curr_speeds = deque(maxlen = 2) # the measured speed of the vehicle
+    
+    if DEBUG: 
+        vehicle_pose = deque(maxlen = 2)
+    
+    
+    # storage for the visualize the reference speed, throttle and measured speed.
+    speed = []
+    throttles = []
+    reference_speed = []
+    
+    # give initial values to storage, assume the car is released at rest, with no initial speed or acceleration
+    init_values.append(0) 
+    ref_speeds.append(0)
+    curr_speeds.append(0)
+    
+    current_ref_speed = 0
+    index = 0
+    
+    # get waypoints from auto-trajectory generation, with a constant navigation speed
+    way_points = generate_waypoints(env, start, end, constant_speed)
+    
+    
+    # interpolate a trajectory based on way_points for the vehicle to follow
+    trajectory, ref_speed_list = get_trajectory(way_points)
+    
+    if DEBUG:
+        points_debug, _ = zip(*way_points)
+        env.draw_waypoints(trajectory, points_debug) # draw waypoints and expected trajectory
+    
+    # main control loop
+    while True: #loop for applying control
+        env.world.tick()
+        
+        # get vehicle&#39;s speed, location and orientation
+        curr_speed = env.get_forward_speed(model_uniquename)
+        vehicle_pos_2d = env.get_transform_2d(model_uniquename) # the (x,y) location and yaw angle of the vehicle
+        speed.append(curr_speed)
+        curr_speeds.append(curr_speed)
+        
+        # draw real trajectory if debug is enabled
+        if DEBUG:
+            vehicle_pose.append(vehicle_pos_2d[0])
+            if len(vehicle_pose) == 2:
+                env.draw_real_trajectory(vehicle_pose)
+        
+        # use pure-pursuit model to get the steer angle (in radius)
+        delta, current_ref_speed, index, end_trajectory = pure_pursuit_control(vehicle_pos_2d, curr_speed, trajectory, ref_speed_list, index)
+        steer = np.clip(delta,-1.0,1.0)
+        ref_speeds.append(current_ref_speed)
+        reference_speed.append(current_ref_speed)
+        
+        # get throttle to get the next reference speed 
+        throttle, init_values = speed_control(sys, ref_speeds, curr_speeds, init_values) # get the throttle control based on reference and current speed
+        throttle = np.clip(throttle,0,1) # throttle value is [0,1]
+        throttles.append(throttle) # for visualization
+        
+        # check whether we are reaching the destination or not
+        if end_trajectory:
+            vehicle_control = carla.VehicleControl(throttle = 0.0,steer=steer,brake = 1.0) # immediately stop the car
+            env.apply_vehicle_control(model_uniquename, vehicle_control) # apply control to vehicle
+            break
+        
+        
+        # apply throttle-steer-brake control
+        if curr_speed &lt;= current_ref_speed:
+            vehicle_control = carla.VehicleControl(throttle = throttle,steer=steer) 
+        else:
+            vehicle_control = carla.VehicleControl(throttle = throttle,steer=steer,brake = 0.5)
+        env.apply_vehicle_control(model_uniquename, vehicle_control) # apply control to vehicle
+        
+
+    
+    return throttles, speed, reference_speed
+
+client = carla.Client(&#34;localhost&#34;,2000)
+client.set_timeout(10.0)
+world = client.load_world(&#39;Town05&#39;)
+
+# set the weather
+world = client.get_world()
+weather = carla.WeatherParameters(
+    cloudiness=10.0,
+    precipitation=0.0,
+    sun_altitude_angle=90.0)
+world.set_weather(weather)
+
+# set the spectator position for demo purpose
+spectator = world.get_spectator()
+spectator.set_transform(carla.Transform(carla.Location(x=0.0, y=0.0, z=20.0), carla.Rotation(pitch=-31.07, yaw= -90.868, roll=1.595))) # plain ground
+
+env = CARLA_ENV(world) 
+time.sleep(2) # sleep for 2 seconds, wait the initialization to finish
+
+# spawn a vehicle, here I choose a Tesla model
+spawn_point = carla.Transform(carla.Location(x=14.8, y=5.8, z=5.0), carla.Rotation(pitch=0.000000, yaw= 0, roll=0.000000))
+model_name = &#34;vehicle.tesla.model3&#34;
+model_uniquename = env.spawn_vehicle(model_name,spawn_point) # spawn the model and get the uniquename, the CARLA_ENV class will store the vehicle into vehicle actor list
+
+time.sleep(5)
+
+&#39;&#39;&#39;
+way_points = [((-277.08,-15.39),20),
+              ((-30.08,-15.39),10),
+              ((-12.0,-12.0),10),
+              (( -9, 0.0),20),
+              (( -9, 50),0)
+              ]
+&#39;&#39;&#39;
+
+start = (14.8,5.8)
+end = (31.49375, -12.65625)
+constant_speed = 10
+
+try:
+
+    throttles, speed, reference_speed = pure_pursuit_control_wrapper(env,start,end,model_uniquename, constant_speed)
+    
+    fig,a =  plt.subplots(3,1)
+    
+    #plt.subplot(3,1,1)
+    a[0].plot(reference_speed)
+    a[0].set_title(&#39;reference speed&#39;)
+    #plt.subplot(3,1,2)
+    a[1].plot(throttles)
+    a[1].set_title(&#39;throttle applied&#39;)
+    a[2].plot(speed)
+    a[2].set_title(&#39;measured speed&#39;)
+    
+    
+finally:
+    env.destroy_actors()</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="backend.pure_pursuit_with_auto_trajectory_generation.generate_waypoints"><code class="name flex">
+<span>def <span class="ident">generate_waypoints</span></span>(<span>env, start, end, constant_speed)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>env</code></strong> :&ensp;<code>CARLA_ENV</code></dt>
+<dd>The simulation environment</dd>
+<dt><strong><code>start</code></strong> :&ensp;<code>(float,float)</code></dt>
+<dd>2d position of the start point</dd>
+<dt><strong><code>end</code></strong> :&ensp;<code>(float,float)</code></dt>
+<dd>2d position of destination</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>way_points</code></strong> :&ensp;<code>list</code></dt>
+<dd>A list of (way_point, reference_speed) tuple,
+where way_points is a tuple of floats (x,y), the first point must be the <strong>current point</strong> of the vehicle
+reference speed is the desired speed for the vehicle after this way point and before the next way point
+e.g. [((0.0,0.0),10.0),((0.0,10.0),1.0)]</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_waypoints(env, start, end, constant_speed):
+    &#39;&#39;&#39;
+    
+
+    Parameters
+    ----------
+    env : CARLA_ENV
+        The simulation environment
+    
+    start : (float,float)
+        2d position of the start point
+    
+    end : (float,float)
+        2d position of destination
+
+    Returns
+    -------
+    way_points : list
+        A list of (way_point, reference_speed) tuple, 
+        where way_points is a tuple of floats (x,y), the first point must be the **current point** of the vehicle
+              reference speed is the desired speed for the vehicle after this way point and before the next way point
+        e.g. [((0.0,0.0),10.0),((0.0,10.0),1.0)]
+
+    &#39;&#39;&#39;
+    
+    # get the waypoint from carla map
+    carla_map = env.world.get_map()
+    
+    start_raw = carla.Location(x = start[0], y = start[1], z = 0.0)
+    end_raw = carla.Location(x = end[0], y = end[1], z = 0.0)
+    
+    start_waypoint = carla_map.get_waypoint(start_raw)
+    end_waypoint = carla_map.get_waypoint(end_raw)
+    
+    trajectory = generate_path(env,start_waypoint, end_waypoint, waypoint_separation = waypoint_separation)
+    
+    # generate way_points
+    way_points = []
+    
+    for ii in range(len(trajectory) - 1):
+        way_points.append((trajectory[ii],constant_speed))
+    
+    way_points.append((trajectory[-1], 0.0)) # set the speed at destination to be 0
+    
+    return way_points</code></pre>
+</details>
+</dd>
+<dt id="backend.pure_pursuit_with_auto_trajectory_generation.get_PI_controller"><code class="name flex">
+<span>def <span class="ident">get_PI_controller</span></span>(<span>delta_seconds)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Effects: create a discrete state-space PI controller</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_PI_controller(delta_seconds):
+    &#39;&#39;&#39;
+    Effects: create a discrete state-space PI controller
+    &#39;&#39;&#39;
+    num_pi = [KP, KI] # numerator of the PI transfer function (KP*s + KI)
+    den_pi = [1.0, 0.01*KI/KP] # denominator of PI transfer function (s + 0.01*KI/KP)
+
+    sys = control.tf(num_pi,den_pi) # get transfer function for PI controller (since the denominator has a small term 0.01*KI/KP, it is actually a lag-compensator)
+    sys = control.sample_system(sys, delta_seconds) # discretize the transfer function (from s-domain which is continuous to z-domain)
+                                                        #since our simulation is discrete
+    sys = control.tf2ss(sys) # transform transfer function into state space.
+    return sys</code></pre>
+</details>
+</dd>
+<dt id="backend.pure_pursuit_with_auto_trajectory_generation.get_target_index"><code class="name flex">
+<span>def <span class="ident">get_target_index</span></span>(<span>location_2d, current_forward_speed, trajectory)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the target for the vehicle to navigate to</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>location_2d</code></strong> :&ensp;<code>(x,y)</code></dt>
+<dd>current location of the vehicle.</dd>
+<dt><strong><code>current_forward_speed</code></strong> :&ensp;<code>float</code></dt>
+<dd>current speed of the vehicle.</dd>
+<dt><strong><code>trajectory</code></strong> :&ensp;<code>numpy 2d array</code></dt>
+<dd>interpolated waypoints.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>ind</code></strong> :&ensp;<code>TYPE</code></dt>
+<dd>DESCRIPTION.</dd>
+<dt><strong><code>end_trajectory</code></strong> :&ensp;<code>TYPE</code></dt>
+<dd>DESCRIPTION.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_target_index(location_2d, current_forward_speed, trajectory):
+    &#39;&#39;&#39;
+    Get the target for the vehicle to navigate to
+
+    Parameters
+    ----------
+    location_2d : (x,y)
+        current location of the vehicle.
+    current_forward_speed : float
+        current speed of the vehicle.
+    trajectory : numpy 2d array
+        interpolated waypoints.
+
+    Returns
+    -------
+    ind : TYPE
+        DESCRIPTION.
+    end_trajectory : TYPE
+        DESCRIPTION.
+
+    &#39;&#39;&#39;
+    
+    
+    distance = np.sum((trajectory - location_2d)**2,axis = 1)**0.5
+    ind = np.argmin(distance)
+    l0 = 0.0
+    
+    Lf = k * current_forward_speed + Lfc
+    
+    while Lf &gt; l0 and (ind + 1) &lt; len(trajectory):
+        delta_d = sum((trajectory[ind + 1] - trajectory[ind])**2)**0.5
+        l0 += delta_d
+        ind += 1
+    
+    if ind &gt;= len(trajectory) - 1:
+        end_trajectory = True
+    else:
+        end_trajectory = False
+        
+    return ind, end_trajectory</code></pre>
+</details>
+</dd>
+<dt id="backend.pure_pursuit_with_auto_trajectory_generation.get_trajectory"><code class="name flex">
+<span>def <span class="ident">get_trajectory</span></span>(<span>way_points)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>way_points</code></strong> :&ensp;<code>list</code></dt>
+<dd>A list of (way_point, reference_speed) tuple,
+where way_points is a tuple of floats (x,y), the first point must be the <strong>current point</strong> of the vehicle
+reference speed is the desired speed for the vehicle after this way point and before the next way point
+e.g. [((0.0,0.0),10.0),((0.0,10.0),1.0)]</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>trajectory</code></strong> :&ensp;<code>numpy 2d array</code></dt>
+<dd>the interpolated trajectory.</dd>
+<dt><strong><code>ref_speed_list</code></strong> :&ensp;<code>list</code></dt>
+<dd>the speed correspoding to the interpolated trajectory</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_trajectory(way_points):
+    &#39;&#39;&#39;
+    
+
+    Parameters
+    ----------
+    way_points : list
+        A list of (way_point, reference_speed) tuple, 
+        where way_points is a tuple of floats (x,y), the first point must be the **current point** of the vehicle
+              reference speed is the desired speed for the vehicle after this way point and before the next way point
+        e.g. [((0.0,0.0),10.0),((0.0,10.0),1.0)]
+
+    Returns
+    -------
+    trajectory : numpy 2d array
+        the interpolated trajectory.
+    ref_speed_list : list
+        the speed correspoding to the interpolated trajectory
+
+    &#39;&#39;&#39;
+    points, speed = zip(*way_points)
+    points = np.array([[pt[0], pt[1]] for pt in points])
+    
+    # apply average smoothing of the points
+    points = smooth_trajectory(points)
+    
+    # linear length along the line (reference: https://stackoverflow.com/questions/52014197/how-to-interpolate-a-2d-curve-in-python)
+    distance = np.cumsum( np.sqrt(np.sum( np.diff(points,axis=0)**2, axis = 1)))
+    distance = np.insert(distance, 0, 0)/distance[-1]
+    
+    &#39;&#39;&#39;
+    # define interpolation method
+    interpolation_method = &#39;slinear&#39; #&#39;quadratic&#39;
+    
+    alpha = np.linspace(0,1, 2 * len(distance))
+    
+    interpolator = interp1d(distance, points, kind = interpolation_method, axis = 0)
+    trajectory = interpolator(alpha)
+    &#39;&#39;&#39;
+    
+    # Build a list of the spline function, one for each dimension:
+    splines = [UnivariateSpline(distance, coords, k=1, s=.2) for coords in points.T]
+    
+    alpha = np.linspace(0,1.02, 2 * len(distance))
+    trajectory = np.vstack( [spl(alpha) for spl in splines] ).T
+    
+    
+    nearest_index = []
+    for pt in points:
+        nearest_distance = np.inf
+        index = 0
+        count = 0
+        for trajectory_pt in trajectory:
+            dist_2 = sum((trajectory_pt - pt)**2)
+            if dist_2 &lt; nearest_distance:
+                nearest_distance = dist_2
+                index = count
+            count += 1
+        nearest_index.append(index)
+        
+    ref_speed_list = np.zeros(len(trajectory))
+    for ii in range(1,len(nearest_index)):
+        ref_speed_list[nearest_index[ii - 1]:nearest_index[ii]] = speed[ii - 1]
+    
+    #plt.plot(trajectory[:,0],trajectory[:,1],&#39;.&#39;)
+    #print(ref_speed_list)
+    
+    return trajectory, ref_speed_list</code></pre>
+</details>
+</dd>
+<dt id="backend.pure_pursuit_with_auto_trajectory_generation.pure_pursuit_control"><code class="name flex">
+<span>def <span class="ident">pure_pursuit_control</span></span>(<span>vehicle_pos_2d, current_forward_speed, trajectory, ref_speed_list, prev_index)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>vehicle_pos_2d</code></strong> :&ensp;<code>(location_2d,yaw)</code></dt>
+<dd>tuple of vehicle location and heading in 2d.
+location_2d : (x,y), both x and y are in meter
+yaw : heading angle <strong>Note</strong> yaw is in degree</dd>
+<dt><strong><code>current_forward_speed</code></strong> :&ensp;<code>float</code></dt>
+<dd>the current velocity of the vehicle.</dd>
+<dt><strong><code>trajectory</code></strong> :&ensp;<code>numpy 2d array</code></dt>
+<dd>interpolated waypoints.</dd>
+<dt><strong><code>ref_speed_list</code></strong> :&ensp;<code>list</code></dt>
+<dd>the reference speed corresponding to each way point</dd>
+<dt><strong><code>prev_index</code></strong> :&ensp;<code>int</code></dt>
+<dd>the previous index</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>delta</code></strong> :&ensp;<code>float</code></dt>
+<dd>steer angle of the vehicle.</dd>
+<dt><strong><code>current_ref_speed</code></strong> :&ensp;<code>the reference speed</code></dt>
+<dd>DESCRIPTION.</dd>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>the index of the target.</dd>
+<dt><strong><code>end_trajectory</code></strong> :&ensp;<code>boolean</code></dt>
+<dd>whether we have reached clos enough to the destination.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def pure_pursuit_control(vehicle_pos_2d, current_forward_speed, trajectory, ref_speed_list, prev_index):
+    &#39;&#39;&#39;
+    
+
+    Parameters
+    ----------
+    vehicle_pos_2d : (location_2d,yaw)
+        tuple of vehicle location and heading in 2d.
+        location_2d : (x,y), both x and y are in meter
+        yaw : heading angle **Note** yaw is in degree
+    current_forward_speed : float
+        the current velocity of the vehicle.
+    trajectory : numpy 2d array
+        interpolated waypoints.
+    ref_speed_list : list
+        the reference speed corresponding to each way point
+    prev_index : int
+        the previous index
+    Returns
+    -------
+    delta : float
+        steer angle of the vehicle.
+    current_ref_speed : the reference speed
+        DESCRIPTION.
+    index : int
+        the index of the target.
+    end_trajectory : boolean
+        whether we have reached clos enough to the destination.
+
+    &#39;&#39;&#39;
+    
+    
+    
+    location_2d, yaw = vehicle_pos_2d
+    yaw = np.deg2rad(yaw) # change the unit the radius
+    index, end_trajectory = get_target_index(location_2d, current_forward_speed, trajectory)
+    
+    if prev_index &gt;= index:
+        index = prev_index
+        
+    if index &lt; len(trajectory):
+        tx = trajectory[index][0]
+        ty = trajectory[index][1]
+    else:
+        tx = trajectory[-1][0]
+        ty = trajectory[-1][1] 
+    
+    alpha = math.atan2(ty - location_2d[1],tx - location_2d[0]) - yaw
+    
+    if current_forward_speed &lt; 0: #back, should not happen in our case
+        alpha = math.pi - alpha
+    
+    Lf = k * current_forward_speed + Lfc
+    
+    delta = math.atan2(2.0 * L * math.sin(alpha) / Lf, 1.0)
+    #print(&#34;delta == &#34;, delta, &#34;yaw == &#34;, yaw)
+    
+    current_ref_speed = ref_speed_list[index]
+    
+    return delta, current_ref_speed, index, end_trajectory</code></pre>
+</details>
+</dd>
+<dt id="backend.pure_pursuit_with_auto_trajectory_generation.pure_pursuit_control_wrapper"><code class="name flex">
+<span>def <span class="ident">pure_pursuit_control_wrapper</span></span>(<span>env, start, end, model_uniquename, constant_speed)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>env</code></strong> :&ensp;<code>CARLA_ENV</code></dt>
+<dd>The simulation environment</dd>
+<dt><strong><code>start</code></strong> :&ensp;<code>(float,float)</code></dt>
+<dd>2d position of the start point</dd>
+<dt><strong><code>end</code></strong> :&ensp;<code>(float,float)</code></dt>
+<dd>2d position of destination</dd>
+<dt><strong><code>model_uniquename</code></strong> :&ensp;<code>str</code></dt>
+<dd>the name of the vehicle we want to control.</dd>
+<dt><strong><code>constant_speed</code></strong> :&ensp;<code>float</code></dt>
+<dd>the speed of the vehicle, assume constant</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>None.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def pure_pursuit_control_wrapper(env,start,end,model_uniquename, constant_speed):
+    &#39;&#39;&#39;
+    
+
+    Parameters
+    ----------
+    env : CARLA_ENV
+        The simulation environment
+    
+    start : (float,float)
+        2d position of the start point
+    
+    end : (float,float)
+        2d position of destination
+    
+    model_uniquename : str
+        the name of the vehicle we want to control.
+
+    constant_speed : float
+        the speed of the vehicle, assume constant
+    Returns
+    -------
+    None.
+
+    &#39;&#39;&#39;
+    
+    # create control system
+    sys = get_PI_controller(env.delta_seconds)
+    
+    # essential storages for the controller to work
+    init_values = deque(maxlen = 2) # the state space values of the system. For a control system to be fully functional
+                                    # we need to give initial value
+    ref_speeds = deque(maxlen = 2) # the reference / target speed
+    curr_speeds = deque(maxlen = 2) # the measured speed of the vehicle
+    
+    if DEBUG: 
+        vehicle_pose = deque(maxlen = 2)
+    
+    
+    # storage for the visualize the reference speed, throttle and measured speed.
+    speed = []
+    throttles = []
+    reference_speed = []
+    
+    # give initial values to storage, assume the car is released at rest, with no initial speed or acceleration
+    init_values.append(0) 
+    ref_speeds.append(0)
+    curr_speeds.append(0)
+    
+    current_ref_speed = 0
+    index = 0
+    
+    # get waypoints from auto-trajectory generation, with a constant navigation speed
+    way_points = generate_waypoints(env, start, end, constant_speed)
+    
+    
+    # interpolate a trajectory based on way_points for the vehicle to follow
+    trajectory, ref_speed_list = get_trajectory(way_points)
+    
+    if DEBUG:
+        points_debug, _ = zip(*way_points)
+        env.draw_waypoints(trajectory, points_debug) # draw waypoints and expected trajectory
+    
+    # main control loop
+    while True: #loop for applying control
+        env.world.tick()
+        
+        # get vehicle&#39;s speed, location and orientation
+        curr_speed = env.get_forward_speed(model_uniquename)
+        vehicle_pos_2d = env.get_transform_2d(model_uniquename) # the (x,y) location and yaw angle of the vehicle
+        speed.append(curr_speed)
+        curr_speeds.append(curr_speed)
+        
+        # draw real trajectory if debug is enabled
+        if DEBUG:
+            vehicle_pose.append(vehicle_pos_2d[0])
+            if len(vehicle_pose) == 2:
+                env.draw_real_trajectory(vehicle_pose)
+        
+        # use pure-pursuit model to get the steer angle (in radius)
+        delta, current_ref_speed, index, end_trajectory = pure_pursuit_control(vehicle_pos_2d, curr_speed, trajectory, ref_speed_list, index)
+        steer = np.clip(delta,-1.0,1.0)
+        ref_speeds.append(current_ref_speed)
+        reference_speed.append(current_ref_speed)
+        
+        # get throttle to get the next reference speed 
+        throttle, init_values = speed_control(sys, ref_speeds, curr_speeds, init_values) # get the throttle control based on reference and current speed
+        throttle = np.clip(throttle,0,1) # throttle value is [0,1]
+        throttles.append(throttle) # for visualization
+        
+        # check whether we are reaching the destination or not
+        if end_trajectory:
+            vehicle_control = carla.VehicleControl(throttle = 0.0,steer=steer,brake = 1.0) # immediately stop the car
+            env.apply_vehicle_control(model_uniquename, vehicle_control) # apply control to vehicle
+            break
+        
+        
+        # apply throttle-steer-brake control
+        if curr_speed &lt;= current_ref_speed:
+            vehicle_control = carla.VehicleControl(throttle = throttle,steer=steer) 
+        else:
+            vehicle_control = carla.VehicleControl(throttle = throttle,steer=steer,brake = 0.5)
+        env.apply_vehicle_control(model_uniquename, vehicle_control) # apply control to vehicle
+        
+
+    
+    return throttles, speed, reference_speed</code></pre>
+</details>
+</dd>
+<dt id="backend.pure_pursuit_with_auto_trajectory_generation.smooth_trajectory"><code class="name flex">
+<span>def <span class="ident">smooth_trajectory</span></span>(<span>trajectory)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>trajectory</code></strong> :&ensp;<code>[(float,float),&hellip;,(float,float)]</code></dt>
+<dd>2d trajectory.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>smoothed_trajectory</code></strong> :&ensp;<code>[(float,float),&hellip;,(float,float)]</code></dt>
+<dd>the smoother trajectory</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def smooth_trajectory(trajectory):
+    &#39;&#39;&#39;
+    
+
+    Parameters
+    ----------
+    trajectory : [(float,float),...,(float,float)]
+        2d trajectory.
+
+    Returns
+    -------
+    smoothed_trajectory : [(float,float),...,(float,float)]
+        the smoother trajectory
+
+    &#39;&#39;&#39;
+    smoothed_trajectory = []
+    smoothed_trajectory.append(trajectory[0])
+    
+    num = 3
+    
+    for ii in range(num - 1,len(trajectory)):
+        avg_pt = (trajectory[ii - 2] + trajectory[ii - 1] + trajectory[ii]) / num
+        smoothed_trajectory.append(avg_pt)
+    
+    smoothed_trajectory.append(trajectory[-1])
+    return np.array(smoothed_trajectory)</code></pre>
+</details>
+</dd>
+<dt id="backend.pure_pursuit_with_auto_trajectory_generation.speed_control"><code class="name flex">
+<span>def <span class="ident">speed_control</span></span>(<span>sys, ref_speeds, curr_speeds, init_values)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Effects: get the reference speed, current (measured) speed and initial values
+Use the difference
+e = ref_speeds - curr_speeds
+as the input for the PI controller, derive the new throttle</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>sys</code></strong> :&ensp;<code>control.ss </code></dt>
+<dd>state space controller</dd>
+<dt><strong><code>ref_speeds</code></strong> :&ensp;<code>list</code> of <code>float</code></dt>
+<dd>the desired speed we need</dd>
+<dt><strong><code>curr_speeds</code></strong> :&ensp;<code>list</code> of <code>float</code></dt>
+<dd>the current speed</dd>
+<dt><strong><code>init_values</code></strong> :&ensp;<code>the initial_values</code> of <code>the system</code></dt>
+<dd>DESCRIPTION.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>throttle</code></strong> :&ensp;<code>float type</code></dt>
+<dd>DESCRIPTION.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def speed_control(sys, ref_speeds, curr_speeds, init_values):
+    &#39;&#39;&#39;
+    Effects: get the reference speed, current (measured) speed and initial values
+             Use the difference 
+                               e = ref_speeds - curr_speeds 
+             as the input for the PI controller, derive the new throttle
+
+    Parameters
+    ----------
+    sys : control.ss 
+        state space controller 
+    ref_speeds : list of float
+        the desired speed we need
+    curr_speeds : list of float
+        the current speed
+    init_values : the initial_values of the system
+        DESCRIPTION.
+
+    Returns
+    -------
+    throttle : float type
+        DESCRIPTION.
+
+    &#39;&#39;&#39;
+    U0 = np.array(ref_speeds) - np.array(curr_speeds)
+    #print(U0)
+    _,y0,x0 = control.forced_response(sys,U = U0,X0 = init_values[0]) # y0 is the next values, x0 is the state evolution
+                                                                      # see https://python-control.readthedocs.io/en/0.8.3/generated/control.forced_response.html#control.forced_response 
+    init_values.append(x0[-1])
+    throttle = y0[-1]
+    return throttle, init_values</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="backend" href="index.html">backend</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="backend.pure_pursuit_with_auto_trajectory_generation.generate_waypoints" href="#backend.pure_pursuit_with_auto_trajectory_generation.generate_waypoints">generate_waypoints</a></code></li>
+<li><code><a title="backend.pure_pursuit_with_auto_trajectory_generation.get_PI_controller" href="#backend.pure_pursuit_with_auto_trajectory_generation.get_PI_controller">get_PI_controller</a></code></li>
+<li><code><a title="backend.pure_pursuit_with_auto_trajectory_generation.get_target_index" href="#backend.pure_pursuit_with_auto_trajectory_generation.get_target_index">get_target_index</a></code></li>
+<li><code><a title="backend.pure_pursuit_with_auto_trajectory_generation.get_trajectory" href="#backend.pure_pursuit_with_auto_trajectory_generation.get_trajectory">get_trajectory</a></code></li>
+<li><code><a title="backend.pure_pursuit_with_auto_trajectory_generation.pure_pursuit_control" href="#backend.pure_pursuit_with_auto_trajectory_generation.pure_pursuit_control">pure_pursuit_control</a></code></li>
+<li><code><a title="backend.pure_pursuit_with_auto_trajectory_generation.pure_pursuit_control_wrapper" href="#backend.pure_pursuit_with_auto_trajectory_generation.pure_pursuit_control_wrapper">pure_pursuit_control_wrapper</a></code></li>
+<li><code><a title="backend.pure_pursuit_with_auto_trajectory_generation.smooth_trajectory" href="#backend.pure_pursuit_with_auto_trajectory_generation.smooth_trajectory">smooth_trajectory</a></code></li>
+<li><code><a title="backend.pure_pursuit_with_auto_trajectory_generation.speed_control" href="#backend.pure_pursuit_with_auto_trajectory_generation.speed_control">speed_control</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,4110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.2" />
+<title>backend.intersection_definition API documentation</title>
+<meta name="description" content="Created on Sun Jul
+5 10:20:35 2020 …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>backend.intersection_definition</code></h1>
+</header>
+<section id="section-intro">
+<p>Created on Sun Jul
+5 10:20:35 2020</p>
+<p>@author: shijiliu</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+&#34;&#34;&#34;
+Created on Sun Jul  5 10:20:35 2020
+
+@author: shijiliu
+&#34;&#34;&#34;
+import sys
+sys.path.append(&#34;..&#34;)
+
+import carla
+from backend.carla_env import CARLA_ENV 
+import math
+import time
+import numpy as np
+from configobj import ConfigObj
+from backend.generate_path_omit_regulation import generate_path
+from scipy.interpolate import UnivariateSpline
+import copy
+
+from backend.intersection_settings_helper import write_intersection_settings, read_intersection_settings
+
+DEBUG_INIT = True
+DEBUG_TRAJECTORY = True
+
+# color for debug use
+red = carla.Color(255, 0, 0)
+green = carla.Color(0, 255, 0)
+blue = carla.Color(47, 210, 231)
+cyan = carla.Color(0, 255, 255)
+yellow = carla.Color(255, 255, 0)
+orange = carla.Color(255, 162, 0)
+white = carla.Color(255, 255, 255)
+
+
+# distance of lane points from traffic light
+&#39;&#39;&#39;
+END1 = -6.5#-5.5
+END2 = -9.0
+START1 = -12.5
+START2 = -15.5#-15.5#-16.0
+&#39;&#39;&#39;
+
+# right shift from the center of the lane when spawning
+RIGHT_SHIFT = 0.0#1.6 # 0.0 if requirements changed to spawn in the middle of the lane#
+
+def get_traffic_lights(actor_list):
+    # get all the available traffic lights
+    traffic_light_list = []
+    for actor in actor_list:
+        if &#39;traffic_light&#39; in actor.type_id:
+            traffic_light_list.append(actor)
+    return traffic_light_list
+
+def smooth_trajectory(trajectory):
+    &#39;&#39;&#39;
+    
+
+    Parameters
+    ----------
+    trajectory : np.array([(float,float),...,(float,float)])
+        2d trajectory.
+
+    Returns
+    -------
+    smoothed_trajectory : np.array([(float,float),...,(float,float)])
+        the smoother trajectory
+
+    &#39;&#39;&#39;
+    
+    smoothed_trajectory = []
+    smoothed_trajectory.append(trajectory[0])
+    
+    num = 3
+    
+    for ii in range(num - 1,len(trajectory)):
+        avg_pt = (trajectory[ii - 2] + trajectory[ii - 1] + trajectory[ii]) / num
+        smoothed_trajectory.append(avg_pt)
+    
+    smoothed_trajectory.append(trajectory[-1])
+    return np.array(smoothed_trajectory)
+
+def get_trajectory(way_points):
+    &#39;&#39;&#39;
+    
+
+    Parameters
+    ----------
+    way_points : list
+        A list of (way_point, reference_speed) tuple, 
+        where way_points is a tuple of floats (x,y), the first point must be the **current point** of the vehicle
+              reference speed is the desired speed for the vehicle after this way point and before the next way point
+        e.g. [((0.0,0.0),10.0),((0.0,10.0),1.0)]
+
+    Returns
+    -------
+    trajectory : numpy 2d array
+        the interpolated trajectory.
+    ref_speed_list : list
+        the speed correspoding to the interpolated trajectory
+
+    &#39;&#39;&#39;
+    points, speed = zip(*way_points)
+    points = np.array([[pt[0], pt[1]] for pt in points])
+    
+    # apply average smoothing of the points
+    points = smooth_trajectory(points)
+    
+    # linear length along the line (reference: https://stackoverflow.com/questions/52014197/how-to-interpolate-a-2d-curve-in-python)
+    distance = np.cumsum( np.sqrt(np.sum( np.diff(points,axis=0)**2, axis = 1)))
+    distance = np.insert(distance, 0, 0)/distance[-1]
+    
+    &#39;&#39;&#39;
+    # define interpolation method
+    interpolation_method = &#39;slinear&#39; #&#39;quadratic&#39;
+    
+    alpha = np.linspace(0,1, 2 * len(distance))
+    
+    interpolator = interp1d(distance, points, kind = interpolation_method, axis = 0)
+    trajectory = interpolator(alpha)
+    &#39;&#39;&#39;
+    
+    # Build a list of the spline function, one for each dimension:
+    splines = [UnivariateSpline(distance, coords, k=3, s=.2) for coords in points.T]
+    
+    alpha = np.linspace(0,1.0, 2 * len(distance))
+    trajectory = np.vstack( [spl(alpha) for spl in splines] ).T
+    
+    
+    nearest_index = []
+    for pt in points:
+        nearest_distance = np.inf
+        index = 0
+        count = 0
+        for trajectory_pt in trajectory:
+            dist_2 = sum((trajectory_pt - pt)**2)
+            if dist_2 &lt; nearest_distance:
+                nearest_distance = dist_2
+                index = count
+            count += 1
+        nearest_index.append(index)
+        
+    ref_speed_list = np.zeros(len(trajectory))
+    for ii in range(1,len(nearest_index)):
+        ref_speed_list[nearest_index[ii - 1]:nearest_index[ii]] = speed[ii - 1]
+    
+    #plt.plot(trajectory[:,0],trajectory[:,1],&#39;.&#39;)
+    #print(ref_speed_list)
+    
+    return trajectory, ref_speed_list
+
+class Intersection():
+    def __init__(self, env, world_pos, traffic_light_list, distance = 75.0, yaw = 0.0, start_sim_distance = 40, navigation_speed = 10.0):
+        &#39;&#39;&#39;
+        
+
+        Parameters
+        ----------
+        env: CARLA_ENV
+            the simulation environment
+        world_pos : (float,float)
+            the (rough) central point of the intersection.
+        traffic_light_list : list
+            list of all available traffic lights.
+        distance : float, optional
+            width and height of the intersection. The default is 75.0 (m).
+        yaw : float, optional
+            define the direction the ego vehicle will pass through the intersection. The default is 0.
+        navigation_speed : float
+            the navigation speed of the vehicle
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        
+        self.env = env
+        self.distance = distance
+        self.yaw = yaw % 360
+        self._get_local_traffic_lights(world_pos,traffic_light_list) # get the traffic light at this intersection
+        self._get_lane_points() # get the in/out point of lane
+        #self._yaw2vector()
+        self._split_lane_points() # split in/out point of lane into subject/left/right/ahead
+        self._get_spawn_reference() # find a reference point for spawning for each of the subject/left/right/ahead lane
+        self._split_traffic_lights() # split the traffic lights into subject/left/right/ahead
+        
+        self.subject_vehicle = []
+        self.left_vehicle = []
+        self.right_vehicle = []
+        self.ahead_vehicle = []
+        
+        self.start_sim_distance = start_sim_distance
+        self.start_sim = False # whether the simulation at this intersection should start or not
+        
+        self.DEBUG_TRAJECTORY = True
+        
+        self.navigation_speed = navigation_speed
+        
+    def start_simulation(self, full_path_vehicle_name):
+        &#39;&#39;&#39;
+        check whether the first full path vehicle is within this intersection
+
+        Parameters
+        ----------
+        full_path_vehicle_name : string
+            uniquename of the first full path vehicle (i.e. lead if lead exists, otherwise ego)
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        full_path_vehicle_transform = self.env.get_transform_2d(full_path_vehicle_name)
+        full_path_vehicle_location = full_path_vehicle_transform[0] # 2d location of the vehicle
+        ref_waypoint = self.subject_lane_ref
+        ref_location = ref_waypoint.transform.location
+        distance = math.sqrt((ref_location.x - full_path_vehicle_location[0])**2 + (ref_location.y - full_path_vehicle_location[1])**2 )
+       
+        # start simulation if distance between the vehicle and the reference point is within 
+        # the pre-set start_sim_distance
+        if distance &lt; self.start_sim_distance:
+            self.start_sim = True
+        
+        
+        
+    def _get_local_traffic_lights(self, world_pos,traffic_light_list):
+        &#39;&#39;&#39;
+        
+
+        Parameters
+        ----------
+        world_pos : (float,float)
+            the (rough) central point of the intersection.
+        traffic_light_list : list
+            list of all available traffic lights.
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        self.local_traffic_lights = []
+        for light in traffic_light_list:
+            location = light.get_location()
+            distance = math.sqrt((location.x - world_pos[0])**2 + (location.y - world_pos[1]) ** 2) # get the 2d Euclidean distance
+            if distance &lt; self.distance / 2:
+                self.local_traffic_lights.append(light)
+                
+        assert(len(self.local_traffic_lights) == 4) # should contain and only contain 4 lights
+        
+        x = 0
+        y = 0
+        for light in self.local_traffic_lights:
+            x += light.get_location().x
+            y += light.get_location().y
+        
+        self.world_pos = (x / len(self.local_traffic_lights),y / len(self.local_traffic_lights)) 
+        
+        
+        if DEBUG_INIT:
+            print(self.world_pos)
+            for light in self.local_traffic_lights:
+                print(light.get_location())
+                self.env.world.debug.draw_point(light.get_location(),size = 0.1, color = blue, life_time=0.0, persistent_lines=True)
+                
+
+    def _get_lane_points(self):
+        # get the into/out lane points of this intersection
+        self.carla_map = self.env.world.get_map()
+        self.out_lane_points = []
+        self.into_lane_points = []
+        
+        &#39;&#39;&#39;
+        for light in self.local_traffic_lights:
+            light_location = light.get_location()
+            vector = light.get_transform().get_forward_vector()
+            end_1 = carla.Location(x = light_location.x + vector.x * END1,y = light_location.y + vector.y * END1, z = light_location.z + vector.z * END1) 
+            end_2 = carla.Location(x = light_location.x + vector.x * END2,y = light_location.y + vector.y * END2, z = light_location.z + vector.z * END2)
+            start_1 = carla.Location(x = light_location.x + vector.x * START1,y = light_location.y + vector.y * START1, z = light_location.z + vector.z * START1)
+            start_2 = carla.Location(x = light_location.x + vector.x * START2,y = light_location.y + vector.y * START2, z = light_location.z + vector.z * START2)
+            into_1 = self.carla_map.get_waypoint(end_1)
+            into_2 = self.carla_map.get_waypoint(end_2)
+            out_1 = self.carla_map.get_waypoint(start_1)
+            out_2 = self.carla_map.get_waypoint(start_2)
+            self.out_lane_points.append(out_1)
+            self.out_lane_points.append(out_2)
+            self.into_lane_points.append(into_1)
+            self.into_lane_points.append(into_2)
+        &#39;&#39;&#39;
+        for ii in range(len(self.local_traffic_lights)):
+            light_location = self.local_traffic_lights[ii].get_location()
+            vector = self.local_traffic_lights[ii].get_transform().get_forward_vector()
+            for jj in range(len(self.local_traffic_lights)):
+                if jj != ii:
+                    # calculate the angle between the light&#39;s forward vector and 
+                    # the vector from this light to the other light
+                    another_light_location = self.local_traffic_lights[jj].get_location()
+                    vec1_2 = np.array([another_light_location.x - light_location.x, another_light_location.y - light_location.y])
+                    forward_vector_2d = np.array([-vector.x, -vector.y]) # the reverse direction of forward vector is what we need
+                    norm_vec1_2 = vec1_2 / np.linalg.norm(vec1_2)
+                    norm_forward_vector_2d = forward_vector_2d / np.linalg.norm(forward_vector_2d)
+                    dot_product = np.dot(norm_vec1_2,norm_forward_vector_2d)
+                    angle = np.arccos(dot_product)
+                    
+                    
+                    if angle &lt; np.pi / 12: # angle within 15 degrees
+                        other_light_location = another_light_location
+                        break
+                    
+                    
+            distance = math.sqrt((light_location.x - other_light_location.x)**2 + (light_location.y - other_light_location.y)**2)
+            
+            
+            if distance &lt; 25: # 4 lanes inside
+                END1 = -6.5#-5.5
+                END2 = -9.0
+                START1 = -12.5
+                START2 = -15.5#-15.5#-16.0
+            elif distance &gt;= 25 and distance &lt; 27:
+                # 6 lane road
+                END1 = -8.0#-5.5
+                END2 = -12.0
+                START1 = -16.0
+                START2 = -18.0#-15.5#-16.0
+            else:
+                # 6 lane road, wider
+                END1 = -9.0#-5.5
+                END2 = -12.0
+                START1 = -16.0
+                START2 = -20.0#-15.5#-16.0
+            
+            
+            end_1 = carla.Location(x = light_location.x + vector.x * END1,y = light_location.y + vector.y * END1, z = light_location.z + vector.z * END1) 
+            end_2 = carla.Location(x = light_location.x + vector.x * END2,y = light_location.y + vector.y * END2, z = light_location.z + vector.z * END2)
+            start_1 = carla.Location(x = light_location.x + vector.x * START1,y = light_location.y + vector.y * START1, z = light_location.z + vector.z * START1)
+            start_2 = carla.Location(x = light_location.x + vector.x * START2,y = light_location.y + vector.y * START2, z = light_location.z + vector.z * START2)
+            into_1 = self.carla_map.get_waypoint(end_1)
+            into_2 = self.carla_map.get_waypoint(end_2)
+            out_1 = self.carla_map.get_waypoint(start_1)
+            out_2 = self.carla_map.get_waypoint(start_2)
+            self.out_lane_points.append(out_1)
+            self.out_lane_points.append(out_2)
+            self.into_lane_points.append(into_1)
+            self.into_lane_points.append(into_2)
+        
+    def _yaw2vector(self):
+        # get the direction vector of this intersection
+        yaw_rad = math.radians(self.yaw)
+        self.direction_vector = [math.cos(yaw_rad),math.sin(yaw_rad)]
+        
+    def _debug_lane_point(self,pt,color):
+        if DEBUG_INIT:
+            self.env.world.debug.draw_point(pt.transform.location,size = 0.1, color = color, life_time=0.0, persistent_lines=True)
+            forward_vector = pt.transform.get_forward_vector()
+            start = pt.transform.location
+            end = carla.Location(x = start.x + forward_vector.x, y = start.y + forward_vector.y, z = start.z + forward_vector.z)
+            self.env.world.debug.draw_arrow(start,end,thickness=0.1, arrow_size=0.2, color = color, life_time=0.0, persistent_lines=True)
+        
+    def _split_lane_points(self):
+        # split the lane points into 
+        # subject/left/right/ahead lane
+        
+        self.subject_out = []
+        self.left_out = []
+        self.right_out = []
+        self.ahead_out = []
+        
+        self.subject_in = []
+        self.left_in = []
+        self.right_in = []
+        self.ahead_in = []
+        
+        max_angle_dev = 10
+        
+        for pt in self.out_lane_points:
+            pt_yaw = pt.transform.rotation.yaw % 360
+            relative_yaw = (pt_yaw - self.yaw) % 360
+            
+            if abs(relative_yaw - 0) &lt; max_angle_dev or abs(relative_yaw - 360) &lt; max_angle_dev:
+                self.subject_out.append(pt)
+                self._debug_lane_point(pt,green)
+                
+            elif abs(relative_yaw - 90) &lt; max_angle_dev:
+                self.left_out.append(pt)
+                self._debug_lane_point(pt,blue)
+                
+            elif abs(relative_yaw - 180) &lt; max_angle_dev:
+                self.ahead_out.append(pt)
+                self._debug_lane_point(pt,yellow)
+                
+            elif abs(relative_yaw - 270) &lt; max_angle_dev:
+                self.right_out.append(pt)
+                self._debug_lane_point(pt,orange)
+        
+        for pt in self.into_lane_points:
+            pt_yaw = pt.transform.rotation.yaw % 360
+            relative_yaw = (pt_yaw - self.yaw) % 360
+            if abs(relative_yaw - 0) &lt; max_angle_dev or abs(relative_yaw - 360) &lt; max_angle_dev:
+                self.ahead_in.append(pt)
+                self._debug_lane_point(pt,green)
+                
+            elif abs(relative_yaw - 90) &lt; max_angle_dev :
+                self.right_in.append(pt)
+                self._debug_lane_point(pt,blue)
+                
+            elif abs(relative_yaw - 180) &lt; max_angle_dev:
+                self.subject_in.append(pt)
+                self._debug_lane_point(pt,yellow)
+                
+            elif abs(relative_yaw - 270) &lt; max_angle_dev:
+                self.left_in.append(pt)
+                self._debug_lane_point(pt,orange)
+                
+    def _split_traffic_lights(self):
+        # split the traffic lights into 
+        # subject/left/right/ahead lane
+        
+        # get the 4 direction vector
+        forward_direction = self.subject_lane_ref.transform.get_forward_vector()
+        forward_direction_2d = [forward_direction.x,forward_direction.y]
+        forward_direction_2d = forward_direction_2d / np.linalg.norm(forward_direction_2d)
+        
+        left_direction = self.left_lane_ref.transform.get_forward_vector()
+        left_direction_2d = [left_direction.x,left_direction.y]
+        left_direction_2d = left_direction_2d / np.linalg.norm(left_direction_2d)
+        
+        right_direction = self.right_lane_ref.transform.get_forward_vector()
+        right_direction_2d = [right_direction.x,right_direction.y]
+        right_direction_2d = right_direction_2d / np.linalg.norm(right_direction_2d)
+        
+        ahead_direction = self.ahead_lane_ref.transform.get_forward_vector()
+        ahead_direction_2d = [ahead_direction.x,ahead_direction.y]
+        ahead_direction_2d = ahead_direction_2d / np.linalg.norm(ahead_direction_2d)
+        
+        self.subject_light = None
+        self.left_light = None
+        self.right_light = None
+        self.ahead_light = None
+        
+        for traffic_light in self.local_traffic_lights:
+            light_vector = traffic_light.get_transform().get_forward_vector()
+            left_vector = self._get_left_vector(light_vector)
+            if abs(np.dot(left_vector,forward_direction_2d) - 1.0) &lt; 0.1:
+                self.subject_light = traffic_light
+            elif abs(np.dot(left_vector,left_direction_2d) - 1.0) &lt; 0.1:
+                self.left_light = traffic_light
+            elif abs(np.dot(left_vector,right_direction_2d) - 1.0) &lt; 0.1:
+                self.right_light = traffic_light
+            elif abs(np.dot(left_vector,ahead_direction_2d) - 1.0) &lt; 0.1:
+                self.ahead_light = traffic_light
+        
+        self.light_config = ConfigObj()
+        self.light_config[&#34;subject&#34;] = None
+        self.light_config[&#34;subject_time&#34;] = None
+        self.light_config[&#34;left&#34;] = None
+        self.light_config[&#34;left_time&#34;] = None
+        self.light_config[&#34;right&#34;] = None
+        self.light_config[&#34;right_time&#34;] = None
+        self.light_config[&#34;ahead&#34;] = None
+        self.light_config[&#34;ahead_time&#34;] = None
+        
+        # initialize counter for traffic light color setting
+        self.local_time_count = 0
+        
+        
+        if DEBUG_INIT:
+            self.env.world.debug.draw_point(self.subject_light.get_transform().location,size = 0.2, color = green, life_time=0.0, persistent_lines=True)
+            self.env.world.debug.draw_point(self.left_light.get_transform().location,size = 0.2, color = yellow, life_time=0.0, persistent_lines=True)
+            self.env.world.debug.draw_point(self.right_light.get_transform().location,size = 0.2, color = blue, life_time=0.0, persistent_lines=True)
+            self.env.world.debug.draw_point(self.ahead_light.get_transform().location,size = 0.2, color = red, life_time=0.0, persistent_lines=True)
+            
+    def _get_left_vector(self,vector):
+        # return the left vector of the input 2d vector
+        # vector : carla.Vector3D
+        left_x = vector.y
+        left_y = - vector.x
+        return [left_x,left_y]
+        
+                
+    def _vec_angle(self,vec1,vec2):
+        vec1 = vec1 / np.linalg.norm(vec1)
+        vec2 = vec2 / np.linalg.norm(vec2)
+        dot_product = np.dot(vec1,vec2)
+        angle = np.arccos(dot_product)
+        return angle
+                
+        
+    def _get_lane_spawn_reference(self,lane_out_pts):
+        # function: return the reference point for spawning in this lane
+        
+        # requirements: lane_out_pts should have and only have 2 points
+        # in theory, the second point should be more &#34;left&#34;
+
+        
+        return lane_out_pts[1]
+    
+    def _get_spawn_reference(self):
+        # get the reference way point for each lane
+        self.subject_lane_ref = self._get_lane_spawn_reference(self.subject_out)
+        self.left_lane_ref = self._get_lane_spawn_reference(self.left_out)
+        self.right_lane_ref = self._get_lane_spawn_reference(self.right_out)
+        self.ahead_lane_ref = self._get_lane_spawn_reference(self.ahead_out)
+        
+        if DEBUG_INIT:
+            self.env.world.debug.draw_point(self.subject_lane_ref.transform.location,size = 0.2, color = green, life_time=0.0, persistent_lines=True)
+            self.env.world.debug.draw_point(self.left_lane_ref.transform.location,size = 0.2, color = yellow, life_time=0.0, persistent_lines=True)
+            self.env.world.debug.draw_point(self.right_lane_ref.transform.location,size = 0.2, color = blue, life_time=0.0, persistent_lines=True)
+            self.env.world.debug.draw_point(self.ahead_lane_ref.transform.location,size = 0.2, color = red, life_time=0.0, persistent_lines=True)
+        
+    def add_vehicle(self,gap = 10.0,model_name = &#34;vehicle.tesla.model3&#34;,choice = &#34;subject&#34;, command = &#34;straight&#34;, stop_choice = &#34;normal&#34;, penetrate_distance = None,obey_traffic_lights = True, run = True, safety_distance = 15.0, vehicle_color = None):    
+        &#39;&#39;&#39;
+        
+
+        Parameters
+        ----------
+        gap : float,optional
+            the distance between a vehicle and its previous one
+        model_name : string, optional
+            vehicle type. The default is &#34;vehicle.tesla.model3&#34;.
+        choice : string, optional
+            the lane this vehicle will be added, valid values: &#34;subject&#34;, &#34;left&#34;, &#34;right&#34;, &#34;ahead&#34;. The default is &#34;subject&#34;.
+        command : string, optional
+            the turning command, valid values: &#34;straight&#34;, &#34;right&#34;, &#34;left&#34;
+        stop_choice : string, optional
+            how will the vehicle stop when at yellow or red light. valid values: &#34;normal&#34;, &#34;abrupt&#34;, &#34;penetrate&#34;
+        penetrate_distance : float, unit: meter
+            to what extent the vehicle will penetrate the traffic lane. This parameter will only be use when stop_choice is &#34;penetrate&#34;
+        obey_traffic_light : bool, optional
+            whether the vehicle will obey traffic light. Default is True
+        run : bool, optional
+            whether the vehicle is running. Default is True
+        safety_distance : float, optional
+            smallest distance between this vehicle and vehicle ahead
+        vehicle_color : string
+            the RGB representation of the vehicle color. e.g. &#39;255,255,255&#39;
+
+
+        Returns
+        -------
+        uniquename : the uniquename of the vehicle
+
+        &#39;&#39;&#39;
+        
+        right_shift_value = RIGHT_SHIFT
+        
+        vehicle = ConfigObj()
+        vehicle[&#34;model&#34;] = model_name
+        vehicle[&#34;gap&#34;] = gap
+        vehicle[&#34;command&#34;] = command
+        vehicle[&#34;obey_traffic_lights&#34;] = obey_traffic_lights
+        vehicle[&#34;run&#34;] = run
+        vehicle[&#34;safety_distance&#34;] = safety_distance
+        vehicle[&#34;choice&#34;] = choice
+        
+        #print(choice)
+        
+        if choice == &#34;subject&#34;:
+            ref_waypoint = self.subject_lane_ref
+            vehicle_set = self.subject_vehicle
+            vehicle[&#34;traffic_light&#34;] = self.subject_light
+            
+        elif choice == &#34;left&#34;:
+            ref_waypoint = self.left_lane_ref
+            vehicle_set = self.left_vehicle
+            vehicle[&#34;traffic_light&#34;] = self.left_light
+            
+        elif choice == &#34;ahead&#34;:
+            ref_waypoint = self.ahead_lane_ref
+            vehicle_set = self.ahead_vehicle
+            vehicle[&#34;traffic_light&#34;] = self.ahead_light
+            
+        elif choice == &#34;right&#34;:
+            ref_waypoint = self.right_lane_ref
+            vehicle_set = self.right_vehicle
+            vehicle[&#34;traffic_light&#34;] = self.right_light
+        
+        if len(vehicle_set) != 0:
+            ref_waypoint = vehicle_set[-1][&#34;ref_waypoint&#34;]
+            #previous_uniquename = vehicle_set[-1][&#34;uniquename&#34;]
+            #bb = self.env.get_vehicle_bounding_box(previous_uniquename)
+            bb = vehicle_set[-1][&#34;bounding_box&#34;]
+            
+            right_shift_value = right_shift_value #- bb.y / 2
+            
+            curr_length = self.env.get_vehicle_model_length(model_name)
+            
+            gap += bb.x / 2 + curr_length / 2
+        
+        &#39;&#39;&#39;
+        else:
+            if gap &lt; 10.0:
+                gap = 10.0 # add a constraint to the gap between the first vehicle and the lane 
+                           # reference point. Add a vehicle too close to reference point
+                           # will lead to vehicle not detecting the traffic light
+        &#39;&#39;&#39;       
+        
+        # use the original reference point to get the new reference point
+        # reference point is in the middle of the lane
+        # function same as self._get_next_waypoint
+        forward_vector = ref_waypoint.transform.get_forward_vector()
+
+        location = ref_waypoint.transform.location
+        raw_spawn_point = carla.Location(x = location.x - gap * forward_vector.x  , y = location.y - gap * forward_vector.y , z = location.z + 1.0)
+        
+        new_ref_waypoint = self.carla_map.get_waypoint(raw_spawn_point)
+        
+        # right shift the spawn point
+        # right is with respect to the direction of vehicle navigation
+        ref_yaw = new_ref_waypoint.transform.rotation.yaw
+        
+        right_vector = self._get_unit_right_vector(ref_yaw)
+        
+        new_location = new_ref_waypoint.transform.location
+        
+        spawn_location = carla.Location(x = new_location.x - right_shift_value * right_vector[0], y = new_location.y -  right_shift_value * right_vector[1], z = new_location.z + 0.2)
+        spawn_rotation = new_ref_waypoint.transform.rotation
+        
+        uniquename = self.env.spawn_vehicle(model_name = model_name,spawn_point = carla.Transform(spawn_location,spawn_rotation), color = vehicle_color) 
+        vehicle[&#34;uniquename&#34;] = uniquename
+        vehicle[&#34;ref_waypoint&#34;] = new_ref_waypoint
+        vehicle[&#34;location&#34;] = spawn_location
+        vehicle[&#34;rotation&#34;] = spawn_rotation
+        
+        #print(vehicle_color)
+        
+        if vehicle_color == None:
+            vehicle[&#34;vehicle_color&#34;] = vehicle_color
+        else:
+            vehicle[&#34;vehicle_color&#34;] = vehicle_color.replace(&#39;,&#39;,&#39;;&#39;) # replace , by ; to avoid error when importing from file
+        
+        
+        trajectory, ref_speed_list = self._generate_path(choice, command, new_ref_waypoint)
+        vehicle[&#34;trajectory&#34;] = trajectory
+        vehicle[&#34;ref_speed_list&#34;] = ref_speed_list
+        
+        # get the bounding box of the new vehicle
+        
+        new_bb = self.env.get_vehicle_bounding_box(uniquename)
+        vehicle[&#34;bounding_box&#34;] = new_bb
+        vehicle[&#34;vehicle_type&#34;] = &#34;other&#34;
+        
+        # vehicle stop type
+        vehicle[&#34;stop_choice&#34;] = stop_choice
+        vehicle[&#34;penetrate_distance&#34;] = penetrate_distance
+        if stop_choice == &#34;normal&#34;:
+            stop_point = self._get_next_waypoint(ref_waypoint,distance = -3.0) # 3 meters after the reference point
+            vehicle[&#34;stop_ref_point&#34;] = stop_point.transform
+        elif stop_choice == &#34;penetrate&#34;:
+            stop_point = self._get_next_waypoint(ref_waypoint,distance = penetrate_distance)
+            vehicle[&#34;stop_ref_point&#34;] = stop_point.transform
+        else:
+            vehicle[&#34;stop_ref_point&#34;] = ref_waypoint.transform
+        
+        
+        
+        
+        vehicle_set.append(vehicle)
+        
+        return uniquename
+    
+    def _shift_vehicles(self, length, choice = &#34;subject&#34;, index = 0):
+        &#39;&#39;&#39;
+        shift the location of a list of vehicles
+        
+        **note: for ego/lead/follow type, the path is not generated**
+
+        Parameters
+        ----------
+        length : float
+            the length we want to shift all the vehicles
+        choice : string, optional
+            the lane this vehicle will be added, valid values: &#34;subject&#34;, &#34;left&#34;, &#34;right&#34;, &#34;ahead&#34;. The default is &#34;subject&#34;. 
+        index : int, optional
+            the index of the vehicle that shifting. The default is 0.
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        right_shift_value = RIGHT_SHIFT
+        
+        if choice == &#34;subject&#34;:
+            #ref_waypoint = self.subject_lane_ref
+            vehicle_set = self.subject_vehicle
+        elif choice == &#34;left&#34;:
+            #ref_waypoint = self.left_lane_ref
+            vehicle_set = self.left_vehicle
+        elif choice == &#34;ahead&#34;:
+            #ref_waypoint = self.ahead_lane_ref
+            vehicle_set = self.ahead_vehicle
+        elif choice == &#34;right&#34;:
+            #ref_waypoint = self.right_lane_ref
+            vehicle_set = self.right_vehicle
+            
+        #if index != 0:
+        #    ref_waypoint = vehicle_set[index - 1][&#34;ref_waypoint&#34;]
+            
+        # shifting the vehicles in reverse order
+        for ii in range(len(vehicle_set) - 1,index - 1,-1):
+            vehicle = vehicle_set[ii]
+            new_ref_waypoint = self._get_next_waypoint(vehicle[&#34;ref_waypoint&#34;],distance = length)
+        
+            ref_yaw = new_ref_waypoint.transform.rotation.yaw
+        
+            right_vector = self._get_unit_right_vector(ref_yaw)
+        
+            new_location = new_ref_waypoint.transform.location
+        
+            spawn_location = carla.Location(x = new_location.x - right_shift_value * right_vector[0], y = new_location.y -  right_shift_value * right_vector[1], z = new_location.z + 0.1)
+            spawn_rotation = new_ref_waypoint.transform.rotation
+            
+            # move the vehicle location
+            self.env.move_vehicle_location(vehicle[&#34;uniquename&#34;],carla.Transform(spawn_location,spawn_rotation))
+            vehicle[&#34;ref_waypoint&#34;] = new_ref_waypoint
+            vehicle[&#34;location&#34;] = spawn_location
+            vehicle[&#34;rotation&#34;] = spawn_rotation
+            
+            if vehicle[&#34;vehicle_type&#34;] == &#34;other&#34;:
+                command = vehicle[&#34;command&#34;]
+                trajectory, ref_speed_list = self._generate_path(choice, command, new_ref_waypoint) # generate new trajectory
+                vehicle[&#34;trajectory&#34;] = trajectory
+                vehicle[&#34;ref_speed_list&#34;] = ref_speed_list
+                
+            
+        
+        
+        
+    
+    def _get_unit_right_vector(self,yaw):
+        # get the right vector
+        right_yaw = (yaw + 270) % 360
+        rad_yaw = math.radians(right_yaw)
+        right_vector = [math.cos(rad_yaw),math.sin(rad_yaw)]
+        right_vector = right_vector / np.linalg.norm(right_vector)
+        return right_vector
+        
+    
+    def _generate_path(self, choice, command, start_waypoint):
+        &#39;&#39;&#39;
+        
+
+        Parameters
+        ----------
+        choice : string
+            the lane choice, valid values: &#34;subject&#34;,&#34;left&#34;,&#34;right&#34;,&#34;ahead&#34;
+        command : string
+            the command of navigation. valid command: &#34;straight&#34;,&#34;left&#34;,&#34;right&#34;
+
+        Returns
+        -------
+        smoothed_full_trajectory : list of 2d points
+             smoothed and interpolated trajectory
+
+        ref_speed_list : list
+             the speed correspoding to the interpolated trajectory
+        &#39;&#39;&#39;
+        color = green
+        
+        if choice == &#34;subject&#34;:
+            first_waypoint = self.subject_lane_ref
+            straight_waypoint = self.ahead_in[0] # can also be [1], choosing the left lane
+            left_waypoint = self.left_in[0]
+            right_waypoint = self.right_in[0]
+            
+            
+        elif choice == &#34;left&#34;:
+            first_waypoint = self.left_lane_ref
+            straight_waypoint = self.right_in[0] # can also be [1], choosing the left lane
+            left_waypoint = self.ahead_in[0]
+            right_waypoint = self.subject_in[0]
+            
+        elif choice == &#34;ahead&#34;:
+            first_waypoint = self.ahead_lane_ref
+            straight_waypoint = self.subject_in[0] # can also be [1], choosing the left lane
+            left_waypoint = self.right_in[0]
+            right_waypoint = self.left_in[0]
+            
+        elif choice == &#34;right&#34;:
+            first_waypoint = self.right_lane_ref
+            straight_waypoint = self.left_in[0] # can also be [1], choosing the left lane
+            left_waypoint = self.subject_in[0]
+            right_waypoint = self.ahead_in[0]
+            
+        #self.env.world.debug.draw_point(start_waypoint.transform.location,size = 0.5, color = red, life_time=0.0, persistent_lines=True)
+            
+        if command == &#34;straight&#34;:
+            second_waypoint = straight_waypoint
+        elif command == &#34;left&#34;:
+            #first_waypoint = self._get_next_waypoint(first_waypoint,3)
+            second_waypoint = left_waypoint
+            color = yellow
+        elif command == &#34;right&#34;:
+            second_waypoint = right_waypoint
+            color = blue
+            
+        third_waypoint = self._get_next_waypoint(second_waypoint,20)
+        trajectory1 = generate_path(self.env, start_waypoint, first_waypoint, waypoint_separation = 4)
+        trajectory2 = generate_path(self.env, first_waypoint, second_waypoint,waypoint_separation = 4)
+        trajectory3 = generate_path(self.env, second_waypoint, third_waypoint)
+        full_trajectory = trajectory1 + trajectory2[1:] + trajectory3[1:] # append the full trajectory
+        
+        trajectory = [((pt[0],pt[1]),self.navigation_speed) for pt in full_trajectory]
+        
+        smoothed_full_trajectory, ref_speed_list = get_trajectory(trajectory) 
+        
+        if self.DEBUG_TRAJECTORY:
+            for ii in range(1,len(smoothed_full_trajectory)):
+                loc1 = carla.Location(x = smoothed_full_trajectory[ii - 1][0], y = smoothed_full_trajectory[ii - 1][1], z = 0.0)
+                loc2 = carla.Location(x = smoothed_full_trajectory[ii][0], y = smoothed_full_trajectory[ii][1], z = 0.0)
+                self.env.world.debug.draw_arrow(loc1, loc2, thickness = 0.05, arrow_size = 0.1, color = color, life_time=0.0, persistent_lines=True)
+        return smoothed_full_trajectory, ref_speed_list
+    
+    def _get_next_waypoint(self,curr_waypoint,distance = 10):
+        &#39;&#39;&#39;
+        
+
+        Parameters
+        ----------
+        curr_waypoint : carla.Waypoint
+            current waypoint.
+        distance : float, optional
+            &#34;distance&#34; between current waypoint and target waypoint . The default is 10.
+
+        Returns
+        -------
+        next_waypoint : carla.Waypoint
+            next waypoint, &#34;distance&#34; away from curr_waypoint, in the direction of the current way point
+        &#39;&#39;&#39;
+        forward_vector = curr_waypoint.transform.get_forward_vector()
+
+        location = curr_waypoint.transform.location
+        raw_spawn_point = carla.Location(x = location.x + distance * forward_vector.x  , y = location.y + distance * forward_vector.y , z = location.z + 0.1)
+        
+        next_waypoint = self.carla_map.get_waypoint(raw_spawn_point)
+        return next_waypoint
+        
+    def get_subject_waypoints(self):
+        first_waypoint = self.subject_lane_ref
+        second_waypoint = self.ahead_in[0]
+        third_waypoint = self._get_next_waypoint(second_waypoint,20)
+        return [first_waypoint,second_waypoint,third_waypoint]
+
+
+    def get_subject_traffic_light(self):
+        return self.subject_light
+
+    def remove_vehicle(self,uniquename):
+        &#39;&#39;&#39;
+        remove a specific vehicle from the intersection
+
+        Parameters
+        ----------
+        uniquename : TYPE
+            DESCRIPTION.
+
+        Returns
+        -------
+        removed : Bool, 
+            whether a vehicle is removed
+
+        &#39;&#39;&#39;
+        for ii in range(len(self.subject_vehicle)):
+            if self.subject_vehicle[ii][&#34;uniquename&#34;] == uniquename: # check whether the vehicle is the one we want to remove
+                # remove vehicle from environment
+                self.env.destroy_vehicle(uniquename)
+                self.subject_vehicle.pop(ii)
+                return True
+            
+        for ii in range(len(self.left_vehicle)):
+            if self.left_vehicle[ii][&#34;uniquename&#34;] == uniquename: # check whether the vehicle is the one we want to remove
+                # remove vehicle from environment
+                self.env.destroy_vehicle(uniquename)
+                self.left_vehicle.pop(ii)
+                return True
+
+        for ii in range(len(self.right_vehicle)):
+            if self.right_vehicle[ii][&#34;uniquename&#34;] == uniquename: # check whether the vehicle is the one we want to remove
+                # remove vehicle from environment
+                self.env.destroy_vehicle(uniquename)
+                self.right_vehicle.pop(ii)
+                return True
+            
+        for ii in range(len(self.ahead_vehicle)):
+            if self.ahead_vehicle[ii][&#34;uniquename&#34;] == uniquename: # check whether the vehicle is the one we want to remove
+                # remove vehicle from environment
+                self.env.destroy_vehicle(uniquename)
+                self.ahead_vehicle.pop(ii)
+                return True
+
+        return False
+    
+    def edit_vehicle_settings(self, uniquename, choice, gap = 10.0,model_name = &#34;vehicle.tesla.model3&#34;, command = &#34;straight&#34;, stop_choice = &#34;normal&#34;, penetrate_distance = None,obey_traffic_lights = True, run = True, safety_distance = 15.0, vehicle_color = None ):
+        &#39;&#39;&#39;
+        allow user to edit the vehicle settings
+        Note: the original vehicle will be destroyed, and a new vehicle will be added
+
+        Parameters
+        ----------
+        uniquename : string
+            original uniquename of the vehicle.
+        choice : string
+            the lane choice, valid values: &#34;subject&#34;,&#34;left&#34;,&#34;right&#34;,&#34;ahead&#34;
+        gap : float,optional
+            the distance between a vehicle and its previous one
+        model_name : string, optional
+            vehicle type. The default is &#34;vehicle.tesla.model3&#34;.
+        command : string, optional
+            the turning command, valid values: &#34;straight&#34;, &#34;right&#34;, &#34;left&#34;
+        stop_choice : string, optional
+            how will the vehicle stop when at yellow or red light. valid values: &#34;normal&#34;, &#34;abrupt&#34;, &#34;penetrate&#34;
+        penetrate_distance : float, unit: meter
+            to what extent the vehicle will penetrate the traffic lane. This parameter will only be use when stop_choice is &#34;penetrate&#34;
+        obey_traffic_light : bool, optional
+            whether the vehicle will obey traffic light. Default is True
+        run : bool, optional
+            whether the vehicle is running. Default is True
+        safety_distance : float, optional
+            smallest distance between this vehicle and vehicle ahead
+        vehicle_color : string
+            the RGB representation of the vehicle color. e.g. &#39;255,255,255&#39;
+        Returns
+        -------
+        new_uniquename : string
+            new uniquename of the vehicle
+
+        &#39;&#39;&#39;
+        
+        
+
+        
+        # get the given lane
+        if choice == &#34;subject&#34;:
+            vehicle_set = self.subject_vehicle
+        elif choice == &#34;left&#34;:
+            vehicle_set = self.left_vehicle
+        elif choice == &#34;ahead&#34;:
+            vehicle_set = self.ahead_vehicle
+        elif choice == &#34;right&#34;:
+            vehicle_set = self.right_vehicle
+        
+        
+        # get vehicle index in the given lane
+        index = 0
+        original_gap = None
+        for vehicle in vehicle_set:
+            if vehicle[&#34;uniquename&#34;] == uniquename:
+                original_gap = vehicle[&#34;gap&#34;]
+                break
+            index += 1
+        
+        
+        
+        
+        # shift the vehicle
+        if original_gap != None:
+            shift_distance = original_gap - gap
+            self._shift_vehicles(shift_distance, choice = choice, index = index)
+        else:
+            print(&#34;return None in edit vehicle&#34;)
+            return None
+        
+        # remove the current vehicle, 
+        # note that after removing the vehicle, index is pointing at the vehicle after the current one
+        removed = self.remove_vehicle(uniquename)
+        if not removed:
+            print(&#34;vehicle not found&#34;)
+            return None
+        
+        
+        # get the given lane
+        if choice == &#34;subject&#34;:
+            # store the vehicles after the current one
+            vehicles_after_current = self.subject_vehicle[index :]
+            self.subject_vehicle = self.subject_vehicle[:index]
+            
+        elif choice == &#34;left&#34;:
+            vehicles_after_current = self.left_vehicle[index :]
+            self.left_vehicle = self.left_vehicle[:index]
+            
+        elif choice == &#34;ahead&#34;:
+            vehicles_after_current = self.ahead_vehicle[index :]
+            self.ahead_vehicle = self.ahead_vehicle[:index]
+            
+        elif choice == &#34;right&#34;:
+            vehicles_after_current = self.right_vehicle[index :]
+            self.right_vehicle = self.right_vehicle[:index]
+            
+        
+        
+        # add a new vehicle with new settings
+        new_uniquename = self.add_vehicle(gap = gap, model_name = model_name, choice = choice, command = command, stop_choice = stop_choice, penetrate_distance = penetrate_distance, obey_traffic_lights = obey_traffic_lights, run = run, safety_distance = safety_distance, vehicle_color = vehicle_color)
+        
+        
+        if choice == &#34;subject&#34;:
+            self.subject_vehicle += vehicles_after_current
+        elif choice == &#34;left&#34;:
+            self.left_vehicle += vehicles_after_current
+        elif choice == &#34;ahead&#34;:
+            self.ahead_vehicle += vehicles_after_current
+        elif choice == &#34;right&#34;:
+            self.right_vehicle += vehicles_after_current
+        
+        
+        return new_uniquename
+    
+
+    def edit_traffic_light(self,light, red_start = 0.0,red_end = 10.0,yellow_start = 10.0,yellow_end = 15.0,green_start = 15.0,green_end = 25.0):
+        &#39;&#39;&#39;
+        edit the start and end time for traffic colors
+        the traffic color timeline will not loop
+        i.e. after it reaches the end of timeline, the traffic state will be 
+        frozen at that state
+        
+        Requirements: there exists and only exists one start time at 0
+                      otherwise, a red color will be used as placeholder
+                      until the first start time
+
+        Parameters
+        ----------
+        light : string
+            light choice. valid values: ahead,left,right,subject
+        
+
+        Returns
+        -------
+        None.
+        &#39;&#39;&#39;
+        red_start = red_start / self.env.delta_seconds
+        red_end = red_end / self.env.delta_seconds
+        yellow_start = yellow_start / self.env.delta_seconds
+        yellow_end = yellow_end / self.env.delta_seconds
+        green_start = green_start / self.env.delta_seconds
+        green_end = green_end / self.env.delta_seconds
+        
+        
+        # get the end of timeline
+        max_time = max(red_end,yellow_end,green_end)
+        
+        color_timeline = []
+        
+        for ii in range(int(max_time)):
+            if ii &gt;= red_start and ii &lt; red_end:
+                color_timeline.append(&#39;red&#39;)
+            elif ii &gt;= yellow_start and ii &lt; yellow_end:
+                color_timeline.append(&#39;yellow&#39;)
+            elif ii &gt;= green_start and ii &lt; green_end:
+                color_timeline.append(&#39;green&#39;)
+            else:
+                color_timeline.append(&#39;red&#39;)
+        
+        self.light_config[light] = color_timeline
+        self.light_config[light + &#39;_time&#39;] = {}
+        self.light_config[light + &#39;_time&#39;][&#39;red&#39;] = red_end - red_start
+        self.light_config[light + &#39;_time&#39;][&#39;yellow&#39;] = yellow_end - yellow_start
+        self.light_config[light + &#39;_time&#39;][&#39;green&#39;] = green_end - green_start
+        
+    def set_intersection_traffic_lights(self):
+        # if any traffic light has been set, use the traffic light setting
+        # otherwise, do nothing and exit
+        # call this function each time after a world.tick()
+        
+        if self.light_config[&#34;subject&#34;] != None:
+            if len(self.light_config[&#34;subject&#34;]) &gt; self.local_time_count: 
+                setting = self.light_config[&#34;subject&#34;][self.local_time_count]
+                #print(setting)
+                light = self.subject_light
+                light_state = light.get_state()
+                if setting == &#39;red&#39;:
+                    if light_state != carla.TrafficLightState.Red: # only set color when the current state is not what we want
+                        light.set_state(carla.TrafficLightState.Red)
+                        light.set_red_time(self.light_config[&#39;subject_time&#39;][&#39;red&#39;])
+                        light.freeze(True)
+                elif setting == &#39;yellow&#39;:
+                    if light_state != carla.TrafficLightState.Yellow:
+                        light.set_state(carla.TrafficLightState.Yellow)
+                        light.set_yellow_time(self.light_config[&#39;subject_time&#39;][&#39;yellow&#39;])
+                        light.freeze(True)
+                else:
+                    if light_state != carla.TrafficLightState.Green:
+                        light.set_state(carla.TrafficLightState.Green)
+                        light.set_yellow_time(self.light_config[&#39;subject_time&#39;][&#39;green&#39;])
+                        light.freeze(True)
+        
+        if self.light_config[&#34;left&#34;] != None:
+            if len(self.light_config[&#34;left&#34;]) &gt; self.local_time_count: 
+                setting = self.light_config[&#34;left&#34;][self.local_time_count]
+                light = self.left_light
+                light_state = light.get_state()
+                if setting == &#39;red&#39;:
+                    if light_state != carla.TrafficLightState.Red: # only set color when the current state is not what we want
+                        light.set_state(carla.TrafficLightState.Red)
+                        light.set_red_time(self.light_config[&#39;left_time&#39;][&#39;red&#39;])
+                        light.freeze(True)
+                elif setting == &#39;yellow&#39;:
+                    if light_state != carla.TrafficLightState.Yellow:
+                        light.set_state(carla.TrafficLightState.Yellow)
+                        light.set_yellow_time(self.light_config[&#39;left_time&#39;][&#39;yellow&#39;])
+                        light.freeze(True)
+                else:
+                    if light_state != carla.TrafficLightState.Green:
+                        light.set_state(carla.TrafficLightState.Green)
+                        light.set_yellow_time(self.light_config[&#39;left_time&#39;][&#39;green&#39;])
+                        light.freeze(True)
+                    
+        if self.light_config[&#34;right&#34;] != None:
+            if len(self.light_config[&#34;right&#34;]) &gt; self.local_time_count: 
+                setting = self.light_config[&#34;right&#34;][self.local_time_count]
+                light = self.right_light
+                light_state = light.get_state()
+                if setting == &#39;red&#39;:
+                    if light_state != carla.TrafficLightState.Red: # only set color when the current state is not what we want
+                        light.set_state(carla.TrafficLightState.Red)
+                        light.set_red_time(self.light_config[&#39;right_time&#39;][&#39;red&#39;])
+                        light.freeze(True)
+                elif setting == &#39;yellow&#39;:
+                    if light_state != carla.TrafficLightState.Yellow:
+                        light.set_state(carla.TrafficLightState.Yellow)
+                        light.set_yellow_time(self.light_config[&#39;right_time&#39;][&#39;yellow&#39;])
+                        light.freeze(True)
+                else:
+                    if light_state != carla.TrafficLightState.Green:
+                        light.set_state(carla.TrafficLightState.Green)
+                        light.set_yellow_time(self.light_config[&#39;right_time&#39;][&#39;green&#39;])
+                        light.freeze(True)
+        
+        if self.light_config[&#34;ahead&#34;] != None:
+            if len(self.light_config[&#34;ahead&#34;]) &gt; self.local_time_count: 
+                setting = self.light_config[&#34;ahead&#34;][self.local_time_count]
+                light = self.ahead_light
+                light_state = light.get_state()
+                if setting == &#39;red&#39;:
+                    if light_state != carla.TrafficLightState.Red: # only set color when the current state is not what we want
+                        light.set_state(carla.TrafficLightState.Red)
+                        light.set_red_time(self.light_config[&#39;ahead_time&#39;][&#39;red&#39;])
+                        light.freeze(True)
+                elif setting == &#39;yellow&#39;:
+                    if light_state != carla.TrafficLightState.Yellow:
+                        light.set_state(carla.TrafficLightState.Yellow)
+                        light.set_yellow_time(self.light_config[&#39;ahead_time&#39;][&#39;yellow&#39;])
+                        light.freeze(True)
+                else:
+                    if light_state != carla.TrafficLightState.Green:
+                        light.set_state(carla.TrafficLightState.Green)
+                        light.set_yellow_time(self.light_config[&#39;ahead_time&#39;][&#39;green&#39;])
+                        light.freeze(True)
+        
+        # update the time count
+        self.local_time_count += 1
+        
+    def export_settings(self):
+        &#39;&#39;&#39;
+        export all settings for a specific intersection
+
+        Returns
+        -------
+        intersection_settings : ConfigObj
+            settings of the intersection
+
+        &#39;&#39;&#39;
+        intersection_settings = ConfigObj()
+        
+        # general setting
+        intersection_settings[&#34;navigation_speed&#34;] = self.navigation_speed
+        
+        # vehicles
+        intersection_settings[&#34;subject_vehicle&#34;] = []
+        intersection_settings[&#34;left_vehicle&#34;] = []
+        intersection_settings[&#34;right_vehicle&#34;] = []
+        intersection_settings[&#34;ahead_vehicle&#34;] = []
+        
+        for vehicle in self.subject_vehicle:
+            # deep copy the vehicle settings
+            new_vehicle = self._copy_vehicle_settings(vehicle)
+            intersection_settings[&#34;subject_vehicle&#34;].append(new_vehicle)
+        
+        for vehicle in self.left_vehicle:
+            # deep copy the vehicle settings
+            new_vehicle = self._copy_vehicle_settings(vehicle)
+            intersection_settings[&#34;left_vehicle&#34;].append(new_vehicle)
+            
+        for vehicle in self.right_vehicle:
+            # deep copy the vehicle settings
+            new_vehicle = self._copy_vehicle_settings(vehicle)
+            intersection_settings[&#34;right_vehicle&#34;].append(new_vehicle)
+            
+        for vehicle in self.ahead_vehicle:
+            # deep copy the vehicle settings
+            new_vehicle = self._copy_vehicle_settings(vehicle)
+            intersection_settings[&#34;ahead_vehicle&#34;].append(new_vehicle)
+        
+        # lights
+        intersection_settings[&#34;subject_light&#34;] = copy.copy(self.light_config[&#34;subject&#34;])
+        intersection_settings[&#34;subject_light_time&#34;] = copy.copy(self.light_config[&#34;subject_time&#34;])
+        
+        intersection_settings[&#34;left_light&#34;] = copy.copy(self.light_config[&#34;left&#34;])
+        intersection_settings[&#34;left_light_time&#34;] = copy.copy(self.light_config[&#34;left_time&#34;])
+        
+        intersection_settings[&#34;right_light&#34;] = copy.copy(self.light_config[&#34;right&#34;])
+        intersection_settings[&#34;right_light_time&#34;] = copy.copy(self.light_config[&#34;right_time&#34;])
+        
+        intersection_settings[&#34;ahead_light&#34;] = copy.copy(self.light_config[&#34;ahead&#34;])
+        intersection_settings[&#34;ahead_light_time&#34;] = copy.copy(self.light_config[&#34;ahead_time&#34;])
+        
+        return intersection_settings
+    
+    def import_settings(self,intersection_settings):
+        &#39;&#39;&#39;
+        
+
+        Parameters
+        ----------
+        intersection_settings : ConfigObj
+            the intersection settings we want to import
+
+        Returns
+        -------
+        new_intersection_setting : ConfigObj
+            settings of the intersection
+            this will be generated by call self.export_settings() after finishing import
+            output these settings are for the purpose of creating the front-end gui
+        &#39;&#39;&#39;
+        
+        # remove all vehicle in this intersection 
+        # if any vehicle has been added
+        for ii in range(len(self.subject_vehicle) - 1, -1, -1): # go through the array in reverse order
+            uniquename = self.subject_vehicle[ii][&#39;uniquename&#39;]
+            self.remove_vehicle(uniquename)
+        
+        for ii in range(len(self.left_vehicle) - 1, -1, -1): # go through the array in reverse order
+            uniquename = self.left_vehicle[ii][&#39;uniquename&#39;]
+            self.remove_vehicle(uniquename)
+            
+        for ii in range(len(self.right_vehicle) - 1, -1, -1): # go through the array in reverse order
+            uniquename = self.right_vehicle[ii][&#39;uniquename&#39;]
+            self.remove_vehicle(uniquename)
+            
+        for ii in range(len(self.ahead_vehicle) - 1, -1, -1): # go through the array in reverse order
+            uniquename = self.ahead_vehicle[ii][&#39;uniquename&#39;]
+            self.remove_vehicle(uniquename)
+        
+        # import all settings
+       
+        # general settings
+        self.navigation_speed = intersection_settings[&#34;navigation_speed&#34;]
+       
+        # vehicles
+        
+        for vehicle_config in intersection_settings[&#34;subject_vehicle&#34;]:
+            # add vehicles according to imported settings
+            if vehicle_config[&#39;vehicle_color&#39;] != None:
+                vehicle_config[&#39;vehicle_color&#39;] = vehicle_config[&#39;vehicle_color&#39;].replace(&#39;;&#39;,&#39;,&#39;)
+            
+            self.add_vehicle(gap = vehicle_config[&#34;gap&#34;], 
+                             model_name = vehicle_config[&#34;model&#34;], 
+                             choice = vehicle_config[&#39;choice&#39;], 
+                             command = vehicle_config[&#39;command&#39;],
+                             stop_choice = vehicle_config[&#39;stop_choice&#39;],
+                             penetrate_distance = vehicle_config[&#39;penetrate_distance&#39;],
+                             obey_traffic_lights = vehicle_config[&#39;obey_traffic_lights&#39;],
+                             run = vehicle_config[&#39;run&#39;],
+                             safety_distance = vehicle_config[&#39;safety_distance&#39;],
+                             vehicle_color = vehicle_config[&#39;vehicle_color&#39;])
+            
+        for vehicle_config in intersection_settings[&#34;left_vehicle&#34;]:
+            # add vehicles according to imported settings
+            if vehicle_config[&#39;vehicle_color&#39;] != None:
+                vehicle_config[&#39;vehicle_color&#39;] = vehicle_config[&#39;vehicle_color&#39;].replace(&#39;;&#39;,&#39;,&#39;)
+            
+            self.add_vehicle(gap = vehicle_config[&#34;gap&#34;], 
+                             model_name = vehicle_config[&#34;model&#34;], 
+                             choice = vehicle_config[&#39;choice&#39;], 
+                             command = vehicle_config[&#39;command&#39;],
+                             stop_choice = vehicle_config[&#39;stop_choice&#39;],
+                             penetrate_distance = vehicle_config[&#39;penetrate_distance&#39;],
+                             obey_traffic_lights = vehicle_config[&#39;obey_traffic_lights&#39;],
+                             run = vehicle_config[&#39;run&#39;],
+                             safety_distance = vehicle_config[&#39;safety_distance&#39;],
+                             vehicle_color = vehicle_config[&#39;vehicle_color&#39;])
+            
+        for vehicle_config in intersection_settings[&#34;right_vehicle&#34;]:
+            # add vehicles according to imported settings
+            if vehicle_config[&#39;vehicle_color&#39;] != None:
+                vehicle_config[&#39;vehicle_color&#39;] = vehicle_config[&#39;vehicle_color&#39;].replace(&#39;;&#39;,&#39;,&#39;)
+            
+            self.add_vehicle(gap = vehicle_config[&#34;gap&#34;], 
+                             model_name = vehicle_config[&#34;model&#34;], 
+                             choice = vehicle_config[&#39;choice&#39;], 
+                             command = vehicle_config[&#39;command&#39;],
+                             stop_choice = vehicle_config[&#39;stop_choice&#39;],
+                             penetrate_distance = vehicle_config[&#39;penetrate_distance&#39;],
+                             obey_traffic_lights = vehicle_config[&#39;obey_traffic_lights&#39;],
+                             run = vehicle_config[&#39;run&#39;],
+                             safety_distance = vehicle_config[&#39;safety_distance&#39;],
+                             vehicle_color = vehicle_config[&#39;vehicle_color&#39;])
+            
+        for vehicle_config in intersection_settings[&#34;ahead_vehicle&#34;]:
+            # add vehicles according to imported settings
+            if vehicle_config[&#39;vehicle_color&#39;] != None:
+                vehicle_config[&#39;vehicle_color&#39;] = vehicle_config[&#39;vehicle_color&#39;].replace(&#39;;&#39;,&#39;,&#39;)
+            
+            self.add_vehicle(gap = vehicle_config[&#34;gap&#34;], 
+                             model_name = vehicle_config[&#34;model&#34;], 
+                             choice = vehicle_config[&#39;choice&#39;], 
+                             command = vehicle_config[&#39;command&#39;],
+                             stop_choice = vehicle_config[&#39;stop_choice&#39;],
+                             penetrate_distance = vehicle_config[&#39;penetrate_distance&#39;],
+                             obey_traffic_lights = vehicle_config[&#39;obey_traffic_lights&#39;],
+                             run = vehicle_config[&#39;run&#39;],
+                             safety_distance = vehicle_config[&#39;safety_distance&#39;],
+                             vehicle_color = vehicle_config[&#39;vehicle_color&#39;])
+    
+        self.light_config[&#39;subject&#39;] = copy.copy(intersection_settings[&#39;subject_light&#39;])
+        self.light_config[&#39;subject_time&#39;] = copy.copy(intersection_settings[&#39;subject_light_time&#39;])
+        
+        self.light_config[&#39;left&#39;] = copy.copy(intersection_settings[&#39;left_light&#39;])
+        self.light_config[&#39;left_time&#39;] = copy.copy(intersection_settings[&#39;left_light_time&#39;])
+        
+        self.light_config[&#39;right&#39;] = copy.copy(intersection_settings[&#39;right_light&#39;])
+        self.light_config[&#39;right_time&#39;] = copy.copy(intersection_settings[&#39;right_light_time&#39;])
+        
+        self.light_config[&#39;ahead&#39;] = copy.copy(intersection_settings[&#39;ahead_light&#39;])
+        self.light_config[&#39;ahead_time&#39;] = copy.copy(intersection_settings[&#39;ahead_light_time&#39;])
+        
+        new_intersection_setting = self.export_settings()
+        return new_intersection_setting
+    
+
+    def get_vehicle_bounding_box(self, uniquename):
+        &#39;&#39;&#39;
+        get the bounding box of the vehicle by uniquename
+
+        Parameters
+        ----------
+        uniquename : string
+            the uniquename of the vehicle.
+
+        Returns
+        -------
+        new_bb : carla.Vector3D
+            the bounding box of the vehicle, new_bb.x is the length, new_bb.y is the width, new_bb.z is the height
+
+        &#39;&#39;&#39;
+        new_bb = self.env.get_vehicle_bounding_box(uniquename)
+        return new_bb
+
+    def get_vehicle_settings(self, uniquename):
+        &#39;&#39;&#39;
+        Get the settings entered for a specific vehicle in this intersection based on uniquename
+
+        Parameters
+        ----------
+        uniquename : string
+            the uniquename of the vehicle..
+
+        Returns
+        -------
+        vehicle_settings : ConfigObj
+            the settings of the vehicle
+
+        &#39;&#39;&#39;
+        out_vehicle = None
+        
+        for vehicle in self.subject_vehicle:
+            # deep copy the vehicle settings
+            if uniquename == vehicle[&#34;uniquename&#34;]:
+                out_vehicle = self._copy_vehicle_settings(vehicle)
+        
+        for vehicle in self.left_vehicle:
+            # deep copy the vehicle settings
+            if uniquename == vehicle[&#34;uniquename&#34;]:
+                out_vehicle = self._copy_vehicle_settings(vehicle)
+            
+        for vehicle in self.right_vehicle:
+            # deep copy the vehicle settings
+            if uniquename == vehicle[&#34;uniquename&#34;]:
+                out_vehicle = self._copy_vehicle_settings(vehicle)
+            
+        for vehicle in self.ahead_vehicle:
+            # deep copy the vehicle settings
+            if uniquename == vehicle[&#34;uniquename&#34;]:
+                out_vehicle = self._copy_vehicle_settings(vehicle)
+    
+        if out_vehicle == None:
+            print(&#34;Invalid uniquename entered for getting vehicle setting&#34;)
+            return None
+        
+        return out_vehicle
+        
+
+    def _copy_vehicle_settings(self,vehicle_config):
+        new_vehicle = copy.copy(vehicle_config)
+            
+        new_vehicle[&#34;ref_waypoint&#34;] = None
+        new_vehicle[&#34;location&#34;] = None
+        new_vehicle[&#34;rotation&#34;] = None
+        new_vehicle[&#34;trajectory&#34;] = None
+        new_vehicle[&#34;ref_speed_list&#34;] = None
+        new_vehicle[&#34;stop_ref_point&#34;] = None
+        new_vehicle[&#34;bounding_box&#34;] = None
+        
+        return new_vehicle
+
+
+        
+def main():
+    try:
+        client = carla.Client(&#34;localhost&#34;,2000)
+        client.set_timeout(10.0)
+        world = client.load_world(&#39;Town05&#39;)
+         
+        # set the weather
+        weather = carla.WeatherParameters(
+            cloudiness=10.0,
+            precipitation=0.0,
+            sun_altitude_angle=90.0)
+        world.set_weather(weather)
+        
+        # set the spectator position for demo purpose
+        spectator = world.get_spectator()
+        spectator.set_transform(carla.Transform(carla.Location(x=-133.0, y=1.29, z=11.0), carla.Rotation(pitch=-31.0, yaw= -4.23, roll=1.595))) # plain ground
+        
+        env = CARLA_ENV(world) 
+        time.sleep(2) # sleep for 2 seconds, wait the initialization to finish
+        
+        world_pos = (-133.0,0.0)#(25.4,0.0)
+        traffic_light_list = get_traffic_lights(world.get_actors())
+        intersection1 = Intersection(env, world_pos, traffic_light_list)
+        
+        
+        #name1 = intersection1.add_vehicle()
+        
+        #name2 = intersection1.add_vehicle(command = &#34;left&#34;, vehicle_color=&#39;255,255,255&#39;)
+        #name3 = intersection1.add_vehicle(command = &#34;right&#34;, vehicle_color=&#39;255,255,255&#39;)
+        
+        name4 = intersection1.add_vehicle(gap = 5,choice = &#34;left&#34;, vehicle_color=&#39;0,0,0&#39;)
+        name5 = intersection1.add_vehicle(gap = 5, choice = &#34;left&#34;,command = &#34;left&#34;, vehicle_color=&#39;128,128,128&#39;)
+        name6 = intersection1.add_vehicle(gap = 5,choice = &#34;left&#34;,command = &#34;right&#34;, vehicle_color=&#39;255,255,255&#39;)
+        
+        &#39;&#39;&#39;
+        intersection1.add_vehicle(choice = &#34;right&#34;, vehicle_color=&#39;255,255,255&#39;)
+        intersection1.add_vehicle(choice = &#34;right&#34;,command = &#34;left&#34;, vehicle_color=&#39;255,255,255&#39;)
+        intersection1.add_vehicle(choice = &#34;right&#34;,command = &#34;right&#34;, vehicle_color=&#39;255,255,255&#39;)
+        intersection1.add_vehicle(choice = &#34;ahead&#34;, vehicle_color=&#39;255,255,255&#39;)
+        intersection1.add_vehicle(choice = &#34;ahead&#34;,command = &#34;left&#34;, vehicle_color=&#39;255,255,255&#39;)
+        intersection1.add_vehicle(choice = &#34;ahead&#34;,command = &#34;right&#34;, vehicle_color=&#39;255,255,255&#39;)
+        &#39;&#39;&#39;
+        #intersection1._shift_vehicles(-5,choice = &#34;left&#34;,index = 0)
+        #intersection1._shift_vehicles(-5,choice = &#34;left&#34;,index = 1)
+        #intersection1._shift_vehicles(-5,choice = &#34;left&#34;,index = 2)
+        
+        intersection1.edit_vehicle_settings(name4,choice = &#34;left&#34;, vehicle_color = &#39;0,0,0&#39;)
+        intersection1.edit_vehicle_settings(name5,choice = &#34;left&#34;, vehicle_color = &#39;0,0,0&#39;)
+        intersection1.edit_vehicle_settings(name6,choice = &#34;left&#34;, vehicle_color = &#39;0,0,0&#39;)
+        
+        time.sleep(2)
+        
+        # check the remove method
+        #intersection1.remove_vehicle(name1)
+        #intersection1.remove_vehicle(name3)
+        #intersection1.remove_vehicle(name2)
+        
+        # traffic light
+        intersection1.edit_traffic_light(&#34;subject&#34;,red_start = 20.0,red_end = 40.0,yellow_start=0.0,yellow_end=20.0,green_start=40.0,green_end = 60.0)
+        intersection1.edit_traffic_light(&#34;left&#34;,red_start = 20.0,red_end = 40.0,yellow_start=0.0,yellow_end=20.0,green_start=40.0,green_end = 60.0)
+        intersection1.edit_traffic_light(&#34;right&#34;,red_start = 20.0,red_end = 40.0,yellow_start=0.0,yellow_end=20.0,green_start=40.0,green_end = 60.0)
+        intersection1.edit_traffic_light(&#34;ahead&#34;,red_start = 20.0,red_end = 40.0,yellow_start=0.0,yellow_end=20.0,green_start=40.0,green_end = 60.0)
+        
+        # check the import/export method
+        setting = intersection1.export_settings()
+        
+        write_intersection_settings(name = &#39;demo_setting2&#39;, settings = setting)
+        
+        new_setting = read_intersection_settings(&#39;demo_setting2&#39;)
+        
+        intersection1.import_settings(new_setting)
+        
+        print(&#34;successfully imported settings&#34;)
+        
+        for ii in range(int(60 / env.delta_seconds)):
+            env.world.tick()
+            intersection1.set_intersection_traffic_lights()
+        
+        
+    finally:
+        time.sleep(10)
+        env.destroy_actors()
+
+if __name__ == &#39;__main__&#39;:
+    main()
+    
+    </code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-variables">Global variables</h2>
+<dl>
+<dt id="backend.intersection_definition.white"><code class="name">var <span class="ident">white</span></code></dt>
+<dd>
+<div class="desc"><p>END1 = -6.5#-5.5
+END2 = -9.0
+START1 = -12.5
+START2 = -15.5#-15.5#-16.0</p></div>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="backend.intersection_definition.get_traffic_lights"><code class="name flex">
+<span>def <span class="ident">get_traffic_lights</span></span>(<span>actor_list)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_traffic_lights(actor_list):
+    # get all the available traffic lights
+    traffic_light_list = []
+    for actor in actor_list:
+        if &#39;traffic_light&#39; in actor.type_id:
+            traffic_light_list.append(actor)
+    return traffic_light_list</code></pre>
+</details>
+</dd>
+<dt id="backend.intersection_definition.get_trajectory"><code class="name flex">
+<span>def <span class="ident">get_trajectory</span></span>(<span>way_points)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>way_points</code></strong> :&ensp;<code>list</code></dt>
+<dd>A list of (way_point, reference_speed) tuple,
+where way_points is a tuple of floats (x,y), the first point must be the <strong>current point</strong> of the vehicle
+reference speed is the desired speed for the vehicle after this way point and before the next way point
+e.g. [((0.0,0.0),10.0),((0.0,10.0),1.0)]</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>trajectory</code></strong> :&ensp;<code>numpy 2d array</code></dt>
+<dd>the interpolated trajectory.</dd>
+<dt><strong><code>ref_speed_list</code></strong> :&ensp;<code>list</code></dt>
+<dd>the speed correspoding to the interpolated trajectory</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_trajectory(way_points):
+    &#39;&#39;&#39;
+    
+
+    Parameters
+    ----------
+    way_points : list
+        A list of (way_point, reference_speed) tuple, 
+        where way_points is a tuple of floats (x,y), the first point must be the **current point** of the vehicle
+              reference speed is the desired speed for the vehicle after this way point and before the next way point
+        e.g. [((0.0,0.0),10.0),((0.0,10.0),1.0)]
+
+    Returns
+    -------
+    trajectory : numpy 2d array
+        the interpolated trajectory.
+    ref_speed_list : list
+        the speed correspoding to the interpolated trajectory
+
+    &#39;&#39;&#39;
+    points, speed = zip(*way_points)
+    points = np.array([[pt[0], pt[1]] for pt in points])
+    
+    # apply average smoothing of the points
+    points = smooth_trajectory(points)
+    
+    # linear length along the line (reference: https://stackoverflow.com/questions/52014197/how-to-interpolate-a-2d-curve-in-python)
+    distance = np.cumsum( np.sqrt(np.sum( np.diff(points,axis=0)**2, axis = 1)))
+    distance = np.insert(distance, 0, 0)/distance[-1]
+    
+    &#39;&#39;&#39;
+    # define interpolation method
+    interpolation_method = &#39;slinear&#39; #&#39;quadratic&#39;
+    
+    alpha = np.linspace(0,1, 2 * len(distance))
+    
+    interpolator = interp1d(distance, points, kind = interpolation_method, axis = 0)
+    trajectory = interpolator(alpha)
+    &#39;&#39;&#39;
+    
+    # Build a list of the spline function, one for each dimension:
+    splines = [UnivariateSpline(distance, coords, k=3, s=.2) for coords in points.T]
+    
+    alpha = np.linspace(0,1.0, 2 * len(distance))
+    trajectory = np.vstack( [spl(alpha) for spl in splines] ).T
+    
+    
+    nearest_index = []
+    for pt in points:
+        nearest_distance = np.inf
+        index = 0
+        count = 0
+        for trajectory_pt in trajectory:
+            dist_2 = sum((trajectory_pt - pt)**2)
+            if dist_2 &lt; nearest_distance:
+                nearest_distance = dist_2
+                index = count
+            count += 1
+        nearest_index.append(index)
+        
+    ref_speed_list = np.zeros(len(trajectory))
+    for ii in range(1,len(nearest_index)):
+        ref_speed_list[nearest_index[ii - 1]:nearest_index[ii]] = speed[ii - 1]
+    
+    #plt.plot(trajectory[:,0],trajectory[:,1],&#39;.&#39;)
+    #print(ref_speed_list)
+    
+    return trajectory, ref_speed_list</code></pre>
+</details>
+</dd>
+<dt id="backend.intersection_definition.main"><code class="name flex">
+<span>def <span class="ident">main</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def main():
+    try:
+        client = carla.Client(&#34;localhost&#34;,2000)
+        client.set_timeout(10.0)
+        world = client.load_world(&#39;Town05&#39;)
+         
+        # set the weather
+        weather = carla.WeatherParameters(
+            cloudiness=10.0,
+            precipitation=0.0,
+            sun_altitude_angle=90.0)
+        world.set_weather(weather)
+        
+        # set the spectator position for demo purpose
+        spectator = world.get_spectator()
+        spectator.set_transform(carla.Transform(carla.Location(x=-133.0, y=1.29, z=11.0), carla.Rotation(pitch=-31.0, yaw= -4.23, roll=1.595))) # plain ground
+        
+        env = CARLA_ENV(world) 
+        time.sleep(2) # sleep for 2 seconds, wait the initialization to finish
+        
+        world_pos = (-133.0,0.0)#(25.4,0.0)
+        traffic_light_list = get_traffic_lights(world.get_actors())
+        intersection1 = Intersection(env, world_pos, traffic_light_list)
+        
+        
+        #name1 = intersection1.add_vehicle()
+        
+        #name2 = intersection1.add_vehicle(command = &#34;left&#34;, vehicle_color=&#39;255,255,255&#39;)
+        #name3 = intersection1.add_vehicle(command = &#34;right&#34;, vehicle_color=&#39;255,255,255&#39;)
+        
+        name4 = intersection1.add_vehicle(gap = 5,choice = &#34;left&#34;, vehicle_color=&#39;0,0,0&#39;)
+        name5 = intersection1.add_vehicle(gap = 5, choice = &#34;left&#34;,command = &#34;left&#34;, vehicle_color=&#39;128,128,128&#39;)
+        name6 = intersection1.add_vehicle(gap = 5,choice = &#34;left&#34;,command = &#34;right&#34;, vehicle_color=&#39;255,255,255&#39;)
+        
+        &#39;&#39;&#39;
+        intersection1.add_vehicle(choice = &#34;right&#34;, vehicle_color=&#39;255,255,255&#39;)
+        intersection1.add_vehicle(choice = &#34;right&#34;,command = &#34;left&#34;, vehicle_color=&#39;255,255,255&#39;)
+        intersection1.add_vehicle(choice = &#34;right&#34;,command = &#34;right&#34;, vehicle_color=&#39;255,255,255&#39;)
+        intersection1.add_vehicle(choice = &#34;ahead&#34;, vehicle_color=&#39;255,255,255&#39;)
+        intersection1.add_vehicle(choice = &#34;ahead&#34;,command = &#34;left&#34;, vehicle_color=&#39;255,255,255&#39;)
+        intersection1.add_vehicle(choice = &#34;ahead&#34;,command = &#34;right&#34;, vehicle_color=&#39;255,255,255&#39;)
+        &#39;&#39;&#39;
+        #intersection1._shift_vehicles(-5,choice = &#34;left&#34;,index = 0)
+        #intersection1._shift_vehicles(-5,choice = &#34;left&#34;,index = 1)
+        #intersection1._shift_vehicles(-5,choice = &#34;left&#34;,index = 2)
+        
+        intersection1.edit_vehicle_settings(name4,choice = &#34;left&#34;, vehicle_color = &#39;0,0,0&#39;)
+        intersection1.edit_vehicle_settings(name5,choice = &#34;left&#34;, vehicle_color = &#39;0,0,0&#39;)
+        intersection1.edit_vehicle_settings(name6,choice = &#34;left&#34;, vehicle_color = &#39;0,0,0&#39;)
+        
+        time.sleep(2)
+        
+        # check the remove method
+        #intersection1.remove_vehicle(name1)
+        #intersection1.remove_vehicle(name3)
+        #intersection1.remove_vehicle(name2)
+        
+        # traffic light
+        intersection1.edit_traffic_light(&#34;subject&#34;,red_start = 20.0,red_end = 40.0,yellow_start=0.0,yellow_end=20.0,green_start=40.0,green_end = 60.0)
+        intersection1.edit_traffic_light(&#34;left&#34;,red_start = 20.0,red_end = 40.0,yellow_start=0.0,yellow_end=20.0,green_start=40.0,green_end = 60.0)
+        intersection1.edit_traffic_light(&#34;right&#34;,red_start = 20.0,red_end = 40.0,yellow_start=0.0,yellow_end=20.0,green_start=40.0,green_end = 60.0)
+        intersection1.edit_traffic_light(&#34;ahead&#34;,red_start = 20.0,red_end = 40.0,yellow_start=0.0,yellow_end=20.0,green_start=40.0,green_end = 60.0)
+        
+        # check the import/export method
+        setting = intersection1.export_settings()
+        
+        write_intersection_settings(name = &#39;demo_setting2&#39;, settings = setting)
+        
+        new_setting = read_intersection_settings(&#39;demo_setting2&#39;)
+        
+        intersection1.import_settings(new_setting)
+        
+        print(&#34;successfully imported settings&#34;)
+        
+        for ii in range(int(60 / env.delta_seconds)):
+            env.world.tick()
+            intersection1.set_intersection_traffic_lights()
+        
+        
+    finally:
+        time.sleep(10)
+        env.destroy_actors()</code></pre>
+</details>
+</dd>
+<dt id="backend.intersection_definition.smooth_trajectory"><code class="name flex">
+<span>def <span class="ident">smooth_trajectory</span></span>(<span>trajectory)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>trajectory</code></strong> :&ensp;<code>np.array([(float,float),&hellip;,(float,float)])</code></dt>
+<dd>2d trajectory.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>smoothed_trajectory</code></strong> :&ensp;<code>np.array([(float,float),&hellip;,(float,float)])</code></dt>
+<dd>the smoother trajectory</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def smooth_trajectory(trajectory):
+    &#39;&#39;&#39;
+    
+
+    Parameters
+    ----------
+    trajectory : np.array([(float,float),...,(float,float)])
+        2d trajectory.
+
+    Returns
+    -------
+    smoothed_trajectory : np.array([(float,float),...,(float,float)])
+        the smoother trajectory
+
+    &#39;&#39;&#39;
+    
+    smoothed_trajectory = []
+    smoothed_trajectory.append(trajectory[0])
+    
+    num = 3
+    
+    for ii in range(num - 1,len(trajectory)):
+        avg_pt = (trajectory[ii - 2] + trajectory[ii - 1] + trajectory[ii]) / num
+        smoothed_trajectory.append(avg_pt)
+    
+    smoothed_trajectory.append(trajectory[-1])
+    return np.array(smoothed_trajectory)</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="backend.intersection_definition.Intersection"><code class="flex name class">
+<span>class <span class="ident">Intersection</span></span>
+<span>(</span><span>env, world_pos, traffic_light_list, distance=75.0, yaw=0.0, start_sim_distance=40, navigation_speed=10.0)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>env</code></strong> :&ensp;<code>CARLA_ENV</code></dt>
+<dd>the simulation environment</dd>
+<dt><strong><code>world_pos</code></strong> :&ensp;<code>(float,float)</code></dt>
+<dd>the (rough) central point of the intersection.</dd>
+<dt><strong><code>traffic_light_list</code></strong> :&ensp;<code>list</code></dt>
+<dd>list of all available traffic lights.</dd>
+<dt><strong><code>distance</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>width and height of the intersection. The default is 75.0 (m).</dd>
+<dt><strong><code>yaw</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>define the direction the ego vehicle will pass through the intersection. The default is 0.</dd>
+<dt><strong><code>navigation_speed</code></strong> :&ensp;<code>float</code></dt>
+<dd>the navigation speed of the vehicle</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>None.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Intersection():
+    def __init__(self, env, world_pos, traffic_light_list, distance = 75.0, yaw = 0.0, start_sim_distance = 40, navigation_speed = 10.0):
+        &#39;&#39;&#39;
+        
+
+        Parameters
+        ----------
+        env: CARLA_ENV
+            the simulation environment
+        world_pos : (float,float)
+            the (rough) central point of the intersection.
+        traffic_light_list : list
+            list of all available traffic lights.
+        distance : float, optional
+            width and height of the intersection. The default is 75.0 (m).
+        yaw : float, optional
+            define the direction the ego vehicle will pass through the intersection. The default is 0.
+        navigation_speed : float
+            the navigation speed of the vehicle
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        
+        self.env = env
+        self.distance = distance
+        self.yaw = yaw % 360
+        self._get_local_traffic_lights(world_pos,traffic_light_list) # get the traffic light at this intersection
+        self._get_lane_points() # get the in/out point of lane
+        #self._yaw2vector()
+        self._split_lane_points() # split in/out point of lane into subject/left/right/ahead
+        self._get_spawn_reference() # find a reference point for spawning for each of the subject/left/right/ahead lane
+        self._split_traffic_lights() # split the traffic lights into subject/left/right/ahead
+        
+        self.subject_vehicle = []
+        self.left_vehicle = []
+        self.right_vehicle = []
+        self.ahead_vehicle = []
+        
+        self.start_sim_distance = start_sim_distance
+        self.start_sim = False # whether the simulation at this intersection should start or not
+        
+        self.DEBUG_TRAJECTORY = True
+        
+        self.navigation_speed = navigation_speed
+        
+    def start_simulation(self, full_path_vehicle_name):
+        &#39;&#39;&#39;
+        check whether the first full path vehicle is within this intersection
+
+        Parameters
+        ----------
+        full_path_vehicle_name : string
+            uniquename of the first full path vehicle (i.e. lead if lead exists, otherwise ego)
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        full_path_vehicle_transform = self.env.get_transform_2d(full_path_vehicle_name)
+        full_path_vehicle_location = full_path_vehicle_transform[0] # 2d location of the vehicle
+        ref_waypoint = self.subject_lane_ref
+        ref_location = ref_waypoint.transform.location
+        distance = math.sqrt((ref_location.x - full_path_vehicle_location[0])**2 + (ref_location.y - full_path_vehicle_location[1])**2 )
+       
+        # start simulation if distance between the vehicle and the reference point is within 
+        # the pre-set start_sim_distance
+        if distance &lt; self.start_sim_distance:
+            self.start_sim = True
+        
+        
+        
+    def _get_local_traffic_lights(self, world_pos,traffic_light_list):
+        &#39;&#39;&#39;
+        
+
+        Parameters
+        ----------
+        world_pos : (float,float)
+            the (rough) central point of the intersection.
+        traffic_light_list : list
+            list of all available traffic lights.
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        self.local_traffic_lights = []
+        for light in traffic_light_list:
+            location = light.get_location()
+            distance = math.sqrt((location.x - world_pos[0])**2 + (location.y - world_pos[1]) ** 2) # get the 2d Euclidean distance
+            if distance &lt; self.distance / 2:
+                self.local_traffic_lights.append(light)
+                
+        assert(len(self.local_traffic_lights) == 4) # should contain and only contain 4 lights
+        
+        x = 0
+        y = 0
+        for light in self.local_traffic_lights:
+            x += light.get_location().x
+            y += light.get_location().y
+        
+        self.world_pos = (x / len(self.local_traffic_lights),y / len(self.local_traffic_lights)) 
+        
+        
+        if DEBUG_INIT:
+            print(self.world_pos)
+            for light in self.local_traffic_lights:
+                print(light.get_location())
+                self.env.world.debug.draw_point(light.get_location(),size = 0.1, color = blue, life_time=0.0, persistent_lines=True)
+                
+
+    def _get_lane_points(self):
+        # get the into/out lane points of this intersection
+        self.carla_map = self.env.world.get_map()
+        self.out_lane_points = []
+        self.into_lane_points = []
+        
+        &#39;&#39;&#39;
+        for light in self.local_traffic_lights:
+            light_location = light.get_location()
+            vector = light.get_transform().get_forward_vector()
+            end_1 = carla.Location(x = light_location.x + vector.x * END1,y = light_location.y + vector.y * END1, z = light_location.z + vector.z * END1) 
+            end_2 = carla.Location(x = light_location.x + vector.x * END2,y = light_location.y + vector.y * END2, z = light_location.z + vector.z * END2)
+            start_1 = carla.Location(x = light_location.x + vector.x * START1,y = light_location.y + vector.y * START1, z = light_location.z + vector.z * START1)
+            start_2 = carla.Location(x = light_location.x + vector.x * START2,y = light_location.y + vector.y * START2, z = light_location.z + vector.z * START2)
+            into_1 = self.carla_map.get_waypoint(end_1)
+            into_2 = self.carla_map.get_waypoint(end_2)
+            out_1 = self.carla_map.get_waypoint(start_1)
+            out_2 = self.carla_map.get_waypoint(start_2)
+            self.out_lane_points.append(out_1)
+            self.out_lane_points.append(out_2)
+            self.into_lane_points.append(into_1)
+            self.into_lane_points.append(into_2)
+        &#39;&#39;&#39;
+        for ii in range(len(self.local_traffic_lights)):
+            light_location = self.local_traffic_lights[ii].get_location()
+            vector = self.local_traffic_lights[ii].get_transform().get_forward_vector()
+            for jj in range(len(self.local_traffic_lights)):
+                if jj != ii:
+                    # calculate the angle between the light&#39;s forward vector and 
+                    # the vector from this light to the other light
+                    another_light_location = self.local_traffic_lights[jj].get_location()
+                    vec1_2 = np.array([another_light_location.x - light_location.x, another_light_location.y - light_location.y])
+                    forward_vector_2d = np.array([-vector.x, -vector.y]) # the reverse direction of forward vector is what we need
+                    norm_vec1_2 = vec1_2 / np.linalg.norm(vec1_2)
+                    norm_forward_vector_2d = forward_vector_2d / np.linalg.norm(forward_vector_2d)
+                    dot_product = np.dot(norm_vec1_2,norm_forward_vector_2d)
+                    angle = np.arccos(dot_product)
+                    
+                    
+                    if angle &lt; np.pi / 12: # angle within 15 degrees
+                        other_light_location = another_light_location
+                        break
+                    
+                    
+            distance = math.sqrt((light_location.x - other_light_location.x)**2 + (light_location.y - other_light_location.y)**2)
+            
+            
+            if distance &lt; 25: # 4 lanes inside
+                END1 = -6.5#-5.5
+                END2 = -9.0
+                START1 = -12.5
+                START2 = -15.5#-15.5#-16.0
+            elif distance &gt;= 25 and distance &lt; 27:
+                # 6 lane road
+                END1 = -8.0#-5.5
+                END2 = -12.0
+                START1 = -16.0
+                START2 = -18.0#-15.5#-16.0
+            else:
+                # 6 lane road, wider
+                END1 = -9.0#-5.5
+                END2 = -12.0
+                START1 = -16.0
+                START2 = -20.0#-15.5#-16.0
+            
+            
+            end_1 = carla.Location(x = light_location.x + vector.x * END1,y = light_location.y + vector.y * END1, z = light_location.z + vector.z * END1) 
+            end_2 = carla.Location(x = light_location.x + vector.x * END2,y = light_location.y + vector.y * END2, z = light_location.z + vector.z * END2)
+            start_1 = carla.Location(x = light_location.x + vector.x * START1,y = light_location.y + vector.y * START1, z = light_location.z + vector.z * START1)
+            start_2 = carla.Location(x = light_location.x + vector.x * START2,y = light_location.y + vector.y * START2, z = light_location.z + vector.z * START2)
+            into_1 = self.carla_map.get_waypoint(end_1)
+            into_2 = self.carla_map.get_waypoint(end_2)
+            out_1 = self.carla_map.get_waypoint(start_1)
+            out_2 = self.carla_map.get_waypoint(start_2)
+            self.out_lane_points.append(out_1)
+            self.out_lane_points.append(out_2)
+            self.into_lane_points.append(into_1)
+            self.into_lane_points.append(into_2)
+        
+    def _yaw2vector(self):
+        # get the direction vector of this intersection
+        yaw_rad = math.radians(self.yaw)
+        self.direction_vector = [math.cos(yaw_rad),math.sin(yaw_rad)]
+        
+    def _debug_lane_point(self,pt,color):
+        if DEBUG_INIT:
+            self.env.world.debug.draw_point(pt.transform.location,size = 0.1, color = color, life_time=0.0, persistent_lines=True)
+            forward_vector = pt.transform.get_forward_vector()
+            start = pt.transform.location
+            end = carla.Location(x = start.x + forward_vector.x, y = start.y + forward_vector.y, z = start.z + forward_vector.z)
+            self.env.world.debug.draw_arrow(start,end,thickness=0.1, arrow_size=0.2, color = color, life_time=0.0, persistent_lines=True)
+        
+    def _split_lane_points(self):
+        # split the lane points into 
+        # subject/left/right/ahead lane
+        
+        self.subject_out = []
+        self.left_out = []
+        self.right_out = []
+        self.ahead_out = []
+        
+        self.subject_in = []
+        self.left_in = []
+        self.right_in = []
+        self.ahead_in = []
+        
+        max_angle_dev = 10
+        
+        for pt in self.out_lane_points:
+            pt_yaw = pt.transform.rotation.yaw % 360
+            relative_yaw = (pt_yaw - self.yaw) % 360
+            
+            if abs(relative_yaw - 0) &lt; max_angle_dev or abs(relative_yaw - 360) &lt; max_angle_dev:
+                self.subject_out.append(pt)
+                self._debug_lane_point(pt,green)
+                
+            elif abs(relative_yaw - 90) &lt; max_angle_dev:
+                self.left_out.append(pt)
+                self._debug_lane_point(pt,blue)
+                
+            elif abs(relative_yaw - 180) &lt; max_angle_dev:
+                self.ahead_out.append(pt)
+                self._debug_lane_point(pt,yellow)
+                
+            elif abs(relative_yaw - 270) &lt; max_angle_dev:
+                self.right_out.append(pt)
+                self._debug_lane_point(pt,orange)
+        
+        for pt in self.into_lane_points:
+            pt_yaw = pt.transform.rotation.yaw % 360
+            relative_yaw = (pt_yaw - self.yaw) % 360
+            if abs(relative_yaw - 0) &lt; max_angle_dev or abs(relative_yaw - 360) &lt; max_angle_dev:
+                self.ahead_in.append(pt)
+                self._debug_lane_point(pt,green)
+                
+            elif abs(relative_yaw - 90) &lt; max_angle_dev :
+                self.right_in.append(pt)
+                self._debug_lane_point(pt,blue)
+                
+            elif abs(relative_yaw - 180) &lt; max_angle_dev:
+                self.subject_in.append(pt)
+                self._debug_lane_point(pt,yellow)
+                
+            elif abs(relative_yaw - 270) &lt; max_angle_dev:
+                self.left_in.append(pt)
+                self._debug_lane_point(pt,orange)
+                
+    def _split_traffic_lights(self):
+        # split the traffic lights into 
+        # subject/left/right/ahead lane
+        
+        # get the 4 direction vector
+        forward_direction = self.subject_lane_ref.transform.get_forward_vector()
+        forward_direction_2d = [forward_direction.x,forward_direction.y]
+        forward_direction_2d = forward_direction_2d / np.linalg.norm(forward_direction_2d)
+        
+        left_direction = self.left_lane_ref.transform.get_forward_vector()
+        left_direction_2d = [left_direction.x,left_direction.y]
+        left_direction_2d = left_direction_2d / np.linalg.norm(left_direction_2d)
+        
+        right_direction = self.right_lane_ref.transform.get_forward_vector()
+        right_direction_2d = [right_direction.x,right_direction.y]
+        right_direction_2d = right_direction_2d / np.linalg.norm(right_direction_2d)
+        
+        ahead_direction = self.ahead_lane_ref.transform.get_forward_vector()
+        ahead_direction_2d = [ahead_direction.x,ahead_direction.y]
+        ahead_direction_2d = ahead_direction_2d / np.linalg.norm(ahead_direction_2d)
+        
+        self.subject_light = None
+        self.left_light = None
+        self.right_light = None
+        self.ahead_light = None
+        
+        for traffic_light in self.local_traffic_lights:
+            light_vector = traffic_light.get_transform().get_forward_vector()
+            left_vector = self._get_left_vector(light_vector)
+            if abs(np.dot(left_vector,forward_direction_2d) - 1.0) &lt; 0.1:
+                self.subject_light = traffic_light
+            elif abs(np.dot(left_vector,left_direction_2d) - 1.0) &lt; 0.1:
+                self.left_light = traffic_light
+            elif abs(np.dot(left_vector,right_direction_2d) - 1.0) &lt; 0.1:
+                self.right_light = traffic_light
+            elif abs(np.dot(left_vector,ahead_direction_2d) - 1.0) &lt; 0.1:
+                self.ahead_light = traffic_light
+        
+        self.light_config = ConfigObj()
+        self.light_config[&#34;subject&#34;] = None
+        self.light_config[&#34;subject_time&#34;] = None
+        self.light_config[&#34;left&#34;] = None
+        self.light_config[&#34;left_time&#34;] = None
+        self.light_config[&#34;right&#34;] = None
+        self.light_config[&#34;right_time&#34;] = None
+        self.light_config[&#34;ahead&#34;] = None
+        self.light_config[&#34;ahead_time&#34;] = None
+        
+        # initialize counter for traffic light color setting
+        self.local_time_count = 0
+        
+        
+        if DEBUG_INIT:
+            self.env.world.debug.draw_point(self.subject_light.get_transform().location,size = 0.2, color = green, life_time=0.0, persistent_lines=True)
+            self.env.world.debug.draw_point(self.left_light.get_transform().location,size = 0.2, color = yellow, life_time=0.0, persistent_lines=True)
+            self.env.world.debug.draw_point(self.right_light.get_transform().location,size = 0.2, color = blue, life_time=0.0, persistent_lines=True)
+            self.env.world.debug.draw_point(self.ahead_light.get_transform().location,size = 0.2, color = red, life_time=0.0, persistent_lines=True)
+            
+    def _get_left_vector(self,vector):
+        # return the left vector of the input 2d vector
+        # vector : carla.Vector3D
+        left_x = vector.y
+        left_y = - vector.x
+        return [left_x,left_y]
+        
+                
+    def _vec_angle(self,vec1,vec2):
+        vec1 = vec1 / np.linalg.norm(vec1)
+        vec2 = vec2 / np.linalg.norm(vec2)
+        dot_product = np.dot(vec1,vec2)
+        angle = np.arccos(dot_product)
+        return angle
+                
+        
+    def _get_lane_spawn_reference(self,lane_out_pts):
+        # function: return the reference point for spawning in this lane
+        
+        # requirements: lane_out_pts should have and only have 2 points
+        # in theory, the second point should be more &#34;left&#34;
+
+        
+        return lane_out_pts[1]
+    
+    def _get_spawn_reference(self):
+        # get the reference way point for each lane
+        self.subject_lane_ref = self._get_lane_spawn_reference(self.subject_out)
+        self.left_lane_ref = self._get_lane_spawn_reference(self.left_out)
+        self.right_lane_ref = self._get_lane_spawn_reference(self.right_out)
+        self.ahead_lane_ref = self._get_lane_spawn_reference(self.ahead_out)
+        
+        if DEBUG_INIT:
+            self.env.world.debug.draw_point(self.subject_lane_ref.transform.location,size = 0.2, color = green, life_time=0.0, persistent_lines=True)
+            self.env.world.debug.draw_point(self.left_lane_ref.transform.location,size = 0.2, color = yellow, life_time=0.0, persistent_lines=True)
+            self.env.world.debug.draw_point(self.right_lane_ref.transform.location,size = 0.2, color = blue, life_time=0.0, persistent_lines=True)
+            self.env.world.debug.draw_point(self.ahead_lane_ref.transform.location,size = 0.2, color = red, life_time=0.0, persistent_lines=True)
+        
+    def add_vehicle(self,gap = 10.0,model_name = &#34;vehicle.tesla.model3&#34;,choice = &#34;subject&#34;, command = &#34;straight&#34;, stop_choice = &#34;normal&#34;, penetrate_distance = None,obey_traffic_lights = True, run = True, safety_distance = 15.0, vehicle_color = None):    
+        &#39;&#39;&#39;
+        
+
+        Parameters
+        ----------
+        gap : float,optional
+            the distance between a vehicle and its previous one
+        model_name : string, optional
+            vehicle type. The default is &#34;vehicle.tesla.model3&#34;.
+        choice : string, optional
+            the lane this vehicle will be added, valid values: &#34;subject&#34;, &#34;left&#34;, &#34;right&#34;, &#34;ahead&#34;. The default is &#34;subject&#34;.
+        command : string, optional
+            the turning command, valid values: &#34;straight&#34;, &#34;right&#34;, &#34;left&#34;
+        stop_choice : string, optional
+            how will the vehicle stop when at yellow or red light. valid values: &#34;normal&#34;, &#34;abrupt&#34;, &#34;penetrate&#34;
+        penetrate_distance : float, unit: meter
+            to what extent the vehicle will penetrate the traffic lane. This parameter will only be use when stop_choice is &#34;penetrate&#34;
+        obey_traffic_light : bool, optional
+            whether the vehicle will obey traffic light. Default is True
+        run : bool, optional
+            whether the vehicle is running. Default is True
+        safety_distance : float, optional
+            smallest distance between this vehicle and vehicle ahead
+        vehicle_color : string
+            the RGB representation of the vehicle color. e.g. &#39;255,255,255&#39;
+
+
+        Returns
+        -------
+        uniquename : the uniquename of the vehicle
+
+        &#39;&#39;&#39;
+        
+        right_shift_value = RIGHT_SHIFT
+        
+        vehicle = ConfigObj()
+        vehicle[&#34;model&#34;] = model_name
+        vehicle[&#34;gap&#34;] = gap
+        vehicle[&#34;command&#34;] = command
+        vehicle[&#34;obey_traffic_lights&#34;] = obey_traffic_lights
+        vehicle[&#34;run&#34;] = run
+        vehicle[&#34;safety_distance&#34;] = safety_distance
+        vehicle[&#34;choice&#34;] = choice
+        
+        #print(choice)
+        
+        if choice == &#34;subject&#34;:
+            ref_waypoint = self.subject_lane_ref
+            vehicle_set = self.subject_vehicle
+            vehicle[&#34;traffic_light&#34;] = self.subject_light
+            
+        elif choice == &#34;left&#34;:
+            ref_waypoint = self.left_lane_ref
+            vehicle_set = self.left_vehicle
+            vehicle[&#34;traffic_light&#34;] = self.left_light
+            
+        elif choice == &#34;ahead&#34;:
+            ref_waypoint = self.ahead_lane_ref
+            vehicle_set = self.ahead_vehicle
+            vehicle[&#34;traffic_light&#34;] = self.ahead_light
+            
+        elif choice == &#34;right&#34;:
+            ref_waypoint = self.right_lane_ref
+            vehicle_set = self.right_vehicle
+            vehicle[&#34;traffic_light&#34;] = self.right_light
+        
+        if len(vehicle_set) != 0:
+            ref_waypoint = vehicle_set[-1][&#34;ref_waypoint&#34;]
+            #previous_uniquename = vehicle_set[-1][&#34;uniquename&#34;]
+            #bb = self.env.get_vehicle_bounding_box(previous_uniquename)
+            bb = vehicle_set[-1][&#34;bounding_box&#34;]
+            
+            right_shift_value = right_shift_value #- bb.y / 2
+            
+            curr_length = self.env.get_vehicle_model_length(model_name)
+            
+            gap += bb.x / 2 + curr_length / 2
+        
+        &#39;&#39;&#39;
+        else:
+            if gap &lt; 10.0:
+                gap = 10.0 # add a constraint to the gap between the first vehicle and the lane 
+                           # reference point. Add a vehicle too close to reference point
+                           # will lead to vehicle not detecting the traffic light
+        &#39;&#39;&#39;       
+        
+        # use the original reference point to get the new reference point
+        # reference point is in the middle of the lane
+        # function same as self._get_next_waypoint
+        forward_vector = ref_waypoint.transform.get_forward_vector()
+
+        location = ref_waypoint.transform.location
+        raw_spawn_point = carla.Location(x = location.x - gap * forward_vector.x  , y = location.y - gap * forward_vector.y , z = location.z + 1.0)
+        
+        new_ref_waypoint = self.carla_map.get_waypoint(raw_spawn_point)
+        
+        # right shift the spawn point
+        # right is with respect to the direction of vehicle navigation
+        ref_yaw = new_ref_waypoint.transform.rotation.yaw
+        
+        right_vector = self._get_unit_right_vector(ref_yaw)
+        
+        new_location = new_ref_waypoint.transform.location
+        
+        spawn_location = carla.Location(x = new_location.x - right_shift_value * right_vector[0], y = new_location.y -  right_shift_value * right_vector[1], z = new_location.z + 0.2)
+        spawn_rotation = new_ref_waypoint.transform.rotation
+        
+        uniquename = self.env.spawn_vehicle(model_name = model_name,spawn_point = carla.Transform(spawn_location,spawn_rotation), color = vehicle_color) 
+        vehicle[&#34;uniquename&#34;] = uniquename
+        vehicle[&#34;ref_waypoint&#34;] = new_ref_waypoint
+        vehicle[&#34;location&#34;] = spawn_location
+        vehicle[&#34;rotation&#34;] = spawn_rotation
+        
+        #print(vehicle_color)
+        
+        if vehicle_color == None:
+            vehicle[&#34;vehicle_color&#34;] = vehicle_color
+        else:
+            vehicle[&#34;vehicle_color&#34;] = vehicle_color.replace(&#39;,&#39;,&#39;;&#39;) # replace , by ; to avoid error when importing from file
+        
+        
+        trajectory, ref_speed_list = self._generate_path(choice, command, new_ref_waypoint)
+        vehicle[&#34;trajectory&#34;] = trajectory
+        vehicle[&#34;ref_speed_list&#34;] = ref_speed_list
+        
+        # get the bounding box of the new vehicle
+        
+        new_bb = self.env.get_vehicle_bounding_box(uniquename)
+        vehicle[&#34;bounding_box&#34;] = new_bb
+        vehicle[&#34;vehicle_type&#34;] = &#34;other&#34;
+        
+        # vehicle stop type
+        vehicle[&#34;stop_choice&#34;] = stop_choice
+        vehicle[&#34;penetrate_distance&#34;] = penetrate_distance
+        if stop_choice == &#34;normal&#34;:
+            stop_point = self._get_next_waypoint(ref_waypoint,distance = -3.0) # 3 meters after the reference point
+            vehicle[&#34;stop_ref_point&#34;] = stop_point.transform
+        elif stop_choice == &#34;penetrate&#34;:
+            stop_point = self._get_next_waypoint(ref_waypoint,distance = penetrate_distance)
+            vehicle[&#34;stop_ref_point&#34;] = stop_point.transform
+        else:
+            vehicle[&#34;stop_ref_point&#34;] = ref_waypoint.transform
+        
+        
+        
+        
+        vehicle_set.append(vehicle)
+        
+        return uniquename
+    
+    def _shift_vehicles(self, length, choice = &#34;subject&#34;, index = 0):
+        &#39;&#39;&#39;
+        shift the location of a list of vehicles
+        
+        **note: for ego/lead/follow type, the path is not generated**
+
+        Parameters
+        ----------
+        length : float
+            the length we want to shift all the vehicles
+        choice : string, optional
+            the lane this vehicle will be added, valid values: &#34;subject&#34;, &#34;left&#34;, &#34;right&#34;, &#34;ahead&#34;. The default is &#34;subject&#34;. 
+        index : int, optional
+            the index of the vehicle that shifting. The default is 0.
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        right_shift_value = RIGHT_SHIFT
+        
+        if choice == &#34;subject&#34;:
+            #ref_waypoint = self.subject_lane_ref
+            vehicle_set = self.subject_vehicle
+        elif choice == &#34;left&#34;:
+            #ref_waypoint = self.left_lane_ref
+            vehicle_set = self.left_vehicle
+        elif choice == &#34;ahead&#34;:
+            #ref_waypoint = self.ahead_lane_ref
+            vehicle_set = self.ahead_vehicle
+        elif choice == &#34;right&#34;:
+            #ref_waypoint = self.right_lane_ref
+            vehicle_set = self.right_vehicle
+            
+        #if index != 0:
+        #    ref_waypoint = vehicle_set[index - 1][&#34;ref_waypoint&#34;]
+            
+        # shifting the vehicles in reverse order
+        for ii in range(len(vehicle_set) - 1,index - 1,-1):
+            vehicle = vehicle_set[ii]
+            new_ref_waypoint = self._get_next_waypoint(vehicle[&#34;ref_waypoint&#34;],distance = length)
+        
+            ref_yaw = new_ref_waypoint.transform.rotation.yaw
+        
+            right_vector = self._get_unit_right_vector(ref_yaw)
+        
+            new_location = new_ref_waypoint.transform.location
+        
+            spawn_location = carla.Location(x = new_location.x - right_shift_value * right_vector[0], y = new_location.y -  right_shift_value * right_vector[1], z = new_location.z + 0.1)
+            spawn_rotation = new_ref_waypoint.transform.rotation
+            
+            # move the vehicle location
+            self.env.move_vehicle_location(vehicle[&#34;uniquename&#34;],carla.Transform(spawn_location,spawn_rotation))
+            vehicle[&#34;ref_waypoint&#34;] = new_ref_waypoint
+            vehicle[&#34;location&#34;] = spawn_location
+            vehicle[&#34;rotation&#34;] = spawn_rotation
+            
+            if vehicle[&#34;vehicle_type&#34;] == &#34;other&#34;:
+                command = vehicle[&#34;command&#34;]
+                trajectory, ref_speed_list = self._generate_path(choice, command, new_ref_waypoint) # generate new trajectory
+                vehicle[&#34;trajectory&#34;] = trajectory
+                vehicle[&#34;ref_speed_list&#34;] = ref_speed_list
+                
+            
+        
+        
+        
+    
+    def _get_unit_right_vector(self,yaw):
+        # get the right vector
+        right_yaw = (yaw + 270) % 360
+        rad_yaw = math.radians(right_yaw)
+        right_vector = [math.cos(rad_yaw),math.sin(rad_yaw)]
+        right_vector = right_vector / np.linalg.norm(right_vector)
+        return right_vector
+        
+    
+    def _generate_path(self, choice, command, start_waypoint):
+        &#39;&#39;&#39;
+        
+
+        Parameters
+        ----------
+        choice : string
+            the lane choice, valid values: &#34;subject&#34;,&#34;left&#34;,&#34;right&#34;,&#34;ahead&#34;
+        command : string
+            the command of navigation. valid command: &#34;straight&#34;,&#34;left&#34;,&#34;right&#34;
+
+        Returns
+        -------
+        smoothed_full_trajectory : list of 2d points
+             smoothed and interpolated trajectory
+
+        ref_speed_list : list
+             the speed correspoding to the interpolated trajectory
+        &#39;&#39;&#39;
+        color = green
+        
+        if choice == &#34;subject&#34;:
+            first_waypoint = self.subject_lane_ref
+            straight_waypoint = self.ahead_in[0] # can also be [1], choosing the left lane
+            left_waypoint = self.left_in[0]
+            right_waypoint = self.right_in[0]
+            
+            
+        elif choice == &#34;left&#34;:
+            first_waypoint = self.left_lane_ref
+            straight_waypoint = self.right_in[0] # can also be [1], choosing the left lane
+            left_waypoint = self.ahead_in[0]
+            right_waypoint = self.subject_in[0]
+            
+        elif choice == &#34;ahead&#34;:
+            first_waypoint = self.ahead_lane_ref
+            straight_waypoint = self.subject_in[0] # can also be [1], choosing the left lane
+            left_waypoint = self.right_in[0]
+            right_waypoint = self.left_in[0]
+            
+        elif choice == &#34;right&#34;:
+            first_waypoint = self.right_lane_ref
+            straight_waypoint = self.left_in[0] # can also be [1], choosing the left lane
+            left_waypoint = self.subject_in[0]
+            right_waypoint = self.ahead_in[0]
+            
+        #self.env.world.debug.draw_point(start_waypoint.transform.location,size = 0.5, color = red, life_time=0.0, persistent_lines=True)
+            
+        if command == &#34;straight&#34;:
+            second_waypoint = straight_waypoint
+        elif command == &#34;left&#34;:
+            #first_waypoint = self._get_next_waypoint(first_waypoint,3)
+            second_waypoint = left_waypoint
+            color = yellow
+        elif command == &#34;right&#34;:
+            second_waypoint = right_waypoint
+            color = blue
+            
+        third_waypoint = self._get_next_waypoint(second_waypoint,20)
+        trajectory1 = generate_path(self.env, start_waypoint, first_waypoint, waypoint_separation = 4)
+        trajectory2 = generate_path(self.env, first_waypoint, second_waypoint,waypoint_separation = 4)
+        trajectory3 = generate_path(self.env, second_waypoint, third_waypoint)
+        full_trajectory = trajectory1 + trajectory2[1:] + trajectory3[1:] # append the full trajectory
+        
+        trajectory = [((pt[0],pt[1]),self.navigation_speed) for pt in full_trajectory]
+        
+        smoothed_full_trajectory, ref_speed_list = get_trajectory(trajectory) 
+        
+        if self.DEBUG_TRAJECTORY:
+            for ii in range(1,len(smoothed_full_trajectory)):
+                loc1 = carla.Location(x = smoothed_full_trajectory[ii - 1][0], y = smoothed_full_trajectory[ii - 1][1], z = 0.0)
+                loc2 = carla.Location(x = smoothed_full_trajectory[ii][0], y = smoothed_full_trajectory[ii][1], z = 0.0)
+                self.env.world.debug.draw_arrow(loc1, loc2, thickness = 0.05, arrow_size = 0.1, color = color, life_time=0.0, persistent_lines=True)
+        return smoothed_full_trajectory, ref_speed_list
+    
+    def _get_next_waypoint(self,curr_waypoint,distance = 10):
+        &#39;&#39;&#39;
+        
+
+        Parameters
+        ----------
+        curr_waypoint : carla.Waypoint
+            current waypoint.
+        distance : float, optional
+            &#34;distance&#34; between current waypoint and target waypoint . The default is 10.
+
+        Returns
+        -------
+        next_waypoint : carla.Waypoint
+            next waypoint, &#34;distance&#34; away from curr_waypoint, in the direction of the current way point
+        &#39;&#39;&#39;
+        forward_vector = curr_waypoint.transform.get_forward_vector()
+
+        location = curr_waypoint.transform.location
+        raw_spawn_point = carla.Location(x = location.x + distance * forward_vector.x  , y = location.y + distance * forward_vector.y , z = location.z + 0.1)
+        
+        next_waypoint = self.carla_map.get_waypoint(raw_spawn_point)
+        return next_waypoint
+        
+    def get_subject_waypoints(self):
+        first_waypoint = self.subject_lane_ref
+        second_waypoint = self.ahead_in[0]
+        third_waypoint = self._get_next_waypoint(second_waypoint,20)
+        return [first_waypoint,second_waypoint,third_waypoint]
+
+
+    def get_subject_traffic_light(self):
+        return self.subject_light
+
+    def remove_vehicle(self,uniquename):
+        &#39;&#39;&#39;
+        remove a specific vehicle from the intersection
+
+        Parameters
+        ----------
+        uniquename : TYPE
+            DESCRIPTION.
+
+        Returns
+        -------
+        removed : Bool, 
+            whether a vehicle is removed
+
+        &#39;&#39;&#39;
+        for ii in range(len(self.subject_vehicle)):
+            if self.subject_vehicle[ii][&#34;uniquename&#34;] == uniquename: # check whether the vehicle is the one we want to remove
+                # remove vehicle from environment
+                self.env.destroy_vehicle(uniquename)
+                self.subject_vehicle.pop(ii)
+                return True
+            
+        for ii in range(len(self.left_vehicle)):
+            if self.left_vehicle[ii][&#34;uniquename&#34;] == uniquename: # check whether the vehicle is the one we want to remove
+                # remove vehicle from environment
+                self.env.destroy_vehicle(uniquename)
+                self.left_vehicle.pop(ii)
+                return True
+
+        for ii in range(len(self.right_vehicle)):
+            if self.right_vehicle[ii][&#34;uniquename&#34;] == uniquename: # check whether the vehicle is the one we want to remove
+                # remove vehicle from environment
+                self.env.destroy_vehicle(uniquename)
+                self.right_vehicle.pop(ii)
+                return True
+            
+        for ii in range(len(self.ahead_vehicle)):
+            if self.ahead_vehicle[ii][&#34;uniquename&#34;] == uniquename: # check whether the vehicle is the one we want to remove
+                # remove vehicle from environment
+                self.env.destroy_vehicle(uniquename)
+                self.ahead_vehicle.pop(ii)
+                return True
+
+        return False
+    
+    def edit_vehicle_settings(self, uniquename, choice, gap = 10.0,model_name = &#34;vehicle.tesla.model3&#34;, command = &#34;straight&#34;, stop_choice = &#34;normal&#34;, penetrate_distance = None,obey_traffic_lights = True, run = True, safety_distance = 15.0, vehicle_color = None ):
+        &#39;&#39;&#39;
+        allow user to edit the vehicle settings
+        Note: the original vehicle will be destroyed, and a new vehicle will be added
+
+        Parameters
+        ----------
+        uniquename : string
+            original uniquename of the vehicle.
+        choice : string
+            the lane choice, valid values: &#34;subject&#34;,&#34;left&#34;,&#34;right&#34;,&#34;ahead&#34;
+        gap : float,optional
+            the distance between a vehicle and its previous one
+        model_name : string, optional
+            vehicle type. The default is &#34;vehicle.tesla.model3&#34;.
+        command : string, optional
+            the turning command, valid values: &#34;straight&#34;, &#34;right&#34;, &#34;left&#34;
+        stop_choice : string, optional
+            how will the vehicle stop when at yellow or red light. valid values: &#34;normal&#34;, &#34;abrupt&#34;, &#34;penetrate&#34;
+        penetrate_distance : float, unit: meter
+            to what extent the vehicle will penetrate the traffic lane. This parameter will only be use when stop_choice is &#34;penetrate&#34;
+        obey_traffic_light : bool, optional
+            whether the vehicle will obey traffic light. Default is True
+        run : bool, optional
+            whether the vehicle is running. Default is True
+        safety_distance : float, optional
+            smallest distance between this vehicle and vehicle ahead
+        vehicle_color : string
+            the RGB representation of the vehicle color. e.g. &#39;255,255,255&#39;
+        Returns
+        -------
+        new_uniquename : string
+            new uniquename of the vehicle
+
+        &#39;&#39;&#39;
+        
+        
+
+        
+        # get the given lane
+        if choice == &#34;subject&#34;:
+            vehicle_set = self.subject_vehicle
+        elif choice == &#34;left&#34;:
+            vehicle_set = self.left_vehicle
+        elif choice == &#34;ahead&#34;:
+            vehicle_set = self.ahead_vehicle
+        elif choice == &#34;right&#34;:
+            vehicle_set = self.right_vehicle
+        
+        
+        # get vehicle index in the given lane
+        index = 0
+        original_gap = None
+        for vehicle in vehicle_set:
+            if vehicle[&#34;uniquename&#34;] == uniquename:
+                original_gap = vehicle[&#34;gap&#34;]
+                break
+            index += 1
+        
+        
+        
+        
+        # shift the vehicle
+        if original_gap != None:
+            shift_distance = original_gap - gap
+            self._shift_vehicles(shift_distance, choice = choice, index = index)
+        else:
+            print(&#34;return None in edit vehicle&#34;)
+            return None
+        
+        # remove the current vehicle, 
+        # note that after removing the vehicle, index is pointing at the vehicle after the current one
+        removed = self.remove_vehicle(uniquename)
+        if not removed:
+            print(&#34;vehicle not found&#34;)
+            return None
+        
+        
+        # get the given lane
+        if choice == &#34;subject&#34;:
+            # store the vehicles after the current one
+            vehicles_after_current = self.subject_vehicle[index :]
+            self.subject_vehicle = self.subject_vehicle[:index]
+            
+        elif choice == &#34;left&#34;:
+            vehicles_after_current = self.left_vehicle[index :]
+            self.left_vehicle = self.left_vehicle[:index]
+            
+        elif choice == &#34;ahead&#34;:
+            vehicles_after_current = self.ahead_vehicle[index :]
+            self.ahead_vehicle = self.ahead_vehicle[:index]
+            
+        elif choice == &#34;right&#34;:
+            vehicles_after_current = self.right_vehicle[index :]
+            self.right_vehicle = self.right_vehicle[:index]
+            
+        
+        
+        # add a new vehicle with new settings
+        new_uniquename = self.add_vehicle(gap = gap, model_name = model_name, choice = choice, command = command, stop_choice = stop_choice, penetrate_distance = penetrate_distance, obey_traffic_lights = obey_traffic_lights, run = run, safety_distance = safety_distance, vehicle_color = vehicle_color)
+        
+        
+        if choice == &#34;subject&#34;:
+            self.subject_vehicle += vehicles_after_current
+        elif choice == &#34;left&#34;:
+            self.left_vehicle += vehicles_after_current
+        elif choice == &#34;ahead&#34;:
+            self.ahead_vehicle += vehicles_after_current
+        elif choice == &#34;right&#34;:
+            self.right_vehicle += vehicles_after_current
+        
+        
+        return new_uniquename
+    
+
+    def edit_traffic_light(self,light, red_start = 0.0,red_end = 10.0,yellow_start = 10.0,yellow_end = 15.0,green_start = 15.0,green_end = 25.0):
+        &#39;&#39;&#39;
+        edit the start and end time for traffic colors
+        the traffic color timeline will not loop
+        i.e. after it reaches the end of timeline, the traffic state will be 
+        frozen at that state
+        
+        Requirements: there exists and only exists one start time at 0
+                      otherwise, a red color will be used as placeholder
+                      until the first start time
+
+        Parameters
+        ----------
+        light : string
+            light choice. valid values: ahead,left,right,subject
+        
+
+        Returns
+        -------
+        None.
+        &#39;&#39;&#39;
+        red_start = red_start / self.env.delta_seconds
+        red_end = red_end / self.env.delta_seconds
+        yellow_start = yellow_start / self.env.delta_seconds
+        yellow_end = yellow_end / self.env.delta_seconds
+        green_start = green_start / self.env.delta_seconds
+        green_end = green_end / self.env.delta_seconds
+        
+        
+        # get the end of timeline
+        max_time = max(red_end,yellow_end,green_end)
+        
+        color_timeline = []
+        
+        for ii in range(int(max_time)):
+            if ii &gt;= red_start and ii &lt; red_end:
+                color_timeline.append(&#39;red&#39;)
+            elif ii &gt;= yellow_start and ii &lt; yellow_end:
+                color_timeline.append(&#39;yellow&#39;)
+            elif ii &gt;= green_start and ii &lt; green_end:
+                color_timeline.append(&#39;green&#39;)
+            else:
+                color_timeline.append(&#39;red&#39;)
+        
+        self.light_config[light] = color_timeline
+        self.light_config[light + &#39;_time&#39;] = {}
+        self.light_config[light + &#39;_time&#39;][&#39;red&#39;] = red_end - red_start
+        self.light_config[light + &#39;_time&#39;][&#39;yellow&#39;] = yellow_end - yellow_start
+        self.light_config[light + &#39;_time&#39;][&#39;green&#39;] = green_end - green_start
+        
+    def set_intersection_traffic_lights(self):
+        # if any traffic light has been set, use the traffic light setting
+        # otherwise, do nothing and exit
+        # call this function each time after a world.tick()
+        
+        if self.light_config[&#34;subject&#34;] != None:
+            if len(self.light_config[&#34;subject&#34;]) &gt; self.local_time_count: 
+                setting = self.light_config[&#34;subject&#34;][self.local_time_count]
+                #print(setting)
+                light = self.subject_light
+                light_state = light.get_state()
+                if setting == &#39;red&#39;:
+                    if light_state != carla.TrafficLightState.Red: # only set color when the current state is not what we want
+                        light.set_state(carla.TrafficLightState.Red)
+                        light.set_red_time(self.light_config[&#39;subject_time&#39;][&#39;red&#39;])
+                        light.freeze(True)
+                elif setting == &#39;yellow&#39;:
+                    if light_state != carla.TrafficLightState.Yellow:
+                        light.set_state(carla.TrafficLightState.Yellow)
+                        light.set_yellow_time(self.light_config[&#39;subject_time&#39;][&#39;yellow&#39;])
+                        light.freeze(True)
+                else:
+                    if light_state != carla.TrafficLightState.Green:
+                        light.set_state(carla.TrafficLightState.Green)
+                        light.set_yellow_time(self.light_config[&#39;subject_time&#39;][&#39;green&#39;])
+                        light.freeze(True)
+        
+        if self.light_config[&#34;left&#34;] != None:
+            if len(self.light_config[&#34;left&#34;]) &gt; self.local_time_count: 
+                setting = self.light_config[&#34;left&#34;][self.local_time_count]
+                light = self.left_light
+                light_state = light.get_state()
+                if setting == &#39;red&#39;:
+                    if light_state != carla.TrafficLightState.Red: # only set color when the current state is not what we want
+                        light.set_state(carla.TrafficLightState.Red)
+                        light.set_red_time(self.light_config[&#39;left_time&#39;][&#39;red&#39;])
+                        light.freeze(True)
+                elif setting == &#39;yellow&#39;:
+                    if light_state != carla.TrafficLightState.Yellow:
+                        light.set_state(carla.TrafficLightState.Yellow)
+                        light.set_yellow_time(self.light_config[&#39;left_time&#39;][&#39;yellow&#39;])
+                        light.freeze(True)
+                else:
+                    if light_state != carla.TrafficLightState.Green:
+                        light.set_state(carla.TrafficLightState.Green)
+                        light.set_yellow_time(self.light_config[&#39;left_time&#39;][&#39;green&#39;])
+                        light.freeze(True)
+                    
+        if self.light_config[&#34;right&#34;] != None:
+            if len(self.light_config[&#34;right&#34;]) &gt; self.local_time_count: 
+                setting = self.light_config[&#34;right&#34;][self.local_time_count]
+                light = self.right_light
+                light_state = light.get_state()
+                if setting == &#39;red&#39;:
+                    if light_state != carla.TrafficLightState.Red: # only set color when the current state is not what we want
+                        light.set_state(carla.TrafficLightState.Red)
+                        light.set_red_time(self.light_config[&#39;right_time&#39;][&#39;red&#39;])
+                        light.freeze(True)
+                elif setting == &#39;yellow&#39;:
+                    if light_state != carla.TrafficLightState.Yellow:
+                        light.set_state(carla.TrafficLightState.Yellow)
+                        light.set_yellow_time(self.light_config[&#39;right_time&#39;][&#39;yellow&#39;])
+                        light.freeze(True)
+                else:
+                    if light_state != carla.TrafficLightState.Green:
+                        light.set_state(carla.TrafficLightState.Green)
+                        light.set_yellow_time(self.light_config[&#39;right_time&#39;][&#39;green&#39;])
+                        light.freeze(True)
+        
+        if self.light_config[&#34;ahead&#34;] != None:
+            if len(self.light_config[&#34;ahead&#34;]) &gt; self.local_time_count: 
+                setting = self.light_config[&#34;ahead&#34;][self.local_time_count]
+                light = self.ahead_light
+                light_state = light.get_state()
+                if setting == &#39;red&#39;:
+                    if light_state != carla.TrafficLightState.Red: # only set color when the current state is not what we want
+                        light.set_state(carla.TrafficLightState.Red)
+                        light.set_red_time(self.light_config[&#39;ahead_time&#39;][&#39;red&#39;])
+                        light.freeze(True)
+                elif setting == &#39;yellow&#39;:
+                    if light_state != carla.TrafficLightState.Yellow:
+                        light.set_state(carla.TrafficLightState.Yellow)
+                        light.set_yellow_time(self.light_config[&#39;ahead_time&#39;][&#39;yellow&#39;])
+                        light.freeze(True)
+                else:
+                    if light_state != carla.TrafficLightState.Green:
+                        light.set_state(carla.TrafficLightState.Green)
+                        light.set_yellow_time(self.light_config[&#39;ahead_time&#39;][&#39;green&#39;])
+                        light.freeze(True)
+        
+        # update the time count
+        self.local_time_count += 1
+        
+    def export_settings(self):
+        &#39;&#39;&#39;
+        export all settings for a specific intersection
+
+        Returns
+        -------
+        intersection_settings : ConfigObj
+            settings of the intersection
+
+        &#39;&#39;&#39;
+        intersection_settings = ConfigObj()
+        
+        # general setting
+        intersection_settings[&#34;navigation_speed&#34;] = self.navigation_speed
+        
+        # vehicles
+        intersection_settings[&#34;subject_vehicle&#34;] = []
+        intersection_settings[&#34;left_vehicle&#34;] = []
+        intersection_settings[&#34;right_vehicle&#34;] = []
+        intersection_settings[&#34;ahead_vehicle&#34;] = []
+        
+        for vehicle in self.subject_vehicle:
+            # deep copy the vehicle settings
+            new_vehicle = self._copy_vehicle_settings(vehicle)
+            intersection_settings[&#34;subject_vehicle&#34;].append(new_vehicle)
+        
+        for vehicle in self.left_vehicle:
+            # deep copy the vehicle settings
+            new_vehicle = self._copy_vehicle_settings(vehicle)
+            intersection_settings[&#34;left_vehicle&#34;].append(new_vehicle)
+            
+        for vehicle in self.right_vehicle:
+            # deep copy the vehicle settings
+            new_vehicle = self._copy_vehicle_settings(vehicle)
+            intersection_settings[&#34;right_vehicle&#34;].append(new_vehicle)
+            
+        for vehicle in self.ahead_vehicle:
+            # deep copy the vehicle settings
+            new_vehicle = self._copy_vehicle_settings(vehicle)
+            intersection_settings[&#34;ahead_vehicle&#34;].append(new_vehicle)
+        
+        # lights
+        intersection_settings[&#34;subject_light&#34;] = copy.copy(self.light_config[&#34;subject&#34;])
+        intersection_settings[&#34;subject_light_time&#34;] = copy.copy(self.light_config[&#34;subject_time&#34;])
+        
+        intersection_settings[&#34;left_light&#34;] = copy.copy(self.light_config[&#34;left&#34;])
+        intersection_settings[&#34;left_light_time&#34;] = copy.copy(self.light_config[&#34;left_time&#34;])
+        
+        intersection_settings[&#34;right_light&#34;] = copy.copy(self.light_config[&#34;right&#34;])
+        intersection_settings[&#34;right_light_time&#34;] = copy.copy(self.light_config[&#34;right_time&#34;])
+        
+        intersection_settings[&#34;ahead_light&#34;] = copy.copy(self.light_config[&#34;ahead&#34;])
+        intersection_settings[&#34;ahead_light_time&#34;] = copy.copy(self.light_config[&#34;ahead_time&#34;])
+        
+        return intersection_settings
+    
+    def import_settings(self,intersection_settings):
+        &#39;&#39;&#39;
+        
+
+        Parameters
+        ----------
+        intersection_settings : ConfigObj
+            the intersection settings we want to import
+
+        Returns
+        -------
+        new_intersection_setting : ConfigObj
+            settings of the intersection
+            this will be generated by call self.export_settings() after finishing import
+            output these settings are for the purpose of creating the front-end gui
+        &#39;&#39;&#39;
+        
+        # remove all vehicle in this intersection 
+        # if any vehicle has been added
+        for ii in range(len(self.subject_vehicle) - 1, -1, -1): # go through the array in reverse order
+            uniquename = self.subject_vehicle[ii][&#39;uniquename&#39;]
+            self.remove_vehicle(uniquename)
+        
+        for ii in range(len(self.left_vehicle) - 1, -1, -1): # go through the array in reverse order
+            uniquename = self.left_vehicle[ii][&#39;uniquename&#39;]
+            self.remove_vehicle(uniquename)
+            
+        for ii in range(len(self.right_vehicle) - 1, -1, -1): # go through the array in reverse order
+            uniquename = self.right_vehicle[ii][&#39;uniquename&#39;]
+            self.remove_vehicle(uniquename)
+            
+        for ii in range(len(self.ahead_vehicle) - 1, -1, -1): # go through the array in reverse order
+            uniquename = self.ahead_vehicle[ii][&#39;uniquename&#39;]
+            self.remove_vehicle(uniquename)
+        
+        # import all settings
+       
+        # general settings
+        self.navigation_speed = intersection_settings[&#34;navigation_speed&#34;]
+       
+        # vehicles
+        
+        for vehicle_config in intersection_settings[&#34;subject_vehicle&#34;]:
+            # add vehicles according to imported settings
+            if vehicle_config[&#39;vehicle_color&#39;] != None:
+                vehicle_config[&#39;vehicle_color&#39;] = vehicle_config[&#39;vehicle_color&#39;].replace(&#39;;&#39;,&#39;,&#39;)
+            
+            self.add_vehicle(gap = vehicle_config[&#34;gap&#34;], 
+                             model_name = vehicle_config[&#34;model&#34;], 
+                             choice = vehicle_config[&#39;choice&#39;], 
+                             command = vehicle_config[&#39;command&#39;],
+                             stop_choice = vehicle_config[&#39;stop_choice&#39;],
+                             penetrate_distance = vehicle_config[&#39;penetrate_distance&#39;],
+                             obey_traffic_lights = vehicle_config[&#39;obey_traffic_lights&#39;],
+                             run = vehicle_config[&#39;run&#39;],
+                             safety_distance = vehicle_config[&#39;safety_distance&#39;],
+                             vehicle_color = vehicle_config[&#39;vehicle_color&#39;])
+            
+        for vehicle_config in intersection_settings[&#34;left_vehicle&#34;]:
+            # add vehicles according to imported settings
+            if vehicle_config[&#39;vehicle_color&#39;] != None:
+                vehicle_config[&#39;vehicle_color&#39;] = vehicle_config[&#39;vehicle_color&#39;].replace(&#39;;&#39;,&#39;,&#39;)
+            
+            self.add_vehicle(gap = vehicle_config[&#34;gap&#34;], 
+                             model_name = vehicle_config[&#34;model&#34;], 
+                             choice = vehicle_config[&#39;choice&#39;], 
+                             command = vehicle_config[&#39;command&#39;],
+                             stop_choice = vehicle_config[&#39;stop_choice&#39;],
+                             penetrate_distance = vehicle_config[&#39;penetrate_distance&#39;],
+                             obey_traffic_lights = vehicle_config[&#39;obey_traffic_lights&#39;],
+                             run = vehicle_config[&#39;run&#39;],
+                             safety_distance = vehicle_config[&#39;safety_distance&#39;],
+                             vehicle_color = vehicle_config[&#39;vehicle_color&#39;])
+            
+        for vehicle_config in intersection_settings[&#34;right_vehicle&#34;]:
+            # add vehicles according to imported settings
+            if vehicle_config[&#39;vehicle_color&#39;] != None:
+                vehicle_config[&#39;vehicle_color&#39;] = vehicle_config[&#39;vehicle_color&#39;].replace(&#39;;&#39;,&#39;,&#39;)
+            
+            self.add_vehicle(gap = vehicle_config[&#34;gap&#34;], 
+                             model_name = vehicle_config[&#34;model&#34;], 
+                             choice = vehicle_config[&#39;choice&#39;], 
+                             command = vehicle_config[&#39;command&#39;],
+                             stop_choice = vehicle_config[&#39;stop_choice&#39;],
+                             penetrate_distance = vehicle_config[&#39;penetrate_distance&#39;],
+                             obey_traffic_lights = vehicle_config[&#39;obey_traffic_lights&#39;],
+                             run = vehicle_config[&#39;run&#39;],
+                             safety_distance = vehicle_config[&#39;safety_distance&#39;],
+                             vehicle_color = vehicle_config[&#39;vehicle_color&#39;])
+            
+        for vehicle_config in intersection_settings[&#34;ahead_vehicle&#34;]:
+            # add vehicles according to imported settings
+            if vehicle_config[&#39;vehicle_color&#39;] != None:
+                vehicle_config[&#39;vehicle_color&#39;] = vehicle_config[&#39;vehicle_color&#39;].replace(&#39;;&#39;,&#39;,&#39;)
+            
+            self.add_vehicle(gap = vehicle_config[&#34;gap&#34;], 
+                             model_name = vehicle_config[&#34;model&#34;], 
+                             choice = vehicle_config[&#39;choice&#39;], 
+                             command = vehicle_config[&#39;command&#39;],
+                             stop_choice = vehicle_config[&#39;stop_choice&#39;],
+                             penetrate_distance = vehicle_config[&#39;penetrate_distance&#39;],
+                             obey_traffic_lights = vehicle_config[&#39;obey_traffic_lights&#39;],
+                             run = vehicle_config[&#39;run&#39;],
+                             safety_distance = vehicle_config[&#39;safety_distance&#39;],
+                             vehicle_color = vehicle_config[&#39;vehicle_color&#39;])
+    
+        self.light_config[&#39;subject&#39;] = copy.copy(intersection_settings[&#39;subject_light&#39;])
+        self.light_config[&#39;subject_time&#39;] = copy.copy(intersection_settings[&#39;subject_light_time&#39;])
+        
+        self.light_config[&#39;left&#39;] = copy.copy(intersection_settings[&#39;left_light&#39;])
+        self.light_config[&#39;left_time&#39;] = copy.copy(intersection_settings[&#39;left_light_time&#39;])
+        
+        self.light_config[&#39;right&#39;] = copy.copy(intersection_settings[&#39;right_light&#39;])
+        self.light_config[&#39;right_time&#39;] = copy.copy(intersection_settings[&#39;right_light_time&#39;])
+        
+        self.light_config[&#39;ahead&#39;] = copy.copy(intersection_settings[&#39;ahead_light&#39;])
+        self.light_config[&#39;ahead_time&#39;] = copy.copy(intersection_settings[&#39;ahead_light_time&#39;])
+        
+        new_intersection_setting = self.export_settings()
+        return new_intersection_setting
+    
+
+    def get_vehicle_bounding_box(self, uniquename):
+        &#39;&#39;&#39;
+        get the bounding box of the vehicle by uniquename
+
+        Parameters
+        ----------
+        uniquename : string
+            the uniquename of the vehicle.
+
+        Returns
+        -------
+        new_bb : carla.Vector3D
+            the bounding box of the vehicle, new_bb.x is the length, new_bb.y is the width, new_bb.z is the height
+
+        &#39;&#39;&#39;
+        new_bb = self.env.get_vehicle_bounding_box(uniquename)
+        return new_bb
+
+    def get_vehicle_settings(self, uniquename):
+        &#39;&#39;&#39;
+        Get the settings entered for a specific vehicle in this intersection based on uniquename
+
+        Parameters
+        ----------
+        uniquename : string
+            the uniquename of the vehicle..
+
+        Returns
+        -------
+        vehicle_settings : ConfigObj
+            the settings of the vehicle
+
+        &#39;&#39;&#39;
+        out_vehicle = None
+        
+        for vehicle in self.subject_vehicle:
+            # deep copy the vehicle settings
+            if uniquename == vehicle[&#34;uniquename&#34;]:
+                out_vehicle = self._copy_vehicle_settings(vehicle)
+        
+        for vehicle in self.left_vehicle:
+            # deep copy the vehicle settings
+            if uniquename == vehicle[&#34;uniquename&#34;]:
+                out_vehicle = self._copy_vehicle_settings(vehicle)
+            
+        for vehicle in self.right_vehicle:
+            # deep copy the vehicle settings
+            if uniquename == vehicle[&#34;uniquename&#34;]:
+                out_vehicle = self._copy_vehicle_settings(vehicle)
+            
+        for vehicle in self.ahead_vehicle:
+            # deep copy the vehicle settings
+            if uniquename == vehicle[&#34;uniquename&#34;]:
+                out_vehicle = self._copy_vehicle_settings(vehicle)
+    
+        if out_vehicle == None:
+            print(&#34;Invalid uniquename entered for getting vehicle setting&#34;)
+            return None
+        
+        return out_vehicle
+        
+
+    def _copy_vehicle_settings(self,vehicle_config):
+        new_vehicle = copy.copy(vehicle_config)
+            
+        new_vehicle[&#34;ref_waypoint&#34;] = None
+        new_vehicle[&#34;location&#34;] = None
+        new_vehicle[&#34;rotation&#34;] = None
+        new_vehicle[&#34;trajectory&#34;] = None
+        new_vehicle[&#34;ref_speed_list&#34;] = None
+        new_vehicle[&#34;stop_ref_point&#34;] = None
+        new_vehicle[&#34;bounding_box&#34;] = None
+        
+        return new_vehicle</code></pre>
+</details>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="backend.initial_intersection.Init_Intersection" href="initial_intersection.html#backend.initial_intersection.Init_Intersection">Init_Intersection</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="backend.intersection_definition.Intersection.add_vehicle"><code class="name flex">
+<span>def <span class="ident">add_vehicle</span></span>(<span>self, gap=10.0, model_name='vehicle.tesla.model3', choice='subject', command='straight', stop_choice='normal', penetrate_distance=None, obey_traffic_lights=True, run=True, safety_distance=15.0, vehicle_color=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>gap</code></strong> :&ensp;<code>float</code>,optional</dt>
+<dd>the distance between a vehicle and its previous one</dd>
+<dt><strong><code>model_name</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>vehicle type. The default is "vehicle.tesla.model3".</dd>
+<dt><strong><code>choice</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>the lane this vehicle will be added, valid values: "subject", "left", "right", "ahead". The default is "subject".</dd>
+<dt><strong><code>command</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>the turning command, valid values: "straight", "right", "left"</dd>
+<dt><strong><code>stop_choice</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>how will the vehicle stop when at yellow or red light. valid values: "normal", "abrupt", "penetrate"</dd>
+<dt><strong><code>penetrate_distance</code></strong> :&ensp;<code>float, unit: meter</code></dt>
+<dd>to what extent the vehicle will penetrate the traffic lane. This parameter will only be use when stop_choice is "penetrate"</dd>
+<dt><strong><code>obey_traffic_light</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>whether the vehicle will obey traffic light. Default is True</dd>
+<dt><strong><code>run</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>whether the vehicle is running. Default is True</dd>
+<dt><strong><code>safety_distance</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>smallest distance between this vehicle and vehicle ahead</dd>
+<dt><strong><code>vehicle_color</code></strong> :&ensp;<code>string</code></dt>
+<dd>the RGB representation of the vehicle color. e.g. '255,255,255'</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>uniquename</code></strong> :&ensp;<code>the uniquename</code> of <code>the vehicle</code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_vehicle(self,gap = 10.0,model_name = &#34;vehicle.tesla.model3&#34;,choice = &#34;subject&#34;, command = &#34;straight&#34;, stop_choice = &#34;normal&#34;, penetrate_distance = None,obey_traffic_lights = True, run = True, safety_distance = 15.0, vehicle_color = None):    
+    &#39;&#39;&#39;
+    
+
+    Parameters
+    ----------
+    gap : float,optional
+        the distance between a vehicle and its previous one
+    model_name : string, optional
+        vehicle type. The default is &#34;vehicle.tesla.model3&#34;.
+    choice : string, optional
+        the lane this vehicle will be added, valid values: &#34;subject&#34;, &#34;left&#34;, &#34;right&#34;, &#34;ahead&#34;. The default is &#34;subject&#34;.
+    command : string, optional
+        the turning command, valid values: &#34;straight&#34;, &#34;right&#34;, &#34;left&#34;
+    stop_choice : string, optional
+        how will the vehicle stop when at yellow or red light. valid values: &#34;normal&#34;, &#34;abrupt&#34;, &#34;penetrate&#34;
+    penetrate_distance : float, unit: meter
+        to what extent the vehicle will penetrate the traffic lane. This parameter will only be use when stop_choice is &#34;penetrate&#34;
+    obey_traffic_light : bool, optional
+        whether the vehicle will obey traffic light. Default is True
+    run : bool, optional
+        whether the vehicle is running. Default is True
+    safety_distance : float, optional
+        smallest distance between this vehicle and vehicle ahead
+    vehicle_color : string
+        the RGB representation of the vehicle color. e.g. &#39;255,255,255&#39;
+
+
+    Returns
+    -------
+    uniquename : the uniquename of the vehicle
+
+    &#39;&#39;&#39;
+    
+    right_shift_value = RIGHT_SHIFT
+    
+    vehicle = ConfigObj()
+    vehicle[&#34;model&#34;] = model_name
+    vehicle[&#34;gap&#34;] = gap
+    vehicle[&#34;command&#34;] = command
+    vehicle[&#34;obey_traffic_lights&#34;] = obey_traffic_lights
+    vehicle[&#34;run&#34;] = run
+    vehicle[&#34;safety_distance&#34;] = safety_distance
+    vehicle[&#34;choice&#34;] = choice
+    
+    #print(choice)
+    
+    if choice == &#34;subject&#34;:
+        ref_waypoint = self.subject_lane_ref
+        vehicle_set = self.subject_vehicle
+        vehicle[&#34;traffic_light&#34;] = self.subject_light
+        
+    elif choice == &#34;left&#34;:
+        ref_waypoint = self.left_lane_ref
+        vehicle_set = self.left_vehicle
+        vehicle[&#34;traffic_light&#34;] = self.left_light
+        
+    elif choice == &#34;ahead&#34;:
+        ref_waypoint = self.ahead_lane_ref
+        vehicle_set = self.ahead_vehicle
+        vehicle[&#34;traffic_light&#34;] = self.ahead_light
+        
+    elif choice == &#34;right&#34;:
+        ref_waypoint = self.right_lane_ref
+        vehicle_set = self.right_vehicle
+        vehicle[&#34;traffic_light&#34;] = self.right_light
+    
+    if len(vehicle_set) != 0:
+        ref_waypoint = vehicle_set[-1][&#34;ref_waypoint&#34;]
+        #previous_uniquename = vehicle_set[-1][&#34;uniquename&#34;]
+        #bb = self.env.get_vehicle_bounding_box(previous_uniquename)
+        bb = vehicle_set[-1][&#34;bounding_box&#34;]
+        
+        right_shift_value = right_shift_value #- bb.y / 2
+        
+        curr_length = self.env.get_vehicle_model_length(model_name)
+        
+        gap += bb.x / 2 + curr_length / 2
+    
+    &#39;&#39;&#39;
+    else:
+        if gap &lt; 10.0:
+            gap = 10.0 # add a constraint to the gap between the first vehicle and the lane 
+                       # reference point. Add a vehicle too close to reference point
+                       # will lead to vehicle not detecting the traffic light
+    &#39;&#39;&#39;       
+    
+    # use the original reference point to get the new reference point
+    # reference point is in the middle of the lane
+    # function same as self._get_next_waypoint
+    forward_vector = ref_waypoint.transform.get_forward_vector()
+
+    location = ref_waypoint.transform.location
+    raw_spawn_point = carla.Location(x = location.x - gap * forward_vector.x  , y = location.y - gap * forward_vector.y , z = location.z + 1.0)
+    
+    new_ref_waypoint = self.carla_map.get_waypoint(raw_spawn_point)
+    
+    # right shift the spawn point
+    # right is with respect to the direction of vehicle navigation
+    ref_yaw = new_ref_waypoint.transform.rotation.yaw
+    
+    right_vector = self._get_unit_right_vector(ref_yaw)
+    
+    new_location = new_ref_waypoint.transform.location
+    
+    spawn_location = carla.Location(x = new_location.x - right_shift_value * right_vector[0], y = new_location.y -  right_shift_value * right_vector[1], z = new_location.z + 0.2)
+    spawn_rotation = new_ref_waypoint.transform.rotation
+    
+    uniquename = self.env.spawn_vehicle(model_name = model_name,spawn_point = carla.Transform(spawn_location,spawn_rotation), color = vehicle_color) 
+    vehicle[&#34;uniquename&#34;] = uniquename
+    vehicle[&#34;ref_waypoint&#34;] = new_ref_waypoint
+    vehicle[&#34;location&#34;] = spawn_location
+    vehicle[&#34;rotation&#34;] = spawn_rotation
+    
+    #print(vehicle_color)
+    
+    if vehicle_color == None:
+        vehicle[&#34;vehicle_color&#34;] = vehicle_color
+    else:
+        vehicle[&#34;vehicle_color&#34;] = vehicle_color.replace(&#39;,&#39;,&#39;;&#39;) # replace , by ; to avoid error when importing from file
+    
+    
+    trajectory, ref_speed_list = self._generate_path(choice, command, new_ref_waypoint)
+    vehicle[&#34;trajectory&#34;] = trajectory
+    vehicle[&#34;ref_speed_list&#34;] = ref_speed_list
+    
+    # get the bounding box of the new vehicle
+    
+    new_bb = self.env.get_vehicle_bounding_box(uniquename)
+    vehicle[&#34;bounding_box&#34;] = new_bb
+    vehicle[&#34;vehicle_type&#34;] = &#34;other&#34;
+    
+    # vehicle stop type
+    vehicle[&#34;stop_choice&#34;] = stop_choice
+    vehicle[&#34;penetrate_distance&#34;] = penetrate_distance
+    if stop_choice == &#34;normal&#34;:
+        stop_point = self._get_next_waypoint(ref_waypoint,distance = -3.0) # 3 meters after the reference point
+        vehicle[&#34;stop_ref_point&#34;] = stop_point.transform
+    elif stop_choice == &#34;penetrate&#34;:
+        stop_point = self._get_next_waypoint(ref_waypoint,distance = penetrate_distance)
+        vehicle[&#34;stop_ref_point&#34;] = stop_point.transform
+    else:
+        vehicle[&#34;stop_ref_point&#34;] = ref_waypoint.transform
+    
+    
+    
+    
+    vehicle_set.append(vehicle)
+    
+    return uniquename</code></pre>
+</details>
+</dd>
+<dt id="backend.intersection_definition.Intersection.edit_traffic_light"><code class="name flex">
+<span>def <span class="ident">edit_traffic_light</span></span>(<span>self, light, red_start=0.0, red_end=10.0, yellow_start=10.0, yellow_end=15.0, green_start=15.0, green_end=25.0)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>edit the start and end time for traffic colors
+the traffic color timeline will not loop
+i.e. after it reaches the end of timeline, the traffic state will be
+frozen at that state</p>
+<p>Requirements: there exists and only exists one start time at 0
+otherwise, a red color will be used as placeholder
+until the first start time</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>light</code></strong> :&ensp;<code>string</code></dt>
+<dd>light choice. valid values: ahead,left,right,subject</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>None.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def edit_traffic_light(self,light, red_start = 0.0,red_end = 10.0,yellow_start = 10.0,yellow_end = 15.0,green_start = 15.0,green_end = 25.0):
+    &#39;&#39;&#39;
+    edit the start and end time for traffic colors
+    the traffic color timeline will not loop
+    i.e. after it reaches the end of timeline, the traffic state will be 
+    frozen at that state
+    
+    Requirements: there exists and only exists one start time at 0
+                  otherwise, a red color will be used as placeholder
+                  until the first start time
+
+    Parameters
+    ----------
+    light : string
+        light choice. valid values: ahead,left,right,subject
+    
+
+    Returns
+    -------
+    None.
+    &#39;&#39;&#39;
+    red_start = red_start / self.env.delta_seconds
+    red_end = red_end / self.env.delta_seconds
+    yellow_start = yellow_start / self.env.delta_seconds
+    yellow_end = yellow_end / self.env.delta_seconds
+    green_start = green_start / self.env.delta_seconds
+    green_end = green_end / self.env.delta_seconds
+    
+    
+    # get the end of timeline
+    max_time = max(red_end,yellow_end,green_end)
+    
+    color_timeline = []
+    
+    for ii in range(int(max_time)):
+        if ii &gt;= red_start and ii &lt; red_end:
+            color_timeline.append(&#39;red&#39;)
+        elif ii &gt;= yellow_start and ii &lt; yellow_end:
+            color_timeline.append(&#39;yellow&#39;)
+        elif ii &gt;= green_start and ii &lt; green_end:
+            color_timeline.append(&#39;green&#39;)
+        else:
+            color_timeline.append(&#39;red&#39;)
+    
+    self.light_config[light] = color_timeline
+    self.light_config[light + &#39;_time&#39;] = {}
+    self.light_config[light + &#39;_time&#39;][&#39;red&#39;] = red_end - red_start
+    self.light_config[light + &#39;_time&#39;][&#39;yellow&#39;] = yellow_end - yellow_start
+    self.light_config[light + &#39;_time&#39;][&#39;green&#39;] = green_end - green_start</code></pre>
+</details>
+</dd>
+<dt id="backend.intersection_definition.Intersection.edit_vehicle_settings"><code class="name flex">
+<span>def <span class="ident">edit_vehicle_settings</span></span>(<span>self, uniquename, choice, gap=10.0, model_name='vehicle.tesla.model3', command='straight', stop_choice='normal', penetrate_distance=None, obey_traffic_lights=True, run=True, safety_distance=15.0, vehicle_color=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>allow user to edit the vehicle settings
+Note: the original vehicle will be destroyed, and a new vehicle will be added</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>uniquename</code></strong> :&ensp;<code>string</code></dt>
+<dd>original uniquename of the vehicle.</dd>
+<dt><strong><code>choice</code></strong> :&ensp;<code>string</code></dt>
+<dd>the lane choice, valid values: "subject","left","right","ahead"</dd>
+<dt><strong><code>gap</code></strong> :&ensp;<code>float</code>,optional</dt>
+<dd>the distance between a vehicle and its previous one</dd>
+<dt><strong><code>model_name</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>vehicle type. The default is "vehicle.tesla.model3".</dd>
+<dt><strong><code>command</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>the turning command, valid values: "straight", "right", "left"</dd>
+<dt><strong><code>stop_choice</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>how will the vehicle stop when at yellow or red light. valid values: "normal", "abrupt", "penetrate"</dd>
+<dt><strong><code>penetrate_distance</code></strong> :&ensp;<code>float, unit: meter</code></dt>
+<dd>to what extent the vehicle will penetrate the traffic lane. This parameter will only be use when stop_choice is "penetrate"</dd>
+<dt><strong><code>obey_traffic_light</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>whether the vehicle will obey traffic light. Default is True</dd>
+<dt><strong><code>run</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>whether the vehicle is running. Default is True</dd>
+<dt><strong><code>safety_distance</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>smallest distance between this vehicle and vehicle ahead</dd>
+<dt><strong><code>vehicle_color</code></strong> :&ensp;<code>string</code></dt>
+<dd>the RGB representation of the vehicle color. e.g. '255,255,255'</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>new_uniquename</code></strong> :&ensp;<code>string</code></dt>
+<dd>new uniquename of the vehicle</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def edit_vehicle_settings(self, uniquename, choice, gap = 10.0,model_name = &#34;vehicle.tesla.model3&#34;, command = &#34;straight&#34;, stop_choice = &#34;normal&#34;, penetrate_distance = None,obey_traffic_lights = True, run = True, safety_distance = 15.0, vehicle_color = None ):
+    &#39;&#39;&#39;
+    allow user to edit the vehicle settings
+    Note: the original vehicle will be destroyed, and a new vehicle will be added
+
+    Parameters
+    ----------
+    uniquename : string
+        original uniquename of the vehicle.
+    choice : string
+        the lane choice, valid values: &#34;subject&#34;,&#34;left&#34;,&#34;right&#34;,&#34;ahead&#34;
+    gap : float,optional
+        the distance between a vehicle and its previous one
+    model_name : string, optional
+        vehicle type. The default is &#34;vehicle.tesla.model3&#34;.
+    command : string, optional
+        the turning command, valid values: &#34;straight&#34;, &#34;right&#34;, &#34;left&#34;
+    stop_choice : string, optional
+        how will the vehicle stop when at yellow or red light. valid values: &#34;normal&#34;, &#34;abrupt&#34;, &#34;penetrate&#34;
+    penetrate_distance : float, unit: meter
+        to what extent the vehicle will penetrate the traffic lane. This parameter will only be use when stop_choice is &#34;penetrate&#34;
+    obey_traffic_light : bool, optional
+        whether the vehicle will obey traffic light. Default is True
+    run : bool, optional
+        whether the vehicle is running. Default is True
+    safety_distance : float, optional
+        smallest distance between this vehicle and vehicle ahead
+    vehicle_color : string
+        the RGB representation of the vehicle color. e.g. &#39;255,255,255&#39;
+    Returns
+    -------
+    new_uniquename : string
+        new uniquename of the vehicle
+
+    &#39;&#39;&#39;
+    
+    
+
+    
+    # get the given lane
+    if choice == &#34;subject&#34;:
+        vehicle_set = self.subject_vehicle
+    elif choice == &#34;left&#34;:
+        vehicle_set = self.left_vehicle
+    elif choice == &#34;ahead&#34;:
+        vehicle_set = self.ahead_vehicle
+    elif choice == &#34;right&#34;:
+        vehicle_set = self.right_vehicle
+    
+    
+    # get vehicle index in the given lane
+    index = 0
+    original_gap = None
+    for vehicle in vehicle_set:
+        if vehicle[&#34;uniquename&#34;] == uniquename:
+            original_gap = vehicle[&#34;gap&#34;]
+            break
+        index += 1
+    
+    
+    
+    
+    # shift the vehicle
+    if original_gap != None:
+        shift_distance = original_gap - gap
+        self._shift_vehicles(shift_distance, choice = choice, index = index)
+    else:
+        print(&#34;return None in edit vehicle&#34;)
+        return None
+    
+    # remove the current vehicle, 
+    # note that after removing the vehicle, index is pointing at the vehicle after the current one
+    removed = self.remove_vehicle(uniquename)
+    if not removed:
+        print(&#34;vehicle not found&#34;)
+        return None
+    
+    
+    # get the given lane
+    if choice == &#34;subject&#34;:
+        # store the vehicles after the current one
+        vehicles_after_current = self.subject_vehicle[index :]
+        self.subject_vehicle = self.subject_vehicle[:index]
+        
+    elif choice == &#34;left&#34;:
+        vehicles_after_current = self.left_vehicle[index :]
+        self.left_vehicle = self.left_vehicle[:index]
+        
+    elif choice == &#34;ahead&#34;:
+        vehicles_after_current = self.ahead_vehicle[index :]
+        self.ahead_vehicle = self.ahead_vehicle[:index]
+        
+    elif choice == &#34;right&#34;:
+        vehicles_after_current = self.right_vehicle[index :]
+        self.right_vehicle = self.right_vehicle[:index]
+        
+    
+    
+    # add a new vehicle with new settings
+    new_uniquename = self.add_vehicle(gap = gap, model_name = model_name, choice = choice, command = command, stop_choice = stop_choice, penetrate_distance = penetrate_distance, obey_traffic_lights = obey_traffic_lights, run = run, safety_distance = safety_distance, vehicle_color = vehicle_color)
+    
+    
+    if choice == &#34;subject&#34;:
+        self.subject_vehicle += vehicles_after_current
+    elif choice == &#34;left&#34;:
+        self.left_vehicle += vehicles_after_current
+    elif choice == &#34;ahead&#34;:
+        self.ahead_vehicle += vehicles_after_current
+    elif choice == &#34;right&#34;:
+        self.right_vehicle += vehicles_after_current
+    
+    
+    return new_uniquename</code></pre>
+</details>
+</dd>
+<dt id="backend.intersection_definition.Intersection.export_settings"><code class="name flex">
+<span>def <span class="ident">export_settings</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>export all settings for a specific intersection</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>intersection_settings</code></strong> :&ensp;<code>ConfigObj</code></dt>
+<dd>settings of the intersection</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def export_settings(self):
+    &#39;&#39;&#39;
+    export all settings for a specific intersection
+
+    Returns
+    -------
+    intersection_settings : ConfigObj
+        settings of the intersection
+
+    &#39;&#39;&#39;
+    intersection_settings = ConfigObj()
+    
+    # general setting
+    intersection_settings[&#34;navigation_speed&#34;] = self.navigation_speed
+    
+    # vehicles
+    intersection_settings[&#34;subject_vehicle&#34;] = []
+    intersection_settings[&#34;left_vehicle&#34;] = []
+    intersection_settings[&#34;right_vehicle&#34;] = []
+    intersection_settings[&#34;ahead_vehicle&#34;] = []
+    
+    for vehicle in self.subject_vehicle:
+        # deep copy the vehicle settings
+        new_vehicle = self._copy_vehicle_settings(vehicle)
+        intersection_settings[&#34;subject_vehicle&#34;].append(new_vehicle)
+    
+    for vehicle in self.left_vehicle:
+        # deep copy the vehicle settings
+        new_vehicle = self._copy_vehicle_settings(vehicle)
+        intersection_settings[&#34;left_vehicle&#34;].append(new_vehicle)
+        
+    for vehicle in self.right_vehicle:
+        # deep copy the vehicle settings
+        new_vehicle = self._copy_vehicle_settings(vehicle)
+        intersection_settings[&#34;right_vehicle&#34;].append(new_vehicle)
+        
+    for vehicle in self.ahead_vehicle:
+        # deep copy the vehicle settings
+        new_vehicle = self._copy_vehicle_settings(vehicle)
+        intersection_settings[&#34;ahead_vehicle&#34;].append(new_vehicle)
+    
+    # lights
+    intersection_settings[&#34;subject_light&#34;] = copy.copy(self.light_config[&#34;subject&#34;])
+    intersection_settings[&#34;subject_light_time&#34;] = copy.copy(self.light_config[&#34;subject_time&#34;])
+    
+    intersection_settings[&#34;left_light&#34;] = copy.copy(self.light_config[&#34;left&#34;])
+    intersection_settings[&#34;left_light_time&#34;] = copy.copy(self.light_config[&#34;left_time&#34;])
+    
+    intersection_settings[&#34;right_light&#34;] = copy.copy(self.light_config[&#34;right&#34;])
+    intersection_settings[&#34;right_light_time&#34;] = copy.copy(self.light_config[&#34;right_time&#34;])
+    
+    intersection_settings[&#34;ahead_light&#34;] = copy.copy(self.light_config[&#34;ahead&#34;])
+    intersection_settings[&#34;ahead_light_time&#34;] = copy.copy(self.light_config[&#34;ahead_time&#34;])
+    
+    return intersection_settings</code></pre>
+</details>
+</dd>
+<dt id="backend.intersection_definition.Intersection.get_subject_traffic_light"><code class="name flex">
+<span>def <span class="ident">get_subject_traffic_light</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_subject_traffic_light(self):
+    return self.subject_light</code></pre>
+</details>
+</dd>
+<dt id="backend.intersection_definition.Intersection.get_subject_waypoints"><code class="name flex">
+<span>def <span class="ident">get_subject_waypoints</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_subject_waypoints(self):
+    first_waypoint = self.subject_lane_ref
+    second_waypoint = self.ahead_in[0]
+    third_waypoint = self._get_next_waypoint(second_waypoint,20)
+    return [first_waypoint,second_waypoint,third_waypoint]</code></pre>
+</details>
+</dd>
+<dt id="backend.intersection_definition.Intersection.get_vehicle_bounding_box"><code class="name flex">
+<span>def <span class="ident">get_vehicle_bounding_box</span></span>(<span>self, uniquename)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>get the bounding box of the vehicle by uniquename</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>uniquename</code></strong> :&ensp;<code>string</code></dt>
+<dd>the uniquename of the vehicle.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>new_bb</code></strong> :&ensp;<code>carla.Vector3D</code></dt>
+<dd>the bounding box of the vehicle, new_bb.x is the length, new_bb.y is the width, new_bb.z is the height</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_vehicle_bounding_box(self, uniquename):
+    &#39;&#39;&#39;
+    get the bounding box of the vehicle by uniquename
+
+    Parameters
+    ----------
+    uniquename : string
+        the uniquename of the vehicle.
+
+    Returns
+    -------
+    new_bb : carla.Vector3D
+        the bounding box of the vehicle, new_bb.x is the length, new_bb.y is the width, new_bb.z is the height
+
+    &#39;&#39;&#39;
+    new_bb = self.env.get_vehicle_bounding_box(uniquename)
+    return new_bb</code></pre>
+</details>
+</dd>
+<dt id="backend.intersection_definition.Intersection.get_vehicle_settings"><code class="name flex">
+<span>def <span class="ident">get_vehicle_settings</span></span>(<span>self, uniquename)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the settings entered for a specific vehicle in this intersection based on uniquename</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>uniquename</code></strong> :&ensp;<code>string</code></dt>
+<dd>the uniquename of the vehicle..</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>vehicle_settings</code></strong> :&ensp;<code>ConfigObj</code></dt>
+<dd>the settings of the vehicle</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_vehicle_settings(self, uniquename):
+    &#39;&#39;&#39;
+    Get the settings entered for a specific vehicle in this intersection based on uniquename
+
+    Parameters
+    ----------
+    uniquename : string
+        the uniquename of the vehicle..
+
+    Returns
+    -------
+    vehicle_settings : ConfigObj
+        the settings of the vehicle
+
+    &#39;&#39;&#39;
+    out_vehicle = None
+    
+    for vehicle in self.subject_vehicle:
+        # deep copy the vehicle settings
+        if uniquename == vehicle[&#34;uniquename&#34;]:
+            out_vehicle = self._copy_vehicle_settings(vehicle)
+    
+    for vehicle in self.left_vehicle:
+        # deep copy the vehicle settings
+        if uniquename == vehicle[&#34;uniquename&#34;]:
+            out_vehicle = self._copy_vehicle_settings(vehicle)
+        
+    for vehicle in self.right_vehicle:
+        # deep copy the vehicle settings
+        if uniquename == vehicle[&#34;uniquename&#34;]:
+            out_vehicle = self._copy_vehicle_settings(vehicle)
+        
+    for vehicle in self.ahead_vehicle:
+        # deep copy the vehicle settings
+        if uniquename == vehicle[&#34;uniquename&#34;]:
+            out_vehicle = self._copy_vehicle_settings(vehicle)
+
+    if out_vehicle == None:
+        print(&#34;Invalid uniquename entered for getting vehicle setting&#34;)
+        return None
+    
+    return out_vehicle</code></pre>
+</details>
+</dd>
+<dt id="backend.intersection_definition.Intersection.import_settings"><code class="name flex">
+<span>def <span class="ident">import_settings</span></span>(<span>self, intersection_settings)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>intersection_settings</code></strong> :&ensp;<code>ConfigObj</code></dt>
+<dd>the intersection settings we want to import</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>new_intersection_setting</code></strong> :&ensp;<code>ConfigObj</code></dt>
+<dd>settings of the intersection
+this will be generated by call self.export_settings() after finishing import
+output these settings are for the purpose of creating the front-end gui</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def import_settings(self,intersection_settings):
+    &#39;&#39;&#39;
+    
+
+    Parameters
+    ----------
+    intersection_settings : ConfigObj
+        the intersection settings we want to import
+
+    Returns
+    -------
+    new_intersection_setting : ConfigObj
+        settings of the intersection
+        this will be generated by call self.export_settings() after finishing import
+        output these settings are for the purpose of creating the front-end gui
+    &#39;&#39;&#39;
+    
+    # remove all vehicle in this intersection 
+    # if any vehicle has been added
+    for ii in range(len(self.subject_vehicle) - 1, -1, -1): # go through the array in reverse order
+        uniquename = self.subject_vehicle[ii][&#39;uniquename&#39;]
+        self.remove_vehicle(uniquename)
+    
+    for ii in range(len(self.left_vehicle) - 1, -1, -1): # go through the array in reverse order
+        uniquename = self.left_vehicle[ii][&#39;uniquename&#39;]
+        self.remove_vehicle(uniquename)
+        
+    for ii in range(len(self.right_vehicle) - 1, -1, -1): # go through the array in reverse order
+        uniquename = self.right_vehicle[ii][&#39;uniquename&#39;]
+        self.remove_vehicle(uniquename)
+        
+    for ii in range(len(self.ahead_vehicle) - 1, -1, -1): # go through the array in reverse order
+        uniquename = self.ahead_vehicle[ii][&#39;uniquename&#39;]
+        self.remove_vehicle(uniquename)
+    
+    # import all settings
+   
+    # general settings
+    self.navigation_speed = intersection_settings[&#34;navigation_speed&#34;]
+   
+    # vehicles
+    
+    for vehicle_config in intersection_settings[&#34;subject_vehicle&#34;]:
+        # add vehicles according to imported settings
+        if vehicle_config[&#39;vehicle_color&#39;] != None:
+            vehicle_config[&#39;vehicle_color&#39;] = vehicle_config[&#39;vehicle_color&#39;].replace(&#39;;&#39;,&#39;,&#39;)
+        
+        self.add_vehicle(gap = vehicle_config[&#34;gap&#34;], 
+                         model_name = vehicle_config[&#34;model&#34;], 
+                         choice = vehicle_config[&#39;choice&#39;], 
+                         command = vehicle_config[&#39;command&#39;],
+                         stop_choice = vehicle_config[&#39;stop_choice&#39;],
+                         penetrate_distance = vehicle_config[&#39;penetrate_distance&#39;],
+                         obey_traffic_lights = vehicle_config[&#39;obey_traffic_lights&#39;],
+                         run = vehicle_config[&#39;run&#39;],
+                         safety_distance = vehicle_config[&#39;safety_distance&#39;],
+                         vehicle_color = vehicle_config[&#39;vehicle_color&#39;])
+        
+    for vehicle_config in intersection_settings[&#34;left_vehicle&#34;]:
+        # add vehicles according to imported settings
+        if vehicle_config[&#39;vehicle_color&#39;] != None:
+            vehicle_config[&#39;vehicle_color&#39;] = vehicle_config[&#39;vehicle_color&#39;].replace(&#39;;&#39;,&#39;,&#39;)
+        
+        self.add_vehicle(gap = vehicle_config[&#34;gap&#34;], 
+                         model_name = vehicle_config[&#34;model&#34;], 
+                         choice = vehicle_config[&#39;choice&#39;], 
+                         command = vehicle_config[&#39;command&#39;],
+                         stop_choice = vehicle_config[&#39;stop_choice&#39;],
+                         penetrate_distance = vehicle_config[&#39;penetrate_distance&#39;],
+                         obey_traffic_lights = vehicle_config[&#39;obey_traffic_lights&#39;],
+                         run = vehicle_config[&#39;run&#39;],
+                         safety_distance = vehicle_config[&#39;safety_distance&#39;],
+                         vehicle_color = vehicle_config[&#39;vehicle_color&#39;])
+        
+    for vehicle_config in intersection_settings[&#34;right_vehicle&#34;]:
+        # add vehicles according to imported settings
+        if vehicle_config[&#39;vehicle_color&#39;] != None:
+            vehicle_config[&#39;vehicle_color&#39;] = vehicle_config[&#39;vehicle_color&#39;].replace(&#39;;&#39;,&#39;,&#39;)
+        
+        self.add_vehicle(gap = vehicle_config[&#34;gap&#34;], 
+                         model_name = vehicle_config[&#34;model&#34;], 
+                         choice = vehicle_config[&#39;choice&#39;], 
+                         command = vehicle_config[&#39;command&#39;],
+                         stop_choice = vehicle_config[&#39;stop_choice&#39;],
+                         penetrate_distance = vehicle_config[&#39;penetrate_distance&#39;],
+                         obey_traffic_lights = vehicle_config[&#39;obey_traffic_lights&#39;],
+                         run = vehicle_config[&#39;run&#39;],
+                         safety_distance = vehicle_config[&#39;safety_distance&#39;],
+                         vehicle_color = vehicle_config[&#39;vehicle_color&#39;])
+        
+    for vehicle_config in intersection_settings[&#34;ahead_vehicle&#34;]:
+        # add vehicles according to imported settings
+        if vehicle_config[&#39;vehicle_color&#39;] != None:
+            vehicle_config[&#39;vehicle_color&#39;] = vehicle_config[&#39;vehicle_color&#39;].replace(&#39;;&#39;,&#39;,&#39;)
+        
+        self.add_vehicle(gap = vehicle_config[&#34;gap&#34;], 
+                         model_name = vehicle_config[&#34;model&#34;], 
+                         choice = vehicle_config[&#39;choice&#39;], 
+                         command = vehicle_config[&#39;command&#39;],
+                         stop_choice = vehicle_config[&#39;stop_choice&#39;],
+                         penetrate_distance = vehicle_config[&#39;penetrate_distance&#39;],
+                         obey_traffic_lights = vehicle_config[&#39;obey_traffic_lights&#39;],
+                         run = vehicle_config[&#39;run&#39;],
+                         safety_distance = vehicle_config[&#39;safety_distance&#39;],
+                         vehicle_color = vehicle_config[&#39;vehicle_color&#39;])
+
+    self.light_config[&#39;subject&#39;] = copy.copy(intersection_settings[&#39;subject_light&#39;])
+    self.light_config[&#39;subject_time&#39;] = copy.copy(intersection_settings[&#39;subject_light_time&#39;])
+    
+    self.light_config[&#39;left&#39;] = copy.copy(intersection_settings[&#39;left_light&#39;])
+    self.light_config[&#39;left_time&#39;] = copy.copy(intersection_settings[&#39;left_light_time&#39;])
+    
+    self.light_config[&#39;right&#39;] = copy.copy(intersection_settings[&#39;right_light&#39;])
+    self.light_config[&#39;right_time&#39;] = copy.copy(intersection_settings[&#39;right_light_time&#39;])
+    
+    self.light_config[&#39;ahead&#39;] = copy.copy(intersection_settings[&#39;ahead_light&#39;])
+    self.light_config[&#39;ahead_time&#39;] = copy.copy(intersection_settings[&#39;ahead_light_time&#39;])
+    
+    new_intersection_setting = self.export_settings()
+    return new_intersection_setting</code></pre>
+</details>
+</dd>
+<dt id="backend.intersection_definition.Intersection.remove_vehicle"><code class="name flex">
+<span>def <span class="ident">remove_vehicle</span></span>(<span>self, uniquename)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>remove a specific vehicle from the intersection</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>uniquename</code></strong> :&ensp;<code>TYPE</code></dt>
+<dd>DESCRIPTION.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>removed</code></strong> :&ensp;<code>Bool, </code></dt>
+<dd>whether a vehicle is removed</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def remove_vehicle(self,uniquename):
+    &#39;&#39;&#39;
+    remove a specific vehicle from the intersection
+
+    Parameters
+    ----------
+    uniquename : TYPE
+        DESCRIPTION.
+
+    Returns
+    -------
+    removed : Bool, 
+        whether a vehicle is removed
+
+    &#39;&#39;&#39;
+    for ii in range(len(self.subject_vehicle)):
+        if self.subject_vehicle[ii][&#34;uniquename&#34;] == uniquename: # check whether the vehicle is the one we want to remove
+            # remove vehicle from environment
+            self.env.destroy_vehicle(uniquename)
+            self.subject_vehicle.pop(ii)
+            return True
+        
+    for ii in range(len(self.left_vehicle)):
+        if self.left_vehicle[ii][&#34;uniquename&#34;] == uniquename: # check whether the vehicle is the one we want to remove
+            # remove vehicle from environment
+            self.env.destroy_vehicle(uniquename)
+            self.left_vehicle.pop(ii)
+            return True
+
+    for ii in range(len(self.right_vehicle)):
+        if self.right_vehicle[ii][&#34;uniquename&#34;] == uniquename: # check whether the vehicle is the one we want to remove
+            # remove vehicle from environment
+            self.env.destroy_vehicle(uniquename)
+            self.right_vehicle.pop(ii)
+            return True
+        
+    for ii in range(len(self.ahead_vehicle)):
+        if self.ahead_vehicle[ii][&#34;uniquename&#34;] == uniquename: # check whether the vehicle is the one we want to remove
+            # remove vehicle from environment
+            self.env.destroy_vehicle(uniquename)
+            self.ahead_vehicle.pop(ii)
+            return True
+
+    return False</code></pre>
+</details>
+</dd>
+<dt id="backend.intersection_definition.Intersection.set_intersection_traffic_lights"><code class="name flex">
+<span>def <span class="ident">set_intersection_traffic_lights</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_intersection_traffic_lights(self):
+    # if any traffic light has been set, use the traffic light setting
+    # otherwise, do nothing and exit
+    # call this function each time after a world.tick()
+    
+    if self.light_config[&#34;subject&#34;] != None:
+        if len(self.light_config[&#34;subject&#34;]) &gt; self.local_time_count: 
+            setting = self.light_config[&#34;subject&#34;][self.local_time_count]
+            #print(setting)
+            light = self.subject_light
+            light_state = light.get_state()
+            if setting == &#39;red&#39;:
+                if light_state != carla.TrafficLightState.Red: # only set color when the current state is not what we want
+                    light.set_state(carla.TrafficLightState.Red)
+                    light.set_red_time(self.light_config[&#39;subject_time&#39;][&#39;red&#39;])
+                    light.freeze(True)
+            elif setting == &#39;yellow&#39;:
+                if light_state != carla.TrafficLightState.Yellow:
+                    light.set_state(carla.TrafficLightState.Yellow)
+                    light.set_yellow_time(self.light_config[&#39;subject_time&#39;][&#39;yellow&#39;])
+                    light.freeze(True)
+            else:
+                if light_state != carla.TrafficLightState.Green:
+                    light.set_state(carla.TrafficLightState.Green)
+                    light.set_yellow_time(self.light_config[&#39;subject_time&#39;][&#39;green&#39;])
+                    light.freeze(True)
+    
+    if self.light_config[&#34;left&#34;] != None:
+        if len(self.light_config[&#34;left&#34;]) &gt; self.local_time_count: 
+            setting = self.light_config[&#34;left&#34;][self.local_time_count]
+            light = self.left_light
+            light_state = light.get_state()
+            if setting == &#39;red&#39;:
+                if light_state != carla.TrafficLightState.Red: # only set color when the current state is not what we want
+                    light.set_state(carla.TrafficLightState.Red)
+                    light.set_red_time(self.light_config[&#39;left_time&#39;][&#39;red&#39;])
+                    light.freeze(True)
+            elif setting == &#39;yellow&#39;:
+                if light_state != carla.TrafficLightState.Yellow:
+                    light.set_state(carla.TrafficLightState.Yellow)
+                    light.set_yellow_time(self.light_config[&#39;left_time&#39;][&#39;yellow&#39;])
+                    light.freeze(True)
+            else:
+                if light_state != carla.TrafficLightState.Green:
+                    light.set_state(carla.TrafficLightState.Green)
+                    light.set_yellow_time(self.light_config[&#39;left_time&#39;][&#39;green&#39;])
+                    light.freeze(True)
+                
+    if self.light_config[&#34;right&#34;] != None:
+        if len(self.light_config[&#34;right&#34;]) &gt; self.local_time_count: 
+            setting = self.light_config[&#34;right&#34;][self.local_time_count]
+            light = self.right_light
+            light_state = light.get_state()
+            if setting == &#39;red&#39;:
+                if light_state != carla.TrafficLightState.Red: # only set color when the current state is not what we want
+                    light.set_state(carla.TrafficLightState.Red)
+                    light.set_red_time(self.light_config[&#39;right_time&#39;][&#39;red&#39;])
+                    light.freeze(True)
+            elif setting == &#39;yellow&#39;:
+                if light_state != carla.TrafficLightState.Yellow:
+                    light.set_state(carla.TrafficLightState.Yellow)
+                    light.set_yellow_time(self.light_config[&#39;right_time&#39;][&#39;yellow&#39;])
+                    light.freeze(True)
+            else:
+                if light_state != carla.TrafficLightState.Green:
+                    light.set_state(carla.TrafficLightState.Green)
+                    light.set_yellow_time(self.light_config[&#39;right_time&#39;][&#39;green&#39;])
+                    light.freeze(True)
+    
+    if self.light_config[&#34;ahead&#34;] != None:
+        if len(self.light_config[&#34;ahead&#34;]) &gt; self.local_time_count: 
+            setting = self.light_config[&#34;ahead&#34;][self.local_time_count]
+            light = self.ahead_light
+            light_state = light.get_state()
+            if setting == &#39;red&#39;:
+                if light_state != carla.TrafficLightState.Red: # only set color when the current state is not what we want
+                    light.set_state(carla.TrafficLightState.Red)
+                    light.set_red_time(self.light_config[&#39;ahead_time&#39;][&#39;red&#39;])
+                    light.freeze(True)
+            elif setting == &#39;yellow&#39;:
+                if light_state != carla.TrafficLightState.Yellow:
+                    light.set_state(carla.TrafficLightState.Yellow)
+                    light.set_yellow_time(self.light_config[&#39;ahead_time&#39;][&#39;yellow&#39;])
+                    light.freeze(True)
+            else:
+                if light_state != carla.TrafficLightState.Green:
+                    light.set_state(carla.TrafficLightState.Green)
+                    light.set_yellow_time(self.light_config[&#39;ahead_time&#39;][&#39;green&#39;])
+                    light.freeze(True)
+    
+    # update the time count
+    self.local_time_count += 1</code></pre>
+</details>
+</dd>
+<dt id="backend.intersection_definition.Intersection.start_simulation"><code class="name flex">
+<span>def <span class="ident">start_simulation</span></span>(<span>self, full_path_vehicle_name)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>check whether the first full path vehicle is within this intersection</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>full_path_vehicle_name</code></strong> :&ensp;<code>string</code></dt>
+<dd>uniquename of the first full path vehicle (i.e. lead if lead exists, otherwise ego)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>None.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def start_simulation(self, full_path_vehicle_name):
+    &#39;&#39;&#39;
+    check whether the first full path vehicle is within this intersection
+
+    Parameters
+    ----------
+    full_path_vehicle_name : string
+        uniquename of the first full path vehicle (i.e. lead if lead exists, otherwise ego)
+
+    Returns
+    -------
+    None.
+
+    &#39;&#39;&#39;
+    full_path_vehicle_transform = self.env.get_transform_2d(full_path_vehicle_name)
+    full_path_vehicle_location = full_path_vehicle_transform[0] # 2d location of the vehicle
+    ref_waypoint = self.subject_lane_ref
+    ref_location = ref_waypoint.transform.location
+    distance = math.sqrt((ref_location.x - full_path_vehicle_location[0])**2 + (ref_location.y - full_path_vehicle_location[1])**2 )
+   
+    # start simulation if distance between the vehicle and the reference point is within 
+    # the pre-set start_sim_distance
+    if distance &lt; self.start_sim_distance:
+        self.start_sim = True</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="backend" href="index.html">backend</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-variables">Global variables</a></h3>
+<ul class="">
+<li><code><a title="backend.intersection_definition.white" href="#backend.intersection_definition.white">white</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="backend.intersection_definition.get_traffic_lights" href="#backend.intersection_definition.get_traffic_lights">get_traffic_lights</a></code></li>
+<li><code><a title="backend.intersection_definition.get_trajectory" href="#backend.intersection_definition.get_trajectory">get_trajectory</a></code></li>
+<li><code><a title="backend.intersection_definition.main" href="#backend.intersection_definition.main">main</a></code></li>
+<li><code><a title="backend.intersection_definition.smooth_trajectory" href="#backend.intersection_definition.smooth_trajectory">smooth_trajectory</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="backend.intersection_definition.Intersection" href="#backend.intersection_definition.Intersection">Intersection</a></code></h4>
+<ul class="">
+<li><code><a title="backend.intersection_definition.Intersection.add_vehicle" href="#backend.intersection_definition.Intersection.add_vehicle">add_vehicle</a></code></li>
+<li><code><a title="backend.intersection_definition.Intersection.edit_traffic_light" href="#backend.intersection_definition.Intersection.edit_traffic_light">edit_traffic_light</a></code></li>
+<li><code><a title="backend.intersection_definition.Intersection.edit_vehicle_settings" href="#backend.intersection_definition.Intersection.edit_vehicle_settings">edit_vehicle_settings</a></code></li>
+<li><code><a title="backend.intersection_definition.Intersection.export_settings" href="#backend.intersection_definition.Intersection.export_settings">export_settings</a></code></li>
+<li><code><a title="backend.intersection_definition.Intersection.get_subject_traffic_light" href="#backend.intersection_definition.Intersection.get_subject_traffic_light">get_subject_traffic_light</a></code></li>
+<li><code><a title="backend.intersection_definition.Intersection.get_subject_waypoints" href="#backend.intersection_definition.Intersection.get_subject_waypoints">get_subject_waypoints</a></code></li>
+<li><code><a title="backend.intersection_definition.Intersection.get_vehicle_bounding_box" href="#backend.intersection_definition.Intersection.get_vehicle_bounding_box">get_vehicle_bounding_box</a></code></li>
+<li><code><a title="backend.intersection_definition.Intersection.get_vehicle_settings" href="#backend.intersection_definition.Intersection.get_vehicle_settings">get_vehicle_settings</a></code></li>
+<li><code><a title="backend.intersection_definition.Intersection.import_settings" href="#backend.intersection_definition.Intersection.import_settings">import_settings</a></code></li>
+<li><code><a title="backend.intersection_definition.Intersection.remove_vehicle" href="#backend.intersection_definition.Intersection.remove_vehicle">remove_vehicle</a></code></li>
+<li><code><a title="backend.intersection_definition.Intersection.set_intersection_traffic_lights" href="#backend.intersection_definition.Intersection.set_intersection_traffic_lights">set_intersection_traffic_lights</a></code></li>
+<li><code><a title="backend.intersection_definition.Intersection.start_simulation" href="#backend.intersection_definition.Intersection.start_simulation">start_simulation</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+</footer>
+</body>
+</html>

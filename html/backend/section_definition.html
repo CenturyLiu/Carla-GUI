@@ -1,0 +1,963 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.2" />
+<title>backend.section_definition API documentation</title>
+<meta name="description" content="Created on Wed Jul 22 09:58:37 2020 …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>backend.section_definition</code></h1>
+</header>
+<section id="section-intro">
+<p>Created on Wed Jul 22 09:58:37 2020</p>
+<p>@author: shijiliu</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+&#34;&#34;&#34;
+Created on Wed Jul 22 09:58:37 2020
+
+@author: shijiliu
+&#34;&#34;&#34;
+
+
+import sys
+sys.path.append(&#34;..&#34;)
+
+import carla
+from backend.carla_env import CARLA_ENV 
+import math
+import time
+import numpy as np
+from configobj import ConfigObj
+from backend.generate_path_omit_regulation import generate_path
+from backend.intersection_definition import smooth_trajectory, get_trajectory
+from scipy.interpolate import UnivariateSpline
+import copy
+
+# color for debug use
+red = carla.Color(255, 0, 0)
+green = carla.Color(0, 255, 0)
+blue = carla.Color(47, 210, 231)
+cyan = carla.Color(0, 255, 255)
+yellow = carla.Color(255, 255, 0)
+orange = carla.Color(255, 162, 0)
+white = carla.Color(255, 255, 255)
+
+# the definition of the normal section
+class Section(object):
+    def __init__(self, env, world_waypoint):
+        &#39;&#39;&#39;
+        
+
+        Parameters
+        ----------
+        env : CARLA_ENV
+            the simulation environment
+        world_waypoint : carla.Waypoint
+            the subject point of the section.
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        # store the environment
+        self.env = env
+        
+        
+        
+        # get the world map
+        self.carla_map = self.env.world.get_map()
+        
+        # get the central point of the Section, which will be the reference for subject waypoint 
+        self.subject_waypoint = world_waypoint
+        
+        self.section_location = self.subject_waypoint.transform.location
+        
+        # get the reference points of the Section, which will be used to form trajectory
+        self._get_section_trajectory_points()
+        
+        # variable for storing the vehicles in subject lane and left lane
+        self.subject_lead_vehicle = [] # for normal section, adding vehicle is currently not allowed
+        self.subject_follow_vehicle = []
+        self.left_lead_vehicle = []  # vehicles will be loaded in from init sections
+        self.left_follow_vehicle = []
+        self.ego_vehicle = None
+            
+        # variable for storing the trajectory for subject lane and left lane
+        self.subject_trajectory = None # these two variables are currently not put into use
+        self.left_trajectory = None # keep these variables in case adding section only vehicles is allowed in the future
+    
+    
+        # variable to count the time elapsed after simulation starts in this section
+        self.time_count = 0
+    
+    def _get_next_waypoint(self,curr_waypoint,distance = 4):
+        &#39;&#39;&#39;
+        
+
+        Parameters
+        ----------
+        curr_waypoint : carla.Waypoint
+            current waypoint.
+        distance : float, optional
+            &#34;distance&#34; between current waypoint and target waypoint . The default is 10.
+
+        Returns
+        -------
+        next_waypoint : carla.Waypoint
+            next waypoint, &#34;distance&#34; away from curr_waypoint, in the direction of the current way point
+        &#39;&#39;&#39;
+        forward_vector = curr_waypoint.transform.get_forward_vector()
+
+        location = curr_waypoint.transform.location
+        raw_spawn_point = carla.Location(x = location.x + distance * forward_vector.x  , y = location.y + distance * forward_vector.y , z = location.z + 0.1)
+        
+        next_waypoint = self.carla_map.get_waypoint(raw_spawn_point)
+        return next_waypoint
+    
+    def _get_section_trajectory_points(self):
+        &#39;&#39;&#39;
+        get the reference points for trajectory
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        
+        reference_way_points = []
+        curr_waypoint = self.subject_waypoint
+        
+        # points after the subject, for adding follow vehicles
+        for ii in range(8):
+            distance = -4
+            next_waypoint = self._get_next_waypoint(curr_waypoint, distance = distance)
+            reference_way_points.append(next_waypoint)
+            curr_waypoint = next_waypoint
+            
+        # points before the subject, for adding lead vehicles and navigation
+        
+        reference_way_points.reverse()
+        reference_way_points.append(self.subject_waypoint)
+        curr_waypoint = self.subject_waypoint
+        
+        for ii in range(90):
+            distance = 4
+            next_waypoint = self._get_next_waypoint(curr_waypoint, distance = distance)
+            reference_way_points.append(next_waypoint)
+            curr_waypoint = next_waypoint
+            
+        self.reference_way_points = reference_way_points
+        
+    def _add_full_path_vehicle_normal(self, uniquename, vehicle_type, choice, command = &#34;speed&#34;, command_start_time = 0.0):
+        &#39;&#39;&#39;
+        Create a setting place holder of the vehicle that has been added to the initial section
+        The command and command start time will be kept as default
+        
+        Front end user should not use this function
+
+        Parameters
+        ----------
+        uniquename : string
+            the name of the vehicle
+        vehicle_type : string, 
+            the vehicle type, valid values : &#34;lead&#34;, &#34;follow&#34;. 
+        choice : string, 
+            the lane choice, valid values are &#34;subject&#34;, &#34;left&#34;. 
+        command : string, optional
+            the command the vehicle is going to execute in this section. Valid values: &#34;speed&#34;, &#34;lane&#34;, &#34;distance&#34;. The default is &#34;speed&#34;.
+        command_start_time : string, optional
+            the time at which the command should be executed. The default is 0.0.
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        if vehicle_type == &#34;lead&#34; and choice == &#34;subject&#34;:
+            vehicle_set = self.subject_lead_vehicle
+            
+        elif vehicle_type == &#34;lead&#34; and choice == &#34;left&#34;:
+            vehicle_set = self.left_lead_vehicle
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;subject&#34;:
+            vehicle_set = self.subject_follow_vehicle
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;left&#34;:
+            vehicle_set = self.left_follow_vehicle
+            
+        vehicle_local_config = ConfigObj()
+        vehicle_local_config[&#34;uniquename&#34;] = uniquename
+        vehicle_local_config[&#34;command&#34;] = command
+        vehicle_local_config[&#34;command_start_time&#34;] = command_start_time
+        
+        vehicle_set.append(vehicle_local_config)
+    
+    def _remove_full_path_vehicle_normal(self, vehicle_type, choice, index):
+        &#39;&#39;&#39;
+        remove a full path vehicle that does not exists anymore
+
+        Parameters
+        ----------
+        vehicle_type : string, 
+            the vehicle type, valid values : &#34;lead&#34;, &#34;follow&#34;. 
+        choice : string, 
+            the lane choice, valid values are &#34;subject&#34;, &#34;left&#34;. 
+        index : int
+            the index of the vehicle inside a specific lane. 
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        if vehicle_type == &#34;lead&#34; and choice == &#34;subject&#34;:
+            vehicle_set = self.subject_lead_vehicle
+            
+        elif vehicle_type == &#34;lead&#34; and choice == &#34;left&#34;:
+            vehicle_set = self.left_lead_vehicle
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;subject&#34;:
+            vehicle_set = self.subject_follow_vehicle
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;left&#34;:
+            vehicle_set = self.left_follow_vehicle
+            
+        if len(vehicle_set) &lt;= index:
+            print(&#34;Invalid index&#34;)
+            return
+        
+        vehicle_set.pop(index) # remove the setting from the list
+        
+    
+    def _update_vehicle_uniquename(self, vehicle_type, choice, index, uniquename):
+        &#39;&#39;&#39;
+        Private function for updating the uniquename of the vehicle in case uniquename is changed
+
+        Parameters
+        ----------
+        vehicle_type : string, 
+            the vehicle type, valid values : &#34;lead&#34;, &#34;follow&#34;. 
+        choice : string, 
+            the lane choice, valid values are &#34;subject&#34;, &#34;left&#34;. 
+        index : int
+            the index of the vehicle inside a specific lane. 
+        uniquename : string
+            the name of the vehicle
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        if vehicle_type == &#34;lead&#34; and choice == &#34;subject&#34;:
+            vehicle_set = self.subject_lead_vehicle
+            
+        elif vehicle_type == &#34;lead&#34; and choice == &#34;left&#34;:
+            vehicle_set = self.left_lead_vehicle
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;subject&#34;:
+            vehicle_set = self.subject_follow_vehicle
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;left&#34;:
+            vehicle_set = self.left_follow_vehicle
+            
+        if len(vehicle_set) &lt;= index:
+            print(&#34;Invalid index&#34;)
+            return
+        
+        vehicle_local_config = vehicle_set[index]
+        vehicle_local_config[&#34;uniquename&#34;] = uniquename
+    
+    def edit_full_path_vehicle_local_setting(self, vehicle_type, choice, index , command = &#34;speed&#34;, command_start_time = 0.0):
+        &#39;&#39;&#39;
+        API for the users to edit settings of a given vehicle 
+
+        Parameters
+        ----------
+        vehicle_type : string, 
+            the vehicle type, valid values : &#34;lead&#34;, &#34;follow&#34;. 
+        choice : string, 
+            the lane choice, valid values are &#34;subject&#34;, &#34;left&#34;. 
+        index : int
+            the index of the vehicle inside a specific lane. 
+        command : string, optional
+            the command the vehicle is going to execute in this section. Valid values: &#34;speed&#34;, &#34;lane&#34;, &#34;distance&#34;. The default is &#34;speed&#34;.
+        command_start_time : string, optional
+            the time at which the command should be executed. The default is 0.0.
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        if vehicle_type == &#34;lead&#34; and choice == &#34;subject&#34;:
+            vehicle_set = self.subject_lead_vehicle
+            
+        elif vehicle_type == &#34;lead&#34; and choice == &#34;left&#34;:
+            vehicle_set = self.left_lead_vehicle
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;subject&#34;:
+            vehicle_set = self.subject_follow_vehicle
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;left&#34;:
+            vehicle_set = self.left_follow_vehicle
+        
+        if len(vehicle_set) &lt;= index:
+            print(&#34;Invalid index&#34;)
+            return
+        
+        vehicle_local_config = vehicle_set[index]
+        vehicle_local_config[&#34;command&#34;] = command
+        vehicle_local_config[&#34;command_start_time&#34;] = command_start_time
+    
+    def get_full_path_vehicle_local_setting(self, vehicle_type, choice, index):
+        # get the settings of the vehicle based on lane and index
+        # return the command and corresponding start time
+        if vehicle_type == &#34;lead&#34; and choice == &#34;subject&#34;:
+            vehicle_set = self.subject_lead_vehicle
+            
+        elif vehicle_type == &#34;lead&#34; and choice == &#34;left&#34;:
+            vehicle_set = self.left_lead_vehicle
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;subject&#34;:
+            vehicle_set = self.subject_follow_vehicle
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;left&#34;:
+            vehicle_set = self.left_follow_vehicle
+        
+        if len(vehicle_set) &lt;= index:
+            print(&#34;Invalid index&#34;)
+            return None, None
+        
+        vehicle_local_config = vehicle_set[index]
+        command = vehicle_local_config[&#34;command&#34;]
+        command_start_time = vehicle_local_config[&#34;command_start_time&#34;]
+        return command, command_start_time
+    
+    def get_section_trajectory_points(self):
+        # get the reference points of this section for use outside
+        return self.reference_way_points
+        
+    def tick(self):
+        # increment the time_count by one step
+        # return the elapsed time in terms of seconds
+        ret_val = self.time_count * self.env.delta_seconds
+        self.time_count += 1
+        return ret_val
+    
+    def section_start(self, ego_transform):
+        &#39;&#39;&#39;
+        function deciding whether this section should start
+
+        Parameters
+        ----------
+        ego_transform : carla.Transform
+            the transform of the ego vehicle.
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        ego_location = ego_transform.location
+        
+        # get the distance between the ego vehicle and center of section
+        distance_2d = math.sqrt( (ego_location.x - self.section_location.x) ** 2 + (ego_location.y - self.section_location.y) ** 2)
+    
+        if distance_2d &lt; 3.0: # the ego vehicle is close enough to the section reference point
+            return True
+        else:
+            return False
+    </code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="backend.section_definition.Section"><code class="flex name class">
+<span>class <span class="ident">Section</span></span>
+<span>(</span><span>env, world_waypoint)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>env</code></strong> :&ensp;<code>CARLA_ENV</code></dt>
+<dd>the simulation environment</dd>
+<dt><strong><code>world_waypoint</code></strong> :&ensp;<code>carla.Waypoint</code></dt>
+<dd>the subject point of the section.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>None.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Section(object):
+    def __init__(self, env, world_waypoint):
+        &#39;&#39;&#39;
+        
+
+        Parameters
+        ----------
+        env : CARLA_ENV
+            the simulation environment
+        world_waypoint : carla.Waypoint
+            the subject point of the section.
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        # store the environment
+        self.env = env
+        
+        
+        
+        # get the world map
+        self.carla_map = self.env.world.get_map()
+        
+        # get the central point of the Section, which will be the reference for subject waypoint 
+        self.subject_waypoint = world_waypoint
+        
+        self.section_location = self.subject_waypoint.transform.location
+        
+        # get the reference points of the Section, which will be used to form trajectory
+        self._get_section_trajectory_points()
+        
+        # variable for storing the vehicles in subject lane and left lane
+        self.subject_lead_vehicle = [] # for normal section, adding vehicle is currently not allowed
+        self.subject_follow_vehicle = []
+        self.left_lead_vehicle = []  # vehicles will be loaded in from init sections
+        self.left_follow_vehicle = []
+        self.ego_vehicle = None
+            
+        # variable for storing the trajectory for subject lane and left lane
+        self.subject_trajectory = None # these two variables are currently not put into use
+        self.left_trajectory = None # keep these variables in case adding section only vehicles is allowed in the future
+    
+    
+        # variable to count the time elapsed after simulation starts in this section
+        self.time_count = 0
+    
+    def _get_next_waypoint(self,curr_waypoint,distance = 4):
+        &#39;&#39;&#39;
+        
+
+        Parameters
+        ----------
+        curr_waypoint : carla.Waypoint
+            current waypoint.
+        distance : float, optional
+            &#34;distance&#34; between current waypoint and target waypoint . The default is 10.
+
+        Returns
+        -------
+        next_waypoint : carla.Waypoint
+            next waypoint, &#34;distance&#34; away from curr_waypoint, in the direction of the current way point
+        &#39;&#39;&#39;
+        forward_vector = curr_waypoint.transform.get_forward_vector()
+
+        location = curr_waypoint.transform.location
+        raw_spawn_point = carla.Location(x = location.x + distance * forward_vector.x  , y = location.y + distance * forward_vector.y , z = location.z + 0.1)
+        
+        next_waypoint = self.carla_map.get_waypoint(raw_spawn_point)
+        return next_waypoint
+    
+    def _get_section_trajectory_points(self):
+        &#39;&#39;&#39;
+        get the reference points for trajectory
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        
+        reference_way_points = []
+        curr_waypoint = self.subject_waypoint
+        
+        # points after the subject, for adding follow vehicles
+        for ii in range(8):
+            distance = -4
+            next_waypoint = self._get_next_waypoint(curr_waypoint, distance = distance)
+            reference_way_points.append(next_waypoint)
+            curr_waypoint = next_waypoint
+            
+        # points before the subject, for adding lead vehicles and navigation
+        
+        reference_way_points.reverse()
+        reference_way_points.append(self.subject_waypoint)
+        curr_waypoint = self.subject_waypoint
+        
+        for ii in range(90):
+            distance = 4
+            next_waypoint = self._get_next_waypoint(curr_waypoint, distance = distance)
+            reference_way_points.append(next_waypoint)
+            curr_waypoint = next_waypoint
+            
+        self.reference_way_points = reference_way_points
+        
+    def _add_full_path_vehicle_normal(self, uniquename, vehicle_type, choice, command = &#34;speed&#34;, command_start_time = 0.0):
+        &#39;&#39;&#39;
+        Create a setting place holder of the vehicle that has been added to the initial section
+        The command and command start time will be kept as default
+        
+        Front end user should not use this function
+
+        Parameters
+        ----------
+        uniquename : string
+            the name of the vehicle
+        vehicle_type : string, 
+            the vehicle type, valid values : &#34;lead&#34;, &#34;follow&#34;. 
+        choice : string, 
+            the lane choice, valid values are &#34;subject&#34;, &#34;left&#34;. 
+        command : string, optional
+            the command the vehicle is going to execute in this section. Valid values: &#34;speed&#34;, &#34;lane&#34;, &#34;distance&#34;. The default is &#34;speed&#34;.
+        command_start_time : string, optional
+            the time at which the command should be executed. The default is 0.0.
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        if vehicle_type == &#34;lead&#34; and choice == &#34;subject&#34;:
+            vehicle_set = self.subject_lead_vehicle
+            
+        elif vehicle_type == &#34;lead&#34; and choice == &#34;left&#34;:
+            vehicle_set = self.left_lead_vehicle
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;subject&#34;:
+            vehicle_set = self.subject_follow_vehicle
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;left&#34;:
+            vehicle_set = self.left_follow_vehicle
+            
+        vehicle_local_config = ConfigObj()
+        vehicle_local_config[&#34;uniquename&#34;] = uniquename
+        vehicle_local_config[&#34;command&#34;] = command
+        vehicle_local_config[&#34;command_start_time&#34;] = command_start_time
+        
+        vehicle_set.append(vehicle_local_config)
+    
+    def _remove_full_path_vehicle_normal(self, vehicle_type, choice, index):
+        &#39;&#39;&#39;
+        remove a full path vehicle that does not exists anymore
+
+        Parameters
+        ----------
+        vehicle_type : string, 
+            the vehicle type, valid values : &#34;lead&#34;, &#34;follow&#34;. 
+        choice : string, 
+            the lane choice, valid values are &#34;subject&#34;, &#34;left&#34;. 
+        index : int
+            the index of the vehicle inside a specific lane. 
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        if vehicle_type == &#34;lead&#34; and choice == &#34;subject&#34;:
+            vehicle_set = self.subject_lead_vehicle
+            
+        elif vehicle_type == &#34;lead&#34; and choice == &#34;left&#34;:
+            vehicle_set = self.left_lead_vehicle
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;subject&#34;:
+            vehicle_set = self.subject_follow_vehicle
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;left&#34;:
+            vehicle_set = self.left_follow_vehicle
+            
+        if len(vehicle_set) &lt;= index:
+            print(&#34;Invalid index&#34;)
+            return
+        
+        vehicle_set.pop(index) # remove the setting from the list
+        
+    
+    def _update_vehicle_uniquename(self, vehicle_type, choice, index, uniquename):
+        &#39;&#39;&#39;
+        Private function for updating the uniquename of the vehicle in case uniquename is changed
+
+        Parameters
+        ----------
+        vehicle_type : string, 
+            the vehicle type, valid values : &#34;lead&#34;, &#34;follow&#34;. 
+        choice : string, 
+            the lane choice, valid values are &#34;subject&#34;, &#34;left&#34;. 
+        index : int
+            the index of the vehicle inside a specific lane. 
+        uniquename : string
+            the name of the vehicle
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        if vehicle_type == &#34;lead&#34; and choice == &#34;subject&#34;:
+            vehicle_set = self.subject_lead_vehicle
+            
+        elif vehicle_type == &#34;lead&#34; and choice == &#34;left&#34;:
+            vehicle_set = self.left_lead_vehicle
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;subject&#34;:
+            vehicle_set = self.subject_follow_vehicle
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;left&#34;:
+            vehicle_set = self.left_follow_vehicle
+            
+        if len(vehicle_set) &lt;= index:
+            print(&#34;Invalid index&#34;)
+            return
+        
+        vehicle_local_config = vehicle_set[index]
+        vehicle_local_config[&#34;uniquename&#34;] = uniquename
+    
+    def edit_full_path_vehicle_local_setting(self, vehicle_type, choice, index , command = &#34;speed&#34;, command_start_time = 0.0):
+        &#39;&#39;&#39;
+        API for the users to edit settings of a given vehicle 
+
+        Parameters
+        ----------
+        vehicle_type : string, 
+            the vehicle type, valid values : &#34;lead&#34;, &#34;follow&#34;. 
+        choice : string, 
+            the lane choice, valid values are &#34;subject&#34;, &#34;left&#34;. 
+        index : int
+            the index of the vehicle inside a specific lane. 
+        command : string, optional
+            the command the vehicle is going to execute in this section. Valid values: &#34;speed&#34;, &#34;lane&#34;, &#34;distance&#34;. The default is &#34;speed&#34;.
+        command_start_time : string, optional
+            the time at which the command should be executed. The default is 0.0.
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        if vehicle_type == &#34;lead&#34; and choice == &#34;subject&#34;:
+            vehicle_set = self.subject_lead_vehicle
+            
+        elif vehicle_type == &#34;lead&#34; and choice == &#34;left&#34;:
+            vehicle_set = self.left_lead_vehicle
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;subject&#34;:
+            vehicle_set = self.subject_follow_vehicle
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;left&#34;:
+            vehicle_set = self.left_follow_vehicle
+        
+        if len(vehicle_set) &lt;= index:
+            print(&#34;Invalid index&#34;)
+            return
+        
+        vehicle_local_config = vehicle_set[index]
+        vehicle_local_config[&#34;command&#34;] = command
+        vehicle_local_config[&#34;command_start_time&#34;] = command_start_time
+    
+    def get_full_path_vehicle_local_setting(self, vehicle_type, choice, index):
+        # get the settings of the vehicle based on lane and index
+        # return the command and corresponding start time
+        if vehicle_type == &#34;lead&#34; and choice == &#34;subject&#34;:
+            vehicle_set = self.subject_lead_vehicle
+            
+        elif vehicle_type == &#34;lead&#34; and choice == &#34;left&#34;:
+            vehicle_set = self.left_lead_vehicle
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;subject&#34;:
+            vehicle_set = self.subject_follow_vehicle
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;left&#34;:
+            vehicle_set = self.left_follow_vehicle
+        
+        if len(vehicle_set) &lt;= index:
+            print(&#34;Invalid index&#34;)
+            return None, None
+        
+        vehicle_local_config = vehicle_set[index]
+        command = vehicle_local_config[&#34;command&#34;]
+        command_start_time = vehicle_local_config[&#34;command_start_time&#34;]
+        return command, command_start_time
+    
+    def get_section_trajectory_points(self):
+        # get the reference points of this section for use outside
+        return self.reference_way_points
+        
+    def tick(self):
+        # increment the time_count by one step
+        # return the elapsed time in terms of seconds
+        ret_val = self.time_count * self.env.delta_seconds
+        self.time_count += 1
+        return ret_val
+    
+    def section_start(self, ego_transform):
+        &#39;&#39;&#39;
+        function deciding whether this section should start
+
+        Parameters
+        ----------
+        ego_transform : carla.Transform
+            the transform of the ego vehicle.
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        ego_location = ego_transform.location
+        
+        # get the distance between the ego vehicle and center of section
+        distance_2d = math.sqrt( (ego_location.x - self.section_location.x) ** 2 + (ego_location.y - self.section_location.y) ** 2)
+    
+        if distance_2d &lt; 3.0: # the ego vehicle is close enough to the section reference point
+            return True
+        else:
+            return False</code></pre>
+</details>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="backend.section_init_definition.InitSection" href="section_init_definition.html#backend.section_init_definition.InitSection">InitSection</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="backend.section_definition.Section.edit_full_path_vehicle_local_setting"><code class="name flex">
+<span>def <span class="ident">edit_full_path_vehicle_local_setting</span></span>(<span>self, vehicle_type, choice, index, command='speed', command_start_time=0.0)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>API for the users to edit settings of a given vehicle </p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>vehicle_type</code></strong> :&ensp;<code>string, </code></dt>
+<dd>the vehicle type, valid values : "lead", "follow".</dd>
+<dt><strong><code>choice</code></strong> :&ensp;<code>string, </code></dt>
+<dd>the lane choice, valid values are "subject", "left".</dd>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>the index of the vehicle inside a specific lane.</dd>
+<dt><strong><code>command</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>the command the vehicle is going to execute in this section. Valid values: "speed", "lane", "distance". The default is "speed".</dd>
+<dt><strong><code>command_start_time</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>the time at which the command should be executed. The default is 0.0.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>None.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def edit_full_path_vehicle_local_setting(self, vehicle_type, choice, index , command = &#34;speed&#34;, command_start_time = 0.0):
+    &#39;&#39;&#39;
+    API for the users to edit settings of a given vehicle 
+
+    Parameters
+    ----------
+    vehicle_type : string, 
+        the vehicle type, valid values : &#34;lead&#34;, &#34;follow&#34;. 
+    choice : string, 
+        the lane choice, valid values are &#34;subject&#34;, &#34;left&#34;. 
+    index : int
+        the index of the vehicle inside a specific lane. 
+    command : string, optional
+        the command the vehicle is going to execute in this section. Valid values: &#34;speed&#34;, &#34;lane&#34;, &#34;distance&#34;. The default is &#34;speed&#34;.
+    command_start_time : string, optional
+        the time at which the command should be executed. The default is 0.0.
+
+    Returns
+    -------
+    None.
+
+    &#39;&#39;&#39;
+    if vehicle_type == &#34;lead&#34; and choice == &#34;subject&#34;:
+        vehicle_set = self.subject_lead_vehicle
+        
+    elif vehicle_type == &#34;lead&#34; and choice == &#34;left&#34;:
+        vehicle_set = self.left_lead_vehicle
+        
+    elif vehicle_type == &#34;follow&#34; and choice == &#34;subject&#34;:
+        vehicle_set = self.subject_follow_vehicle
+        
+    elif vehicle_type == &#34;follow&#34; and choice == &#34;left&#34;:
+        vehicle_set = self.left_follow_vehicle
+    
+    if len(vehicle_set) &lt;= index:
+        print(&#34;Invalid index&#34;)
+        return
+    
+    vehicle_local_config = vehicle_set[index]
+    vehicle_local_config[&#34;command&#34;] = command
+    vehicle_local_config[&#34;command_start_time&#34;] = command_start_time</code></pre>
+</details>
+</dd>
+<dt id="backend.section_definition.Section.get_full_path_vehicle_local_setting"><code class="name flex">
+<span>def <span class="ident">get_full_path_vehicle_local_setting</span></span>(<span>self, vehicle_type, choice, index)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_full_path_vehicle_local_setting(self, vehicle_type, choice, index):
+    # get the settings of the vehicle based on lane and index
+    # return the command and corresponding start time
+    if vehicle_type == &#34;lead&#34; and choice == &#34;subject&#34;:
+        vehicle_set = self.subject_lead_vehicle
+        
+    elif vehicle_type == &#34;lead&#34; and choice == &#34;left&#34;:
+        vehicle_set = self.left_lead_vehicle
+        
+    elif vehicle_type == &#34;follow&#34; and choice == &#34;subject&#34;:
+        vehicle_set = self.subject_follow_vehicle
+        
+    elif vehicle_type == &#34;follow&#34; and choice == &#34;left&#34;:
+        vehicle_set = self.left_follow_vehicle
+    
+    if len(vehicle_set) &lt;= index:
+        print(&#34;Invalid index&#34;)
+        return None, None
+    
+    vehicle_local_config = vehicle_set[index]
+    command = vehicle_local_config[&#34;command&#34;]
+    command_start_time = vehicle_local_config[&#34;command_start_time&#34;]
+    return command, command_start_time</code></pre>
+</details>
+</dd>
+<dt id="backend.section_definition.Section.get_section_trajectory_points"><code class="name flex">
+<span>def <span class="ident">get_section_trajectory_points</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_section_trajectory_points(self):
+    # get the reference points of this section for use outside
+    return self.reference_way_points</code></pre>
+</details>
+</dd>
+<dt id="backend.section_definition.Section.section_start"><code class="name flex">
+<span>def <span class="ident">section_start</span></span>(<span>self, ego_transform)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>function deciding whether this section should start</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>ego_transform</code></strong> :&ensp;<code>carla.Transform</code></dt>
+<dd>the transform of the ego vehicle.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>None.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def section_start(self, ego_transform):
+    &#39;&#39;&#39;
+    function deciding whether this section should start
+
+    Parameters
+    ----------
+    ego_transform : carla.Transform
+        the transform of the ego vehicle.
+
+    Returns
+    -------
+    None.
+
+    &#39;&#39;&#39;
+    ego_location = ego_transform.location
+    
+    # get the distance between the ego vehicle and center of section
+    distance_2d = math.sqrt( (ego_location.x - self.section_location.x) ** 2 + (ego_location.y - self.section_location.y) ** 2)
+
+    if distance_2d &lt; 3.0: # the ego vehicle is close enough to the section reference point
+        return True
+    else:
+        return False</code></pre>
+</details>
+</dd>
+<dt id="backend.section_definition.Section.tick"><code class="name flex">
+<span>def <span class="ident">tick</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def tick(self):
+    # increment the time_count by one step
+    # return the elapsed time in terms of seconds
+    ret_val = self.time_count * self.env.delta_seconds
+    self.time_count += 1
+    return ret_val</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="backend" href="index.html">backend</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="backend.section_definition.Section" href="#backend.section_definition.Section">Section</a></code></h4>
+<ul class="">
+<li><code><a title="backend.section_definition.Section.edit_full_path_vehicle_local_setting" href="#backend.section_definition.Section.edit_full_path_vehicle_local_setting">edit_full_path_vehicle_local_setting</a></code></li>
+<li><code><a title="backend.section_definition.Section.get_full_path_vehicle_local_setting" href="#backend.section_definition.Section.get_full_path_vehicle_local_setting">get_full_path_vehicle_local_setting</a></code></li>
+<li><code><a title="backend.section_definition.Section.get_section_trajectory_points" href="#backend.section_definition.Section.get_section_trajectory_points">get_section_trajectory_points</a></code></li>
+<li><code><a title="backend.section_definition.Section.section_start" href="#backend.section_definition.Section.section_start">section_start</a></code></li>
+<li><code><a title="backend.section_definition.Section.tick" href="#backend.section_definition.Section.tick">tick</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+</footer>
+</body>
+</html>

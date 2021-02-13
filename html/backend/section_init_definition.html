@@ -1,0 +1,1901 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.2" />
+<title>backend.section_init_definition API documentation</title>
+<meta name="description" content="Created on Wed Jul 22 11:24:10 2020 …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>backend.section_init_definition</code></h1>
+</header>
+<section id="section-intro">
+<p>Created on Wed Jul 22 11:24:10 2020</p>
+<p>@author: shijiliu</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+&#34;&#34;&#34;
+Created on Wed Jul 22 11:24:10 2020
+
+@author: shijiliu
+&#34;&#34;&#34;
+
+
+import sys
+sys.path.append(&#34;..&#34;)
+
+import carla
+from backend.carla_env import CARLA_ENV 
+import math
+import time
+import numpy as np
+from configobj import ConfigObj
+from backend.generate_path_omit_regulation import generate_path
+from backend.intersection_definition import smooth_trajectory, get_trajectory
+from scipy.interpolate import UnivariateSpline
+import copy
+
+from backend.section_definition import Section
+
+
+
+# define a class for defining the initial section
+# add vehicles is allowed in this section
+class InitSection(Section):
+    def __init__(self, env, world_waypoint):
+        super().__init__(env, world_waypoint)
+        self.left_ref_waypoint = self._get_left_waypoint(self.subject_waypoint)
+        
+    def get_full_path_trajectory(self, subject_trajectory, subject_ref_speed, left_trajectory, left_ref_speed, ref_speed, max_speed,min_speed):
+        &#39;&#39;&#39;
+        
+
+        Parameters
+        ----------
+        subject_trajectory : list, [(float, float), ... ]
+            the subject trajectory.
+        subject_ref_speed : list 
+            reference speed for subject trajectory  
+        left_trajectory : list, [(float, float), ... ]
+            the left trajectory.
+        left_ref_speed : list 
+            reference speed for left trajectory
+        ref_speed : float
+            the average of the max and min speed
+        max_speed : float
+            the max speed of the vehicle
+        min_speed : float
+            the minimum speed of the vehicle
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        self.subject_trajectory = subject_trajectory
+        self.subject_ref_speed = subject_ref_speed
+        self.subject_max_speed_list = subject_ref_speed / ref_speed * max_speed
+        self.subject_min_speed_list = subject_ref_speed / ref_speed * min_speed
+        self.left_trajectory = left_trajectory
+        self.left_ref_speed = left_ref_speed
+        self.left_max_speed_list = left_ref_speed / ref_speed * max_speed
+        self.left_min_speed_list = left_ref_speed / ref_speed * min_speed
+    
+    def add_ego_vehicle(self, model_name = &#34;vehicle.tesla.model3&#34;, safety_distance = 15.0, vehicle_color = None):
+        &#39;&#39;&#39;
+        add ego vehicle to the initial intersection
+        according to the user case, the ego vehicle will follow the 
+        subject lane all the way with constant speed
+        
+        Parameters
+        ----------
+        model_name : string, optional
+            vehicle type. The default is &#34;vehicle.tesla.model3&#34;.
+        safety_distance : float, optional
+            smallest distance between this vehicle and vehicle ahead
+        vehicle_color : string
+            the RGB representation of the vehicle color. e.g. &#39;255,255,255&#39;
+
+        Returns
+        -------
+        uniquename : string
+            the name of the vehicle
+
+        &#39;&#39;&#39;
+        vehicle = ConfigObj()
+        vehicle[&#34;model&#34;] = model_name
+        vehicle[&#34;safety_distance&#34;] = safety_distance
+        
+        new_ref_waypoint = self.subject_waypoint
+        spawn_transform = new_ref_waypoint.transform
+        spawn_location = spawn_transform.location
+        spawn_rotation = spawn_transform.rotation
+        
+        spawn_location = carla.Location(x = spawn_location.x, y = spawn_location.y, z = spawn_location.z + 0.2)
+        
+        uniquename = self.env.spawn_vehicle(model_name = model_name,spawn_point = carla.Transform(spawn_location,spawn_rotation), color = vehicle_color)
+        vehicle[&#34;uniquename&#34;] = uniquename
+        vehicle[&#34;ref_waypoint&#34;] = new_ref_waypoint
+        vehicle[&#34;location&#34;] = spawn_transform.location
+        vehicle[&#34;rotation&#34;] = spawn_transform.rotation
+        
+        if vehicle_color == None:
+            vehicle[&#34;vehicle_color&#34;] = vehicle_color
+        else:
+            vehicle[&#34;vehicle_color&#34;] = vehicle_color.replace(&#39;,&#39;,&#39;;&#39;) # replace , by ; to avoid error when importing from file
+        
+        vehicle[&#34;trajectory&#34;] = self.subject_trajectory
+        vehicle[&#34;ref_speed_list&#34;] = self.subject_ref_speed
+        
+        new_bb = self.env.get_vehicle_bounding_box(uniquename)
+        vehicle[&#34;bounding_box&#34;] = new_bb
+        vehicle[&#34;vehicle_type&#34;] = &#34;ego&#34;
+        
+        # additional settings that&#39;s necessary for using the VehicleControl class
+        vehicle[&#34;stop_choice&#34;] = None
+        vehicle[&#34;penetrate_distance&#34;] = None
+        vehicle[&#34;stop_ref_point&#34;] = None
+        
+        vehicle[&#34;gap&#34;] = None
+        vehicle[&#34;command&#34;] = None
+        vehicle[&#34;obey_traffic_lights&#34;] = False
+        vehicle[&#34;traffic_light&#34;] = False
+        vehicle[&#34;run&#34;] = True
+        vehicle[&#34;choice&#34;] = None
+        
+        self.ego_vehicle = vehicle
+        return uniquename
+    
+    
+    
+    
+    
+    def edit_ego_vehicle(self, model_name = &#34;vehicle.tesla.model3&#34;, safety_distance = 15.0, vehicle_color = None):
+        &#39;&#39;&#39;
+        edit the ego vheicle setting by delete the original ego vehicle and add a new one
+        
+        Parameters
+        ----------
+        model_name : string, optional
+            vehicle type. The default is &#34;vehicle.tesla.model3&#34;.
+        safety_distance : float, optional
+            smallest distance between this vehicle and vehicle ahead
+        vehicle_color : string
+            the RGB representation of the vehicle color. e.g. &#39;255,255,255&#39;
+
+        Returns
+        -------
+        uniquename : string
+            the name of the vehicle
+
+        &#39;&#39;&#39;
+        # get the original uniquename
+        original_uniquename = self.ego_vehicle[&#34;uniquename&#34;]
+        
+        # remove the ego vehicle
+        self.env.destroy_vehicle(original_uniquename)
+        self.ego_vehicle = None
+        
+        # add the new ego vehicle
+        uniquename = self.add_ego_vehicle(model_name = model_name, safety_distance = safety_distance, vehicle_color = vehicle_color)
+        return uniquename
+    
+    def remove_full_path_vehicle(self, uniquename):
+        &#39;&#39;&#39;
+        remove a full path vehicle based on its uniquename
+
+        Parameters
+        ----------
+        uniquename : string
+            name of the vehicle.
+
+        Returns
+        -------
+        Bool : whether the given vehicle is found and removed
+        
+        vehicle_type : string
+            the vehicle type, valid values are &#34;lead&#34;, &#34;follow&#34;
+        
+        choice : string
+            the lane choice, valid values are &#34;subject&#34;, &#34;left&#34; 
+            
+        index : int
+            the index of the vehicle in a specific lane
+
+        &#39;&#39;&#39;
+        vehicle_set = self.subject_lead_vehicle
+        for jj in range(len(vehicle_set) - 1,-1,-1):
+            vehicle = vehicle_set[jj]
+            if vehicle[&#34;uniquename&#34;] == uniquename:
+                self.env.destroy_vehicle(uniquename)
+                vehicle_set.pop(jj)
+                return True, &#34;lead&#34;, &#34;subject&#34;, jj
+        
+        vehicle_set = self.subject_follow_vehicle
+        for jj in range(len(vehicle_set) - 1,-1,-1):
+            vehicle = vehicle_set[jj]
+            if vehicle[&#34;uniquename&#34;] == uniquename:
+                self.env.destroy_vehicle(uniquename)
+                vehicle_set.pop(jj)
+                return True, &#34;follow&#34;, &#34;subject&#34;, jj
+        
+        vehicle_set = self.left_lead_vehicle
+        for jj in range(len(vehicle_set) - 1,-1,-1):
+            vehicle = vehicle_set[jj]
+            if vehicle[&#34;uniquename&#34;] == uniquename:
+                self.env.destroy_vehicle(uniquename)
+                vehicle_set.pop(jj)
+                return True, &#34;lead&#34;, &#34;left&#34;, jj
+        
+        vehicle_set = self.left_follow_vehicle
+        for jj in range(len(vehicle_set) - 1,-1,-1):
+            vehicle = vehicle_set[jj]
+            if vehicle[&#34;uniquename&#34;] == uniquename:
+                self.env.destroy_vehicle(uniquename)
+                vehicle_set.pop(jj)
+                return True, &#34;follow&#34;, &#34;left&#34;, jj
+            
+        return False, None, None, None
+    
+    
+    def add_full_path_vehicle(self, model_name = &#34;vehicle.tesla.model3&#34;, vehicle_type =&#34;lead&#34;, choice = &#34;subject&#34;, command = &#34;speed&#34;, command_start_time = 0.0, gap = 10.0, safety_distance = 15.0, lead_follow_distance = 20.0, vehicle_color = None):
+        &#39;&#39;&#39;
+        add full path vehicle
+
+        Parameters
+        ----------
+        model_name : string, optional
+            vehicle type. The default is &#34;vehicle.tesla.model3&#34;.
+        vehicle_type : string, optional
+            the vehicle type, valid values : &#34;lead&#34;, &#34;follow&#34;. The default is &#34;lead&#34;.
+        choice : string, optional
+            the lane choice, valid values are &#34;subject&#34;, &#34;left&#34;. The default is &#34;subject&#34;.
+        command : string, optional
+            the command the vehicle is going to execute in this section. Valid values: &#34;speed&#34;, &#34;lane&#34;, &#34;distance&#34;. The default is &#34;speed&#34;.
+        command_start_time : string, optional
+            the time at which the command should be executed. The default is 0.0.
+        gap : float, optional
+            the gap between the vehicle and the one in the front of it when adding. The default is 10.0, unit: meter
+        safety_distance : float, optional
+            smallest distance between 2 vehicles when simulation is going. The default is 15.0, unit: meter
+        vehicle_color : string
+            the RGB representation of the vehicle color. e.g. &#39;255,255,255&#39;
+
+        Returns
+        -------
+        uniquename : string
+            the name of the vehicle
+
+
+        &#39;&#39;&#39;
+        # create configuration file for vehicle
+        vehicle = ConfigObj()
+        vehicle[&#34;model&#34;] = model_name
+        vehicle[&#34;safety_distance&#34;] = safety_distance
+        vehicle[&#34;gap&#34;] = gap
+        vehicle[&#34;command&#34;] = command
+        vehicle[&#34;command_start_time&#34;] = command_start_time
+        vehicle[&#34;run&#34;] = True
+        vehicle[&#34;choice&#34;] = choice
+        vehicle[&#34;current_lane&#34;] = choice # which lane the vehicle is currently in
+        vehicle[&#34;vehicle_type&#34;] = vehicle_type 
+        vehicle[&#34;lead_follow_distance&#34;] = lead_follow_distance
+        
+        vehicle[&#34;stop_choice&#34;] = None
+        vehicle[&#34;penetrate_distance&#34;] = None
+        vehicle[&#34;stop_ref_point&#34;] = None
+        vehicle[&#34;obey_traffic_lights&#34;] = False
+        vehicle[&#34;traffic_light&#34;] = False
+        
+        vehicle_set = None
+        ref_waypoint = None
+        vehicle[&#34;trajectory&#34;] = None
+        vehicle[&#34;ref_speed_list&#34;] = None
+        
+        # get the vehicle set by input parameters, so as to create add the vehicle
+        if vehicle_type == &#34;lead&#34; and choice == &#34;subject&#34;:
+            vehicle_set = self.subject_lead_vehicle
+            ref_waypoint = self.subject_waypoint
+            lane_direction = 1 # positive direction for lead
+            vehicle[&#34;trajectory&#34;] = self.subject_trajectory
+            vehicle[&#34;ref_speed_list&#34;] = self.subject_ref_speed
+            
+        elif vehicle_type == &#34;lead&#34; and choice == &#34;left&#34;:
+            vehicle_set = self.left_lead_vehicle
+            ref_waypoint = self.left_ref_waypoint
+            lane_direction = 1 # positive direction for lead
+            vehicle[&#34;trajectory&#34;] = self.left_trajectory
+            vehicle[&#34;ref_speed_list&#34;] = self.left_ref_speed
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;subject&#34;:
+            vehicle_set = self.subject_follow_vehicle
+            ref_waypoint = self.subject_waypoint
+            lane_direction = -1 # negative direction for follow
+            vehicle[&#34;trajectory&#34;] = self.subject_trajectory
+            vehicle[&#34;ref_speed_list&#34;] = self.subject_ref_speed
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;left&#34;:
+            vehicle_set = self.left_follow_vehicle
+            ref_waypoint = self.left_ref_waypoint
+            lane_direction = -1 # negative direction for follow
+            vehicle[&#34;trajectory&#34;] = self.left_trajectory
+            vehicle[&#34;ref_speed_list&#34;] = self.left_ref_speed
+        
+        
+        
+        
+        # get the spawn location
+        if len(vehicle_set) != 0:
+            ref_waypoint = vehicle_set[-1][&#34;ref_waypoint&#34;]
+            bb = vehicle_set[-1][&#34;bounding_box&#34;]
+            
+            curr_length = self.env.get_vehicle_model_length(model_name)
+            
+            gap += bb.x / 2 + curr_length / 2
+        
+        else:
+            bb = self.ego_vehicle[&#34;bounding_box&#34;]
+            curr_length = self.env.get_vehicle_model_length(model_name)
+            gap += bb.x / 2 + curr_length / 2
+            #print(gap)
+        
+        
+        forward_vector = ref_waypoint.transform.get_forward_vector()
+
+        location = ref_waypoint.transform.location
+        raw_spawn_point = carla.Location(x = location.x + lane_direction * gap * forward_vector.x  , y = location.y + lane_direction *  gap * forward_vector.y , z = location.z + 0.1)
+        
+        new_ref_waypoint = self.carla_map.get_waypoint(raw_spawn_point)
+        
+        spawn_transform = new_ref_waypoint.transform
+        spawn_location = spawn_transform.location
+        spawn_rotation = spawn_transform.rotation
+        
+        spawn_location = carla.Location(x = spawn_location.x, y = spawn_location.y, z = spawn_location.z + 0.2)
+        
+        uniquename = self.env.spawn_vehicle(model_name = model_name,spawn_point = carla.Transform(spawn_location,spawn_rotation) , color = vehicle_color)
+        
+        vehicle[&#34;uniquename&#34;] = uniquename
+        vehicle[&#34;ref_waypoint&#34;] = new_ref_waypoint
+        vehicle[&#34;location&#34;] = new_ref_waypoint.transform.location
+        vehicle[&#34;rotation&#34;] = new_ref_waypoint.transform.rotation
+        
+        if vehicle_color == None:
+            vehicle[&#34;vehicle_color&#34;] = vehicle_color
+        else:
+            vehicle[&#34;vehicle_color&#34;] = vehicle_color.replace(&#39;,&#39;,&#39;;&#39;) # replace , by ; to avoid error when importing from file
+        
+        vehicle[&#34;subject_trajectory&#34;] = self.subject_trajectory
+        vehicle[&#34;subject_ref_speed_list&#34;] = self.subject_ref_speed
+        vehicle[&#34;subject_max_speed_list&#34;] = self.subject_max_speed_list
+        vehicle[&#34;subject_min_speed_list&#34;] = self.subject_min_speed_list
+        vehicle[&#34;left_trajectory&#34;] = self.left_trajectory
+        vehicle[&#34;left_ref_speed_list&#34;] = self.left_ref_speed
+        vehicle[&#34;left_max_speed_list&#34;] = self.left_max_speed_list
+        vehicle[&#34;left_min_speed_list&#34;] = self.left_min_speed_list
+        
+        new_bb = self.env.get_vehicle_bounding_box(uniquename)
+        vehicle[&#34;bounding_box&#34;] = new_bb
+        
+        vehicle_set.append(vehicle)
+        
+        return uniquename
+    
+    def edit_full_path_vehicle(self, uniquename, vehicle_type, choice, model_name = &#34;vehicle.tesla.model3&#34;,   command = &#34;speed&#34;, command_start_time = 0.0, gap = 10.0, safety_distance = 25.0, lead_follow_distance = 30.0, vehicle_color = None):
+        &#39;&#39;&#39;
+        edit full path vehicle settings by deleting the original vehicle and then add a new one
+
+        Parameters
+        ----------
+        uniquename : string
+            the name of the vehicle
+        vehicle_type : string, 
+            the vehicle type, valid values : &#34;lead&#34;, &#34;follow&#34;. 
+        choice : string, optional
+            the lane choice, valid values are &#34;subject&#34;, &#34;left&#34;. 
+        model_name : string, optional
+            vehicle type. The default is &#34;vehicle.tesla.model3&#34;.
+        command : string, optional
+            the command the vehicle is going to execute in this section. Valid values: &#34;speed&#34;, &#34;lane&#34;, &#34;distance&#34;. The default is &#34;speed&#34;.
+        command_start_time : string, optional
+            the time at which the command should be executed. The default is 0.0.
+        gap : float, optional
+            the gap between the vehicle and the one in the front of it when adding. The default is 10.0, unit: meter
+        safety_distance : float, optional
+            smallest distance between 2 vehicles when simulation is going. The default is 15.0, unit: meter
+        vehicle_color : string
+            the RGB representation of the vehicle color. e.g. &#39;255,255,255&#39;
+
+        Returns
+        -------
+        new_uniquename : string
+            the new_name of the vehicle
+
+        index: int
+            the index of the vehicle to be changed
+
+        &#39;&#39;&#39;
+        if vehicle_type == &#34;lead&#34; and choice == &#34;subject&#34;:
+            vehicle_set = self.subject_lead_vehicle
+            lane_direction = 1 # positive direction for lead
+
+            
+        elif vehicle_type == &#34;lead&#34; and choice == &#34;left&#34;:
+            vehicle_set = self.left_lead_vehicle
+            lane_direction = 1 # positive direction for lead
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;subject&#34;:
+            vehicle_set = self.subject_follow_vehicle
+            lane_direction = -1 # negative direction for follow
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;left&#34;:
+            vehicle_set = self.left_follow_vehicle
+            lane_direction = -1 # negative direction for follow
+            
+        # get vehicle index in the given lane
+        index = 0
+        original_gap = None
+        for vehicle in vehicle_set:
+            if vehicle[&#34;uniquename&#34;] == uniquename:
+                original_gap = vehicle[&#34;gap&#34;]
+                break
+            index += 1
+            
+        # shift the vehicle
+        if original_gap != None:
+            shift_distance = original_gap - gap
+            self._shift_vehicles(shift_distance, vehicle_type = vehicle_type , choice = choice, index = index)
+        else:
+            print(&#34;return None in edit vehicle&#34;)
+            return None
+        
+        # remove the current vehicle, 
+        # note that after removing the vehicle, index is pointing at the vehicle after the current one
+        removed, _, _, _ = self.remove_full_path_vehicle(uniquename)
+        if not removed:
+            print(&#34;vehicle not found&#34;)
+            return None
+        
+        # split the vehicle set
+        if vehicle_type == &#34;lead&#34; and choice == &#34;subject&#34;:
+            vehicles_after_current = self.subject_lead_vehicle[index:]
+            self.subject_lead_vehicle = self.subject_lead_vehicle[:index]
+
+            
+        elif vehicle_type == &#34;lead&#34; and choice == &#34;left&#34;:
+            vehicles_after_current = self.left_lead_vehicle[index:]
+            self.left_lead_vehicle = self.left_lead_vehicle[:index]
+
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;subject&#34;:
+            vehicles_after_current = self.subject_follow_vehicle[index:]
+            self.subject_follow_vehicle = self.subject_follow_vehicle[:index]
+
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;left&#34;:
+            vehicles_after_current = self.left_follow_vehicle[index:]
+            self.left_follow_vehicle = self.left_follow_vehicle[:index]
+
+        
+        # add the new vehicle
+        new_uniquename = self.add_full_path_vehicle(model_name = model_name, 
+                                                    vehicle_type = vehicle_type, 
+                                                    choice = choice, 
+                                                    command = command, 
+                                                    command_start_time = command_start_time, 
+                                                    gap = gap, safety_distance = safety_distance, 
+                                                    lead_follow_distance = lead_follow_distance, 
+                                                    vehicle_color = vehicle_color)
+        
+        # put back the vehicles after the current one
+        if vehicle_type == &#34;lead&#34; and choice == &#34;subject&#34;:
+            self.subject_lead_vehicle += vehicles_after_current
+
+            
+        elif vehicle_type == &#34;lead&#34; and choice == &#34;left&#34;:
+            self.left_lead_vehicle += vehicles_after_current
+
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;subject&#34;:
+            self.subject_follow_vehicle += vehicles_after_current
+
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;left&#34;:
+            self.left_follow_vehicle += vehicles_after_current
+            
+        return new_uniquename, index
+    
+    
+    def _shift_vehicles(self, length, vehicle_type, choice, index = 0):
+        &#39;&#39;&#39;
+        shift the vehicle starting at &#34;index&#34; in a specific lane specified by the
+        vehicle_type and choice
+
+        Parameters
+        ----------
+        length : float
+            the length these vehicles will be moved. Positive value moves vehicles away from the ego
+        vehicle_type : string, 
+            the vehicle type, valid values : &#34;lead&#34;, &#34;follow&#34;. 
+        choice : string, 
+            the lane choice, valid values are &#34;subject&#34;, &#34;left&#34;. 
+        index : int
+            the index of the vehicle inside a specific lane.  default is 0
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        if vehicle_type == &#34;lead&#34; and choice == &#34;subject&#34;:
+            vehicle_set = self.subject_lead_vehicle
+            lane_direction = 1 # positive direction for lead
+
+            
+        elif vehicle_type == &#34;lead&#34; and choice == &#34;left&#34;:
+            vehicle_set = self.left_lead_vehicle
+            lane_direction = 1 # positive direction for lead
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;subject&#34;:
+            vehicle_set = self.subject_follow_vehicle
+            lane_direction = -1 # negative direction for follow
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;left&#34;:
+            vehicle_set = self.left_follow_vehicle
+            lane_direction = -1 # negative direction for follow
+    
+        for ii in range(len(vehicle_set) - 1,index - 1,-1):
+            vehicle = vehicle_set[ii]
+            new_ref_waypoint = self._get_next_waypoint(vehicle[&#34;ref_waypoint&#34;],distance = length * lane_direction) # get the new
+                                                                                                                   # reference point
+            new_ref_location = new_ref_waypoint.transform.location          
+
+            spawn_location = carla.Location(x = new_ref_location.x, y = new_ref_location.y, z = new_ref_location.z + 0.1)  
+            spawn_rotation = new_ref_waypoint.transform.rotation
+                                                                            
+            self.env.move_vehicle_location(vehicle[&#34;uniquename&#34;],carla.Transform(spawn_location,spawn_rotation))
+            vehicle[&#34;ref_waypoint&#34;] = new_ref_waypoint
+            vehicle[&#34;location&#34;] = spawn_location
+            vehicle[&#34;rotation&#34;] = spawn_rotation
+            
+        
+    
+    def _get_unit_left_vector(self,yaw):
+        # get the right vector
+        right_yaw = (yaw + 90) % 360
+        rad_yaw = math.radians(right_yaw)
+        right_vector = [math.cos(rad_yaw),math.sin(rad_yaw)]
+        right_vector = right_vector / np.linalg.norm(right_vector)
+        return right_vector
+    
+    
+    def _get_left_waypoint(self, curr_waypoint):
+        # get the point to the left of the current one
+        left_shift = 3.0
+        
+        curr_location = curr_waypoint.transform.location
+        ref_yaw = curr_waypoint.transform.rotation.yaw
+        left_vector = self._get_unit_left_vector(ref_yaw)
+    
+        new_location = carla.Location(x = curr_location.x - left_shift * left_vector[0], y = curr_location.y - left_shift * left_vector[1], z = curr_location.z)
+        
+        left_waypoint = self.carla_map.get_waypoint(new_location)
+        return left_waypoint
+    
+    def _get_next_waypoint(self,curr_waypoint,distance = 10):
+        &#39;&#39;&#39;
+        
+
+        Parameters
+        ----------
+        curr_waypoint : carla.Waypoint
+            current waypoint.
+        distance : float, optional
+            &#34;distance&#34; between current waypoint and target waypoint . The default is 10.
+
+        Returns
+        -------
+        next_waypoint : carla.Waypoint
+            next waypoint, &#34;distance&#34; away from curr_waypoint, in the direction of the current way point
+        &#39;&#39;&#39;
+        forward_vector = curr_waypoint.transform.get_forward_vector()
+
+        location = curr_waypoint.transform.location
+        raw_spawn_point = carla.Location(x = location.x + distance * forward_vector.x  , y = location.y + distance * forward_vector.y , z = location.z + 0.1)
+        
+        next_waypoint = self.carla_map.get_waypoint(raw_spawn_point)
+        return next_waypoint</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="backend.section_init_definition.InitSection"><code class="flex name class">
+<span>class <span class="ident">InitSection</span></span>
+<span>(</span><span>env, world_waypoint)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>env</code></strong> :&ensp;<code>CARLA_ENV</code></dt>
+<dd>the simulation environment</dd>
+<dt><strong><code>world_waypoint</code></strong> :&ensp;<code>carla.Waypoint</code></dt>
+<dd>the subject point of the section.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>None.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class InitSection(Section):
+    def __init__(self, env, world_waypoint):
+        super().__init__(env, world_waypoint)
+        self.left_ref_waypoint = self._get_left_waypoint(self.subject_waypoint)
+        
+    def get_full_path_trajectory(self, subject_trajectory, subject_ref_speed, left_trajectory, left_ref_speed, ref_speed, max_speed,min_speed):
+        &#39;&#39;&#39;
+        
+
+        Parameters
+        ----------
+        subject_trajectory : list, [(float, float), ... ]
+            the subject trajectory.
+        subject_ref_speed : list 
+            reference speed for subject trajectory  
+        left_trajectory : list, [(float, float), ... ]
+            the left trajectory.
+        left_ref_speed : list 
+            reference speed for left trajectory
+        ref_speed : float
+            the average of the max and min speed
+        max_speed : float
+            the max speed of the vehicle
+        min_speed : float
+            the minimum speed of the vehicle
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        self.subject_trajectory = subject_trajectory
+        self.subject_ref_speed = subject_ref_speed
+        self.subject_max_speed_list = subject_ref_speed / ref_speed * max_speed
+        self.subject_min_speed_list = subject_ref_speed / ref_speed * min_speed
+        self.left_trajectory = left_trajectory
+        self.left_ref_speed = left_ref_speed
+        self.left_max_speed_list = left_ref_speed / ref_speed * max_speed
+        self.left_min_speed_list = left_ref_speed / ref_speed * min_speed
+    
+    def add_ego_vehicle(self, model_name = &#34;vehicle.tesla.model3&#34;, safety_distance = 15.0, vehicle_color = None):
+        &#39;&#39;&#39;
+        add ego vehicle to the initial intersection
+        according to the user case, the ego vehicle will follow the 
+        subject lane all the way with constant speed
+        
+        Parameters
+        ----------
+        model_name : string, optional
+            vehicle type. The default is &#34;vehicle.tesla.model3&#34;.
+        safety_distance : float, optional
+            smallest distance between this vehicle and vehicle ahead
+        vehicle_color : string
+            the RGB representation of the vehicle color. e.g. &#39;255,255,255&#39;
+
+        Returns
+        -------
+        uniquename : string
+            the name of the vehicle
+
+        &#39;&#39;&#39;
+        vehicle = ConfigObj()
+        vehicle[&#34;model&#34;] = model_name
+        vehicle[&#34;safety_distance&#34;] = safety_distance
+        
+        new_ref_waypoint = self.subject_waypoint
+        spawn_transform = new_ref_waypoint.transform
+        spawn_location = spawn_transform.location
+        spawn_rotation = spawn_transform.rotation
+        
+        spawn_location = carla.Location(x = spawn_location.x, y = spawn_location.y, z = spawn_location.z + 0.2)
+        
+        uniquename = self.env.spawn_vehicle(model_name = model_name,spawn_point = carla.Transform(spawn_location,spawn_rotation), color = vehicle_color)
+        vehicle[&#34;uniquename&#34;] = uniquename
+        vehicle[&#34;ref_waypoint&#34;] = new_ref_waypoint
+        vehicle[&#34;location&#34;] = spawn_transform.location
+        vehicle[&#34;rotation&#34;] = spawn_transform.rotation
+        
+        if vehicle_color == None:
+            vehicle[&#34;vehicle_color&#34;] = vehicle_color
+        else:
+            vehicle[&#34;vehicle_color&#34;] = vehicle_color.replace(&#39;,&#39;,&#39;;&#39;) # replace , by ; to avoid error when importing from file
+        
+        vehicle[&#34;trajectory&#34;] = self.subject_trajectory
+        vehicle[&#34;ref_speed_list&#34;] = self.subject_ref_speed
+        
+        new_bb = self.env.get_vehicle_bounding_box(uniquename)
+        vehicle[&#34;bounding_box&#34;] = new_bb
+        vehicle[&#34;vehicle_type&#34;] = &#34;ego&#34;
+        
+        # additional settings that&#39;s necessary for using the VehicleControl class
+        vehicle[&#34;stop_choice&#34;] = None
+        vehicle[&#34;penetrate_distance&#34;] = None
+        vehicle[&#34;stop_ref_point&#34;] = None
+        
+        vehicle[&#34;gap&#34;] = None
+        vehicle[&#34;command&#34;] = None
+        vehicle[&#34;obey_traffic_lights&#34;] = False
+        vehicle[&#34;traffic_light&#34;] = False
+        vehicle[&#34;run&#34;] = True
+        vehicle[&#34;choice&#34;] = None
+        
+        self.ego_vehicle = vehicle
+        return uniquename
+    
+    
+    
+    
+    
+    def edit_ego_vehicle(self, model_name = &#34;vehicle.tesla.model3&#34;, safety_distance = 15.0, vehicle_color = None):
+        &#39;&#39;&#39;
+        edit the ego vheicle setting by delete the original ego vehicle and add a new one
+        
+        Parameters
+        ----------
+        model_name : string, optional
+            vehicle type. The default is &#34;vehicle.tesla.model3&#34;.
+        safety_distance : float, optional
+            smallest distance between this vehicle and vehicle ahead
+        vehicle_color : string
+            the RGB representation of the vehicle color. e.g. &#39;255,255,255&#39;
+
+        Returns
+        -------
+        uniquename : string
+            the name of the vehicle
+
+        &#39;&#39;&#39;
+        # get the original uniquename
+        original_uniquename = self.ego_vehicle[&#34;uniquename&#34;]
+        
+        # remove the ego vehicle
+        self.env.destroy_vehicle(original_uniquename)
+        self.ego_vehicle = None
+        
+        # add the new ego vehicle
+        uniquename = self.add_ego_vehicle(model_name = model_name, safety_distance = safety_distance, vehicle_color = vehicle_color)
+        return uniquename
+    
+    def remove_full_path_vehicle(self, uniquename):
+        &#39;&#39;&#39;
+        remove a full path vehicle based on its uniquename
+
+        Parameters
+        ----------
+        uniquename : string
+            name of the vehicle.
+
+        Returns
+        -------
+        Bool : whether the given vehicle is found and removed
+        
+        vehicle_type : string
+            the vehicle type, valid values are &#34;lead&#34;, &#34;follow&#34;
+        
+        choice : string
+            the lane choice, valid values are &#34;subject&#34;, &#34;left&#34; 
+            
+        index : int
+            the index of the vehicle in a specific lane
+
+        &#39;&#39;&#39;
+        vehicle_set = self.subject_lead_vehicle
+        for jj in range(len(vehicle_set) - 1,-1,-1):
+            vehicle = vehicle_set[jj]
+            if vehicle[&#34;uniquename&#34;] == uniquename:
+                self.env.destroy_vehicle(uniquename)
+                vehicle_set.pop(jj)
+                return True, &#34;lead&#34;, &#34;subject&#34;, jj
+        
+        vehicle_set = self.subject_follow_vehicle
+        for jj in range(len(vehicle_set) - 1,-1,-1):
+            vehicle = vehicle_set[jj]
+            if vehicle[&#34;uniquename&#34;] == uniquename:
+                self.env.destroy_vehicle(uniquename)
+                vehicle_set.pop(jj)
+                return True, &#34;follow&#34;, &#34;subject&#34;, jj
+        
+        vehicle_set = self.left_lead_vehicle
+        for jj in range(len(vehicle_set) - 1,-1,-1):
+            vehicle = vehicle_set[jj]
+            if vehicle[&#34;uniquename&#34;] == uniquename:
+                self.env.destroy_vehicle(uniquename)
+                vehicle_set.pop(jj)
+                return True, &#34;lead&#34;, &#34;left&#34;, jj
+        
+        vehicle_set = self.left_follow_vehicle
+        for jj in range(len(vehicle_set) - 1,-1,-1):
+            vehicle = vehicle_set[jj]
+            if vehicle[&#34;uniquename&#34;] == uniquename:
+                self.env.destroy_vehicle(uniquename)
+                vehicle_set.pop(jj)
+                return True, &#34;follow&#34;, &#34;left&#34;, jj
+            
+        return False, None, None, None
+    
+    
+    def add_full_path_vehicle(self, model_name = &#34;vehicle.tesla.model3&#34;, vehicle_type =&#34;lead&#34;, choice = &#34;subject&#34;, command = &#34;speed&#34;, command_start_time = 0.0, gap = 10.0, safety_distance = 15.0, lead_follow_distance = 20.0, vehicle_color = None):
+        &#39;&#39;&#39;
+        add full path vehicle
+
+        Parameters
+        ----------
+        model_name : string, optional
+            vehicle type. The default is &#34;vehicle.tesla.model3&#34;.
+        vehicle_type : string, optional
+            the vehicle type, valid values : &#34;lead&#34;, &#34;follow&#34;. The default is &#34;lead&#34;.
+        choice : string, optional
+            the lane choice, valid values are &#34;subject&#34;, &#34;left&#34;. The default is &#34;subject&#34;.
+        command : string, optional
+            the command the vehicle is going to execute in this section. Valid values: &#34;speed&#34;, &#34;lane&#34;, &#34;distance&#34;. The default is &#34;speed&#34;.
+        command_start_time : string, optional
+            the time at which the command should be executed. The default is 0.0.
+        gap : float, optional
+            the gap between the vehicle and the one in the front of it when adding. The default is 10.0, unit: meter
+        safety_distance : float, optional
+            smallest distance between 2 vehicles when simulation is going. The default is 15.0, unit: meter
+        vehicle_color : string
+            the RGB representation of the vehicle color. e.g. &#39;255,255,255&#39;
+
+        Returns
+        -------
+        uniquename : string
+            the name of the vehicle
+
+
+        &#39;&#39;&#39;
+        # create configuration file for vehicle
+        vehicle = ConfigObj()
+        vehicle[&#34;model&#34;] = model_name
+        vehicle[&#34;safety_distance&#34;] = safety_distance
+        vehicle[&#34;gap&#34;] = gap
+        vehicle[&#34;command&#34;] = command
+        vehicle[&#34;command_start_time&#34;] = command_start_time
+        vehicle[&#34;run&#34;] = True
+        vehicle[&#34;choice&#34;] = choice
+        vehicle[&#34;current_lane&#34;] = choice # which lane the vehicle is currently in
+        vehicle[&#34;vehicle_type&#34;] = vehicle_type 
+        vehicle[&#34;lead_follow_distance&#34;] = lead_follow_distance
+        
+        vehicle[&#34;stop_choice&#34;] = None
+        vehicle[&#34;penetrate_distance&#34;] = None
+        vehicle[&#34;stop_ref_point&#34;] = None
+        vehicle[&#34;obey_traffic_lights&#34;] = False
+        vehicle[&#34;traffic_light&#34;] = False
+        
+        vehicle_set = None
+        ref_waypoint = None
+        vehicle[&#34;trajectory&#34;] = None
+        vehicle[&#34;ref_speed_list&#34;] = None
+        
+        # get the vehicle set by input parameters, so as to create add the vehicle
+        if vehicle_type == &#34;lead&#34; and choice == &#34;subject&#34;:
+            vehicle_set = self.subject_lead_vehicle
+            ref_waypoint = self.subject_waypoint
+            lane_direction = 1 # positive direction for lead
+            vehicle[&#34;trajectory&#34;] = self.subject_trajectory
+            vehicle[&#34;ref_speed_list&#34;] = self.subject_ref_speed
+            
+        elif vehicle_type == &#34;lead&#34; and choice == &#34;left&#34;:
+            vehicle_set = self.left_lead_vehicle
+            ref_waypoint = self.left_ref_waypoint
+            lane_direction = 1 # positive direction for lead
+            vehicle[&#34;trajectory&#34;] = self.left_trajectory
+            vehicle[&#34;ref_speed_list&#34;] = self.left_ref_speed
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;subject&#34;:
+            vehicle_set = self.subject_follow_vehicle
+            ref_waypoint = self.subject_waypoint
+            lane_direction = -1 # negative direction for follow
+            vehicle[&#34;trajectory&#34;] = self.subject_trajectory
+            vehicle[&#34;ref_speed_list&#34;] = self.subject_ref_speed
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;left&#34;:
+            vehicle_set = self.left_follow_vehicle
+            ref_waypoint = self.left_ref_waypoint
+            lane_direction = -1 # negative direction for follow
+            vehicle[&#34;trajectory&#34;] = self.left_trajectory
+            vehicle[&#34;ref_speed_list&#34;] = self.left_ref_speed
+        
+        
+        
+        
+        # get the spawn location
+        if len(vehicle_set) != 0:
+            ref_waypoint = vehicle_set[-1][&#34;ref_waypoint&#34;]
+            bb = vehicle_set[-1][&#34;bounding_box&#34;]
+            
+            curr_length = self.env.get_vehicle_model_length(model_name)
+            
+            gap += bb.x / 2 + curr_length / 2
+        
+        else:
+            bb = self.ego_vehicle[&#34;bounding_box&#34;]
+            curr_length = self.env.get_vehicle_model_length(model_name)
+            gap += bb.x / 2 + curr_length / 2
+            #print(gap)
+        
+        
+        forward_vector = ref_waypoint.transform.get_forward_vector()
+
+        location = ref_waypoint.transform.location
+        raw_spawn_point = carla.Location(x = location.x + lane_direction * gap * forward_vector.x  , y = location.y + lane_direction *  gap * forward_vector.y , z = location.z + 0.1)
+        
+        new_ref_waypoint = self.carla_map.get_waypoint(raw_spawn_point)
+        
+        spawn_transform = new_ref_waypoint.transform
+        spawn_location = spawn_transform.location
+        spawn_rotation = spawn_transform.rotation
+        
+        spawn_location = carla.Location(x = spawn_location.x, y = spawn_location.y, z = spawn_location.z + 0.2)
+        
+        uniquename = self.env.spawn_vehicle(model_name = model_name,spawn_point = carla.Transform(spawn_location,spawn_rotation) , color = vehicle_color)
+        
+        vehicle[&#34;uniquename&#34;] = uniquename
+        vehicle[&#34;ref_waypoint&#34;] = new_ref_waypoint
+        vehicle[&#34;location&#34;] = new_ref_waypoint.transform.location
+        vehicle[&#34;rotation&#34;] = new_ref_waypoint.transform.rotation
+        
+        if vehicle_color == None:
+            vehicle[&#34;vehicle_color&#34;] = vehicle_color
+        else:
+            vehicle[&#34;vehicle_color&#34;] = vehicle_color.replace(&#39;,&#39;,&#39;;&#39;) # replace , by ; to avoid error when importing from file
+        
+        vehicle[&#34;subject_trajectory&#34;] = self.subject_trajectory
+        vehicle[&#34;subject_ref_speed_list&#34;] = self.subject_ref_speed
+        vehicle[&#34;subject_max_speed_list&#34;] = self.subject_max_speed_list
+        vehicle[&#34;subject_min_speed_list&#34;] = self.subject_min_speed_list
+        vehicle[&#34;left_trajectory&#34;] = self.left_trajectory
+        vehicle[&#34;left_ref_speed_list&#34;] = self.left_ref_speed
+        vehicle[&#34;left_max_speed_list&#34;] = self.left_max_speed_list
+        vehicle[&#34;left_min_speed_list&#34;] = self.left_min_speed_list
+        
+        new_bb = self.env.get_vehicle_bounding_box(uniquename)
+        vehicle[&#34;bounding_box&#34;] = new_bb
+        
+        vehicle_set.append(vehicle)
+        
+        return uniquename
+    
+    def edit_full_path_vehicle(self, uniquename, vehicle_type, choice, model_name = &#34;vehicle.tesla.model3&#34;,   command = &#34;speed&#34;, command_start_time = 0.0, gap = 10.0, safety_distance = 25.0, lead_follow_distance = 30.0, vehicle_color = None):
+        &#39;&#39;&#39;
+        edit full path vehicle settings by deleting the original vehicle and then add a new one
+
+        Parameters
+        ----------
+        uniquename : string
+            the name of the vehicle
+        vehicle_type : string, 
+            the vehicle type, valid values : &#34;lead&#34;, &#34;follow&#34;. 
+        choice : string, optional
+            the lane choice, valid values are &#34;subject&#34;, &#34;left&#34;. 
+        model_name : string, optional
+            vehicle type. The default is &#34;vehicle.tesla.model3&#34;.
+        command : string, optional
+            the command the vehicle is going to execute in this section. Valid values: &#34;speed&#34;, &#34;lane&#34;, &#34;distance&#34;. The default is &#34;speed&#34;.
+        command_start_time : string, optional
+            the time at which the command should be executed. The default is 0.0.
+        gap : float, optional
+            the gap between the vehicle and the one in the front of it when adding. The default is 10.0, unit: meter
+        safety_distance : float, optional
+            smallest distance between 2 vehicles when simulation is going. The default is 15.0, unit: meter
+        vehicle_color : string
+            the RGB representation of the vehicle color. e.g. &#39;255,255,255&#39;
+
+        Returns
+        -------
+        new_uniquename : string
+            the new_name of the vehicle
+
+        index: int
+            the index of the vehicle to be changed
+
+        &#39;&#39;&#39;
+        if vehicle_type == &#34;lead&#34; and choice == &#34;subject&#34;:
+            vehicle_set = self.subject_lead_vehicle
+            lane_direction = 1 # positive direction for lead
+
+            
+        elif vehicle_type == &#34;lead&#34; and choice == &#34;left&#34;:
+            vehicle_set = self.left_lead_vehicle
+            lane_direction = 1 # positive direction for lead
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;subject&#34;:
+            vehicle_set = self.subject_follow_vehicle
+            lane_direction = -1 # negative direction for follow
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;left&#34;:
+            vehicle_set = self.left_follow_vehicle
+            lane_direction = -1 # negative direction for follow
+            
+        # get vehicle index in the given lane
+        index = 0
+        original_gap = None
+        for vehicle in vehicle_set:
+            if vehicle[&#34;uniquename&#34;] == uniquename:
+                original_gap = vehicle[&#34;gap&#34;]
+                break
+            index += 1
+            
+        # shift the vehicle
+        if original_gap != None:
+            shift_distance = original_gap - gap
+            self._shift_vehicles(shift_distance, vehicle_type = vehicle_type , choice = choice, index = index)
+        else:
+            print(&#34;return None in edit vehicle&#34;)
+            return None
+        
+        # remove the current vehicle, 
+        # note that after removing the vehicle, index is pointing at the vehicle after the current one
+        removed, _, _, _ = self.remove_full_path_vehicle(uniquename)
+        if not removed:
+            print(&#34;vehicle not found&#34;)
+            return None
+        
+        # split the vehicle set
+        if vehicle_type == &#34;lead&#34; and choice == &#34;subject&#34;:
+            vehicles_after_current = self.subject_lead_vehicle[index:]
+            self.subject_lead_vehicle = self.subject_lead_vehicle[:index]
+
+            
+        elif vehicle_type == &#34;lead&#34; and choice == &#34;left&#34;:
+            vehicles_after_current = self.left_lead_vehicle[index:]
+            self.left_lead_vehicle = self.left_lead_vehicle[:index]
+
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;subject&#34;:
+            vehicles_after_current = self.subject_follow_vehicle[index:]
+            self.subject_follow_vehicle = self.subject_follow_vehicle[:index]
+
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;left&#34;:
+            vehicles_after_current = self.left_follow_vehicle[index:]
+            self.left_follow_vehicle = self.left_follow_vehicle[:index]
+
+        
+        # add the new vehicle
+        new_uniquename = self.add_full_path_vehicle(model_name = model_name, 
+                                                    vehicle_type = vehicle_type, 
+                                                    choice = choice, 
+                                                    command = command, 
+                                                    command_start_time = command_start_time, 
+                                                    gap = gap, safety_distance = safety_distance, 
+                                                    lead_follow_distance = lead_follow_distance, 
+                                                    vehicle_color = vehicle_color)
+        
+        # put back the vehicles after the current one
+        if vehicle_type == &#34;lead&#34; and choice == &#34;subject&#34;:
+            self.subject_lead_vehicle += vehicles_after_current
+
+            
+        elif vehicle_type == &#34;lead&#34; and choice == &#34;left&#34;:
+            self.left_lead_vehicle += vehicles_after_current
+
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;subject&#34;:
+            self.subject_follow_vehicle += vehicles_after_current
+
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;left&#34;:
+            self.left_follow_vehicle += vehicles_after_current
+            
+        return new_uniquename, index
+    
+    
+    def _shift_vehicles(self, length, vehicle_type, choice, index = 0):
+        &#39;&#39;&#39;
+        shift the vehicle starting at &#34;index&#34; in a specific lane specified by the
+        vehicle_type and choice
+
+        Parameters
+        ----------
+        length : float
+            the length these vehicles will be moved. Positive value moves vehicles away from the ego
+        vehicle_type : string, 
+            the vehicle type, valid values : &#34;lead&#34;, &#34;follow&#34;. 
+        choice : string, 
+            the lane choice, valid values are &#34;subject&#34;, &#34;left&#34;. 
+        index : int
+            the index of the vehicle inside a specific lane.  default is 0
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        if vehicle_type == &#34;lead&#34; and choice == &#34;subject&#34;:
+            vehicle_set = self.subject_lead_vehicle
+            lane_direction = 1 # positive direction for lead
+
+            
+        elif vehicle_type == &#34;lead&#34; and choice == &#34;left&#34;:
+            vehicle_set = self.left_lead_vehicle
+            lane_direction = 1 # positive direction for lead
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;subject&#34;:
+            vehicle_set = self.subject_follow_vehicle
+            lane_direction = -1 # negative direction for follow
+            
+        elif vehicle_type == &#34;follow&#34; and choice == &#34;left&#34;:
+            vehicle_set = self.left_follow_vehicle
+            lane_direction = -1 # negative direction for follow
+    
+        for ii in range(len(vehicle_set) - 1,index - 1,-1):
+            vehicle = vehicle_set[ii]
+            new_ref_waypoint = self._get_next_waypoint(vehicle[&#34;ref_waypoint&#34;],distance = length * lane_direction) # get the new
+                                                                                                                   # reference point
+            new_ref_location = new_ref_waypoint.transform.location          
+
+            spawn_location = carla.Location(x = new_ref_location.x, y = new_ref_location.y, z = new_ref_location.z + 0.1)  
+            spawn_rotation = new_ref_waypoint.transform.rotation
+                                                                            
+            self.env.move_vehicle_location(vehicle[&#34;uniquename&#34;],carla.Transform(spawn_location,spawn_rotation))
+            vehicle[&#34;ref_waypoint&#34;] = new_ref_waypoint
+            vehicle[&#34;location&#34;] = spawn_location
+            vehicle[&#34;rotation&#34;] = spawn_rotation
+            
+        
+    
+    def _get_unit_left_vector(self,yaw):
+        # get the right vector
+        right_yaw = (yaw + 90) % 360
+        rad_yaw = math.radians(right_yaw)
+        right_vector = [math.cos(rad_yaw),math.sin(rad_yaw)]
+        right_vector = right_vector / np.linalg.norm(right_vector)
+        return right_vector
+    
+    
+    def _get_left_waypoint(self, curr_waypoint):
+        # get the point to the left of the current one
+        left_shift = 3.0
+        
+        curr_location = curr_waypoint.transform.location
+        ref_yaw = curr_waypoint.transform.rotation.yaw
+        left_vector = self._get_unit_left_vector(ref_yaw)
+    
+        new_location = carla.Location(x = curr_location.x - left_shift * left_vector[0], y = curr_location.y - left_shift * left_vector[1], z = curr_location.z)
+        
+        left_waypoint = self.carla_map.get_waypoint(new_location)
+        return left_waypoint
+    
+    def _get_next_waypoint(self,curr_waypoint,distance = 10):
+        &#39;&#39;&#39;
+        
+
+        Parameters
+        ----------
+        curr_waypoint : carla.Waypoint
+            current waypoint.
+        distance : float, optional
+            &#34;distance&#34; between current waypoint and target waypoint . The default is 10.
+
+        Returns
+        -------
+        next_waypoint : carla.Waypoint
+            next waypoint, &#34;distance&#34; away from curr_waypoint, in the direction of the current way point
+        &#39;&#39;&#39;
+        forward_vector = curr_waypoint.transform.get_forward_vector()
+
+        location = curr_waypoint.transform.location
+        raw_spawn_point = carla.Location(x = location.x + distance * forward_vector.x  , y = location.y + distance * forward_vector.y , z = location.z + 0.1)
+        
+        next_waypoint = self.carla_map.get_waypoint(raw_spawn_point)
+        return next_waypoint</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="backend.section_definition.Section" href="section_definition.html#backend.section_definition.Section">Section</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="backend.section_init_definition.InitSection.add_ego_vehicle"><code class="name flex">
+<span>def <span class="ident">add_ego_vehicle</span></span>(<span>self, model_name='vehicle.tesla.model3', safety_distance=15.0, vehicle_color=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>add ego vehicle to the initial intersection
+according to the user case, the ego vehicle will follow the
+subject lane all the way with constant speed</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model_name</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>vehicle type. The default is "vehicle.tesla.model3".</dd>
+<dt><strong><code>safety_distance</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>smallest distance between this vehicle and vehicle ahead</dd>
+<dt><strong><code>vehicle_color</code></strong> :&ensp;<code>string</code></dt>
+<dd>the RGB representation of the vehicle color. e.g. '255,255,255'</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>uniquename</code></strong> :&ensp;<code>string</code></dt>
+<dd>the name of the vehicle</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_ego_vehicle(self, model_name = &#34;vehicle.tesla.model3&#34;, safety_distance = 15.0, vehicle_color = None):
+    &#39;&#39;&#39;
+    add ego vehicle to the initial intersection
+    according to the user case, the ego vehicle will follow the 
+    subject lane all the way with constant speed
+    
+    Parameters
+    ----------
+    model_name : string, optional
+        vehicle type. The default is &#34;vehicle.tesla.model3&#34;.
+    safety_distance : float, optional
+        smallest distance between this vehicle and vehicle ahead
+    vehicle_color : string
+        the RGB representation of the vehicle color. e.g. &#39;255,255,255&#39;
+
+    Returns
+    -------
+    uniquename : string
+        the name of the vehicle
+
+    &#39;&#39;&#39;
+    vehicle = ConfigObj()
+    vehicle[&#34;model&#34;] = model_name
+    vehicle[&#34;safety_distance&#34;] = safety_distance
+    
+    new_ref_waypoint = self.subject_waypoint
+    spawn_transform = new_ref_waypoint.transform
+    spawn_location = spawn_transform.location
+    spawn_rotation = spawn_transform.rotation
+    
+    spawn_location = carla.Location(x = spawn_location.x, y = spawn_location.y, z = spawn_location.z + 0.2)
+    
+    uniquename = self.env.spawn_vehicle(model_name = model_name,spawn_point = carla.Transform(spawn_location,spawn_rotation), color = vehicle_color)
+    vehicle[&#34;uniquename&#34;] = uniquename
+    vehicle[&#34;ref_waypoint&#34;] = new_ref_waypoint
+    vehicle[&#34;location&#34;] = spawn_transform.location
+    vehicle[&#34;rotation&#34;] = spawn_transform.rotation
+    
+    if vehicle_color == None:
+        vehicle[&#34;vehicle_color&#34;] = vehicle_color
+    else:
+        vehicle[&#34;vehicle_color&#34;] = vehicle_color.replace(&#39;,&#39;,&#39;;&#39;) # replace , by ; to avoid error when importing from file
+    
+    vehicle[&#34;trajectory&#34;] = self.subject_trajectory
+    vehicle[&#34;ref_speed_list&#34;] = self.subject_ref_speed
+    
+    new_bb = self.env.get_vehicle_bounding_box(uniquename)
+    vehicle[&#34;bounding_box&#34;] = new_bb
+    vehicle[&#34;vehicle_type&#34;] = &#34;ego&#34;
+    
+    # additional settings that&#39;s necessary for using the VehicleControl class
+    vehicle[&#34;stop_choice&#34;] = None
+    vehicle[&#34;penetrate_distance&#34;] = None
+    vehicle[&#34;stop_ref_point&#34;] = None
+    
+    vehicle[&#34;gap&#34;] = None
+    vehicle[&#34;command&#34;] = None
+    vehicle[&#34;obey_traffic_lights&#34;] = False
+    vehicle[&#34;traffic_light&#34;] = False
+    vehicle[&#34;run&#34;] = True
+    vehicle[&#34;choice&#34;] = None
+    
+    self.ego_vehicle = vehicle
+    return uniquename</code></pre>
+</details>
+</dd>
+<dt id="backend.section_init_definition.InitSection.add_full_path_vehicle"><code class="name flex">
+<span>def <span class="ident">add_full_path_vehicle</span></span>(<span>self, model_name='vehicle.tesla.model3', vehicle_type='lead', choice='subject', command='speed', command_start_time=0.0, gap=10.0, safety_distance=15.0, lead_follow_distance=20.0, vehicle_color=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>add full path vehicle</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model_name</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>vehicle type. The default is "vehicle.tesla.model3".</dd>
+<dt><strong><code>vehicle_type</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>the vehicle type, valid values : "lead", "follow". The default is "lead".</dd>
+<dt><strong><code>choice</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>the lane choice, valid values are "subject", "left". The default is "subject".</dd>
+<dt><strong><code>command</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>the command the vehicle is going to execute in this section. Valid values: "speed", "lane", "distance". The default is "speed".</dd>
+<dt><strong><code>command_start_time</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>the time at which the command should be executed. The default is 0.0.</dd>
+<dt><strong><code>gap</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>the gap between the vehicle and the one in the front of it when adding. The default is 10.0, unit: meter</dd>
+<dt><strong><code>safety_distance</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>smallest distance between 2 vehicles when simulation is going. The default is 15.0, unit: meter</dd>
+<dt><strong><code>vehicle_color</code></strong> :&ensp;<code>string</code></dt>
+<dd>the RGB representation of the vehicle color. e.g. '255,255,255'</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>uniquename</code></strong> :&ensp;<code>string</code></dt>
+<dd>the name of the vehicle</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_full_path_vehicle(self, model_name = &#34;vehicle.tesla.model3&#34;, vehicle_type =&#34;lead&#34;, choice = &#34;subject&#34;, command = &#34;speed&#34;, command_start_time = 0.0, gap = 10.0, safety_distance = 15.0, lead_follow_distance = 20.0, vehicle_color = None):
+    &#39;&#39;&#39;
+    add full path vehicle
+
+    Parameters
+    ----------
+    model_name : string, optional
+        vehicle type. The default is &#34;vehicle.tesla.model3&#34;.
+    vehicle_type : string, optional
+        the vehicle type, valid values : &#34;lead&#34;, &#34;follow&#34;. The default is &#34;lead&#34;.
+    choice : string, optional
+        the lane choice, valid values are &#34;subject&#34;, &#34;left&#34;. The default is &#34;subject&#34;.
+    command : string, optional
+        the command the vehicle is going to execute in this section. Valid values: &#34;speed&#34;, &#34;lane&#34;, &#34;distance&#34;. The default is &#34;speed&#34;.
+    command_start_time : string, optional
+        the time at which the command should be executed. The default is 0.0.
+    gap : float, optional
+        the gap between the vehicle and the one in the front of it when adding. The default is 10.0, unit: meter
+    safety_distance : float, optional
+        smallest distance between 2 vehicles when simulation is going. The default is 15.0, unit: meter
+    vehicle_color : string
+        the RGB representation of the vehicle color. e.g. &#39;255,255,255&#39;
+
+    Returns
+    -------
+    uniquename : string
+        the name of the vehicle
+
+
+    &#39;&#39;&#39;
+    # create configuration file for vehicle
+    vehicle = ConfigObj()
+    vehicle[&#34;model&#34;] = model_name
+    vehicle[&#34;safety_distance&#34;] = safety_distance
+    vehicle[&#34;gap&#34;] = gap
+    vehicle[&#34;command&#34;] = command
+    vehicle[&#34;command_start_time&#34;] = command_start_time
+    vehicle[&#34;run&#34;] = True
+    vehicle[&#34;choice&#34;] = choice
+    vehicle[&#34;current_lane&#34;] = choice # which lane the vehicle is currently in
+    vehicle[&#34;vehicle_type&#34;] = vehicle_type 
+    vehicle[&#34;lead_follow_distance&#34;] = lead_follow_distance
+    
+    vehicle[&#34;stop_choice&#34;] = None
+    vehicle[&#34;penetrate_distance&#34;] = None
+    vehicle[&#34;stop_ref_point&#34;] = None
+    vehicle[&#34;obey_traffic_lights&#34;] = False
+    vehicle[&#34;traffic_light&#34;] = False
+    
+    vehicle_set = None
+    ref_waypoint = None
+    vehicle[&#34;trajectory&#34;] = None
+    vehicle[&#34;ref_speed_list&#34;] = None
+    
+    # get the vehicle set by input parameters, so as to create add the vehicle
+    if vehicle_type == &#34;lead&#34; and choice == &#34;subject&#34;:
+        vehicle_set = self.subject_lead_vehicle
+        ref_waypoint = self.subject_waypoint
+        lane_direction = 1 # positive direction for lead
+        vehicle[&#34;trajectory&#34;] = self.subject_trajectory
+        vehicle[&#34;ref_speed_list&#34;] = self.subject_ref_speed
+        
+    elif vehicle_type == &#34;lead&#34; and choice == &#34;left&#34;:
+        vehicle_set = self.left_lead_vehicle
+        ref_waypoint = self.left_ref_waypoint
+        lane_direction = 1 # positive direction for lead
+        vehicle[&#34;trajectory&#34;] = self.left_trajectory
+        vehicle[&#34;ref_speed_list&#34;] = self.left_ref_speed
+        
+    elif vehicle_type == &#34;follow&#34; and choice == &#34;subject&#34;:
+        vehicle_set = self.subject_follow_vehicle
+        ref_waypoint = self.subject_waypoint
+        lane_direction = -1 # negative direction for follow
+        vehicle[&#34;trajectory&#34;] = self.subject_trajectory
+        vehicle[&#34;ref_speed_list&#34;] = self.subject_ref_speed
+        
+    elif vehicle_type == &#34;follow&#34; and choice == &#34;left&#34;:
+        vehicle_set = self.left_follow_vehicle
+        ref_waypoint = self.left_ref_waypoint
+        lane_direction = -1 # negative direction for follow
+        vehicle[&#34;trajectory&#34;] = self.left_trajectory
+        vehicle[&#34;ref_speed_list&#34;] = self.left_ref_speed
+    
+    
+    
+    
+    # get the spawn location
+    if len(vehicle_set) != 0:
+        ref_waypoint = vehicle_set[-1][&#34;ref_waypoint&#34;]
+        bb = vehicle_set[-1][&#34;bounding_box&#34;]
+        
+        curr_length = self.env.get_vehicle_model_length(model_name)
+        
+        gap += bb.x / 2 + curr_length / 2
+    
+    else:
+        bb = self.ego_vehicle[&#34;bounding_box&#34;]
+        curr_length = self.env.get_vehicle_model_length(model_name)
+        gap += bb.x / 2 + curr_length / 2
+        #print(gap)
+    
+    
+    forward_vector = ref_waypoint.transform.get_forward_vector()
+
+    location = ref_waypoint.transform.location
+    raw_spawn_point = carla.Location(x = location.x + lane_direction * gap * forward_vector.x  , y = location.y + lane_direction *  gap * forward_vector.y , z = location.z + 0.1)
+    
+    new_ref_waypoint = self.carla_map.get_waypoint(raw_spawn_point)
+    
+    spawn_transform = new_ref_waypoint.transform
+    spawn_location = spawn_transform.location
+    spawn_rotation = spawn_transform.rotation
+    
+    spawn_location = carla.Location(x = spawn_location.x, y = spawn_location.y, z = spawn_location.z + 0.2)
+    
+    uniquename = self.env.spawn_vehicle(model_name = model_name,spawn_point = carla.Transform(spawn_location,spawn_rotation) , color = vehicle_color)
+    
+    vehicle[&#34;uniquename&#34;] = uniquename
+    vehicle[&#34;ref_waypoint&#34;] = new_ref_waypoint
+    vehicle[&#34;location&#34;] = new_ref_waypoint.transform.location
+    vehicle[&#34;rotation&#34;] = new_ref_waypoint.transform.rotation
+    
+    if vehicle_color == None:
+        vehicle[&#34;vehicle_color&#34;] = vehicle_color
+    else:
+        vehicle[&#34;vehicle_color&#34;] = vehicle_color.replace(&#39;,&#39;,&#39;;&#39;) # replace , by ; to avoid error when importing from file
+    
+    vehicle[&#34;subject_trajectory&#34;] = self.subject_trajectory
+    vehicle[&#34;subject_ref_speed_list&#34;] = self.subject_ref_speed
+    vehicle[&#34;subject_max_speed_list&#34;] = self.subject_max_speed_list
+    vehicle[&#34;subject_min_speed_list&#34;] = self.subject_min_speed_list
+    vehicle[&#34;left_trajectory&#34;] = self.left_trajectory
+    vehicle[&#34;left_ref_speed_list&#34;] = self.left_ref_speed
+    vehicle[&#34;left_max_speed_list&#34;] = self.left_max_speed_list
+    vehicle[&#34;left_min_speed_list&#34;] = self.left_min_speed_list
+    
+    new_bb = self.env.get_vehicle_bounding_box(uniquename)
+    vehicle[&#34;bounding_box&#34;] = new_bb
+    
+    vehicle_set.append(vehicle)
+    
+    return uniquename</code></pre>
+</details>
+</dd>
+<dt id="backend.section_init_definition.InitSection.edit_ego_vehicle"><code class="name flex">
+<span>def <span class="ident">edit_ego_vehicle</span></span>(<span>self, model_name='vehicle.tesla.model3', safety_distance=15.0, vehicle_color=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>edit the ego vheicle setting by delete the original ego vehicle and add a new one</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model_name</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>vehicle type. The default is "vehicle.tesla.model3".</dd>
+<dt><strong><code>safety_distance</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>smallest distance between this vehicle and vehicle ahead</dd>
+<dt><strong><code>vehicle_color</code></strong> :&ensp;<code>string</code></dt>
+<dd>the RGB representation of the vehicle color. e.g. '255,255,255'</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>uniquename</code></strong> :&ensp;<code>string</code></dt>
+<dd>the name of the vehicle</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def edit_ego_vehicle(self, model_name = &#34;vehicle.tesla.model3&#34;, safety_distance = 15.0, vehicle_color = None):
+    &#39;&#39;&#39;
+    edit the ego vheicle setting by delete the original ego vehicle and add a new one
+    
+    Parameters
+    ----------
+    model_name : string, optional
+        vehicle type. The default is &#34;vehicle.tesla.model3&#34;.
+    safety_distance : float, optional
+        smallest distance between this vehicle and vehicle ahead
+    vehicle_color : string
+        the RGB representation of the vehicle color. e.g. &#39;255,255,255&#39;
+
+    Returns
+    -------
+    uniquename : string
+        the name of the vehicle
+
+    &#39;&#39;&#39;
+    # get the original uniquename
+    original_uniquename = self.ego_vehicle[&#34;uniquename&#34;]
+    
+    # remove the ego vehicle
+    self.env.destroy_vehicle(original_uniquename)
+    self.ego_vehicle = None
+    
+    # add the new ego vehicle
+    uniquename = self.add_ego_vehicle(model_name = model_name, safety_distance = safety_distance, vehicle_color = vehicle_color)
+    return uniquename</code></pre>
+</details>
+</dd>
+<dt id="backend.section_init_definition.InitSection.edit_full_path_vehicle"><code class="name flex">
+<span>def <span class="ident">edit_full_path_vehicle</span></span>(<span>self, uniquename, vehicle_type, choice, model_name='vehicle.tesla.model3', command='speed', command_start_time=0.0, gap=10.0, safety_distance=25.0, lead_follow_distance=30.0, vehicle_color=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>edit full path vehicle settings by deleting the original vehicle and then add a new one</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>uniquename</code></strong> :&ensp;<code>string</code></dt>
+<dd>the name of the vehicle</dd>
+<dt><strong><code>vehicle_type</code></strong> :&ensp;<code>string, </code></dt>
+<dd>the vehicle type, valid values : "lead", "follow".</dd>
+<dt><strong><code>choice</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>the lane choice, valid values are "subject", "left".</dd>
+<dt><strong><code>model_name</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>vehicle type. The default is "vehicle.tesla.model3".</dd>
+<dt><strong><code>command</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>the command the vehicle is going to execute in this section. Valid values: "speed", "lane", "distance". The default is "speed".</dd>
+<dt><strong><code>command_start_time</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>the time at which the command should be executed. The default is 0.0.</dd>
+<dt><strong><code>gap</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>the gap between the vehicle and the one in the front of it when adding. The default is 10.0, unit: meter</dd>
+<dt><strong><code>safety_distance</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>smallest distance between 2 vehicles when simulation is going. The default is 15.0, unit: meter</dd>
+<dt><strong><code>vehicle_color</code></strong> :&ensp;<code>string</code></dt>
+<dd>the RGB representation of the vehicle color. e.g. '255,255,255'</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>new_uniquename</code></strong> :&ensp;<code>string</code></dt>
+<dd>the new_name of the vehicle</dd>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>the index of the vehicle to be changed</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def edit_full_path_vehicle(self, uniquename, vehicle_type, choice, model_name = &#34;vehicle.tesla.model3&#34;,   command = &#34;speed&#34;, command_start_time = 0.0, gap = 10.0, safety_distance = 25.0, lead_follow_distance = 30.0, vehicle_color = None):
+    &#39;&#39;&#39;
+    edit full path vehicle settings by deleting the original vehicle and then add a new one
+
+    Parameters
+    ----------
+    uniquename : string
+        the name of the vehicle
+    vehicle_type : string, 
+        the vehicle type, valid values : &#34;lead&#34;, &#34;follow&#34;. 
+    choice : string, optional
+        the lane choice, valid values are &#34;subject&#34;, &#34;left&#34;. 
+    model_name : string, optional
+        vehicle type. The default is &#34;vehicle.tesla.model3&#34;.
+    command : string, optional
+        the command the vehicle is going to execute in this section. Valid values: &#34;speed&#34;, &#34;lane&#34;, &#34;distance&#34;. The default is &#34;speed&#34;.
+    command_start_time : string, optional
+        the time at which the command should be executed. The default is 0.0.
+    gap : float, optional
+        the gap between the vehicle and the one in the front of it when adding. The default is 10.0, unit: meter
+    safety_distance : float, optional
+        smallest distance between 2 vehicles when simulation is going. The default is 15.0, unit: meter
+    vehicle_color : string
+        the RGB representation of the vehicle color. e.g. &#39;255,255,255&#39;
+
+    Returns
+    -------
+    new_uniquename : string
+        the new_name of the vehicle
+
+    index: int
+        the index of the vehicle to be changed
+
+    &#39;&#39;&#39;
+    if vehicle_type == &#34;lead&#34; and choice == &#34;subject&#34;:
+        vehicle_set = self.subject_lead_vehicle
+        lane_direction = 1 # positive direction for lead
+
+        
+    elif vehicle_type == &#34;lead&#34; and choice == &#34;left&#34;:
+        vehicle_set = self.left_lead_vehicle
+        lane_direction = 1 # positive direction for lead
+        
+    elif vehicle_type == &#34;follow&#34; and choice == &#34;subject&#34;:
+        vehicle_set = self.subject_follow_vehicle
+        lane_direction = -1 # negative direction for follow
+        
+    elif vehicle_type == &#34;follow&#34; and choice == &#34;left&#34;:
+        vehicle_set = self.left_follow_vehicle
+        lane_direction = -1 # negative direction for follow
+        
+    # get vehicle index in the given lane
+    index = 0
+    original_gap = None
+    for vehicle in vehicle_set:
+        if vehicle[&#34;uniquename&#34;] == uniquename:
+            original_gap = vehicle[&#34;gap&#34;]
+            break
+        index += 1
+        
+    # shift the vehicle
+    if original_gap != None:
+        shift_distance = original_gap - gap
+        self._shift_vehicles(shift_distance, vehicle_type = vehicle_type , choice = choice, index = index)
+    else:
+        print(&#34;return None in edit vehicle&#34;)
+        return None
+    
+    # remove the current vehicle, 
+    # note that after removing the vehicle, index is pointing at the vehicle after the current one
+    removed, _, _, _ = self.remove_full_path_vehicle(uniquename)
+    if not removed:
+        print(&#34;vehicle not found&#34;)
+        return None
+    
+    # split the vehicle set
+    if vehicle_type == &#34;lead&#34; and choice == &#34;subject&#34;:
+        vehicles_after_current = self.subject_lead_vehicle[index:]
+        self.subject_lead_vehicle = self.subject_lead_vehicle[:index]
+
+        
+    elif vehicle_type == &#34;lead&#34; and choice == &#34;left&#34;:
+        vehicles_after_current = self.left_lead_vehicle[index:]
+        self.left_lead_vehicle = self.left_lead_vehicle[:index]
+
+        
+    elif vehicle_type == &#34;follow&#34; and choice == &#34;subject&#34;:
+        vehicles_after_current = self.subject_follow_vehicle[index:]
+        self.subject_follow_vehicle = self.subject_follow_vehicle[:index]
+
+        
+    elif vehicle_type == &#34;follow&#34; and choice == &#34;left&#34;:
+        vehicles_after_current = self.left_follow_vehicle[index:]
+        self.left_follow_vehicle = self.left_follow_vehicle[:index]
+
+    
+    # add the new vehicle
+    new_uniquename = self.add_full_path_vehicle(model_name = model_name, 
+                                                vehicle_type = vehicle_type, 
+                                                choice = choice, 
+                                                command = command, 
+                                                command_start_time = command_start_time, 
+                                                gap = gap, safety_distance = safety_distance, 
+                                                lead_follow_distance = lead_follow_distance, 
+                                                vehicle_color = vehicle_color)
+    
+    # put back the vehicles after the current one
+    if vehicle_type == &#34;lead&#34; and choice == &#34;subject&#34;:
+        self.subject_lead_vehicle += vehicles_after_current
+
+        
+    elif vehicle_type == &#34;lead&#34; and choice == &#34;left&#34;:
+        self.left_lead_vehicle += vehicles_after_current
+
+        
+    elif vehicle_type == &#34;follow&#34; and choice == &#34;subject&#34;:
+        self.subject_follow_vehicle += vehicles_after_current
+
+        
+    elif vehicle_type == &#34;follow&#34; and choice == &#34;left&#34;:
+        self.left_follow_vehicle += vehicles_after_current
+        
+    return new_uniquename, index</code></pre>
+</details>
+</dd>
+<dt id="backend.section_init_definition.InitSection.get_full_path_trajectory"><code class="name flex">
+<span>def <span class="ident">get_full_path_trajectory</span></span>(<span>self, subject_trajectory, subject_ref_speed, left_trajectory, left_ref_speed, ref_speed, max_speed, min_speed)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>subject_trajectory</code></strong> :&ensp;<code>list, [(float, float), &hellip; ]</code></dt>
+<dd>the subject trajectory.</dd>
+<dt><strong><code>subject_ref_speed</code></strong> :&ensp;<code>list </code></dt>
+<dd>reference speed for subject trajectory</dd>
+<dt><strong><code>left_trajectory</code></strong> :&ensp;<code>list, [(float, float), &hellip; ]</code></dt>
+<dd>the left trajectory.</dd>
+<dt><strong><code>left_ref_speed</code></strong> :&ensp;<code>list </code></dt>
+<dd>reference speed for left trajectory</dd>
+<dt><strong><code>ref_speed</code></strong> :&ensp;<code>float</code></dt>
+<dd>the average of the max and min speed</dd>
+<dt><strong><code>max_speed</code></strong> :&ensp;<code>float</code></dt>
+<dd>the max speed of the vehicle</dd>
+<dt><strong><code>min_speed</code></strong> :&ensp;<code>float</code></dt>
+<dd>the minimum speed of the vehicle</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>None.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_full_path_trajectory(self, subject_trajectory, subject_ref_speed, left_trajectory, left_ref_speed, ref_speed, max_speed,min_speed):
+    &#39;&#39;&#39;
+    
+
+    Parameters
+    ----------
+    subject_trajectory : list, [(float, float), ... ]
+        the subject trajectory.
+    subject_ref_speed : list 
+        reference speed for subject trajectory  
+    left_trajectory : list, [(float, float), ... ]
+        the left trajectory.
+    left_ref_speed : list 
+        reference speed for left trajectory
+    ref_speed : float
+        the average of the max and min speed
+    max_speed : float
+        the max speed of the vehicle
+    min_speed : float
+        the minimum speed of the vehicle
+
+    Returns
+    -------
+    None.
+
+    &#39;&#39;&#39;
+    self.subject_trajectory = subject_trajectory
+    self.subject_ref_speed = subject_ref_speed
+    self.subject_max_speed_list = subject_ref_speed / ref_speed * max_speed
+    self.subject_min_speed_list = subject_ref_speed / ref_speed * min_speed
+    self.left_trajectory = left_trajectory
+    self.left_ref_speed = left_ref_speed
+    self.left_max_speed_list = left_ref_speed / ref_speed * max_speed
+    self.left_min_speed_list = left_ref_speed / ref_speed * min_speed</code></pre>
+</details>
+</dd>
+<dt id="backend.section_init_definition.InitSection.remove_full_path_vehicle"><code class="name flex">
+<span>def <span class="ident">remove_full_path_vehicle</span></span>(<span>self, uniquename)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>remove a full path vehicle based on its uniquename</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>uniquename</code></strong> :&ensp;<code>string</code></dt>
+<dd>name of the vehicle.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>Bool</code></strong> :&ensp;<code>whether the given vehicle is found and removed</code></dt>
+<dd>&nbsp;</dd>
+<dt><strong><code>vehicle_type</code></strong> :&ensp;<code>string</code></dt>
+<dd>the vehicle type, valid values are "lead", "follow"</dd>
+<dt><strong><code>choice</code></strong> :&ensp;<code>string</code></dt>
+<dd>the lane choice, valid values are "subject", "left"</dd>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>the index of the vehicle in a specific lane</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def remove_full_path_vehicle(self, uniquename):
+    &#39;&#39;&#39;
+    remove a full path vehicle based on its uniquename
+
+    Parameters
+    ----------
+    uniquename : string
+        name of the vehicle.
+
+    Returns
+    -------
+    Bool : whether the given vehicle is found and removed
+    
+    vehicle_type : string
+        the vehicle type, valid values are &#34;lead&#34;, &#34;follow&#34;
+    
+    choice : string
+        the lane choice, valid values are &#34;subject&#34;, &#34;left&#34; 
+        
+    index : int
+        the index of the vehicle in a specific lane
+
+    &#39;&#39;&#39;
+    vehicle_set = self.subject_lead_vehicle
+    for jj in range(len(vehicle_set) - 1,-1,-1):
+        vehicle = vehicle_set[jj]
+        if vehicle[&#34;uniquename&#34;] == uniquename:
+            self.env.destroy_vehicle(uniquename)
+            vehicle_set.pop(jj)
+            return True, &#34;lead&#34;, &#34;subject&#34;, jj
+    
+    vehicle_set = self.subject_follow_vehicle
+    for jj in range(len(vehicle_set) - 1,-1,-1):
+        vehicle = vehicle_set[jj]
+        if vehicle[&#34;uniquename&#34;] == uniquename:
+            self.env.destroy_vehicle(uniquename)
+            vehicle_set.pop(jj)
+            return True, &#34;follow&#34;, &#34;subject&#34;, jj
+    
+    vehicle_set = self.left_lead_vehicle
+    for jj in range(len(vehicle_set) - 1,-1,-1):
+        vehicle = vehicle_set[jj]
+        if vehicle[&#34;uniquename&#34;] == uniquename:
+            self.env.destroy_vehicle(uniquename)
+            vehicle_set.pop(jj)
+            return True, &#34;lead&#34;, &#34;left&#34;, jj
+    
+    vehicle_set = self.left_follow_vehicle
+    for jj in range(len(vehicle_set) - 1,-1,-1):
+        vehicle = vehicle_set[jj]
+        if vehicle[&#34;uniquename&#34;] == uniquename:
+            self.env.destroy_vehicle(uniquename)
+            vehicle_set.pop(jj)
+            return True, &#34;follow&#34;, &#34;left&#34;, jj
+        
+    return False, None, None, None</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="backend.section_definition.Section" href="section_definition.html#backend.section_definition.Section">Section</a></b></code>:
+<ul class="hlist">
+<li><code><a title="backend.section_definition.Section.edit_full_path_vehicle_local_setting" href="section_definition.html#backend.section_definition.Section.edit_full_path_vehicle_local_setting">edit_full_path_vehicle_local_setting</a></code></li>
+<li><code><a title="backend.section_definition.Section.section_start" href="section_definition.html#backend.section_definition.Section.section_start">section_start</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="backend" href="index.html">backend</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="backend.section_init_definition.InitSection" href="#backend.section_init_definition.InitSection">InitSection</a></code></h4>
+<ul class="">
+<li><code><a title="backend.section_init_definition.InitSection.add_ego_vehicle" href="#backend.section_init_definition.InitSection.add_ego_vehicle">add_ego_vehicle</a></code></li>
+<li><code><a title="backend.section_init_definition.InitSection.add_full_path_vehicle" href="#backend.section_init_definition.InitSection.add_full_path_vehicle">add_full_path_vehicle</a></code></li>
+<li><code><a title="backend.section_init_definition.InitSection.edit_ego_vehicle" href="#backend.section_init_definition.InitSection.edit_ego_vehicle">edit_ego_vehicle</a></code></li>
+<li><code><a title="backend.section_init_definition.InitSection.edit_full_path_vehicle" href="#backend.section_init_definition.InitSection.edit_full_path_vehicle">edit_full_path_vehicle</a></code></li>
+<li><code><a title="backend.section_init_definition.InitSection.get_full_path_trajectory" href="#backend.section_init_definition.InitSection.get_full_path_trajectory">get_full_path_trajectory</a></code></li>
+<li><code><a title="backend.section_init_definition.InitSection.remove_full_path_vehicle" href="#backend.section_init_definition.InitSection.remove_full_path_vehicle">remove_full_path_vehicle</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+</footer>
+</body>
+</html>

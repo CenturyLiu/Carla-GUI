@@ -1,0 +1,1209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.2" />
+<title>backend.full_path_vehicle API documentation</title>
+<meta name="description" content="Created on Wed Jul
+8 11:06:32 2020 …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>backend.full_path_vehicle</code></h1>
+</header>
+<section id="section-intro">
+<p>Created on Wed Jul
+8 11:06:32 2020</p>
+<p>@author: shijiliu</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+&#34;&#34;&#34;
+Created on Wed Jul  8 11:06:32 2020
+
+@author: shijiliu
+&#34;&#34;&#34;
+
+
+import carla
+import numpy as np
+from collections import deque
+import time
+import math
+
+import control # the python-control package, install first
+
+from backend.generate_path_omit_regulation import generate_path
+from backend.intersection_definition import Intersection, get_traffic_lights, get_trajectory, smooth_trajectory
+from backend.carla_env import CARLA_ENV # self-written class that provides help functions, should be in the same folder
+from configobj import ConfigObj
+from backend.multiple_vehicle_control import VehicleControl
+
+import copy
+
+
+# color for debug use
+red = carla.Color(255, 0, 0)
+green = carla.Color(0, 255, 0)
+blue = carla.Color(47, 210, 231)
+cyan = carla.Color(0, 255, 255)
+yellow = carla.Color(255, 255, 0)
+orange = carla.Color(255, 162, 0)
+white = carla.Color(255, 255, 255)
+
+class LeadVehicleControl(VehicleControl):
+    # the LeadVehicleControl has two different modes:
+    # normal full path mode: vehicle follows normal full path
+    # pause mode: vehicle stop to the right of the lane,
+    #             waiting for the ego vehicle to come
+    
+    def __init__(self,env,vehicle_config, delta_seconds, allow_collision = True):
+        super().__init__(env, vehicle_config, delta_seconds, allow_collision)
+        
+        # copy the full path trajectory
+        self.full_path_trajectory = copy.copy(self.trajectory)
+        self.full_path_index = copy.copy(self.index)
+        self.full_path_ref_speed_list = copy.copy(self.ref_speed_list )
+        
+        # generate waypoints for pausing the car
+        self._get_pause_waypoints()
+        self.mode = &#34;normal&#34;
+        
+    def _get_pause_waypoints(self):
+        &#39;&#39;&#39;
+        generate a list of waypoints for the pause path
+        the waypoints are in vehicle right-hand coordinates, the heading 
+        direction of the vehicle is x-axis
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        bb = self.vehicle_config[&#34;bounding_box&#34;]
+        self.pause_waypoint_list = [(0.0,0.0),(bb.x, -bb.y ),(bb.x * 2,-bb.y * 2),(bb.x * 3, -bb.y * 3),(bb.x * 4, -bb.y * 3.5),(bb.x * 5, -bb.y * 3.5),(bb.x * 6, -bb.y * 3.5),(bb.x * 7, -bb.y * 3.5)]
+                                   #[(0.0,0.0),(2 * bb.x, 0.0),(bb.x * 3,bb.y / 2),(bb.x * 4, bb.y),(bb.x * 5, bb.y * 2),(bb.x * 6, bb.y * 2),(bb.x * 8, bb.y * 2)]
+                                   #[(0.0,0.0),(bb.x, 0.0),(bb.x * 2,-bb.y / 2),(bb.x * 3, -bb.y),(bb.x * 4, -bb.y)]
+        
+    def _get_unit_left_vector(self,yaw):
+        # get the left vector (y axis)
+        right_yaw = (yaw + 90) % 360
+        rad_yaw = math.radians(right_yaw)
+        left_vector = np.array([math.cos(rad_yaw),math.sin(rad_yaw)])
+        left_vector = left_vector / np.linalg.norm(left_vector)
+        return left_vector
+        
+    def _generate_pause_path(self):
+        &#39;&#39;&#39;
+        generate a path for the vehicle to right shift a certain value and then stop.
+        assume the lead vehicle is always heading in the straight direction
+
+        Returns
+        --
+        None
+        &#39;&#39;&#39;
+        # get world transform of the lead vehicle
+        world_transform = self.env.get_transform_3d(self.model_uniquename)
+        location = world_transform.location
+        location_2d = np.array([location.x,location.y])
+        forward_vector = world_transform.get_forward_vector()
+        forward_vector_2d = np.array([forward_vector.x,forward_vector.y])
+        left_vector_2d =  self._get_unit_left_vector(world_transform.rotation.yaw)
+        
+        # transform local waypoints into global coordinates
+        world_waypoints = []
+        for pt in self.pause_waypoint_list:
+            world_pt = location_2d + pt[0] * forward_vector_2d + pt[1] * left_vector_2d
+            world_waypoints.append( ((world_pt[0],world_pt[1]),5.0) ) # vehicle will stop at 5 m/s
+            if self.debug_vehicle:
+                loc = carla.Location(x = world_pt[0],y = world_pt[1], z = 0.0)
+                self.env.world.debug.draw_point(loc, size = 0.2, color = white, life_time=0.0, persistent_lines=True)
+        
+        # form trajectory
+        smoothed_full_trajectory, ref_speed_list = get_trajectory(world_waypoints)
+        
+        self.pause_path_trajectory = smoothed_full_trajectory
+        self.pause_path_ref_speed = ref_speed_list
+        
+        self.pause_path_index = 0
+        
+        if self.debug_vehicle:
+            
+            for ii in range(1,len(smoothed_full_trajectory)):
+                loc1 = carla.Location(x = smoothed_full_trajectory[ii - 1][0], y = smoothed_full_trajectory[ii - 1][1], z = 0.0)
+                loc2 = carla.Location(x = smoothed_full_trajectory[ii][0], y = smoothed_full_trajectory[ii][1], z = 0.0)
+                self.env.world.debug.draw_arrow(loc1, loc2, thickness = 0.05, arrow_size = 0.1, color = red, life_time=0.0, persistent_lines=True)
+        
+    def change_mode(self, mode):
+        &#39;&#39;&#39;
+        change vehicle mode
+        
+        the LeadVehicleControl has two different modes:
+        normal full path mode: vehicle follows normal full path
+        pause mode: vehicle stop to the right of the lane,
+                    waiting for the ego vehicle to come
+
+        Parameters
+        ----------
+        mode : string
+            the mode. valid valuse are &#34;normal&#34;,&#34;pause&#34;
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        if mode == &#34;normal&#34;:
+            self.index = copy.copy(self.full_path_index)
+            self.ref_speed_list = copy.copy(self.full_path_ref_speed_list)
+            self.trajectory = copy.copy(self.full_path_trajectory)
+            self.mode = mode
+        elif mode == &#34;pause&#34;:
+            self._generate_pause_path() # generate path when switching mode
+            self.index = copy.copy(self.pause_path_index)
+            self.ref_speed_list = copy.copy(self.pause_path_ref_speed)
+            self.trajectory = copy.copy(self.pause_path_trajectory)
+            self.mode = mode
+
+
+    def pure_pursuit_control_wrapper(self):
+        &#39;&#39;&#39;
+        Apply one step control to the vehicle, store essential information for further use
+        
+        Note: this is an overriden version of pure_pursuit_control_wrapper
+              to avoid vehicle being removed from the environment when reach the end of pause
+
+        Returns
+        -------
+        end_trajectory : bool
+            whether this vehicle reaches its end
+
+        &#39;&#39;&#39;
+       
+        curr_speed = self.env.get_forward_speed(self.model_uniquename)
+        vehicle_pos_2d = self.env.get_transform_2d(self.model_uniquename) # the (x,y) location and yaw angle of the vehicle
+        self.speed.append(curr_speed)
+        self.curr_speeds.append(curr_speed)
+        
+        # draw real trajectory if debug is enabled
+        if self.debug_vehicle:
+            self.vehicle_pose.append(vehicle_pos_2d[0])
+            if len(self.vehicle_pose) == 2:
+                self.env.draw_real_trajectory(self.vehicle_pose)
+            self._display_vehicle_type()
+                
+        # use pure-pursuit model to get the steer angle (in radius)
+        delta, current_ref_speed, index, end_trajectory = self.pure_pursuit_control(vehicle_pos_2d, curr_speed, self.trajectory, self.ref_speed_list, self.index)
+        self.index = index
+        steer = np.clip(delta,-1.0,1.0)
+        
+        
+        # If vehicle has safety distance set, check whether a vehicle is in the front
+        current_ref_speed = self._obey_safety_distance(current_ref_speed)
+        
+        # If vehicle obey traffic lights and is going straight / turning left, check the traffic light state
+        current_ref_speed = self._obey_traffic_light(current_ref_speed)
+        
+        #if self.debug_vehicle:
+        #    print(&#34;current_ref_speed == &#34;,current_ref_speed)
+        
+        self.ref_speeds.append(current_ref_speed)
+        self.reference_speed.append(current_ref_speed)
+        
+        # get throttle to get the next reference speed 
+        throttle = self.speed_control() # get the throttle control based on reference and current speed
+        throttle = np.clip(throttle,0,1) # throttle value is [0,1]
+        self.throttles.append(throttle) # for visualization
+        
+        # check whether we are reaching the destination or not
+        # this part is different from the original version
+        if end_trajectory and self.mode == &#34;normal&#34;:
+            vehicle_control = carla.VehicleControl(throttle = 0.0,steer=steer,brake = 1.0) # immediately stop the car
+            self.env.apply_vehicle_control(self.model_uniquename, vehicle_control) # apply control to vehicle
+            self.run = False
+            self._destroy_vehicle()
+            return end_trajectory
+        elif end_trajectory and self.mode == &#34;pause&#34;:
+            vehicle_control = carla.VehicleControl(throttle = 0.0,steer=steer,brake = 1.0)
+            self.env.apply_vehicle_control(self.model_uniquename, vehicle_control)
+            return False
+        
+        
+        
+        # apply throttle-steer-brake control
+        if curr_speed &lt;= current_ref_speed:
+            vehicle_control = carla.VehicleControl(throttle = throttle,steer=steer) 
+        else:
+            vehicle_control = carla.VehicleControl(throttle = throttle,steer=steer,brake = 0.5)
+        self.env.apply_vehicle_control(self.model_uniquename, vehicle_control) # apply control to vehicle
+        return end_trajectory            
+    
+
+class FollowVehicleControl(VehicleControl):
+    # the FollowVehicle class is created for both ego and follow vehicle
+    # this kind of vehicle has 2 modes:
+    #    - speed control mode, when the vehicle is not following another vehicle
+    #    - distance control mode, when the vehicle is following another vehicle
+    
+    def __init__(self,env,vehicle_config, delta_seconds, allow_collision = True):
+        super().__init__(env, vehicle_config, delta_seconds, allow_collision)
+        
+        # control mode
+        self.mode = &#34;speed&#34;
+        
+    def _get_distance_controller(self,delta_seconds):
+        &#39;&#39;&#39;
+        Effects: create distance controller
+        &#39;&#39;&#39;
+        KP_1 = 1.0#1.0
+        KI_1 = 1.0#1.0
+        
+        num_pi = [-KP_1, -KI_1] # numerator of the PI transfer function (KP*s + KI)
+        den_pi = [1.0, 0.01*KI_1/KP_1] # denominator of PI transfer function (s + 0.01*KI/KP)
+    
+        sys = control.tf(num_pi,den_pi) # get transfer function for PI controller (since the denominator has a small term 0.01*KI/KP, it is actually a lag-compensator)
+        sys = control.sample_system(sys, delta_seconds) # discretize the transfer function (from s-domain which is continuous to z-domain)
+                                                            #since our simulation is discrete
+        sys = control.tf2ss(sys) # transform transfer function into state space.
+        
+        
+        self.distance_sys = sys
+        
+    def _get_distance_control_reference_speed(self):
+        &#39;&#39;&#39;
+        
+    
+        Parameters
+        ----------
+        self.distance_sys : control.ss 
+            state space controller.
+        self.ref_distance : deque(maxlen=2), float
+            the reference distance.
+        self.curr_distance : deque(maxlen=2), float
+            current distance between two vehicles.
+        init_values : the initial_values of the system
+    
+        Returns
+        -------
+        None.
+    
+        &#39;&#39;&#39;
+        U0 = np.array(self.ref_distance) - np.array(self.curr_distance)
+        #print(U0)
+        _,y0,x0 = control.forced_response(self.distance_sys,U = U0,X0 = self.distance_init_values[0]) # y0 is the next values, x0 is the state evolution
+                                                                          # see https://python-control.readthedocs.io/en/0.8.3/generated/control.forced_response.html#control.forced_response 
+        self.distance_init_values.append(x0[-1])
+        ref_speed = y0[-1]
+        
+        if self.ref_distance[1] &gt; self.curr_distance[1]:
+            ref_speed = 0
+        
+        # apply a boundary to the reference speed
+        # to avoid vehicle approaching too high a speed
+        # when trying to catch up the target
+        ref_speed = np.clip(ref_speed,0,15)
+        
+        #print(ref_speed)
+        
+        return ref_speed
+    
+    
+    def use_distance_mode(self, follow_distance):
+        # change the mode
+        self.mode = &#34;distance&#34;
+        
+        # store the follow_distance
+        self.follow_distance = follow_distance + self.L # self.L is the length of the bounding box
+        
+        # storage for distance controller
+        self.distance_init_values = deque(maxlen = 2)
+        self.ref_distance = deque(maxlen = 2)
+        self.curr_distance = deque(maxlen = 2)
+        
+        # initialize those storage
+        self.distance_init_values.append(0)
+        self.ref_distance.append(self.follow_distance)
+        self.curr_distance.append(self.follow_distance)
+        
+        # get the controller for distance control
+        self._get_distance_controller(self.env.delta_seconds)
+        
+    def use_speed_mode(self):
+        self.mode = &#34;speed&#34;
+        
+    def get_current_distance(self, target_transform):
+        &#39;&#39;&#39;
+        get the real distance between the vehicle and the one it is following
+
+        Parameters
+        ----------
+        target_transform : carla.Transform
+            the transformation of the target.
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        # distance control seems problematic, temporarily still keep using speed control
+        self.mode = &#34;speed&#34;#&#34;distance&#34;
+        
+        target_location = target_transform.location
+        # get the local transformation
+        local_transform = self.env.get_transform_3d(self.model_uniquename)
+        local_location = local_transform.location
+        forward_vector = local_transform.get_forward_vector()
+        forward_vector_2d = np.array([forward_vector.x,forward_vector.y])
+        unit_forward_vector_2d =  forward_vector_2d / np.linalg.norm(forward_vector_2d)
+        
+        vec_loc_target = np.array([target_location.x - local_location.x,target_location.y - local_location.y])
+        
+        # get the distance in the direction of local vehicle heading
+        distance = np.dot(vec_loc_target,unit_forward_vector_2d)
+        if self.vehicle_config[&#34;vehicle_type&#34;] == &#34;follow&#34;:
+            #print(distance)
+            pass
+        
+        self.ref_distance.append(self.follow_distance)
+        self.curr_distance.append(distance)
+        
+    
+    def pure_pursuit_control(self,vehicle_pos_2d, current_forward_speed, trajectory, ref_speed_list, prev_index):
+        
+        # override the pure_pursuit_control method
+        # use self.mode to decide how we are going to 
+        # assign the model reference speed
+        
+        &#39;&#39;&#39;
+        
+    
+        Parameters
+        ----------
+        vehicle_pos_2d : (location_2d,yaw)
+            tuple of vehicle location and heading in 2d.
+            location_2d : (x,y), both x and y are in meter
+            yaw : heading angle **Note** yaw is in degree
+        current_forward_speed : float
+            the current velocity of the vehicle.
+        trajectory : numpy 2d array
+            interpolated waypoints.
+        ref_speed_list : list
+            the reference speed corresponding to each way point
+        prev_index : int
+            the previous index
+        Returns
+        -------
+        delta : float
+            steer angle of the vehicle.
+        current_ref_speed : the reference speed
+            DESCRIPTION.
+        index : int
+            the index of the target.
+        end_trajectory : boolean
+            whether we have reached clos enough to the destination.
+    
+        &#39;&#39;&#39;
+        
+        
+        
+        location_2d, yaw = vehicle_pos_2d
+        yaw = np.deg2rad(yaw) # change the unit the radius
+        index, end_trajectory = self.get_target_index(location_2d, current_forward_speed, trajectory)
+        
+        if prev_index &gt;= index:
+            index = prev_index
+            
+        if index &lt; len(trajectory):
+            tx = trajectory[index][0]
+            ty = trajectory[index][1]
+        else:
+            tx = trajectory[-1][0]
+            ty = trajectory[-1][1] 
+        
+        alpha = math.atan2(ty - location_2d[1],tx - location_2d[0]) - yaw
+        
+        if current_forward_speed &lt; 0: #back, should not happen in our case
+            alpha = math.pi - alpha
+        
+        Lf = self.k * current_forward_speed + self.Lfc
+        
+        delta = math.atan2(2.0 * self.L * math.sin(alpha) / Lf, 1.0)
+        #print(&#34;delta == &#34;, delta, &#34;yaw == &#34;, yaw)
+        
+        if self.mode == &#34;speed&#34;:
+            current_ref_speed = ref_speed_list[index]
+        elif self.mode == &#34;distance&#34;:
+            current_ref_speed = self._get_distance_control_reference_speed() 
+        
+        return delta, current_ref_speed, index, end_trajectory</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="backend.full_path_vehicle.FollowVehicleControl"><code class="flex name class">
+<span>class <span class="ident">FollowVehicleControl</span></span>
+<span>(</span><span>env, vehicle_config, delta_seconds, allow_collision=True)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>env</code></strong> :&ensp;<code>CARLA_ENV</code></dt>
+<dd>the self-written environment for simulation</dd>
+<dt><strong><code>vehicle_config</code></strong> :&ensp;<code>ConfigObj</code></dt>
+<dd>the configuration file for this vehicle. The file is created inside the Intersection's add_vehicle function.
+containing the trajectory and speed reference for the vehicle. The configuration file should also indicate whether
+this vehicle should go or not.</dd>
+<dt><strong><code>delta_seconds</code></strong> :&ensp;<code>float</code></dt>
+<dd>time between two adjacent simulation step. Used for creating discrete controller</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>None.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class FollowVehicleControl(VehicleControl):
+    # the FollowVehicle class is created for both ego and follow vehicle
+    # this kind of vehicle has 2 modes:
+    #    - speed control mode, when the vehicle is not following another vehicle
+    #    - distance control mode, when the vehicle is following another vehicle
+    
+    def __init__(self,env,vehicle_config, delta_seconds, allow_collision = True):
+        super().__init__(env, vehicle_config, delta_seconds, allow_collision)
+        
+        # control mode
+        self.mode = &#34;speed&#34;
+        
+    def _get_distance_controller(self,delta_seconds):
+        &#39;&#39;&#39;
+        Effects: create distance controller
+        &#39;&#39;&#39;
+        KP_1 = 1.0#1.0
+        KI_1 = 1.0#1.0
+        
+        num_pi = [-KP_1, -KI_1] # numerator of the PI transfer function (KP*s + KI)
+        den_pi = [1.0, 0.01*KI_1/KP_1] # denominator of PI transfer function (s + 0.01*KI/KP)
+    
+        sys = control.tf(num_pi,den_pi) # get transfer function for PI controller (since the denominator has a small term 0.01*KI/KP, it is actually a lag-compensator)
+        sys = control.sample_system(sys, delta_seconds) # discretize the transfer function (from s-domain which is continuous to z-domain)
+                                                            #since our simulation is discrete
+        sys = control.tf2ss(sys) # transform transfer function into state space.
+        
+        
+        self.distance_sys = sys
+        
+    def _get_distance_control_reference_speed(self):
+        &#39;&#39;&#39;
+        
+    
+        Parameters
+        ----------
+        self.distance_sys : control.ss 
+            state space controller.
+        self.ref_distance : deque(maxlen=2), float
+            the reference distance.
+        self.curr_distance : deque(maxlen=2), float
+            current distance between two vehicles.
+        init_values : the initial_values of the system
+    
+        Returns
+        -------
+        None.
+    
+        &#39;&#39;&#39;
+        U0 = np.array(self.ref_distance) - np.array(self.curr_distance)
+        #print(U0)
+        _,y0,x0 = control.forced_response(self.distance_sys,U = U0,X0 = self.distance_init_values[0]) # y0 is the next values, x0 is the state evolution
+                                                                          # see https://python-control.readthedocs.io/en/0.8.3/generated/control.forced_response.html#control.forced_response 
+        self.distance_init_values.append(x0[-1])
+        ref_speed = y0[-1]
+        
+        if self.ref_distance[1] &gt; self.curr_distance[1]:
+            ref_speed = 0
+        
+        # apply a boundary to the reference speed
+        # to avoid vehicle approaching too high a speed
+        # when trying to catch up the target
+        ref_speed = np.clip(ref_speed,0,15)
+        
+        #print(ref_speed)
+        
+        return ref_speed
+    
+    
+    def use_distance_mode(self, follow_distance):
+        # change the mode
+        self.mode = &#34;distance&#34;
+        
+        # store the follow_distance
+        self.follow_distance = follow_distance + self.L # self.L is the length of the bounding box
+        
+        # storage for distance controller
+        self.distance_init_values = deque(maxlen = 2)
+        self.ref_distance = deque(maxlen = 2)
+        self.curr_distance = deque(maxlen = 2)
+        
+        # initialize those storage
+        self.distance_init_values.append(0)
+        self.ref_distance.append(self.follow_distance)
+        self.curr_distance.append(self.follow_distance)
+        
+        # get the controller for distance control
+        self._get_distance_controller(self.env.delta_seconds)
+        
+    def use_speed_mode(self):
+        self.mode = &#34;speed&#34;
+        
+    def get_current_distance(self, target_transform):
+        &#39;&#39;&#39;
+        get the real distance between the vehicle and the one it is following
+
+        Parameters
+        ----------
+        target_transform : carla.Transform
+            the transformation of the target.
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        # distance control seems problematic, temporarily still keep using speed control
+        self.mode = &#34;speed&#34;#&#34;distance&#34;
+        
+        target_location = target_transform.location
+        # get the local transformation
+        local_transform = self.env.get_transform_3d(self.model_uniquename)
+        local_location = local_transform.location
+        forward_vector = local_transform.get_forward_vector()
+        forward_vector_2d = np.array([forward_vector.x,forward_vector.y])
+        unit_forward_vector_2d =  forward_vector_2d / np.linalg.norm(forward_vector_2d)
+        
+        vec_loc_target = np.array([target_location.x - local_location.x,target_location.y - local_location.y])
+        
+        # get the distance in the direction of local vehicle heading
+        distance = np.dot(vec_loc_target,unit_forward_vector_2d)
+        if self.vehicle_config[&#34;vehicle_type&#34;] == &#34;follow&#34;:
+            #print(distance)
+            pass
+        
+        self.ref_distance.append(self.follow_distance)
+        self.curr_distance.append(distance)
+        
+    
+    def pure_pursuit_control(self,vehicle_pos_2d, current_forward_speed, trajectory, ref_speed_list, prev_index):
+        
+        # override the pure_pursuit_control method
+        # use self.mode to decide how we are going to 
+        # assign the model reference speed
+        
+        &#39;&#39;&#39;
+        
+    
+        Parameters
+        ----------
+        vehicle_pos_2d : (location_2d,yaw)
+            tuple of vehicle location and heading in 2d.
+            location_2d : (x,y), both x and y are in meter
+            yaw : heading angle **Note** yaw is in degree
+        current_forward_speed : float
+            the current velocity of the vehicle.
+        trajectory : numpy 2d array
+            interpolated waypoints.
+        ref_speed_list : list
+            the reference speed corresponding to each way point
+        prev_index : int
+            the previous index
+        Returns
+        -------
+        delta : float
+            steer angle of the vehicle.
+        current_ref_speed : the reference speed
+            DESCRIPTION.
+        index : int
+            the index of the target.
+        end_trajectory : boolean
+            whether we have reached clos enough to the destination.
+    
+        &#39;&#39;&#39;
+        
+        
+        
+        location_2d, yaw = vehicle_pos_2d
+        yaw = np.deg2rad(yaw) # change the unit the radius
+        index, end_trajectory = self.get_target_index(location_2d, current_forward_speed, trajectory)
+        
+        if prev_index &gt;= index:
+            index = prev_index
+            
+        if index &lt; len(trajectory):
+            tx = trajectory[index][0]
+            ty = trajectory[index][1]
+        else:
+            tx = trajectory[-1][0]
+            ty = trajectory[-1][1] 
+        
+        alpha = math.atan2(ty - location_2d[1],tx - location_2d[0]) - yaw
+        
+        if current_forward_speed &lt; 0: #back, should not happen in our case
+            alpha = math.pi - alpha
+        
+        Lf = self.k * current_forward_speed + self.Lfc
+        
+        delta = math.atan2(2.0 * self.L * math.sin(alpha) / Lf, 1.0)
+        #print(&#34;delta == &#34;, delta, &#34;yaw == &#34;, yaw)
+        
+        if self.mode == &#34;speed&#34;:
+            current_ref_speed = ref_speed_list[index]
+        elif self.mode == &#34;distance&#34;:
+            current_ref_speed = self._get_distance_control_reference_speed() 
+        
+        return delta, current_ref_speed, index, end_trajectory</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="backend.multiple_vehicle_control.VehicleControl" href="multiple_vehicle_control.html#backend.multiple_vehicle_control.VehicleControl">VehicleControl</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="backend.full_path_vehicle.FollowVehicleControl.get_current_distance"><code class="name flex">
+<span>def <span class="ident">get_current_distance</span></span>(<span>self, target_transform)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>get the real distance between the vehicle and the one it is following</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>target_transform</code></strong> :&ensp;<code>carla.Transform</code></dt>
+<dd>the transformation of the target.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>None.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_current_distance(self, target_transform):
+    &#39;&#39;&#39;
+    get the real distance between the vehicle and the one it is following
+
+    Parameters
+    ----------
+    target_transform : carla.Transform
+        the transformation of the target.
+
+    Returns
+    -------
+    None.
+
+    &#39;&#39;&#39;
+    # distance control seems problematic, temporarily still keep using speed control
+    self.mode = &#34;speed&#34;#&#34;distance&#34;
+    
+    target_location = target_transform.location
+    # get the local transformation
+    local_transform = self.env.get_transform_3d(self.model_uniquename)
+    local_location = local_transform.location
+    forward_vector = local_transform.get_forward_vector()
+    forward_vector_2d = np.array([forward_vector.x,forward_vector.y])
+    unit_forward_vector_2d =  forward_vector_2d / np.linalg.norm(forward_vector_2d)
+    
+    vec_loc_target = np.array([target_location.x - local_location.x,target_location.y - local_location.y])
+    
+    # get the distance in the direction of local vehicle heading
+    distance = np.dot(vec_loc_target,unit_forward_vector_2d)
+    if self.vehicle_config[&#34;vehicle_type&#34;] == &#34;follow&#34;:
+        #print(distance)
+        pass
+    
+    self.ref_distance.append(self.follow_distance)
+    self.curr_distance.append(distance)</code></pre>
+</details>
+</dd>
+<dt id="backend.full_path_vehicle.FollowVehicleControl.use_distance_mode"><code class="name flex">
+<span>def <span class="ident">use_distance_mode</span></span>(<span>self, follow_distance)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def use_distance_mode(self, follow_distance):
+    # change the mode
+    self.mode = &#34;distance&#34;
+    
+    # store the follow_distance
+    self.follow_distance = follow_distance + self.L # self.L is the length of the bounding box
+    
+    # storage for distance controller
+    self.distance_init_values = deque(maxlen = 2)
+    self.ref_distance = deque(maxlen = 2)
+    self.curr_distance = deque(maxlen = 2)
+    
+    # initialize those storage
+    self.distance_init_values.append(0)
+    self.ref_distance.append(self.follow_distance)
+    self.curr_distance.append(self.follow_distance)
+    
+    # get the controller for distance control
+    self._get_distance_controller(self.env.delta_seconds)</code></pre>
+</details>
+</dd>
+<dt id="backend.full_path_vehicle.FollowVehicleControl.use_speed_mode"><code class="name flex">
+<span>def <span class="ident">use_speed_mode</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def use_speed_mode(self):
+    self.mode = &#34;speed&#34;</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="backend.multiple_vehicle_control.VehicleControl" href="multiple_vehicle_control.html#backend.multiple_vehicle_control.VehicleControl">VehicleControl</a></b></code>:
+<ul class="hlist">
+<li><code><a title="backend.multiple_vehicle_control.VehicleControl.fake_pure_pursuit_control_wrapper" href="multiple_vehicle_control.html#backend.multiple_vehicle_control.VehicleControl.fake_pure_pursuit_control_wrapper">fake_pure_pursuit_control_wrapper</a></code></li>
+<li><code><a title="backend.multiple_vehicle_control.VehicleControl.get_target_index" href="multiple_vehicle_control.html#backend.multiple_vehicle_control.VehicleControl.get_target_index">get_target_index</a></code></li>
+<li><code><a title="backend.multiple_vehicle_control.VehicleControl.pure_pursuit_control" href="multiple_vehicle_control.html#backend.multiple_vehicle_control.VehicleControl.pure_pursuit_control">pure_pursuit_control</a></code></li>
+<li><code><a title="backend.multiple_vehicle_control.VehicleControl.pure_pursuit_control_wrapper" href="multiple_vehicle_control.html#backend.multiple_vehicle_control.VehicleControl.pure_pursuit_control_wrapper">pure_pursuit_control_wrapper</a></code></li>
+<li><code><a title="backend.multiple_vehicle_control.VehicleControl.speed_control" href="multiple_vehicle_control.html#backend.multiple_vehicle_control.VehicleControl.speed_control">speed_control</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="backend.full_path_vehicle.LeadVehicleControl"><code class="flex name class">
+<span>class <span class="ident">LeadVehicleControl</span></span>
+<span>(</span><span>env, vehicle_config, delta_seconds, allow_collision=True)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>env</code></strong> :&ensp;<code>CARLA_ENV</code></dt>
+<dd>the self-written environment for simulation</dd>
+<dt><strong><code>vehicle_config</code></strong> :&ensp;<code>ConfigObj</code></dt>
+<dd>the configuration file for this vehicle. The file is created inside the Intersection's add_vehicle function.
+containing the trajectory and speed reference for the vehicle. The configuration file should also indicate whether
+this vehicle should go or not.</dd>
+<dt><strong><code>delta_seconds</code></strong> :&ensp;<code>float</code></dt>
+<dd>time between two adjacent simulation step. Used for creating discrete controller</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>None.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class LeadVehicleControl(VehicleControl):
+    # the LeadVehicleControl has two different modes:
+    # normal full path mode: vehicle follows normal full path
+    # pause mode: vehicle stop to the right of the lane,
+    #             waiting for the ego vehicle to come
+    
+    def __init__(self,env,vehicle_config, delta_seconds, allow_collision = True):
+        super().__init__(env, vehicle_config, delta_seconds, allow_collision)
+        
+        # copy the full path trajectory
+        self.full_path_trajectory = copy.copy(self.trajectory)
+        self.full_path_index = copy.copy(self.index)
+        self.full_path_ref_speed_list = copy.copy(self.ref_speed_list )
+        
+        # generate waypoints for pausing the car
+        self._get_pause_waypoints()
+        self.mode = &#34;normal&#34;
+        
+    def _get_pause_waypoints(self):
+        &#39;&#39;&#39;
+        generate a list of waypoints for the pause path
+        the waypoints are in vehicle right-hand coordinates, the heading 
+        direction of the vehicle is x-axis
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        bb = self.vehicle_config[&#34;bounding_box&#34;]
+        self.pause_waypoint_list = [(0.0,0.0),(bb.x, -bb.y ),(bb.x * 2,-bb.y * 2),(bb.x * 3, -bb.y * 3),(bb.x * 4, -bb.y * 3.5),(bb.x * 5, -bb.y * 3.5),(bb.x * 6, -bb.y * 3.5),(bb.x * 7, -bb.y * 3.5)]
+                                   #[(0.0,0.0),(2 * bb.x, 0.0),(bb.x * 3,bb.y / 2),(bb.x * 4, bb.y),(bb.x * 5, bb.y * 2),(bb.x * 6, bb.y * 2),(bb.x * 8, bb.y * 2)]
+                                   #[(0.0,0.0),(bb.x, 0.0),(bb.x * 2,-bb.y / 2),(bb.x * 3, -bb.y),(bb.x * 4, -bb.y)]
+        
+    def _get_unit_left_vector(self,yaw):
+        # get the left vector (y axis)
+        right_yaw = (yaw + 90) % 360
+        rad_yaw = math.radians(right_yaw)
+        left_vector = np.array([math.cos(rad_yaw),math.sin(rad_yaw)])
+        left_vector = left_vector / np.linalg.norm(left_vector)
+        return left_vector
+        
+    def _generate_pause_path(self):
+        &#39;&#39;&#39;
+        generate a path for the vehicle to right shift a certain value and then stop.
+        assume the lead vehicle is always heading in the straight direction
+
+        Returns
+        --
+        None
+        &#39;&#39;&#39;
+        # get world transform of the lead vehicle
+        world_transform = self.env.get_transform_3d(self.model_uniquename)
+        location = world_transform.location
+        location_2d = np.array([location.x,location.y])
+        forward_vector = world_transform.get_forward_vector()
+        forward_vector_2d = np.array([forward_vector.x,forward_vector.y])
+        left_vector_2d =  self._get_unit_left_vector(world_transform.rotation.yaw)
+        
+        # transform local waypoints into global coordinates
+        world_waypoints = []
+        for pt in self.pause_waypoint_list:
+            world_pt = location_2d + pt[0] * forward_vector_2d + pt[1] * left_vector_2d
+            world_waypoints.append( ((world_pt[0],world_pt[1]),5.0) ) # vehicle will stop at 5 m/s
+            if self.debug_vehicle:
+                loc = carla.Location(x = world_pt[0],y = world_pt[1], z = 0.0)
+                self.env.world.debug.draw_point(loc, size = 0.2, color = white, life_time=0.0, persistent_lines=True)
+        
+        # form trajectory
+        smoothed_full_trajectory, ref_speed_list = get_trajectory(world_waypoints)
+        
+        self.pause_path_trajectory = smoothed_full_trajectory
+        self.pause_path_ref_speed = ref_speed_list
+        
+        self.pause_path_index = 0
+        
+        if self.debug_vehicle:
+            
+            for ii in range(1,len(smoothed_full_trajectory)):
+                loc1 = carla.Location(x = smoothed_full_trajectory[ii - 1][0], y = smoothed_full_trajectory[ii - 1][1], z = 0.0)
+                loc2 = carla.Location(x = smoothed_full_trajectory[ii][0], y = smoothed_full_trajectory[ii][1], z = 0.0)
+                self.env.world.debug.draw_arrow(loc1, loc2, thickness = 0.05, arrow_size = 0.1, color = red, life_time=0.0, persistent_lines=True)
+        
+    def change_mode(self, mode):
+        &#39;&#39;&#39;
+        change vehicle mode
+        
+        the LeadVehicleControl has two different modes:
+        normal full path mode: vehicle follows normal full path
+        pause mode: vehicle stop to the right of the lane,
+                    waiting for the ego vehicle to come
+
+        Parameters
+        ----------
+        mode : string
+            the mode. valid valuse are &#34;normal&#34;,&#34;pause&#34;
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        if mode == &#34;normal&#34;:
+            self.index = copy.copy(self.full_path_index)
+            self.ref_speed_list = copy.copy(self.full_path_ref_speed_list)
+            self.trajectory = copy.copy(self.full_path_trajectory)
+            self.mode = mode
+        elif mode == &#34;pause&#34;:
+            self._generate_pause_path() # generate path when switching mode
+            self.index = copy.copy(self.pause_path_index)
+            self.ref_speed_list = copy.copy(self.pause_path_ref_speed)
+            self.trajectory = copy.copy(self.pause_path_trajectory)
+            self.mode = mode
+
+
+    def pure_pursuit_control_wrapper(self):
+        &#39;&#39;&#39;
+        Apply one step control to the vehicle, store essential information for further use
+        
+        Note: this is an overriden version of pure_pursuit_control_wrapper
+              to avoid vehicle being removed from the environment when reach the end of pause
+
+        Returns
+        -------
+        end_trajectory : bool
+            whether this vehicle reaches its end
+
+        &#39;&#39;&#39;
+       
+        curr_speed = self.env.get_forward_speed(self.model_uniquename)
+        vehicle_pos_2d = self.env.get_transform_2d(self.model_uniquename) # the (x,y) location and yaw angle of the vehicle
+        self.speed.append(curr_speed)
+        self.curr_speeds.append(curr_speed)
+        
+        # draw real trajectory if debug is enabled
+        if self.debug_vehicle:
+            self.vehicle_pose.append(vehicle_pos_2d[0])
+            if len(self.vehicle_pose) == 2:
+                self.env.draw_real_trajectory(self.vehicle_pose)
+            self._display_vehicle_type()
+                
+        # use pure-pursuit model to get the steer angle (in radius)
+        delta, current_ref_speed, index, end_trajectory = self.pure_pursuit_control(vehicle_pos_2d, curr_speed, self.trajectory, self.ref_speed_list, self.index)
+        self.index = index
+        steer = np.clip(delta,-1.0,1.0)
+        
+        
+        # If vehicle has safety distance set, check whether a vehicle is in the front
+        current_ref_speed = self._obey_safety_distance(current_ref_speed)
+        
+        # If vehicle obey traffic lights and is going straight / turning left, check the traffic light state
+        current_ref_speed = self._obey_traffic_light(current_ref_speed)
+        
+        #if self.debug_vehicle:
+        #    print(&#34;current_ref_speed == &#34;,current_ref_speed)
+        
+        self.ref_speeds.append(current_ref_speed)
+        self.reference_speed.append(current_ref_speed)
+        
+        # get throttle to get the next reference speed 
+        throttle = self.speed_control() # get the throttle control based on reference and current speed
+        throttle = np.clip(throttle,0,1) # throttle value is [0,1]
+        self.throttles.append(throttle) # for visualization
+        
+        # check whether we are reaching the destination or not
+        # this part is different from the original version
+        if end_trajectory and self.mode == &#34;normal&#34;:
+            vehicle_control = carla.VehicleControl(throttle = 0.0,steer=steer,brake = 1.0) # immediately stop the car
+            self.env.apply_vehicle_control(self.model_uniquename, vehicle_control) # apply control to vehicle
+            self.run = False
+            self._destroy_vehicle()
+            return end_trajectory
+        elif end_trajectory and self.mode == &#34;pause&#34;:
+            vehicle_control = carla.VehicleControl(throttle = 0.0,steer=steer,brake = 1.0)
+            self.env.apply_vehicle_control(self.model_uniquename, vehicle_control)
+            return False
+        
+        
+        
+        # apply throttle-steer-brake control
+        if curr_speed &lt;= current_ref_speed:
+            vehicle_control = carla.VehicleControl(throttle = throttle,steer=steer) 
+        else:
+            vehicle_control = carla.VehicleControl(throttle = throttle,steer=steer,brake = 0.5)
+        self.env.apply_vehicle_control(self.model_uniquename, vehicle_control) # apply control to vehicle
+        return end_trajectory            </code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="backend.multiple_vehicle_control.VehicleControl" href="multiple_vehicle_control.html#backend.multiple_vehicle_control.VehicleControl">VehicleControl</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="backend.full_path_vehicle.LeadVehicleControl.change_mode"><code class="name flex">
+<span>def <span class="ident">change_mode</span></span>(<span>self, mode)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>change vehicle mode</p>
+<p>the LeadVehicleControl has two different modes:
+normal full path mode: vehicle follows normal full path
+pause mode: vehicle stop to the right of the lane,
+waiting for the ego vehicle to come</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>mode</code></strong> :&ensp;<code>string</code></dt>
+<dd>the mode. valid valuse are "normal","pause"</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>None.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def change_mode(self, mode):
+    &#39;&#39;&#39;
+    change vehicle mode
+    
+    the LeadVehicleControl has two different modes:
+    normal full path mode: vehicle follows normal full path
+    pause mode: vehicle stop to the right of the lane,
+                waiting for the ego vehicle to come
+
+    Parameters
+    ----------
+    mode : string
+        the mode. valid valuse are &#34;normal&#34;,&#34;pause&#34;
+
+    Returns
+    -------
+    None.
+
+    &#39;&#39;&#39;
+    if mode == &#34;normal&#34;:
+        self.index = copy.copy(self.full_path_index)
+        self.ref_speed_list = copy.copy(self.full_path_ref_speed_list)
+        self.trajectory = copy.copy(self.full_path_trajectory)
+        self.mode = mode
+    elif mode == &#34;pause&#34;:
+        self._generate_pause_path() # generate path when switching mode
+        self.index = copy.copy(self.pause_path_index)
+        self.ref_speed_list = copy.copy(self.pause_path_ref_speed)
+        self.trajectory = copy.copy(self.pause_path_trajectory)
+        self.mode = mode</code></pre>
+</details>
+</dd>
+<dt id="backend.full_path_vehicle.LeadVehicleControl.pure_pursuit_control_wrapper"><code class="name flex">
+<span>def <span class="ident">pure_pursuit_control_wrapper</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Apply one step control to the vehicle, store essential information for further use</p>
+<p>Note: this is an overriden version of pure_pursuit_control_wrapper
+to avoid vehicle being removed from the environment when reach the end of pause</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>end_trajectory</code></strong> :&ensp;<code>bool</code></dt>
+<dd>whether this vehicle reaches its end</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def pure_pursuit_control_wrapper(self):
+    &#39;&#39;&#39;
+    Apply one step control to the vehicle, store essential information for further use
+    
+    Note: this is an overriden version of pure_pursuit_control_wrapper
+          to avoid vehicle being removed from the environment when reach the end of pause
+
+    Returns
+    -------
+    end_trajectory : bool
+        whether this vehicle reaches its end
+
+    &#39;&#39;&#39;
+   
+    curr_speed = self.env.get_forward_speed(self.model_uniquename)
+    vehicle_pos_2d = self.env.get_transform_2d(self.model_uniquename) # the (x,y) location and yaw angle of the vehicle
+    self.speed.append(curr_speed)
+    self.curr_speeds.append(curr_speed)
+    
+    # draw real trajectory if debug is enabled
+    if self.debug_vehicle:
+        self.vehicle_pose.append(vehicle_pos_2d[0])
+        if len(self.vehicle_pose) == 2:
+            self.env.draw_real_trajectory(self.vehicle_pose)
+        self._display_vehicle_type()
+            
+    # use pure-pursuit model to get the steer angle (in radius)
+    delta, current_ref_speed, index, end_trajectory = self.pure_pursuit_control(vehicle_pos_2d, curr_speed, self.trajectory, self.ref_speed_list, self.index)
+    self.index = index
+    steer = np.clip(delta,-1.0,1.0)
+    
+    
+    # If vehicle has safety distance set, check whether a vehicle is in the front
+    current_ref_speed = self._obey_safety_distance(current_ref_speed)
+    
+    # If vehicle obey traffic lights and is going straight / turning left, check the traffic light state
+    current_ref_speed = self._obey_traffic_light(current_ref_speed)
+    
+    #if self.debug_vehicle:
+    #    print(&#34;current_ref_speed == &#34;,current_ref_speed)
+    
+    self.ref_speeds.append(current_ref_speed)
+    self.reference_speed.append(current_ref_speed)
+    
+    # get throttle to get the next reference speed 
+    throttle = self.speed_control() # get the throttle control based on reference and current speed
+    throttle = np.clip(throttle,0,1) # throttle value is [0,1]
+    self.throttles.append(throttle) # for visualization
+    
+    # check whether we are reaching the destination or not
+    # this part is different from the original version
+    if end_trajectory and self.mode == &#34;normal&#34;:
+        vehicle_control = carla.VehicleControl(throttle = 0.0,steer=steer,brake = 1.0) # immediately stop the car
+        self.env.apply_vehicle_control(self.model_uniquename, vehicle_control) # apply control to vehicle
+        self.run = False
+        self._destroy_vehicle()
+        return end_trajectory
+    elif end_trajectory and self.mode == &#34;pause&#34;:
+        vehicle_control = carla.VehicleControl(throttle = 0.0,steer=steer,brake = 1.0)
+        self.env.apply_vehicle_control(self.model_uniquename, vehicle_control)
+        return False
+    
+    
+    
+    # apply throttle-steer-brake control
+    if curr_speed &lt;= current_ref_speed:
+        vehicle_control = carla.VehicleControl(throttle = throttle,steer=steer) 
+    else:
+        vehicle_control = carla.VehicleControl(throttle = throttle,steer=steer,brake = 0.5)
+    self.env.apply_vehicle_control(self.model_uniquename, vehicle_control) # apply control to vehicle
+    return end_trajectory            </code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="backend.multiple_vehicle_control.VehicleControl" href="multiple_vehicle_control.html#backend.multiple_vehicle_control.VehicleControl">VehicleControl</a></b></code>:
+<ul class="hlist">
+<li><code><a title="backend.multiple_vehicle_control.VehicleControl.fake_pure_pursuit_control_wrapper" href="multiple_vehicle_control.html#backend.multiple_vehicle_control.VehicleControl.fake_pure_pursuit_control_wrapper">fake_pure_pursuit_control_wrapper</a></code></li>
+<li><code><a title="backend.multiple_vehicle_control.VehicleControl.get_target_index" href="multiple_vehicle_control.html#backend.multiple_vehicle_control.VehicleControl.get_target_index">get_target_index</a></code></li>
+<li><code><a title="backend.multiple_vehicle_control.VehicleControl.pure_pursuit_control" href="multiple_vehicle_control.html#backend.multiple_vehicle_control.VehicleControl.pure_pursuit_control">pure_pursuit_control</a></code></li>
+<li><code><a title="backend.multiple_vehicle_control.VehicleControl.speed_control" href="multiple_vehicle_control.html#backend.multiple_vehicle_control.VehicleControl.speed_control">speed_control</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="backend" href="index.html">backend</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="backend.full_path_vehicle.FollowVehicleControl" href="#backend.full_path_vehicle.FollowVehicleControl">FollowVehicleControl</a></code></h4>
+<ul class="">
+<li><code><a title="backend.full_path_vehicle.FollowVehicleControl.get_current_distance" href="#backend.full_path_vehicle.FollowVehicleControl.get_current_distance">get_current_distance</a></code></li>
+<li><code><a title="backend.full_path_vehicle.FollowVehicleControl.use_distance_mode" href="#backend.full_path_vehicle.FollowVehicleControl.use_distance_mode">use_distance_mode</a></code></li>
+<li><code><a title="backend.full_path_vehicle.FollowVehicleControl.use_speed_mode" href="#backend.full_path_vehicle.FollowVehicleControl.use_speed_mode">use_speed_mode</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="backend.full_path_vehicle.LeadVehicleControl" href="#backend.full_path_vehicle.LeadVehicleControl">LeadVehicleControl</a></code></h4>
+<ul class="">
+<li><code><a title="backend.full_path_vehicle.LeadVehicleControl.change_mode" href="#backend.full_path_vehicle.LeadVehicleControl.change_mode">change_mode</a></code></li>
+<li><code><a title="backend.full_path_vehicle.LeadVehicleControl.pure_pursuit_control_wrapper" href="#backend.full_path_vehicle.LeadVehicleControl.pure_pursuit_control_wrapper">pure_pursuit_control_wrapper</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+</footer>
+</body>
+</html>

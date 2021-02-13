@@ -110,13 +110,6 @@ class Start_Window(QMainWindow):
         self.close()
         self.new.show()
 
-
-
-
-
-        
-
-
 def main():
     app = QApplication(sys.argv)
     win = Start_Window()

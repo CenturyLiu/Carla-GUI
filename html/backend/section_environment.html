@@ -1,0 +1,2580 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.2" />
+<title>backend.section_environment API documentation</title>
+<meta name="description" content="Created on Wed Jul 22 11:20:28 2020 …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>backend.section_environment</code></h1>
+</header>
+<section id="section-intro">
+<p>Created on Wed Jul 22 11:20:28 2020</p>
+<p>@author: shijiliu &amp; zhiychen</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+&#34;&#34;&#34;
+Created on Wed Jul 22 11:20:28 2020
+
+@author: shijiliu &amp; zhiychen
+&#34;&#34;&#34;
+
+# define a class for creating the simulation environment for the section
+
+import sys
+sys.path.append(&#34;..&#34;)
+
+import carla
+from backend.carla_env import CARLA_ENV 
+import math
+import time
+import numpy as np
+from configobj import ConfigObj
+import pandas as pd
+import copy
+from openpyxl import load_workbook
+from openpyxl import Workbook
+
+from backend.section_definition import Section
+from backend.section_init_definition import InitSection
+from backend.generate_path_omit_regulation import generate_path
+from backend.intersection_definition import smooth_trajectory, get_trajectory
+from backend.multiple_vehicle_control import VehicleControl
+from backend.multiple_vehicle_control_debug import VehicleControl_debug
+from backend.initial_intersection import get_ego_spectator, get_ego_left_spectator, get_ego_driving_spectator
+from backend.section_vehicle_control import VehicleControlFreeway, FullPathVehicleControl, LeadFollowVehicleControl
+from backend.human_ego_control import HumanEgoControlServer
+import pandas as pd
+
+
+# color for debug use
+red = carla.Color(255, 0, 0)
+green = carla.Color(0, 255, 0)
+blue = carla.Color(47, 210, 231)
+cyan = carla.Color(0, 255, 255)
+yellow = carla.Color(255, 255, 0)
+orange = carla.Color(255, 162, 0)
+white = carla.Color(255, 255, 255)
+
+
+class FreewayEnv(object):
+    # this class holds all methods related to create a simulation environment for freeway
+    def __init__(self, env, number_of_sections, max_speed = 30.0, min_speed = 15.0):
+        &#39;&#39;&#39;
+        initialize the freeway simulation environment
+
+        Parameters
+        ----------
+        number_of_sections : int
+            number of sections for the freeway environment.
+
+        max_speed : float
+            the max speed of vehicle. Default to be 30.0. 
+        
+        min_speed : float
+            the min speed of vehicle. Default to be 15.0. Vehicle will go under the average of max_speed and min_speed under speed mode
+        
+        Returns
+        -------
+        None
+
+        &#39;&#39;&#39;
+        # debug 
+        self.DEBUG_TRAJECTORY = False#True
+        self.DEBUG_SUBJECTPOINTS = True
+        self.DEBUG_SECTION = True
+
+        # Enable/Disable Data Collection
+        self.RECORD_ENABLE = False
+        
+        # store the number of sections
+        self.number_of_sections = number_of_sections
+        
+        self.env = env
+        
+        self.spectator = self.env.world.get_spectator()
+        
+        
+        
+        self.carla_map = self.env.world.get_map()
+        
+        # get the subject waypoint of each section
+        self.subject_point_list = self._get_section_subject_points((-80.0,9.46))
+        
+        # store the reference speed
+        self.max_speed = max_speed
+        self.min_speed = min_speed
+        self.navigation_speed = (self.max_speed + self.min_speed) * 0.5
+        
+        # create the simulation environment and generate the trajectory
+        self._create_simulation_env()
+        
+        # give the trajectory and reference speed list to the initial intersection
+        self.section_list[0].get_full_path_trajectory(self.smoothed_full_trajectory, self.ref_speed_list, self.left_smoothed_full_trajectory, self.left_ref_speed_list, self.navigation_speed, self.max_speed, self.min_speed)
+    
+        
+    
+    
+    #def __del__(self):
+    #    self.env.destroy_actors()
+    
+    # public methods
+    def get_section_list(self):
+        return self.section_list
+    
+    def get_vehicle_bounding_box(self,uniquename):
+        &#39;&#39;&#39;
+        get the bounding box of the vehicle by uniquename
+        Parameters
+        ----------
+        uniquename : string
+            the uniquename of the vehicle.
+        Returns
+        -------
+        new_bb : carla.Vector3D
+            the bounding box of the vehicle, new_bb.x is the length, new_bb.y is the width, new_bb.z is the height
+        &#39;&#39;&#39;
+        new_bb = self.env.get_vehicle_bounding_box(uniquename)
+        return new_bb
+    
+    def add_ego_vehicle(self, model_name = &#34;vehicle.tesla.model3&#34;, safety_distance = 15.0, vehicle_color = None):
+        # wrapper for add_ego_vehicle function of the init_section
+        
+        &#39;&#39;&#39;
+        add ego vehicle to the initial intersection
+        according to the user case, the ego vehicle will follow the 
+        subject lane all the way with constant speed
+        
+        Parameters
+        ----------
+        model_name : string, optional
+            vehicle type. The default is &#34;vehicle.tesla.model3&#34;.
+        safety_distance : float, optional
+            smallest distance between this vehicle and vehicle ahead
+        vehicle_color : string
+            the RGB representation of the vehicle color. e.g. &#39;255,255,255&#39;
+
+        Returns
+        -------
+        uniquename : string
+            the name of the vehicle
+
+        &#39;&#39;&#39;
+        
+        
+        uniquename = self.section_list[0].add_ego_vehicle(model_name = model_name, safety_distance = safety_distance, vehicle_color = vehicle_color)
+        return uniquename
+    
+    def edit_ego_vehicle(self, model_name = &#34;vehicle.tesla.model3&#34;, safety_distance = 15.0, vehicle_color = None):
+        # wrapper for edit_ego_vehicle function of the init_section
+        &#39;&#39;&#39;
+        edit the ego vheicle setting by delete the original ego vehicle and add a new one
+        
+        Parameters
+        ----------
+        model_name : string, optional
+            vehicle type. The default is &#34;vehicle.tesla.model3&#34;.
+        safety_distance : float, optional
+            smallest distance between this vehicle and vehicle ahead
+        vehicle_color : string
+            the RGB representation of the vehicle color. e.g. &#39;255,255,255&#39;
+
+        Returns
+        -------
+        uniquename : string
+            the name of the vehicle
+
+        &#39;&#39;&#39;
+        uniquename = self.section_list[0].edit_ego_vehicle(model_name = model_name, safety_distance = safety_distance, vehicle_color = vehicle_color)
+        return uniquename
+    
+    def add_full_path_vehicle(self, model_name = &#34;vehicle.tesla.model3&#34;, vehicle_type =&#34;lead&#34;, choice = &#34;subject&#34;, command = &#34;speed&#34;, command_start_time = 0.0, gap = 10.0, safety_distance = 15.0, lead_follow_distance = 20.0, vehicle_color = None):
+        # wrapper for add_full_path_vehicle of the init_section
+        &#39;&#39;&#39;
+        add full path vehicle
+
+        Parameters
+        ----------
+        model_name : string, optional
+            vehicle type. The default is &#34;vehicle.tesla.model3&#34;.
+        vehicle_type : string, optional
+            the vehicle type, valid values : &#34;lead&#34;, &#34;follow&#34;. The default is &#34;lead&#34;.
+        choice : string, optional
+            the lane choice, valid values are &#34;subject&#34;, &#34;left&#34;. The default is &#34;subject&#34;.
+        command : string, optional
+            the command the vehicle is going to execute in this section. Valid values: &#34;speed&#34;, &#34;lane&#34;, &#34;distance&#34;. The default is &#34;speed&#34;.
+        command_start_time : string, optional
+            the time at which the command should be executed. The default is 0.0.
+        gap : float, optional
+            the gap between the vehicle and the one in the front of it when adding. The default is 10.0, unit: meter
+        safety_distance : float, optional
+            smallest distance between 2 vehicles when simulation is going. The default is 15.0, unit: meter
+        vehicle_color : string
+            the RGB representation of the vehicle color. e.g. &#39;255,255,255&#39;
+
+        Returns
+        -------
+        uniquename : string
+            the name of the vehicle
+
+
+        &#39;&#39;&#39;
+        # add the full path vehicle to the init section
+        uniquename = self.section_list[0].add_full_path_vehicle(model_name = model_name, vehicle_type = vehicle_type, choice = choice, command = command, command_start_time = command_start_time, gap = gap, safety_distance = safety_distance, lead_follow_distance = lead_follow_distance, vehicle_color = vehicle_color )
+     
+        
+        # create default vehicle setting for normal sections
+        for ii in range(1,len(self.section_list)):
+            self.section_list[ii]._add_full_path_vehicle_normal(uniquename, vehicle_type, choice)
+    
+        return uniquename
+    
+    
+    def remove_full_path_vehicle(self, uniquename):
+        &#39;&#39;&#39;
+        remove a full path vehicle based on its uniquename
+        this includes the vehicle setting in init section and 
+        settings in other normal sections
+
+        Parameters
+        ----------
+        uniquename : string
+            name of the vehicle.
+
+        Returns
+        -------
+        removed : Bool
+            whether the given vehicle is found and removed
+
+        &#39;&#39;&#39;
+        removed, vehicle_type, choice, index = self.section_list[0].remove_full_path_vehicle(uniquename)
+        if removed:
+            for ii in range(1, len(self.section_list)):
+                self.section_list[ii]._remove_full_path_vehicle_normal(vehicle_type, choice, index) # remove the setting from normal
+                                                                                                    # sections
+        
+        return removed
+        
+    def edit_full_path_vehicle_init_setting(self, uniquename, vehicle_type, choice, model_name = &#34;vehicle.tesla.model3&#34;,   command = &#34;speed&#34;, command_start_time = 0.0, gap = 10.0, safety_distance = 15.0, lead_follow_distance = 20.0, vehicle_color = None):
+        # wrapper for the edit_full_path_vehicle function of the init section
+        &#39;&#39;&#39;
+        edit full path vehicle settings by deleting the original vehicle and then add a new one
+
+        Parameters
+        ----------
+        uniquename : string
+            the name of the vehicle
+        vehicle_type : string, 
+            the vehicle type, valid values : &#34;lead&#34;, &#34;follow&#34;. 
+        choice : string, optional
+            the lane choice, valid values are &#34;subject&#34;, &#34;left&#34;. 
+        model_name : string, optional
+            vehicle type. The default is &#34;vehicle.tesla.model3&#34;.
+        command : string, optional
+            the command the vehicle is going to execute in this section. Valid values: &#34;speed&#34;, &#34;lane&#34;, &#34;distance&#34;. The default is &#34;speed&#34;.
+        command_start_time : string, optional
+            the time at which the command should be executed. The default is 0.0.
+        gap : float, optional
+            the gap between the vehicle and the one in the front of it when adding. The default is 10.0, unit: meter
+        safety_distance : float, optional
+            smallest distance between 2 vehicles when simulation is going. The default is 15.0, unit: meter
+        vehicle_color : string
+            the RGB representation of the vehicle color. e.g. &#39;255,255,255&#39;
+
+        Returns
+        -------
+        new_uniquename : string
+            the new_name of the vehicle
+
+
+        &#39;&#39;&#39;
+        
+        new_uniquename, index = self.section_list[0].edit_full_path_vehicle(uniquename = uniquename, 
+                                                                     vehicle_type = vehicle_type, 
+                                                                     choice = choice,
+                                                                     model_name = model_name,
+                                                                     command = command,
+                                                                     command_start_time = command_start_time,
+                                                                     gap = gap, 
+                                                                     safety_distance = safety_distance, 
+                                                                     lead_follow_distance = lead_follow_distance, 
+                                                                     vehicle_color = vehicle_color)
+        
+        
+        
+        for ii in range(1,len(self.section_list)):
+            self.section_list[ii]._update_vehicle_uniquename(vehicle_type = vehicle_type, choice = choice,index = index,uniquename = new_uniquename)
+        
+        return new_uniquename
+    
+    def edit_normal_section_setting(self, section_id, vehicle_type, choice, vehicle_index, command = &#34;speed&#34;, command_start_time = 0.0):
+        &#39;&#39;&#39;
+        function for editing vehicle settings for normal section
+
+        Parameters
+        ----------
+        section_id : TYPE
+            the section id. e.g., the first normal section is the second section, so enter section_id = 2
+        vehicle_type : TYPE
+            DESCRIPTION.
+        choice : TYPE
+            DESCRIPTION.
+        vehicle_index : int
+            the index of the vehicle
+        command : TYPE, optional
+            DESCRIPTION. The default is &#34;speed&#34;.
+        command_start_time : TYPE, optional
+            DESCRIPTION. The default is 0.0.
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        if section_id &gt; len(self.section_list):
+            print(&#34;invalid section_id&#34;)
+            return
+        
+        section = self.section_list[section_id - 1]
+        
+        # edit the section settings
+        section.edit_full_path_vehicle_local_setting(vehicle_type, choice, vehicle_index, command = command, command_start_time = command_start_time)
+    
+    def SectionBackend(self, spectator_mode = None, allow_collision = True, enable_human_control = False):
+        &#39;&#39;&#39;
+        back end function for the freeway
+
+        Parameters
+        ----------
+        spectator_mode : string, optional
+            the spectator mode, valid value is &#34;first_person&#34;. The default is None.
+
+        allow_collision : bool, optional
+            whether collision is allowed during simulation
+            
+        enable_human_control : bool, optional
+            whether ego vehicle is controlled by human
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        
+        init_section = self.section_list[0]
+        ego_vehicle =  VehicleControlFreeway(self.env, init_section.ego_vehicle, self.env.delta_seconds, allow_collision)
+        ego_uniquename = init_section.ego_vehicle[&#34;uniquename&#34;]
+        ego_bb = init_section.ego_vehicle[&#34;bounding_box&#34;]
+        left_follow_vehicle = []
+        subject_follow_vehicle = []
+        left_lead_vehicle = []
+        subject_lead_vehicle = []
+        
+        # check whether ego vehicle comes to destination
+        ego_end = False
+        
+        # create vehicle control object
+        for vehicle_config in init_section.left_follow_vehicle:
+            left_follow_vehicle.append(LeadFollowVehicleControl(self.env, vehicle_config, self.env.delta_seconds,allow_collision))
+            
+        for vehicle_config in init_section.subject_follow_vehicle:
+            subject_follow_vehicle.append(LeadFollowVehicleControl(self.env, vehicle_config, self.env.delta_seconds,allow_collision))
+            
+        for vehicle_config in init_section.left_lead_vehicle:
+            left_lead_vehicle.append(LeadFollowVehicleControl(self.env, vehicle_config, self.env.delta_seconds,allow_collision))
+            
+        for vehicle_config in init_section.subject_lead_vehicle:
+            subject_lead_vehicle.append(LeadFollowVehicleControl(self.env, vehicle_config, self.env.delta_seconds,allow_collision))
+            
+        
+        # store the current section that is functioning
+        curr_section = init_section
+        self.section_list.pop(0)
+        
+            # if enable_human_control, get the ego vehicle from the environment
+        if enable_human_control:
+            human_control_server = HumanEgoControlServer() # create the server for receiving the human command
+            spectator_mode = &#34;human_driving&#34;
+        
+        if self.RECORD_ENABLE:
+            # record 1: data on an plain text file
+            timestr = time.strftime(&#34;%Y%m%d-%H%M%S&#34;)
+            file = open(&#34;../data_collection/FrW&#34; + timestr + &#34;.txt&#34;, &#34;w+&#34; )
+            
+            filename=&#34;../data_collection/FrW&#34; + timestr + &#34;.xlsx&#34;
+            print(&#34;start freeway recordings: &#34;)
+            world_snapshot = self.env.world.get_snapshot()
+            tm = world_snapshot.timestamp
+            file.write(&#34;the experiment starts from &#34; + str(round(tm.elapsed_seconds, 3)) + &#34;(seconds)\n&#34;)
+
+
+            # record 2: data on an excel file
+            header_row = [&#39;timestamp(sec)&#39;]
+            for key in self.env.vehicle_dict.keys():
+                key = key[8:]
+                header_row += [key+ &#39;-lane_id&#39;, key+&#39;-location_x(m)&#39;, key+&#39;-location_y(m)&#39;, key+&#39;location_z(m)&#39;, key+&#39;-roll(degrees)&#39;, key+&#39;-pitch(degrees)&#39;, key+&#39;yaw(degrees)&#39;,
+                            key+&#39;-velocity_x(m/s)&#39;, key+&#39;-velocity_y(m/s)&#39;, key+&#39;velocity_z(m/s)&#39;, key+&#39;-acceleration_x(m/s2)&#39;, key+&#39;-acceleration_y(m/s2)&#39;, key+&#39;acceleration_z(m/s2)&#39;]
+            try:
+                wb = load_workbook(filename)
+                ws = wb.worksheets[0]
+            except FileNotFoundError:
+                wb = Workbook()
+                ws = wb.active
+            ws.append(header_row)
+            wb.save(filename)
+        
+        # main loop for control    
+        while True:
+            if self.RECORD_ENABLE:
+                world_snapshot = self.env.world.get_snapshot()
+                ego_id = (int)(ego_uniquename.split(&#34;_&#34;)[1])
+                ego_actor = world_snapshot.find(ego_id)
+
+                map = self.env.world.get_map()
+                tm = world_snapshot.timestamp       
+                file.write(&#34;time: &#34; + str(round(tm.elapsed_seconds, 3))+&#34;(seconds)\n&#34;)
+
+                data = [str(round(tm.elapsed_seconds, 3))]
+                for key in self.env.vehicle_dict.keys():
+                    vehicle_data = []
+                    id = (int)(key.split(&#34;_&#34;)[1])
+                    actor = world_snapshot.find(id)
+                    if(id == ego_id):
+                        file.write(&#34;ego id: &#34; + key + &#34;\n&#34;)
+                    else:
+                        file.write(&#34;vehicle id: &#34; + key + &#34;\n&#34;)
+                    
+                    actor_location = actor.get_transform().location
+                    lane = map.get_waypoint(actor_location).lane_id
+                    file.write(&#34;lane: &#34; + str(lane) + &#34;\n&#34;)
+                    vehicle_data+=[lane]
+
+                    actor_transform = actor.get_transform()
+                    x = round(actor_transform.location.x, 2)
+                    y = round(actor_transform.location.y, 2)
+                    z = round(actor_transform.location.z, 2)
+                    vehicle_data+=[x, y, z]
+                    file.write(&#34;location: x=&#34; + str(x) + &#34; y=&#34; + str(y) + &#34; z=&#34; +str(z) + &#34;(meters)\n&#34; )
+
+                    x = round(actor_transform.rotation.roll, 2)
+                    y = round(actor_transform.rotation.pitch, 2)
+                    z = round(actor_transform.rotation.yaw, 2)
+                    vehicle_data+=[x, y, z]
+                    file.write(&#34;Rotation: roll=&#34; + str(x) + &#34; pitch=&#34; + str(y) + &#34; yaw=&#34; +str(z) + &#34;(degrees)\n&#34;)
+
+                    actor_velocity = actor.get_velocity()
+                    x = round(actor_velocity.x, 2)
+                    y = round(actor_velocity.y, 2)
+                    z = round(actor_velocity.z, 2)
+                    vehicle_data+=[x, y, z]
+                    file.write(&#34;Velocity: x=&#34; + str(x) + &#34; y=&#34; + str(y) + &#34; z=&#34; +str(z) + &#34;(m/s)\n&#34;)
+
+                    actor_acceleration = actor.get_acceleration()
+                    x = round(actor_acceleration.x, 2)
+                    y = round(actor_acceleration.y, 2)
+                    z = round(actor_acceleration.z, 2)
+                    vehicle_data+=[x, y, z]
+                    file.write(&#34;Acceleration: x=&#34; + str(x) + &#34; y=&#34; + str(y) + &#34; z=&#34; +str(z) + &#34;(m/s2)\n&#34;)
+                    data+=vehicle_data
+
+                ws.append(data)
+                wb.save(filename)
+
+        
+
+            self.env.world.tick()
+            # update the distance between vehicles after each tick
+            self.env.update_vehicle_distance()
+            # change spectator view
+            
+            if self.env.vehicle_available(ego_uniquename) and spectator_mode == &#34;first_person&#34; :
+                 spectator_vehicle_transform = self.env.get_transform_3d(ego_uniquename)
+                 spectator_transform = get_ego_spectator(spectator_vehicle_transform,distance = -40)
+                 self.spectator.set_transform(spectator_transform)
+            
+            if self.env.vehicle_available(ego_uniquename) and spectator_mode == &#34;human_driving&#34; :
+                 spectator_vehicle_transform = self.env.get_transform_3d(ego_uniquename)
+                 spectator_transform = get_ego_driving_spectator(spectator_vehicle_transform, ego_bb)
+                 self.spectator.set_transform(spectator_transform)
+            
+            # section based control
+            
+            # get ego vehicle transform
+            if self.env.vehicle_available(ego_uniquename):
+                ego_transform = self.env.get_transform_3d(ego_uniquename)
+            
+            
+            # update the distance with ego vehicle and
+            # update the elapsed time of the current section
+            local_time = curr_section.tick()
+            
+            for vehicle in left_follow_vehicle:
+                vehicle.update_distance_with_ego(ego_transform) # update the distance with ego vehicle
+                vehicle.update_local_time(local_time) # update the local time, change lane or keep distance accordingly
+                
+            for vehicle in subject_follow_vehicle:
+                vehicle.update_distance_with_ego(ego_transform) # update the distance with ego vehicle
+                vehicle.update_local_time(local_time) # update the local time, change lane or keep distance accordingly
+                
+            for vehicle in left_lead_vehicle:
+                vehicle.update_distance_with_ego(ego_transform) # update the distance with ego vehicle
+                vehicle.update_local_time(local_time) # update the local time, change lane or keep distance accordingly
+            
+            for vehicle in subject_lead_vehicle:
+                vehicle.update_distance_with_ego(ego_transform) # update the distance with ego vehicle
+                vehicle.update_local_time(local_time) # update the local time, change lane or keep distance accordingly
+            
+            
+            
+            
+                
+            # apply control to vehicles
+            if not ego_end:
+                if not enable_human_control:
+                    ego_end = ego_vehicle.pure_pursuit_control_wrapper()
+                else:
+                    # get control from human
+                    human_command = human_control_server.get_human_command()
+                    # format the command into carla.VehicleControl
+                    ego_vehicle_control = carla.VehicleControl(throttle = human_command[0] ,steer=human_command[1],brake = human_command[2])
+                    # apply control to the vehicle
+                    self.env.apply_vehicle_control(ego_uniquename , ego_vehicle_control)
+                    
+                    ego_end = ego_vehicle.fake_pure_pursuit_control_wrapper()
+            
+            &#39;&#39;&#39;
+            print(&#34;--------&#34;)
+            print(&#34;len(left_follow_vehicle) == &#34;, len(left_follow_vehicle))
+            print(&#34;len(subject_follow_vehicle) == &#34;, len(subject_follow_vehicle))
+            print(&#34;len(left_lead_vehicle) == &#34;, len(left_lead_vehicle))
+            print(&#34;len(subject_lead_vehicle) == &#34;, len(subject_lead_vehicle))
+            &#39;&#39;&#39;
+            
+            for jj in range(len(left_follow_vehicle) - 1,-1,-1):
+                vehicle = left_follow_vehicle[jj]
+                end_trajectory = vehicle.pure_pursuit_control_wrapper()
+                if end_trajectory:
+                    left_follow_vehicle.pop(jj)
+                    
+            for jj in range(len(subject_follow_vehicle) - 1,-1,-1):
+                vehicle = subject_follow_vehicle[jj]
+                end_trajectory = vehicle.pure_pursuit_control_wrapper()
+                if end_trajectory:
+                    subject_follow_vehicle.pop(jj)
+                    
+            for jj in range(len(left_lead_vehicle) - 1,-1,-1):
+                vehicle = left_lead_vehicle[jj]
+                end_trajectory = vehicle.pure_pursuit_control_wrapper()
+                if end_trajectory:
+                    left_lead_vehicle.pop(jj)
+                    
+            for jj in range(len(subject_lead_vehicle) - 1,-1,-1):
+                vehicle = subject_lead_vehicle[jj]
+                end_trajectory = vehicle.pure_pursuit_control_wrapper()
+                if end_trajectory:
+                    subject_lead_vehicle.pop(jj)
+            
+            if ego_end and len(left_follow_vehicle) == 0 and len(subject_follow_vehicle) == 0 and len(left_lead_vehicle) == 0 and len(subject_lead_vehicle) == 0:
+                # exit simulation when all vehicles have arrived at their destination
+                break
+                
+            
+            # check whether the subject vehicle is in the next section, if that&#39;s the case, change the curr_section
+            # and apply section based commands to each vehicle
+            if len(self.section_list) &gt; 0: # there still exists unvisited section(s)
+                # get the new ego transform
+                if self.env.vehicle_available(ego_uniquename):
+                    ego_transform = self.env.get_transform_3d(ego_uniquename)
+                if self.section_list[0].section_start(ego_transform):
+                    curr_section = self.section_list.pop(0) # use the new section; remove this section from wait list
+                    
+                    # apply section based vehicle settings
+                    for ii in range(len(left_follow_vehicle)):
+                        vehicle = left_follow_vehicle[ii]
+                        command, command_start_time = curr_section.get_full_path_vehicle_local_setting(&#34;follow&#34;,&#34;left&#34;,ii)
+                        if command != None:
+                            vehicle.command = command
+                            vehicle.command_start_time = command_start_time
+                            
+                    for ii in range(len(subject_follow_vehicle)):
+                        vehicle = subject_follow_vehicle[ii]
+                        command, command_start_time = curr_section.get_full_path_vehicle_local_setting(&#34;follow&#34;,&#34;subject&#34;,ii)
+                        if command != None:
+                            vehicle.command = command
+                            vehicle.command_start_time = command_start_time
+                            
+                    for ii in range(len(left_lead_vehicle)):
+                        vehicle = left_lead_vehicle[ii]
+                        command, command_start_time = curr_section.get_full_path_vehicle_local_setting(&#34;lead&#34;,&#34;left&#34;,ii)
+                        if command != None:
+                            vehicle.command = command
+                            vehicle.command_start_time = command_start_time
+                            
+                    for ii in range(len(subject_lead_vehicle)):
+                        vehicle = subject_lead_vehicle[ii]
+                        command, command_start_time = curr_section.get_full_path_vehicle_local_setting(&#34;lead&#34;,&#34;subject&#34;,ii)
+                        if command != None:
+                            vehicle.command = command
+                            vehicle.command_start_time = command_start_time
+
+        file.close()
+        
+    
+    # private methods
+    def _create_simulation_env(self):
+        # create the freeway environment
+        # this function is the counterpart of the &#34;create_intersections&#34; 
+        # function for intersection backend
+        
+        self.section_list = [] # list for all sections 
+        self.trajectory_ref_point_list = [] # list for full path trajectory waypoints
+        
+        initial_section = InitSection(self.env, self.subject_point_list[0]) # create the initial intersection
+        self.section_list.append(initial_section) 
+        self.trajectory_ref_point_list += initial_section.get_section_trajectory_points()
+        
+        if self.DEBUG_SECTION:
+            trajectory_pt = initial_section.get_section_trajectory_points()
+            for pt in trajectory_pt:
+                loc1 = pt.transform.location
+                self.env.world.debug.draw_point(loc1, size = 0.05, color = red, life_time=0.0, persistent_lines=True)
+                
+        
+        for ii in range(1, self.number_of_sections):
+            normal_section = Section(self.env, self.subject_point_list[ii])
+            self.section_list.append(normal_section)
+            self.trajectory_ref_point_list += normal_section.get_section_trajectory_points()
+            if self.DEBUG_SECTION:
+                trajectory_pt = normal_section.get_section_trajectory_points()
+                for pt in trajectory_pt:
+                    loc1 = pt.transform.location
+                    self.env.world.debug.draw_point(loc1, size = 0.05, color = red, life_time=0.0, persistent_lines=True)
+                    
+            
+        if self.DEBUG_SUBJECTPOINTS:
+            color = green
+            for ii in range(len(self.subject_point_list)):
+                loc1 = self.subject_point_list[ii].transform.location
+                self.env.world.debug.draw_point(loc1, size = 0.1, color = color, life_time=0.0, persistent_lines=True)
+        
+        
+        # connect all reference points for all sections
+        full_trajectory = generate_path(self.env, self.trajectory_ref_point_list[0] , self.trajectory_ref_point_list[1], waypoint_separation = 4)
+        for ii in range(1, len(self.trajectory_ref_point_list) - 1):
+            trajectory = generate_path(self.env, self.trajectory_ref_point_list[ii] , self.trajectory_ref_point_list[ii + 1], waypoint_separation = 4)
+            full_trajectory += trajectory[1:]
+            
+        self.section_subject_trajectory = full_trajectory
+        &#39;&#39;&#39;
+        full_trajectory = []
+        for pt in self.trajectory_ref_point_list:
+            location = pt.transform.location
+            full_trajectory.append((location.x,location.y))
+        &#39;&#39;&#39;
+        
+        # create smoothed trajectory and reference speed list
+        whole_trajectory = [((pt[0],pt[1]),self.navigation_speed) for pt in full_trajectory]
+        
+        smoothed_full_trajectory, ref_speed_list = get_trajectory(whole_trajectory)
+        self.smoothed_full_trajectory = smoothed_full_trajectory
+        self.ref_speed_list = ref_speed_list
+        
+        if self.DEBUG_TRAJECTORY:
+            color = cyan
+            for ii in range(1,len(smoothed_full_trajectory)):
+                loc1 = carla.Location(x = smoothed_full_trajectory[ii - 1][0], y = smoothed_full_trajectory[ii - 1][1], z = 10.0)
+                loc2 = carla.Location(x = smoothed_full_trajectory[ii][0], y = smoothed_full_trajectory[ii][1], z = 10.0)
+                self.env.world.debug.draw_arrow(loc1, loc2, thickness = 0.05, arrow_size = 0.1, color = color, life_time=0.0, persistent_lines=True)
+    
+    
+        # get the trajectory for the left lane
+        self.left_lane_waypoints_list = []
+        for waypoint in self.trajectory_ref_point_list:
+            left_waypoint = self._get_left_waypoint(waypoint)
+            self.left_lane_waypoints_list.append(left_waypoint)
+            
+        if self.DEBUG_SECTION:
+            for ii in range(1,len(self.left_lane_waypoints_list)):
+                loc1 = self.left_lane_waypoints_list[ii - 1].transform.location
+                loc2 = self.left_lane_waypoints_list[ii].transform.location
+                self.env.world.debug.draw_arrow(loc1, loc2, thickness = 0.1, arrow_size = 0.2, color = blue, life_time=0.0, persistent_lines=True)
+        
+        
+        left_full_trajectory = []
+        for pt in self.left_lane_waypoints_list:
+            location = pt.transform.location
+            left_full_trajectory.append((location.x,location.y))
+        
+        
+        left_whole_trajectory = [((pt[0],pt[1]),self.navigation_speed) for pt in left_full_trajectory]
+        
+        left_smoothed_full_trajectory, left_ref_speed_list = get_trajectory(left_whole_trajectory)
+        self.left_smoothed_full_trajectory = left_smoothed_full_trajectory
+        self.left_ref_speed_list = left_ref_speed_list
+        
+        if self.DEBUG_TRAJECTORY:
+            color = blue
+            for ii in range(1,len(left_smoothed_full_trajectory)):
+                loc1 = carla.Location(x = left_smoothed_full_trajectory[ii - 1][0], y = left_smoothed_full_trajectory[ii - 1][1], z = 10.0)
+                loc2 = carla.Location(x = left_smoothed_full_trajectory[ii][0], y = left_smoothed_full_trajectory[ii][1], z = 10.0)
+                self.env.world.debug.draw_arrow(loc1, loc2, thickness = 0.05, arrow_size = 0.1, color = color, life_time=0.0, persistent_lines=True)
+        
+            
+        
+    def _get_unit_left_vector(self,yaw):
+        # get the right vector
+        right_yaw = (yaw + 90) % 360
+        rad_yaw = math.radians(right_yaw)
+        right_vector = [math.cos(rad_yaw),math.sin(rad_yaw)]
+        right_vector = right_vector / np.linalg.norm(right_vector)
+        return right_vector
+    
+    
+    def _get_left_waypoint(self, curr_waypoint):
+        # get the point to the left of the current one
+        left_shift = 3.0
+        
+        curr_location = curr_waypoint.transform.location
+        ref_yaw = curr_waypoint.transform.rotation.yaw
+        left_vector = self._get_unit_left_vector(ref_yaw)
+    
+        new_location = carla.Location(x = curr_location.x - left_shift * left_vector[0], y = curr_location.y - left_shift * left_vector[1], z = curr_location.z)
+        
+        left_waypoint = self.carla_map.get_waypoint(new_location)
+        return left_waypoint
+    
+    def _get_section_subject_points(self, initial_point):
+        # get the section subject points
+        
+        world_pose_list = []
+        
+        initial_point_raw = carla.Location(initial_point[0], initial_point[1], z = 10.0)
+        initial_way_point = self.carla_map.get_waypoint(initial_point_raw)
+        
+        world_pose_list.append(initial_way_point)
+        
+        curr_waypoint = initial_way_point
+        
+        for ii in range(self.number_of_sections - 1):
+            
+            for jj in range(100):
+                next_waypoint = self._get_next_waypoint(curr_waypoint, distance = 4)
+                curr_waypoint = next_waypoint
+            world_pose_list.append(curr_waypoint)
+            
+        return world_pose_list
+    
+    def _get_next_waypoint(self,curr_waypoint,distance = 4):
+        &#39;&#39;&#39;
+        
+
+        Parameters
+        ----------
+        curr_waypoint : carla.Waypoint
+            current waypoint.
+        distance : float, optional
+            &#34;distance&#34; between current waypoint and target waypoint . The default is 10.
+
+        Returns
+        -------
+        next_waypoint : carla.Waypoint
+            next waypoint, &#34;distance&#34; away from curr_waypoint, in the direction of the current way point
+        &#39;&#39;&#39;
+        forward_vector = curr_waypoint.transform.get_forward_vector()
+
+        location = curr_waypoint.transform.location
+        raw_spawn_point = carla.Location(x = location.x + distance * forward_vector.x  , y = location.y + distance * forward_vector.y , z = location.z + 0.1)
+        
+        next_waypoint = self.carla_map.get_waypoint(raw_spawn_point)
+        return next_waypoint
+    
+def main():
+    try:
+        
+        # create the CARLA_ENV helper 
+        client = carla.Client(&#34;localhost&#34;,2000)
+        client.set_timeout(10.0)
+        world = client.load_world(&#39;Town04&#39;) # use Town 04 which contains a freeway
+        
+        # default the weather to be a fine day
+        weather = carla.WeatherParameters(
+            cloudiness=10.0,
+            precipitation=0.0,
+            sun_altitude_angle=90.0)
+        world.set_weather(weather)
+        
+        spectator = world.get_spectator()
+        spectator.set_transform(carla.Transform(carla.Location(x=-170, y=-151, z=116.5), carla.Rotation(pitch=-33, yaw= 56.9, roll=0.0)))
+        
+        # create the environment
+        env = CARLA_ENV(world)
+        time.sleep(2) # sleep for 2 seconds, wait the initialization to finish
+        
+        # create a 14 section environment (support up to 7)
+        freewayenv = FreewayEnv(env,7)
+        
+        # add ego vehicle
+        freewayenv.add_ego_vehicle()
+        freewayenv.edit_ego_vehicle(vehicle_color = &#39;255,255,255&#39;)
+        
+        # add 2 lead vehicle and 2 follow vehicle
+        &#39;&#39;&#39;
+        name0 = freewayenv.add_full_path_vehicle(gap = 20.0, vehicle_type = &#34;lead&#34;, choice = &#34;subject&#34;, command = &#34;lane&#34;, command_start_time = 2.0)
+        time.sleep(1.0)
+        name0 = freewayenv.add_full_path_vehicle(gap = 20.0, vehicle_type = &#34;lead&#34;, choice = &#34;subject&#34;, command = &#34;lane&#34;, command_start_time = 2.0)
+        time.sleep(1.0)
+        name1 = freewayenv.add_full_path_vehicle(gap = 20.0, vehicle_type = &#34;lead&#34;, choice = &#34;left&#34;, command = &#34;lane&#34;, command_start_time = 2.0)
+        time.sleep(1.0)
+        name1 = freewayenv.add_full_path_vehicle(gap = 20.0, vehicle_type = &#34;lead&#34;, choice = &#34;left&#34;, command = &#34;lane&#34;, command_start_time = 2.0)
+        time.sleep(1.0)
+        name2 = freewayenv.add_full_path_vehicle(vehicle_type = &#34;follow&#34;, choice = &#34;subject&#34;, command = &#34;lane&#34;, command_start_time = 3.0)
+        time.sleep(1.0)
+        name2 = freewayenv.add_full_path_vehicle(vehicle_type = &#34;follow&#34;, choice = &#34;subject&#34;, command = &#34;lane&#34;, command_start_time = 3.0)
+        time.sleep(1.0)
+        name3 = freewayenv.add_full_path_vehicle(vehicle_type = &#34;follow&#34;, choice = &#34;left&#34;, command = &#34;lane&#34;, command_start_time = 3.0)
+        time.sleep(1.0)
+        name3 = freewayenv.add_full_path_vehicle(vehicle_type = &#34;follow&#34;, choice = &#34;left&#34;, command = &#34;lane&#34;, command_start_time = 3.0)
+        time.sleep(1.0)
+        name4 = freewayenv.add_full_path_vehicle(gap = 20.0, vehicle_type = &#34;lead&#34;, choice = &#34;subject&#34;, command = &#34;lane&#34;, command_start_time = 3.0)
+        time.sleep(1.0)
+        name5 = freewayenv.add_full_path_vehicle(vehicle_type = &#34;follow&#34;, choice = &#34;subject&#34;, command = &#34;lane&#34;, command_start_time = 0.0)
+        time.sleep(1.0)
+        
+        freewayenv.remove_full_path_vehicle(name4)
+        freewayenv.remove_full_path_vehicle(name5)
+        
+        
+        
+        
+        &#39;&#39;&#39;
+        name0 = freewayenv.add_full_path_vehicle(gap = 20.0, vehicle_type = &#34;lead&#34;, choice = &#34;subject&#34;)
+        name1 = freewayenv.add_full_path_vehicle(gap = 20.0, vehicle_type = &#34;lead&#34;, choice = &#34;left&#34;)
+        name2 = freewayenv.add_full_path_vehicle(vehicle_type = &#34;follow&#34;, choice = &#34;subject&#34;)
+        name3 = freewayenv.add_full_path_vehicle(vehicle_type = &#34;follow&#34;, choice = &#34;left&#34;)
+        name4 = freewayenv.add_full_path_vehicle(gap = 20.0, vehicle_type = &#34;lead&#34;, choice = &#34;subject&#34;)
+        name5 = freewayenv.add_full_path_vehicle(vehicle_type = &#34;follow&#34;, choice = &#34;subject&#34;)
+        
+        # get bounding box
+        bb = freewayenv.get_vehicle_bounding_box(name1)
+        print(&#34;bb.x = %f, bb.y = %f, bb.z = %f&#34; % (bb.x,bb.y,bb.z))
+        
+        
+        # adjust the lead and follow vehicle settings in the third section
+        freewayenv.edit_normal_section_setting(section_id = 3, vehicle_type = &#34;lead&#34;, choice = &#34;subject&#34;, vehicle_index = 0,command = &#34;distance&#34;)
+        freewayenv.edit_normal_section_setting(section_id = 3, vehicle_type = &#34;lead&#34;, choice = &#34;left&#34;, vehicle_index = 0,command = &#34;distance&#34;)
+        freewayenv.edit_normal_section_setting(section_id = 3, vehicle_type = &#34;follow&#34;, choice = &#34;subject&#34;, vehicle_index = 0,command = &#34;distance&#34;)
+        freewayenv.edit_normal_section_setting(section_id = 3, vehicle_type = &#34;follow&#34;, choice = &#34;left&#34;, vehicle_index = 0,command = &#34;distance&#34;)
+        freewayenv.edit_normal_section_setting(section_id = 3, vehicle_type = &#34;lead&#34;, choice = &#34;subject&#34;, vehicle_index = 1,command = &#34;distance&#34;)
+        freewayenv.edit_normal_section_setting(section_id = 3, vehicle_type = &#34;follow&#34;, choice = &#34;subject&#34;, vehicle_index = 1,command = &#34;distance&#34;)
+        
+        # adjust the lead and follow vehicle settings in the fourth section
+        freewayenv.edit_normal_section_setting(section_id = 4, vehicle_type = &#34;lead&#34;, choice = &#34;subject&#34;, vehicle_index = 0,command = &#34;speed&#34;, command_start_time = 0.0)
+        freewayenv.edit_normal_section_setting(section_id = 4, vehicle_type = &#34;lead&#34;, choice = &#34;left&#34;, vehicle_index = 0,command = &#34;speed&#34;, command_start_time = 0.0)
+        freewayenv.edit_normal_section_setting(section_id = 4, vehicle_type = &#34;follow&#34;, choice = &#34;subject&#34;, vehicle_index = 0,command = &#34;speed&#34;, command_start_time = 0.0)
+        freewayenv.edit_normal_section_setting(section_id = 4, vehicle_type = &#34;follow&#34;, choice = &#34;left&#34;, vehicle_index = 0,command = &#34;speed&#34;, command_start_time = 0.0)
+        freewayenv.edit_normal_section_setting(section_id = 4, vehicle_type = &#34;lead&#34;, choice = &#34;subject&#34;, vehicle_index = 1,command = &#34;lane&#34;)
+        freewayenv.edit_normal_section_setting(section_id = 4, vehicle_type = &#34;follow&#34;, choice = &#34;subject&#34;, vehicle_index = 1,command = &#34;lane&#34;)
+        
+        # adjust the lead and follow vehicle settings in the sixth section
+        freewayenv.edit_normal_section_setting(section_id = 6, vehicle_type = &#34;lead&#34;, choice = &#34;subject&#34;, vehicle_index = 0,command = &#34;lane&#34;)
+        freewayenv.edit_normal_section_setting(section_id = 6, vehicle_type = &#34;lead&#34;, choice = &#34;left&#34;, vehicle_index = 0,command = &#34;lane&#34;)
+        freewayenv.edit_normal_section_setting(section_id = 6, vehicle_type = &#34;follow&#34;, choice = &#34;subject&#34;, vehicle_index = 0,command = &#34;lane&#34;)
+        freewayenv.edit_normal_section_setting(section_id = 6, vehicle_type = &#34;follow&#34;, choice = &#34;left&#34;, vehicle_index = 0,command = &#34;lane&#34;)
+        freewayenv.edit_normal_section_setting(section_id = 6, vehicle_type = &#34;lead&#34;, choice = &#34;subject&#34;, vehicle_index = 1,command = &#34;lane&#34;)
+        freewayenv.edit_normal_section_setting(section_id = 6, vehicle_type = &#34;follow&#34;, choice = &#34;subject&#34;, vehicle_index = 1,command = &#34;lane&#34;)
+        # test remove vehicle
+        #freewayenv.remove_full_path_vehicle(name4)
+        
+        
+        
+        # test editing vehicle settings
+        freewayenv.edit_full_path_vehicle_init_setting(name0, gap = 25.0, vehicle_type = &#34;lead&#34;, choice = &#34;subject&#34;, vehicle_color = &#39;0,0,0&#39;)
+        freewayenv.edit_full_path_vehicle_init_setting(name1, gap = 25.0, vehicle_type = &#34;lead&#34;, choice = &#34;left&#34;, vehicle_color = &#39;255,255,255&#39;)
+        #freewayenv.edit_full_path_vehicle_init_setting(name2, gap = 25.0, vehicle_type = &#34;follow&#34;, choice = &#34;subject&#34;, vehicle_color = &#39;0,0,0&#39;)
+        #freewayenv.edit_full_path_vehicle_init_setting(name3, gap = 25.0, vehicle_type = &#34;follow&#34;, choice = &#34;left&#34;, vehicle_color = &#39;255,255,255&#39;)
+        
+        
+        freewayenv.SectionBackend(spectator_mode = &#34;first_person&#34;,allow_collision = False)
+    finally:
+        time.sleep(10)
+        env.destroy_actors()
+        
+    
+if __name__ == &#39;__main__&#39;:
+    main()</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="backend.section_environment.main"><code class="name flex">
+<span>def <span class="ident">main</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def main():
+    try:
+        
+        # create the CARLA_ENV helper 
+        client = carla.Client(&#34;localhost&#34;,2000)
+        client.set_timeout(10.0)
+        world = client.load_world(&#39;Town04&#39;) # use Town 04 which contains a freeway
+        
+        # default the weather to be a fine day
+        weather = carla.WeatherParameters(
+            cloudiness=10.0,
+            precipitation=0.0,
+            sun_altitude_angle=90.0)
+        world.set_weather(weather)
+        
+        spectator = world.get_spectator()
+        spectator.set_transform(carla.Transform(carla.Location(x=-170, y=-151, z=116.5), carla.Rotation(pitch=-33, yaw= 56.9, roll=0.0)))
+        
+        # create the environment
+        env = CARLA_ENV(world)
+        time.sleep(2) # sleep for 2 seconds, wait the initialization to finish
+        
+        # create a 14 section environment (support up to 7)
+        freewayenv = FreewayEnv(env,7)
+        
+        # add ego vehicle
+        freewayenv.add_ego_vehicle()
+        freewayenv.edit_ego_vehicle(vehicle_color = &#39;255,255,255&#39;)
+        
+        # add 2 lead vehicle and 2 follow vehicle
+        &#39;&#39;&#39;
+        name0 = freewayenv.add_full_path_vehicle(gap = 20.0, vehicle_type = &#34;lead&#34;, choice = &#34;subject&#34;, command = &#34;lane&#34;, command_start_time = 2.0)
+        time.sleep(1.0)
+        name0 = freewayenv.add_full_path_vehicle(gap = 20.0, vehicle_type = &#34;lead&#34;, choice = &#34;subject&#34;, command = &#34;lane&#34;, command_start_time = 2.0)
+        time.sleep(1.0)
+        name1 = freewayenv.add_full_path_vehicle(gap = 20.0, vehicle_type = &#34;lead&#34;, choice = &#34;left&#34;, command = &#34;lane&#34;, command_start_time = 2.0)
+        time.sleep(1.0)
+        name1 = freewayenv.add_full_path_vehicle(gap = 20.0, vehicle_type = &#34;lead&#34;, choice = &#34;left&#34;, command = &#34;lane&#34;, command_start_time = 2.0)
+        time.sleep(1.0)
+        name2 = freewayenv.add_full_path_vehicle(vehicle_type = &#34;follow&#34;, choice = &#34;subject&#34;, command = &#34;lane&#34;, command_start_time = 3.0)
+        time.sleep(1.0)
+        name2 = freewayenv.add_full_path_vehicle(vehicle_type = &#34;follow&#34;, choice = &#34;subject&#34;, command = &#34;lane&#34;, command_start_time = 3.0)
+        time.sleep(1.0)
+        name3 = freewayenv.add_full_path_vehicle(vehicle_type = &#34;follow&#34;, choice = &#34;left&#34;, command = &#34;lane&#34;, command_start_time = 3.0)
+        time.sleep(1.0)
+        name3 = freewayenv.add_full_path_vehicle(vehicle_type = &#34;follow&#34;, choice = &#34;left&#34;, command = &#34;lane&#34;, command_start_time = 3.0)
+        time.sleep(1.0)
+        name4 = freewayenv.add_full_path_vehicle(gap = 20.0, vehicle_type = &#34;lead&#34;, choice = &#34;subject&#34;, command = &#34;lane&#34;, command_start_time = 3.0)
+        time.sleep(1.0)
+        name5 = freewayenv.add_full_path_vehicle(vehicle_type = &#34;follow&#34;, choice = &#34;subject&#34;, command = &#34;lane&#34;, command_start_time = 0.0)
+        time.sleep(1.0)
+        
+        freewayenv.remove_full_path_vehicle(name4)
+        freewayenv.remove_full_path_vehicle(name5)
+        
+        
+        
+        
+        &#39;&#39;&#39;
+        name0 = freewayenv.add_full_path_vehicle(gap = 20.0, vehicle_type = &#34;lead&#34;, choice = &#34;subject&#34;)
+        name1 = freewayenv.add_full_path_vehicle(gap = 20.0, vehicle_type = &#34;lead&#34;, choice = &#34;left&#34;)
+        name2 = freewayenv.add_full_path_vehicle(vehicle_type = &#34;follow&#34;, choice = &#34;subject&#34;)
+        name3 = freewayenv.add_full_path_vehicle(vehicle_type = &#34;follow&#34;, choice = &#34;left&#34;)
+        name4 = freewayenv.add_full_path_vehicle(gap = 20.0, vehicle_type = &#34;lead&#34;, choice = &#34;subject&#34;)
+        name5 = freewayenv.add_full_path_vehicle(vehicle_type = &#34;follow&#34;, choice = &#34;subject&#34;)
+        
+        # get bounding box
+        bb = freewayenv.get_vehicle_bounding_box(name1)
+        print(&#34;bb.x = %f, bb.y = %f, bb.z = %f&#34; % (bb.x,bb.y,bb.z))
+        
+        
+        # adjust the lead and follow vehicle settings in the third section
+        freewayenv.edit_normal_section_setting(section_id = 3, vehicle_type = &#34;lead&#34;, choice = &#34;subject&#34;, vehicle_index = 0,command = &#34;distance&#34;)
+        freewayenv.edit_normal_section_setting(section_id = 3, vehicle_type = &#34;lead&#34;, choice = &#34;left&#34;, vehicle_index = 0,command = &#34;distance&#34;)
+        freewayenv.edit_normal_section_setting(section_id = 3, vehicle_type = &#34;follow&#34;, choice = &#34;subject&#34;, vehicle_index = 0,command = &#34;distance&#34;)
+        freewayenv.edit_normal_section_setting(section_id = 3, vehicle_type = &#34;follow&#34;, choice = &#34;left&#34;, vehicle_index = 0,command = &#34;distance&#34;)
+        freewayenv.edit_normal_section_setting(section_id = 3, vehicle_type = &#34;lead&#34;, choice = &#34;subject&#34;, vehicle_index = 1,command = &#34;distance&#34;)
+        freewayenv.edit_normal_section_setting(section_id = 3, vehicle_type = &#34;follow&#34;, choice = &#34;subject&#34;, vehicle_index = 1,command = &#34;distance&#34;)
+        
+        # adjust the lead and follow vehicle settings in the fourth section
+        freewayenv.edit_normal_section_setting(section_id = 4, vehicle_type = &#34;lead&#34;, choice = &#34;subject&#34;, vehicle_index = 0,command = &#34;speed&#34;, command_start_time = 0.0)
+        freewayenv.edit_normal_section_setting(section_id = 4, vehicle_type = &#34;lead&#34;, choice = &#34;left&#34;, vehicle_index = 0,command = &#34;speed&#34;, command_start_time = 0.0)
+        freewayenv.edit_normal_section_setting(section_id = 4, vehicle_type = &#34;follow&#34;, choice = &#34;subject&#34;, vehicle_index = 0,command = &#34;speed&#34;, command_start_time = 0.0)
+        freewayenv.edit_normal_section_setting(section_id = 4, vehicle_type = &#34;follow&#34;, choice = &#34;left&#34;, vehicle_index = 0,command = &#34;speed&#34;, command_start_time = 0.0)
+        freewayenv.edit_normal_section_setting(section_id = 4, vehicle_type = &#34;lead&#34;, choice = &#34;subject&#34;, vehicle_index = 1,command = &#34;lane&#34;)
+        freewayenv.edit_normal_section_setting(section_id = 4, vehicle_type = &#34;follow&#34;, choice = &#34;subject&#34;, vehicle_index = 1,command = &#34;lane&#34;)
+        
+        # adjust the lead and follow vehicle settings in the sixth section
+        freewayenv.edit_normal_section_setting(section_id = 6, vehicle_type = &#34;lead&#34;, choice = &#34;subject&#34;, vehicle_index = 0,command = &#34;lane&#34;)
+        freewayenv.edit_normal_section_setting(section_id = 6, vehicle_type = &#34;lead&#34;, choice = &#34;left&#34;, vehicle_index = 0,command = &#34;lane&#34;)
+        freewayenv.edit_normal_section_setting(section_id = 6, vehicle_type = &#34;follow&#34;, choice = &#34;subject&#34;, vehicle_index = 0,command = &#34;lane&#34;)
+        freewayenv.edit_normal_section_setting(section_id = 6, vehicle_type = &#34;follow&#34;, choice = &#34;left&#34;, vehicle_index = 0,command = &#34;lane&#34;)
+        freewayenv.edit_normal_section_setting(section_id = 6, vehicle_type = &#34;lead&#34;, choice = &#34;subject&#34;, vehicle_index = 1,command = &#34;lane&#34;)
+        freewayenv.edit_normal_section_setting(section_id = 6, vehicle_type = &#34;follow&#34;, choice = &#34;subject&#34;, vehicle_index = 1,command = &#34;lane&#34;)
+        # test remove vehicle
+        #freewayenv.remove_full_path_vehicle(name4)
+        
+        
+        
+        # test editing vehicle settings
+        freewayenv.edit_full_path_vehicle_init_setting(name0, gap = 25.0, vehicle_type = &#34;lead&#34;, choice = &#34;subject&#34;, vehicle_color = &#39;0,0,0&#39;)
+        freewayenv.edit_full_path_vehicle_init_setting(name1, gap = 25.0, vehicle_type = &#34;lead&#34;, choice = &#34;left&#34;, vehicle_color = &#39;255,255,255&#39;)
+        #freewayenv.edit_full_path_vehicle_init_setting(name2, gap = 25.0, vehicle_type = &#34;follow&#34;, choice = &#34;subject&#34;, vehicle_color = &#39;0,0,0&#39;)
+        #freewayenv.edit_full_path_vehicle_init_setting(name3, gap = 25.0, vehicle_type = &#34;follow&#34;, choice = &#34;left&#34;, vehicle_color = &#39;255,255,255&#39;)
+        
+        
+        freewayenv.SectionBackend(spectator_mode = &#34;first_person&#34;,allow_collision = False)
+    finally:
+        time.sleep(10)
+        env.destroy_actors()</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="backend.section_environment.FreewayEnv"><code class="flex name class">
+<span>class <span class="ident">FreewayEnv</span></span>
+<span>(</span><span>env, number_of_sections, max_speed=30.0, min_speed=15.0)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>initialize the freeway simulation environment</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>number_of_sections</code></strong> :&ensp;<code>int</code></dt>
+<dd>number of sections for the freeway environment.</dd>
+<dt><strong><code>max_speed</code></strong> :&ensp;<code>float</code></dt>
+<dd>the max speed of vehicle. Default to be 30.0.</dd>
+<dt><strong><code>min_speed</code></strong> :&ensp;<code>float</code></dt>
+<dd>the min speed of vehicle. Default to be 15.0. Vehicle will go under the average of max_speed and min_speed under speed mode</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>None</code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class FreewayEnv(object):
+    # this class holds all methods related to create a simulation environment for freeway
+    def __init__(self, env, number_of_sections, max_speed = 30.0, min_speed = 15.0):
+        &#39;&#39;&#39;
+        initialize the freeway simulation environment
+
+        Parameters
+        ----------
+        number_of_sections : int
+            number of sections for the freeway environment.
+
+        max_speed : float
+            the max speed of vehicle. Default to be 30.0. 
+        
+        min_speed : float
+            the min speed of vehicle. Default to be 15.0. Vehicle will go under the average of max_speed and min_speed under speed mode
+        
+        Returns
+        -------
+        None
+
+        &#39;&#39;&#39;
+        # debug 
+        self.DEBUG_TRAJECTORY = False#True
+        self.DEBUG_SUBJECTPOINTS = True
+        self.DEBUG_SECTION = True
+
+        # Enable/Disable Data Collection
+        self.RECORD_ENABLE = False
+        
+        # store the number of sections
+        self.number_of_sections = number_of_sections
+        
+        self.env = env
+        
+        self.spectator = self.env.world.get_spectator()
+        
+        
+        
+        self.carla_map = self.env.world.get_map()
+        
+        # get the subject waypoint of each section
+        self.subject_point_list = self._get_section_subject_points((-80.0,9.46))
+        
+        # store the reference speed
+        self.max_speed = max_speed
+        self.min_speed = min_speed
+        self.navigation_speed = (self.max_speed + self.min_speed) * 0.5
+        
+        # create the simulation environment and generate the trajectory
+        self._create_simulation_env()
+        
+        # give the trajectory and reference speed list to the initial intersection
+        self.section_list[0].get_full_path_trajectory(self.smoothed_full_trajectory, self.ref_speed_list, self.left_smoothed_full_trajectory, self.left_ref_speed_list, self.navigation_speed, self.max_speed, self.min_speed)
+    
+        
+    
+    
+    #def __del__(self):
+    #    self.env.destroy_actors()
+    
+    # public methods
+    def get_section_list(self):
+        return self.section_list
+    
+    def get_vehicle_bounding_box(self,uniquename):
+        &#39;&#39;&#39;
+        get the bounding box of the vehicle by uniquename
+        Parameters
+        ----------
+        uniquename : string
+            the uniquename of the vehicle.
+        Returns
+        -------
+        new_bb : carla.Vector3D
+            the bounding box of the vehicle, new_bb.x is the length, new_bb.y is the width, new_bb.z is the height
+        &#39;&#39;&#39;
+        new_bb = self.env.get_vehicle_bounding_box(uniquename)
+        return new_bb
+    
+    def add_ego_vehicle(self, model_name = &#34;vehicle.tesla.model3&#34;, safety_distance = 15.0, vehicle_color = None):
+        # wrapper for add_ego_vehicle function of the init_section
+        
+        &#39;&#39;&#39;
+        add ego vehicle to the initial intersection
+        according to the user case, the ego vehicle will follow the 
+        subject lane all the way with constant speed
+        
+        Parameters
+        ----------
+        model_name : string, optional
+            vehicle type. The default is &#34;vehicle.tesla.model3&#34;.
+        safety_distance : float, optional
+            smallest distance between this vehicle and vehicle ahead
+        vehicle_color : string
+            the RGB representation of the vehicle color. e.g. &#39;255,255,255&#39;
+
+        Returns
+        -------
+        uniquename : string
+            the name of the vehicle
+
+        &#39;&#39;&#39;
+        
+        
+        uniquename = self.section_list[0].add_ego_vehicle(model_name = model_name, safety_distance = safety_distance, vehicle_color = vehicle_color)
+        return uniquename
+    
+    def edit_ego_vehicle(self, model_name = &#34;vehicle.tesla.model3&#34;, safety_distance = 15.0, vehicle_color = None):
+        # wrapper for edit_ego_vehicle function of the init_section
+        &#39;&#39;&#39;
+        edit the ego vheicle setting by delete the original ego vehicle and add a new one
+        
+        Parameters
+        ----------
+        model_name : string, optional
+            vehicle type. The default is &#34;vehicle.tesla.model3&#34;.
+        safety_distance : float, optional
+            smallest distance between this vehicle and vehicle ahead
+        vehicle_color : string
+            the RGB representation of the vehicle color. e.g. &#39;255,255,255&#39;
+
+        Returns
+        -------
+        uniquename : string
+            the name of the vehicle
+
+        &#39;&#39;&#39;
+        uniquename = self.section_list[0].edit_ego_vehicle(model_name = model_name, safety_distance = safety_distance, vehicle_color = vehicle_color)
+        return uniquename
+    
+    def add_full_path_vehicle(self, model_name = &#34;vehicle.tesla.model3&#34;, vehicle_type =&#34;lead&#34;, choice = &#34;subject&#34;, command = &#34;speed&#34;, command_start_time = 0.0, gap = 10.0, safety_distance = 15.0, lead_follow_distance = 20.0, vehicle_color = None):
+        # wrapper for add_full_path_vehicle of the init_section
+        &#39;&#39;&#39;
+        add full path vehicle
+
+        Parameters
+        ----------
+        model_name : string, optional
+            vehicle type. The default is &#34;vehicle.tesla.model3&#34;.
+        vehicle_type : string, optional
+            the vehicle type, valid values : &#34;lead&#34;, &#34;follow&#34;. The default is &#34;lead&#34;.
+        choice : string, optional
+            the lane choice, valid values are &#34;subject&#34;, &#34;left&#34;. The default is &#34;subject&#34;.
+        command : string, optional
+            the command the vehicle is going to execute in this section. Valid values: &#34;speed&#34;, &#34;lane&#34;, &#34;distance&#34;. The default is &#34;speed&#34;.
+        command_start_time : string, optional
+            the time at which the command should be executed. The default is 0.0.
+        gap : float, optional
+            the gap between the vehicle and the one in the front of it when adding. The default is 10.0, unit: meter
+        safety_distance : float, optional
+            smallest distance between 2 vehicles when simulation is going. The default is 15.0, unit: meter
+        vehicle_color : string
+            the RGB representation of the vehicle color. e.g. &#39;255,255,255&#39;
+
+        Returns
+        -------
+        uniquename : string
+            the name of the vehicle
+
+
+        &#39;&#39;&#39;
+        # add the full path vehicle to the init section
+        uniquename = self.section_list[0].add_full_path_vehicle(model_name = model_name, vehicle_type = vehicle_type, choice = choice, command = command, command_start_time = command_start_time, gap = gap, safety_distance = safety_distance, lead_follow_distance = lead_follow_distance, vehicle_color = vehicle_color )
+     
+        
+        # create default vehicle setting for normal sections
+        for ii in range(1,len(self.section_list)):
+            self.section_list[ii]._add_full_path_vehicle_normal(uniquename, vehicle_type, choice)
+    
+        return uniquename
+    
+    
+    def remove_full_path_vehicle(self, uniquename):
+        &#39;&#39;&#39;
+        remove a full path vehicle based on its uniquename
+        this includes the vehicle setting in init section and 
+        settings in other normal sections
+
+        Parameters
+        ----------
+        uniquename : string
+            name of the vehicle.
+
+        Returns
+        -------
+        removed : Bool
+            whether the given vehicle is found and removed
+
+        &#39;&#39;&#39;
+        removed, vehicle_type, choice, index = self.section_list[0].remove_full_path_vehicle(uniquename)
+        if removed:
+            for ii in range(1, len(self.section_list)):
+                self.section_list[ii]._remove_full_path_vehicle_normal(vehicle_type, choice, index) # remove the setting from normal
+                                                                                                    # sections
+        
+        return removed
+        
+    def edit_full_path_vehicle_init_setting(self, uniquename, vehicle_type, choice, model_name = &#34;vehicle.tesla.model3&#34;,   command = &#34;speed&#34;, command_start_time = 0.0, gap = 10.0, safety_distance = 15.0, lead_follow_distance = 20.0, vehicle_color = None):
+        # wrapper for the edit_full_path_vehicle function of the init section
+        &#39;&#39;&#39;
+        edit full path vehicle settings by deleting the original vehicle and then add a new one
+
+        Parameters
+        ----------
+        uniquename : string
+            the name of the vehicle
+        vehicle_type : string, 
+            the vehicle type, valid values : &#34;lead&#34;, &#34;follow&#34;. 
+        choice : string, optional
+            the lane choice, valid values are &#34;subject&#34;, &#34;left&#34;. 
+        model_name : string, optional
+            vehicle type. The default is &#34;vehicle.tesla.model3&#34;.
+        command : string, optional
+            the command the vehicle is going to execute in this section. Valid values: &#34;speed&#34;, &#34;lane&#34;, &#34;distance&#34;. The default is &#34;speed&#34;.
+        command_start_time : string, optional
+            the time at which the command should be executed. The default is 0.0.
+        gap : float, optional
+            the gap between the vehicle and the one in the front of it when adding. The default is 10.0, unit: meter
+        safety_distance : float, optional
+            smallest distance between 2 vehicles when simulation is going. The default is 15.0, unit: meter
+        vehicle_color : string
+            the RGB representation of the vehicle color. e.g. &#39;255,255,255&#39;
+
+        Returns
+        -------
+        new_uniquename : string
+            the new_name of the vehicle
+
+
+        &#39;&#39;&#39;
+        
+        new_uniquename, index = self.section_list[0].edit_full_path_vehicle(uniquename = uniquename, 
+                                                                     vehicle_type = vehicle_type, 
+                                                                     choice = choice,
+                                                                     model_name = model_name,
+                                                                     command = command,
+                                                                     command_start_time = command_start_time,
+                                                                     gap = gap, 
+                                                                     safety_distance = safety_distance, 
+                                                                     lead_follow_distance = lead_follow_distance, 
+                                                                     vehicle_color = vehicle_color)
+        
+        
+        
+        for ii in range(1,len(self.section_list)):
+            self.section_list[ii]._update_vehicle_uniquename(vehicle_type = vehicle_type, choice = choice,index = index,uniquename = new_uniquename)
+        
+        return new_uniquename
+    
+    def edit_normal_section_setting(self, section_id, vehicle_type, choice, vehicle_index, command = &#34;speed&#34;, command_start_time = 0.0):
+        &#39;&#39;&#39;
+        function for editing vehicle settings for normal section
+
+        Parameters
+        ----------
+        section_id : TYPE
+            the section id. e.g., the first normal section is the second section, so enter section_id = 2
+        vehicle_type : TYPE
+            DESCRIPTION.
+        choice : TYPE
+            DESCRIPTION.
+        vehicle_index : int
+            the index of the vehicle
+        command : TYPE, optional
+            DESCRIPTION. The default is &#34;speed&#34;.
+        command_start_time : TYPE, optional
+            DESCRIPTION. The default is 0.0.
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        if section_id &gt; len(self.section_list):
+            print(&#34;invalid section_id&#34;)
+            return
+        
+        section = self.section_list[section_id - 1]
+        
+        # edit the section settings
+        section.edit_full_path_vehicle_local_setting(vehicle_type, choice, vehicle_index, command = command, command_start_time = command_start_time)
+    
+    def SectionBackend(self, spectator_mode = None, allow_collision = True, enable_human_control = False):
+        &#39;&#39;&#39;
+        back end function for the freeway
+
+        Parameters
+        ----------
+        spectator_mode : string, optional
+            the spectator mode, valid value is &#34;first_person&#34;. The default is None.
+
+        allow_collision : bool, optional
+            whether collision is allowed during simulation
+            
+        enable_human_control : bool, optional
+            whether ego vehicle is controlled by human
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        
+        init_section = self.section_list[0]
+        ego_vehicle =  VehicleControlFreeway(self.env, init_section.ego_vehicle, self.env.delta_seconds, allow_collision)
+        ego_uniquename = init_section.ego_vehicle[&#34;uniquename&#34;]
+        ego_bb = init_section.ego_vehicle[&#34;bounding_box&#34;]
+        left_follow_vehicle = []
+        subject_follow_vehicle = []
+        left_lead_vehicle = []
+        subject_lead_vehicle = []
+        
+        # check whether ego vehicle comes to destination
+        ego_end = False
+        
+        # create vehicle control object
+        for vehicle_config in init_section.left_follow_vehicle:
+            left_follow_vehicle.append(LeadFollowVehicleControl(self.env, vehicle_config, self.env.delta_seconds,allow_collision))
+            
+        for vehicle_config in init_section.subject_follow_vehicle:
+            subject_follow_vehicle.append(LeadFollowVehicleControl(self.env, vehicle_config, self.env.delta_seconds,allow_collision))
+            
+        for vehicle_config in init_section.left_lead_vehicle:
+            left_lead_vehicle.append(LeadFollowVehicleControl(self.env, vehicle_config, self.env.delta_seconds,allow_collision))
+            
+        for vehicle_config in init_section.subject_lead_vehicle:
+            subject_lead_vehicle.append(LeadFollowVehicleControl(self.env, vehicle_config, self.env.delta_seconds,allow_collision))
+            
+        
+        # store the current section that is functioning
+        curr_section = init_section
+        self.section_list.pop(0)
+        
+            # if enable_human_control, get the ego vehicle from the environment
+        if enable_human_control:
+            human_control_server = HumanEgoControlServer() # create the server for receiving the human command
+            spectator_mode = &#34;human_driving&#34;
+        
+        if self.RECORD_ENABLE:
+            # record 1: data on an plain text file
+            timestr = time.strftime(&#34;%Y%m%d-%H%M%S&#34;)
+            file = open(&#34;../data_collection/FrW&#34; + timestr + &#34;.txt&#34;, &#34;w+&#34; )
+            
+            filename=&#34;../data_collection/FrW&#34; + timestr + &#34;.xlsx&#34;
+            print(&#34;start freeway recordings: &#34;)
+            world_snapshot = self.env.world.get_snapshot()
+            tm = world_snapshot.timestamp
+            file.write(&#34;the experiment starts from &#34; + str(round(tm.elapsed_seconds, 3)) + &#34;(seconds)\n&#34;)
+
+
+            # record 2: data on an excel file
+            header_row = [&#39;timestamp(sec)&#39;]
+            for key in self.env.vehicle_dict.keys():
+                key = key[8:]
+                header_row += [key+ &#39;-lane_id&#39;, key+&#39;-location_x(m)&#39;, key+&#39;-location_y(m)&#39;, key+&#39;location_z(m)&#39;, key+&#39;-roll(degrees)&#39;, key+&#39;-pitch(degrees)&#39;, key+&#39;yaw(degrees)&#39;,
+                            key+&#39;-velocity_x(m/s)&#39;, key+&#39;-velocity_y(m/s)&#39;, key+&#39;velocity_z(m/s)&#39;, key+&#39;-acceleration_x(m/s2)&#39;, key+&#39;-acceleration_y(m/s2)&#39;, key+&#39;acceleration_z(m/s2)&#39;]
+            try:
+                wb = load_workbook(filename)
+                ws = wb.worksheets[0]
+            except FileNotFoundError:
+                wb = Workbook()
+                ws = wb.active
+            ws.append(header_row)
+            wb.save(filename)
+        
+        # main loop for control    
+        while True:
+            if self.RECORD_ENABLE:
+                world_snapshot = self.env.world.get_snapshot()
+                ego_id = (int)(ego_uniquename.split(&#34;_&#34;)[1])
+                ego_actor = world_snapshot.find(ego_id)
+
+                map = self.env.world.get_map()
+                tm = world_snapshot.timestamp       
+                file.write(&#34;time: &#34; + str(round(tm.elapsed_seconds, 3))+&#34;(seconds)\n&#34;)
+
+                data = [str(round(tm.elapsed_seconds, 3))]
+                for key in self.env.vehicle_dict.keys():
+                    vehicle_data = []
+                    id = (int)(key.split(&#34;_&#34;)[1])
+                    actor = world_snapshot.find(id)
+                    if(id == ego_id):
+                        file.write(&#34;ego id: &#34; + key + &#34;\n&#34;)
+                    else:
+                        file.write(&#34;vehicle id: &#34; + key + &#34;\n&#34;)
+                    
+                    actor_location = actor.get_transform().location
+                    lane = map.get_waypoint(actor_location).lane_id
+                    file.write(&#34;lane: &#34; + str(lane) + &#34;\n&#34;)
+                    vehicle_data+=[lane]
+
+                    actor_transform = actor.get_transform()
+                    x = round(actor_transform.location.x, 2)
+                    y = round(actor_transform.location.y, 2)
+                    z = round(actor_transform.location.z, 2)
+                    vehicle_data+=[x, y, z]
+                    file.write(&#34;location: x=&#34; + str(x) + &#34; y=&#34; + str(y) + &#34; z=&#34; +str(z) + &#34;(meters)\n&#34; )
+
+                    x = round(actor_transform.rotation.roll, 2)
+                    y = round(actor_transform.rotation.pitch, 2)
+                    z = round(actor_transform.rotation.yaw, 2)
+                    vehicle_data+=[x, y, z]
+                    file.write(&#34;Rotation: roll=&#34; + str(x) + &#34; pitch=&#34; + str(y) + &#34; yaw=&#34; +str(z) + &#34;(degrees)\n&#34;)
+
+                    actor_velocity = actor.get_velocity()
+                    x = round(actor_velocity.x, 2)
+                    y = round(actor_velocity.y, 2)
+                    z = round(actor_velocity.z, 2)
+                    vehicle_data+=[x, y, z]
+                    file.write(&#34;Velocity: x=&#34; + str(x) + &#34; y=&#34; + str(y) + &#34; z=&#34; +str(z) + &#34;(m/s)\n&#34;)
+
+                    actor_acceleration = actor.get_acceleration()
+                    x = round(actor_acceleration.x, 2)
+                    y = round(actor_acceleration.y, 2)
+                    z = round(actor_acceleration.z, 2)
+                    vehicle_data+=[x, y, z]
+                    file.write(&#34;Acceleration: x=&#34; + str(x) + &#34; y=&#34; + str(y) + &#34; z=&#34; +str(z) + &#34;(m/s2)\n&#34;)
+                    data+=vehicle_data
+
+                ws.append(data)
+                wb.save(filename)
+
+        
+
+            self.env.world.tick()
+            # update the distance between vehicles after each tick
+            self.env.update_vehicle_distance()
+            # change spectator view
+            
+            if self.env.vehicle_available(ego_uniquename) and spectator_mode == &#34;first_person&#34; :
+                 spectator_vehicle_transform = self.env.get_transform_3d(ego_uniquename)
+                 spectator_transform = get_ego_spectator(spectator_vehicle_transform,distance = -40)
+                 self.spectator.set_transform(spectator_transform)
+            
+            if self.env.vehicle_available(ego_uniquename) and spectator_mode == &#34;human_driving&#34; :
+                 spectator_vehicle_transform = self.env.get_transform_3d(ego_uniquename)
+                 spectator_transform = get_ego_driving_spectator(spectator_vehicle_transform, ego_bb)
+                 self.spectator.set_transform(spectator_transform)
+            
+            # section based control
+            
+            # get ego vehicle transform
+            if self.env.vehicle_available(ego_uniquename):
+                ego_transform = self.env.get_transform_3d(ego_uniquename)
+            
+            
+            # update the distance with ego vehicle and
+            # update the elapsed time of the current section
+            local_time = curr_section.tick()
+            
+            for vehicle in left_follow_vehicle:
+                vehicle.update_distance_with_ego(ego_transform) # update the distance with ego vehicle
+                vehicle.update_local_time(local_time) # update the local time, change lane or keep distance accordingly
+                
+            for vehicle in subject_follow_vehicle:
+                vehicle.update_distance_with_ego(ego_transform) # update the distance with ego vehicle
+                vehicle.update_local_time(local_time) # update the local time, change lane or keep distance accordingly
+                
+            for vehicle in left_lead_vehicle:
+                vehicle.update_distance_with_ego(ego_transform) # update the distance with ego vehicle
+                vehicle.update_local_time(local_time) # update the local time, change lane or keep distance accordingly
+            
+            for vehicle in subject_lead_vehicle:
+                vehicle.update_distance_with_ego(ego_transform) # update the distance with ego vehicle
+                vehicle.update_local_time(local_time) # update the local time, change lane or keep distance accordingly
+            
+            
+            
+            
+                
+            # apply control to vehicles
+            if not ego_end:
+                if not enable_human_control:
+                    ego_end = ego_vehicle.pure_pursuit_control_wrapper()
+                else:
+                    # get control from human
+                    human_command = human_control_server.get_human_command()
+                    # format the command into carla.VehicleControl
+                    ego_vehicle_control = carla.VehicleControl(throttle = human_command[0] ,steer=human_command[1],brake = human_command[2])
+                    # apply control to the vehicle
+                    self.env.apply_vehicle_control(ego_uniquename , ego_vehicle_control)
+                    
+                    ego_end = ego_vehicle.fake_pure_pursuit_control_wrapper()
+            
+            &#39;&#39;&#39;
+            print(&#34;--------&#34;)
+            print(&#34;len(left_follow_vehicle) == &#34;, len(left_follow_vehicle))
+            print(&#34;len(subject_follow_vehicle) == &#34;, len(subject_follow_vehicle))
+            print(&#34;len(left_lead_vehicle) == &#34;, len(left_lead_vehicle))
+            print(&#34;len(subject_lead_vehicle) == &#34;, len(subject_lead_vehicle))
+            &#39;&#39;&#39;
+            
+            for jj in range(len(left_follow_vehicle) - 1,-1,-1):
+                vehicle = left_follow_vehicle[jj]
+                end_trajectory = vehicle.pure_pursuit_control_wrapper()
+                if end_trajectory:
+                    left_follow_vehicle.pop(jj)
+                    
+            for jj in range(len(subject_follow_vehicle) - 1,-1,-1):
+                vehicle = subject_follow_vehicle[jj]
+                end_trajectory = vehicle.pure_pursuit_control_wrapper()
+                if end_trajectory:
+                    subject_follow_vehicle.pop(jj)
+                    
+            for jj in range(len(left_lead_vehicle) - 1,-1,-1):
+                vehicle = left_lead_vehicle[jj]
+                end_trajectory = vehicle.pure_pursuit_control_wrapper()
+                if end_trajectory:
+                    left_lead_vehicle.pop(jj)
+                    
+            for jj in range(len(subject_lead_vehicle) - 1,-1,-1):
+                vehicle = subject_lead_vehicle[jj]
+                end_trajectory = vehicle.pure_pursuit_control_wrapper()
+                if end_trajectory:
+                    subject_lead_vehicle.pop(jj)
+            
+            if ego_end and len(left_follow_vehicle) == 0 and len(subject_follow_vehicle) == 0 and len(left_lead_vehicle) == 0 and len(subject_lead_vehicle) == 0:
+                # exit simulation when all vehicles have arrived at their destination
+                break
+                
+            
+            # check whether the subject vehicle is in the next section, if that&#39;s the case, change the curr_section
+            # and apply section based commands to each vehicle
+            if len(self.section_list) &gt; 0: # there still exists unvisited section(s)
+                # get the new ego transform
+                if self.env.vehicle_available(ego_uniquename):
+                    ego_transform = self.env.get_transform_3d(ego_uniquename)
+                if self.section_list[0].section_start(ego_transform):
+                    curr_section = self.section_list.pop(0) # use the new section; remove this section from wait list
+                    
+                    # apply section based vehicle settings
+                    for ii in range(len(left_follow_vehicle)):
+                        vehicle = left_follow_vehicle[ii]
+                        command, command_start_time = curr_section.get_full_path_vehicle_local_setting(&#34;follow&#34;,&#34;left&#34;,ii)
+                        if command != None:
+                            vehicle.command = command
+                            vehicle.command_start_time = command_start_time
+                            
+                    for ii in range(len(subject_follow_vehicle)):
+                        vehicle = subject_follow_vehicle[ii]
+                        command, command_start_time = curr_section.get_full_path_vehicle_local_setting(&#34;follow&#34;,&#34;subject&#34;,ii)
+                        if command != None:
+                            vehicle.command = command
+                            vehicle.command_start_time = command_start_time
+                            
+                    for ii in range(len(left_lead_vehicle)):
+                        vehicle = left_lead_vehicle[ii]
+                        command, command_start_time = curr_section.get_full_path_vehicle_local_setting(&#34;lead&#34;,&#34;left&#34;,ii)
+                        if command != None:
+                            vehicle.command = command
+                            vehicle.command_start_time = command_start_time
+                            
+                    for ii in range(len(subject_lead_vehicle)):
+                        vehicle = subject_lead_vehicle[ii]
+                        command, command_start_time = curr_section.get_full_path_vehicle_local_setting(&#34;lead&#34;,&#34;subject&#34;,ii)
+                        if command != None:
+                            vehicle.command = command
+                            vehicle.command_start_time = command_start_time
+
+        file.close()
+        
+    
+    # private methods
+    def _create_simulation_env(self):
+        # create the freeway environment
+        # this function is the counterpart of the &#34;create_intersections&#34; 
+        # function for intersection backend
+        
+        self.section_list = [] # list for all sections 
+        self.trajectory_ref_point_list = [] # list for full path trajectory waypoints
+        
+        initial_section = InitSection(self.env, self.subject_point_list[0]) # create the initial intersection
+        self.section_list.append(initial_section) 
+        self.trajectory_ref_point_list += initial_section.get_section_trajectory_points()
+        
+        if self.DEBUG_SECTION:
+            trajectory_pt = initial_section.get_section_trajectory_points()
+            for pt in trajectory_pt:
+                loc1 = pt.transform.location
+                self.env.world.debug.draw_point(loc1, size = 0.05, color = red, life_time=0.0, persistent_lines=True)
+                
+        
+        for ii in range(1, self.number_of_sections):
+            normal_section = Section(self.env, self.subject_point_list[ii])
+            self.section_list.append(normal_section)
+            self.trajectory_ref_point_list += normal_section.get_section_trajectory_points()
+            if self.DEBUG_SECTION:
+                trajectory_pt = normal_section.get_section_trajectory_points()
+                for pt in trajectory_pt:
+                    loc1 = pt.transform.location
+                    self.env.world.debug.draw_point(loc1, size = 0.05, color = red, life_time=0.0, persistent_lines=True)
+                    
+            
+        if self.DEBUG_SUBJECTPOINTS:
+            color = green
+            for ii in range(len(self.subject_point_list)):
+                loc1 = self.subject_point_list[ii].transform.location
+                self.env.world.debug.draw_point(loc1, size = 0.1, color = color, life_time=0.0, persistent_lines=True)
+        
+        
+        # connect all reference points for all sections
+        full_trajectory = generate_path(self.env, self.trajectory_ref_point_list[0] , self.trajectory_ref_point_list[1], waypoint_separation = 4)
+        for ii in range(1, len(self.trajectory_ref_point_list) - 1):
+            trajectory = generate_path(self.env, self.trajectory_ref_point_list[ii] , self.trajectory_ref_point_list[ii + 1], waypoint_separation = 4)
+            full_trajectory += trajectory[1:]
+            
+        self.section_subject_trajectory = full_trajectory
+        &#39;&#39;&#39;
+        full_trajectory = []
+        for pt in self.trajectory_ref_point_list:
+            location = pt.transform.location
+            full_trajectory.append((location.x,location.y))
+        &#39;&#39;&#39;
+        
+        # create smoothed trajectory and reference speed list
+        whole_trajectory = [((pt[0],pt[1]),self.navigation_speed) for pt in full_trajectory]
+        
+        smoothed_full_trajectory, ref_speed_list = get_trajectory(whole_trajectory)
+        self.smoothed_full_trajectory = smoothed_full_trajectory
+        self.ref_speed_list = ref_speed_list
+        
+        if self.DEBUG_TRAJECTORY:
+            color = cyan
+            for ii in range(1,len(smoothed_full_trajectory)):
+                loc1 = carla.Location(x = smoothed_full_trajectory[ii - 1][0], y = smoothed_full_trajectory[ii - 1][1], z = 10.0)
+                loc2 = carla.Location(x = smoothed_full_trajectory[ii][0], y = smoothed_full_trajectory[ii][1], z = 10.0)
+                self.env.world.debug.draw_arrow(loc1, loc2, thickness = 0.05, arrow_size = 0.1, color = color, life_time=0.0, persistent_lines=True)
+    
+    
+        # get the trajectory for the left lane
+        self.left_lane_waypoints_list = []
+        for waypoint in self.trajectory_ref_point_list:
+            left_waypoint = self._get_left_waypoint(waypoint)
+            self.left_lane_waypoints_list.append(left_waypoint)
+            
+        if self.DEBUG_SECTION:
+            for ii in range(1,len(self.left_lane_waypoints_list)):
+                loc1 = self.left_lane_waypoints_list[ii - 1].transform.location
+                loc2 = self.left_lane_waypoints_list[ii].transform.location
+                self.env.world.debug.draw_arrow(loc1, loc2, thickness = 0.1, arrow_size = 0.2, color = blue, life_time=0.0, persistent_lines=True)
+        
+        
+        left_full_trajectory = []
+        for pt in self.left_lane_waypoints_list:
+            location = pt.transform.location
+            left_full_trajectory.append((location.x,location.y))
+        
+        
+        left_whole_trajectory = [((pt[0],pt[1]),self.navigation_speed) for pt in left_full_trajectory]
+        
+        left_smoothed_full_trajectory, left_ref_speed_list = get_trajectory(left_whole_trajectory)
+        self.left_smoothed_full_trajectory = left_smoothed_full_trajectory
+        self.left_ref_speed_list = left_ref_speed_list
+        
+        if self.DEBUG_TRAJECTORY:
+            color = blue
+            for ii in range(1,len(left_smoothed_full_trajectory)):
+                loc1 = carla.Location(x = left_smoothed_full_trajectory[ii - 1][0], y = left_smoothed_full_trajectory[ii - 1][1], z = 10.0)
+                loc2 = carla.Location(x = left_smoothed_full_trajectory[ii][0], y = left_smoothed_full_trajectory[ii][1], z = 10.0)
+                self.env.world.debug.draw_arrow(loc1, loc2, thickness = 0.05, arrow_size = 0.1, color = color, life_time=0.0, persistent_lines=True)
+        
+            
+        
+    def _get_unit_left_vector(self,yaw):
+        # get the right vector
+        right_yaw = (yaw + 90) % 360
+        rad_yaw = math.radians(right_yaw)
+        right_vector = [math.cos(rad_yaw),math.sin(rad_yaw)]
+        right_vector = right_vector / np.linalg.norm(right_vector)
+        return right_vector
+    
+    
+    def _get_left_waypoint(self, curr_waypoint):
+        # get the point to the left of the current one
+        left_shift = 3.0
+        
+        curr_location = curr_waypoint.transform.location
+        ref_yaw = curr_waypoint.transform.rotation.yaw
+        left_vector = self._get_unit_left_vector(ref_yaw)
+    
+        new_location = carla.Location(x = curr_location.x - left_shift * left_vector[0], y = curr_location.y - left_shift * left_vector[1], z = curr_location.z)
+        
+        left_waypoint = self.carla_map.get_waypoint(new_location)
+        return left_waypoint
+    
+    def _get_section_subject_points(self, initial_point):
+        # get the section subject points
+        
+        world_pose_list = []
+        
+        initial_point_raw = carla.Location(initial_point[0], initial_point[1], z = 10.0)
+        initial_way_point = self.carla_map.get_waypoint(initial_point_raw)
+        
+        world_pose_list.append(initial_way_point)
+        
+        curr_waypoint = initial_way_point
+        
+        for ii in range(self.number_of_sections - 1):
+            
+            for jj in range(100):
+                next_waypoint = self._get_next_waypoint(curr_waypoint, distance = 4)
+                curr_waypoint = next_waypoint
+            world_pose_list.append(curr_waypoint)
+            
+        return world_pose_list
+    
+    def _get_next_waypoint(self,curr_waypoint,distance = 4):
+        &#39;&#39;&#39;
+        
+
+        Parameters
+        ----------
+        curr_waypoint : carla.Waypoint
+            current waypoint.
+        distance : float, optional
+            &#34;distance&#34; between current waypoint and target waypoint . The default is 10.
+
+        Returns
+        -------
+        next_waypoint : carla.Waypoint
+            next waypoint, &#34;distance&#34; away from curr_waypoint, in the direction of the current way point
+        &#39;&#39;&#39;
+        forward_vector = curr_waypoint.transform.get_forward_vector()
+
+        location = curr_waypoint.transform.location
+        raw_spawn_point = carla.Location(x = location.x + distance * forward_vector.x  , y = location.y + distance * forward_vector.y , z = location.z + 0.1)
+        
+        next_waypoint = self.carla_map.get_waypoint(raw_spawn_point)
+        return next_waypoint</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="backend.section_environment.FreewayEnv.SectionBackend"><code class="name flex">
+<span>def <span class="ident">SectionBackend</span></span>(<span>self, spectator_mode=None, allow_collision=True, enable_human_control=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>back end function for the freeway</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>spectator_mode</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>the spectator mode, valid value is "first_person". The default is None.</dd>
+<dt><strong><code>allow_collision</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>whether collision is allowed during simulation</dd>
+<dt><strong><code>enable_human_control</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>whether ego vehicle is controlled by human</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>None.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def SectionBackend(self, spectator_mode = None, allow_collision = True, enable_human_control = False):
+    &#39;&#39;&#39;
+    back end function for the freeway
+
+    Parameters
+    ----------
+    spectator_mode : string, optional
+        the spectator mode, valid value is &#34;first_person&#34;. The default is None.
+
+    allow_collision : bool, optional
+        whether collision is allowed during simulation
+        
+    enable_human_control : bool, optional
+        whether ego vehicle is controlled by human
+
+    Returns
+    -------
+    None.
+
+    &#39;&#39;&#39;
+    
+    init_section = self.section_list[0]
+    ego_vehicle =  VehicleControlFreeway(self.env, init_section.ego_vehicle, self.env.delta_seconds, allow_collision)
+    ego_uniquename = init_section.ego_vehicle[&#34;uniquename&#34;]
+    ego_bb = init_section.ego_vehicle[&#34;bounding_box&#34;]
+    left_follow_vehicle = []
+    subject_follow_vehicle = []
+    left_lead_vehicle = []
+    subject_lead_vehicle = []
+    
+    # check whether ego vehicle comes to destination
+    ego_end = False
+    
+    # create vehicle control object
+    for vehicle_config in init_section.left_follow_vehicle:
+        left_follow_vehicle.append(LeadFollowVehicleControl(self.env, vehicle_config, self.env.delta_seconds,allow_collision))
+        
+    for vehicle_config in init_section.subject_follow_vehicle:
+        subject_follow_vehicle.append(LeadFollowVehicleControl(self.env, vehicle_config, self.env.delta_seconds,allow_collision))
+        
+    for vehicle_config in init_section.left_lead_vehicle:
+        left_lead_vehicle.append(LeadFollowVehicleControl(self.env, vehicle_config, self.env.delta_seconds,allow_collision))
+        
+    for vehicle_config in init_section.subject_lead_vehicle:
+        subject_lead_vehicle.append(LeadFollowVehicleControl(self.env, vehicle_config, self.env.delta_seconds,allow_collision))
+        
+    
+    # store the current section that is functioning
+    curr_section = init_section
+    self.section_list.pop(0)
+    
+        # if enable_human_control, get the ego vehicle from the environment
+    if enable_human_control:
+        human_control_server = HumanEgoControlServer() # create the server for receiving the human command
+        spectator_mode = &#34;human_driving&#34;
+    
+    if self.RECORD_ENABLE:
+        # record 1: data on an plain text file
+        timestr = time.strftime(&#34;%Y%m%d-%H%M%S&#34;)
+        file = open(&#34;../data_collection/FrW&#34; + timestr + &#34;.txt&#34;, &#34;w+&#34; )
+        
+        filename=&#34;../data_collection/FrW&#34; + timestr + &#34;.xlsx&#34;
+        print(&#34;start freeway recordings: &#34;)
+        world_snapshot = self.env.world.get_snapshot()
+        tm = world_snapshot.timestamp
+        file.write(&#34;the experiment starts from &#34; + str(round(tm.elapsed_seconds, 3)) + &#34;(seconds)\n&#34;)
+
+
+        # record 2: data on an excel file
+        header_row = [&#39;timestamp(sec)&#39;]
+        for key in self.env.vehicle_dict.keys():
+            key = key[8:]
+            header_row += [key+ &#39;-lane_id&#39;, key+&#39;-location_x(m)&#39;, key+&#39;-location_y(m)&#39;, key+&#39;location_z(m)&#39;, key+&#39;-roll(degrees)&#39;, key+&#39;-pitch(degrees)&#39;, key+&#39;yaw(degrees)&#39;,
+                        key+&#39;-velocity_x(m/s)&#39;, key+&#39;-velocity_y(m/s)&#39;, key+&#39;velocity_z(m/s)&#39;, key+&#39;-acceleration_x(m/s2)&#39;, key+&#39;-acceleration_y(m/s2)&#39;, key+&#39;acceleration_z(m/s2)&#39;]
+        try:
+            wb = load_workbook(filename)
+            ws = wb.worksheets[0]
+        except FileNotFoundError:
+            wb = Workbook()
+            ws = wb.active
+        ws.append(header_row)
+        wb.save(filename)
+    
+    # main loop for control    
+    while True:
+        if self.RECORD_ENABLE:
+            world_snapshot = self.env.world.get_snapshot()
+            ego_id = (int)(ego_uniquename.split(&#34;_&#34;)[1])
+            ego_actor = world_snapshot.find(ego_id)
+
+            map = self.env.world.get_map()
+            tm = world_snapshot.timestamp       
+            file.write(&#34;time: &#34; + str(round(tm.elapsed_seconds, 3))+&#34;(seconds)\n&#34;)
+
+            data = [str(round(tm.elapsed_seconds, 3))]
+            for key in self.env.vehicle_dict.keys():
+                vehicle_data = []
+                id = (int)(key.split(&#34;_&#34;)[1])
+                actor = world_snapshot.find(id)
+                if(id == ego_id):
+                    file.write(&#34;ego id: &#34; + key + &#34;\n&#34;)
+                else:
+                    file.write(&#34;vehicle id: &#34; + key + &#34;\n&#34;)
+                
+                actor_location = actor.get_transform().location
+                lane = map.get_waypoint(actor_location).lane_id
+                file.write(&#34;lane: &#34; + str(lane) + &#34;\n&#34;)
+                vehicle_data+=[lane]
+
+                actor_transform = actor.get_transform()
+                x = round(actor_transform.location.x, 2)
+                y = round(actor_transform.location.y, 2)
+                z = round(actor_transform.location.z, 2)
+                vehicle_data+=[x, y, z]
+                file.write(&#34;location: x=&#34; + str(x) + &#34; y=&#34; + str(y) + &#34; z=&#34; +str(z) + &#34;(meters)\n&#34; )
+
+                x = round(actor_transform.rotation.roll, 2)
+                y = round(actor_transform.rotation.pitch, 2)
+                z = round(actor_transform.rotation.yaw, 2)
+                vehicle_data+=[x, y, z]
+                file.write(&#34;Rotation: roll=&#34; + str(x) + &#34; pitch=&#34; + str(y) + &#34; yaw=&#34; +str(z) + &#34;(degrees)\n&#34;)
+
+                actor_velocity = actor.get_velocity()
+                x = round(actor_velocity.x, 2)
+                y = round(actor_velocity.y, 2)
+                z = round(actor_velocity.z, 2)
+                vehicle_data+=[x, y, z]
+                file.write(&#34;Velocity: x=&#34; + str(x) + &#34; y=&#34; + str(y) + &#34; z=&#34; +str(z) + &#34;(m/s)\n&#34;)
+
+                actor_acceleration = actor.get_acceleration()
+                x = round(actor_acceleration.x, 2)
+                y = round(actor_acceleration.y, 2)
+                z = round(actor_acceleration.z, 2)
+                vehicle_data+=[x, y, z]
+                file.write(&#34;Acceleration: x=&#34; + str(x) + &#34; y=&#34; + str(y) + &#34; z=&#34; +str(z) + &#34;(m/s2)\n&#34;)
+                data+=vehicle_data
+
+            ws.append(data)
+            wb.save(filename)
+
+    
+
+        self.env.world.tick()
+        # update the distance between vehicles after each tick
+        self.env.update_vehicle_distance()
+        # change spectator view
+        
+        if self.env.vehicle_available(ego_uniquename) and spectator_mode == &#34;first_person&#34; :
+             spectator_vehicle_transform = self.env.get_transform_3d(ego_uniquename)
+             spectator_transform = get_ego_spectator(spectator_vehicle_transform,distance = -40)
+             self.spectator.set_transform(spectator_transform)
+        
+        if self.env.vehicle_available(ego_uniquename) and spectator_mode == &#34;human_driving&#34; :
+             spectator_vehicle_transform = self.env.get_transform_3d(ego_uniquename)
+             spectator_transform = get_ego_driving_spectator(spectator_vehicle_transform, ego_bb)
+             self.spectator.set_transform(spectator_transform)
+        
+        # section based control
+        
+        # get ego vehicle transform
+        if self.env.vehicle_available(ego_uniquename):
+            ego_transform = self.env.get_transform_3d(ego_uniquename)
+        
+        
+        # update the distance with ego vehicle and
+        # update the elapsed time of the current section
+        local_time = curr_section.tick()
+        
+        for vehicle in left_follow_vehicle:
+            vehicle.update_distance_with_ego(ego_transform) # update the distance with ego vehicle
+            vehicle.update_local_time(local_time) # update the local time, change lane or keep distance accordingly
+            
+        for vehicle in subject_follow_vehicle:
+            vehicle.update_distance_with_ego(ego_transform) # update the distance with ego vehicle
+            vehicle.update_local_time(local_time) # update the local time, change lane or keep distance accordingly
+            
+        for vehicle in left_lead_vehicle:
+            vehicle.update_distance_with_ego(ego_transform) # update the distance with ego vehicle
+            vehicle.update_local_time(local_time) # update the local time, change lane or keep distance accordingly
+        
+        for vehicle in subject_lead_vehicle:
+            vehicle.update_distance_with_ego(ego_transform) # update the distance with ego vehicle
+            vehicle.update_local_time(local_time) # update the local time, change lane or keep distance accordingly
+        
+        
+        
+        
+            
+        # apply control to vehicles
+        if not ego_end:
+            if not enable_human_control:
+                ego_end = ego_vehicle.pure_pursuit_control_wrapper()
+            else:
+                # get control from human
+                human_command = human_control_server.get_human_command()
+                # format the command into carla.VehicleControl
+                ego_vehicle_control = carla.VehicleControl(throttle = human_command[0] ,steer=human_command[1],brake = human_command[2])
+                # apply control to the vehicle
+                self.env.apply_vehicle_control(ego_uniquename , ego_vehicle_control)
+                
+                ego_end = ego_vehicle.fake_pure_pursuit_control_wrapper()
+        
+        &#39;&#39;&#39;
+        print(&#34;--------&#34;)
+        print(&#34;len(left_follow_vehicle) == &#34;, len(left_follow_vehicle))
+        print(&#34;len(subject_follow_vehicle) == &#34;, len(subject_follow_vehicle))
+        print(&#34;len(left_lead_vehicle) == &#34;, len(left_lead_vehicle))
+        print(&#34;len(subject_lead_vehicle) == &#34;, len(subject_lead_vehicle))
+        &#39;&#39;&#39;
+        
+        for jj in range(len(left_follow_vehicle) - 1,-1,-1):
+            vehicle = left_follow_vehicle[jj]
+            end_trajectory = vehicle.pure_pursuit_control_wrapper()
+            if end_trajectory:
+                left_follow_vehicle.pop(jj)
+                
+        for jj in range(len(subject_follow_vehicle) - 1,-1,-1):
+            vehicle = subject_follow_vehicle[jj]
+            end_trajectory = vehicle.pure_pursuit_control_wrapper()
+            if end_trajectory:
+                subject_follow_vehicle.pop(jj)
+                
+        for jj in range(len(left_lead_vehicle) - 1,-1,-1):
+            vehicle = left_lead_vehicle[jj]
+            end_trajectory = vehicle.pure_pursuit_control_wrapper()
+            if end_trajectory:
+                left_lead_vehicle.pop(jj)
+                
+        for jj in range(len(subject_lead_vehicle) - 1,-1,-1):
+            vehicle = subject_lead_vehicle[jj]
+            end_trajectory = vehicle.pure_pursuit_control_wrapper()
+            if end_trajectory:
+                subject_lead_vehicle.pop(jj)
+        
+        if ego_end and len(left_follow_vehicle) == 0 and len(subject_follow_vehicle) == 0 and len(left_lead_vehicle) == 0 and len(subject_lead_vehicle) == 0:
+            # exit simulation when all vehicles have arrived at their destination
+            break
+            
+        
+        # check whether the subject vehicle is in the next section, if that&#39;s the case, change the curr_section
+        # and apply section based commands to each vehicle
+        if len(self.section_list) &gt; 0: # there still exists unvisited section(s)
+            # get the new ego transform
+            if self.env.vehicle_available(ego_uniquename):
+                ego_transform = self.env.get_transform_3d(ego_uniquename)
+            if self.section_list[0].section_start(ego_transform):
+                curr_section = self.section_list.pop(0) # use the new section; remove this section from wait list
+                
+                # apply section based vehicle settings
+                for ii in range(len(left_follow_vehicle)):
+                    vehicle = left_follow_vehicle[ii]
+                    command, command_start_time = curr_section.get_full_path_vehicle_local_setting(&#34;follow&#34;,&#34;left&#34;,ii)
+                    if command != None:
+                        vehicle.command = command
+                        vehicle.command_start_time = command_start_time
+                        
+                for ii in range(len(subject_follow_vehicle)):
+                    vehicle = subject_follow_vehicle[ii]
+                    command, command_start_time = curr_section.get_full_path_vehicle_local_setting(&#34;follow&#34;,&#34;subject&#34;,ii)
+                    if command != None:
+                        vehicle.command = command
+                        vehicle.command_start_time = command_start_time
+                        
+                for ii in range(len(left_lead_vehicle)):
+                    vehicle = left_lead_vehicle[ii]
+                    command, command_start_time = curr_section.get_full_path_vehicle_local_setting(&#34;lead&#34;,&#34;left&#34;,ii)
+                    if command != None:
+                        vehicle.command = command
+                        vehicle.command_start_time = command_start_time
+                        
+                for ii in range(len(subject_lead_vehicle)):
+                    vehicle = subject_lead_vehicle[ii]
+                    command, command_start_time = curr_section.get_full_path_vehicle_local_setting(&#34;lead&#34;,&#34;subject&#34;,ii)
+                    if command != None:
+                        vehicle.command = command
+                        vehicle.command_start_time = command_start_time
+
+    file.close()</code></pre>
+</details>
+</dd>
+<dt id="backend.section_environment.FreewayEnv.add_ego_vehicle"><code class="name flex">
+<span>def <span class="ident">add_ego_vehicle</span></span>(<span>self, model_name='vehicle.tesla.model3', safety_distance=15.0, vehicle_color=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>add ego vehicle to the initial intersection
+according to the user case, the ego vehicle will follow the
+subject lane all the way with constant speed</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model_name</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>vehicle type. The default is "vehicle.tesla.model3".</dd>
+<dt><strong><code>safety_distance</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>smallest distance between this vehicle and vehicle ahead</dd>
+<dt><strong><code>vehicle_color</code></strong> :&ensp;<code>string</code></dt>
+<dd>the RGB representation of the vehicle color. e.g. '255,255,255'</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>uniquename</code></strong> :&ensp;<code>string</code></dt>
+<dd>the name of the vehicle</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_ego_vehicle(self, model_name = &#34;vehicle.tesla.model3&#34;, safety_distance = 15.0, vehicle_color = None):
+    # wrapper for add_ego_vehicle function of the init_section
+    
+    &#39;&#39;&#39;
+    add ego vehicle to the initial intersection
+    according to the user case, the ego vehicle will follow the 
+    subject lane all the way with constant speed
+    
+    Parameters
+    ----------
+    model_name : string, optional
+        vehicle type. The default is &#34;vehicle.tesla.model3&#34;.
+    safety_distance : float, optional
+        smallest distance between this vehicle and vehicle ahead
+    vehicle_color : string
+        the RGB representation of the vehicle color. e.g. &#39;255,255,255&#39;
+
+    Returns
+    -------
+    uniquename : string
+        the name of the vehicle
+
+    &#39;&#39;&#39;
+    
+    
+    uniquename = self.section_list[0].add_ego_vehicle(model_name = model_name, safety_distance = safety_distance, vehicle_color = vehicle_color)
+    return uniquename</code></pre>
+</details>
+</dd>
+<dt id="backend.section_environment.FreewayEnv.add_full_path_vehicle"><code class="name flex">
+<span>def <span class="ident">add_full_path_vehicle</span></span>(<span>self, model_name='vehicle.tesla.model3', vehicle_type='lead', choice='subject', command='speed', command_start_time=0.0, gap=10.0, safety_distance=15.0, lead_follow_distance=20.0, vehicle_color=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>add full path vehicle</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model_name</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>vehicle type. The default is "vehicle.tesla.model3".</dd>
+<dt><strong><code>vehicle_type</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>the vehicle type, valid values : "lead", "follow". The default is "lead".</dd>
+<dt><strong><code>choice</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>the lane choice, valid values are "subject", "left". The default is "subject".</dd>
+<dt><strong><code>command</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>the command the vehicle is going to execute in this section. Valid values: "speed", "lane", "distance". The default is "speed".</dd>
+<dt><strong><code>command_start_time</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>the time at which the command should be executed. The default is 0.0.</dd>
+<dt><strong><code>gap</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>the gap between the vehicle and the one in the front of it when adding. The default is 10.0, unit: meter</dd>
+<dt><strong><code>safety_distance</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>smallest distance between 2 vehicles when simulation is going. The default is 15.0, unit: meter</dd>
+<dt><strong><code>vehicle_color</code></strong> :&ensp;<code>string</code></dt>
+<dd>the RGB representation of the vehicle color. e.g. '255,255,255'</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>uniquename</code></strong> :&ensp;<code>string</code></dt>
+<dd>the name of the vehicle</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_full_path_vehicle(self, model_name = &#34;vehicle.tesla.model3&#34;, vehicle_type =&#34;lead&#34;, choice = &#34;subject&#34;, command = &#34;speed&#34;, command_start_time = 0.0, gap = 10.0, safety_distance = 15.0, lead_follow_distance = 20.0, vehicle_color = None):
+    # wrapper for add_full_path_vehicle of the init_section
+    &#39;&#39;&#39;
+    add full path vehicle
+
+    Parameters
+    ----------
+    model_name : string, optional
+        vehicle type. The default is &#34;vehicle.tesla.model3&#34;.
+    vehicle_type : string, optional
+        the vehicle type, valid values : &#34;lead&#34;, &#34;follow&#34;. The default is &#34;lead&#34;.
+    choice : string, optional
+        the lane choice, valid values are &#34;subject&#34;, &#34;left&#34;. The default is &#34;subject&#34;.
+    command : string, optional
+        the command the vehicle is going to execute in this section. Valid values: &#34;speed&#34;, &#34;lane&#34;, &#34;distance&#34;. The default is &#34;speed&#34;.
+    command_start_time : string, optional
+        the time at which the command should be executed. The default is 0.0.
+    gap : float, optional
+        the gap between the vehicle and the one in the front of it when adding. The default is 10.0, unit: meter
+    safety_distance : float, optional
+        smallest distance between 2 vehicles when simulation is going. The default is 15.0, unit: meter
+    vehicle_color : string
+        the RGB representation of the vehicle color. e.g. &#39;255,255,255&#39;
+
+    Returns
+    -------
+    uniquename : string
+        the name of the vehicle
+
+
+    &#39;&#39;&#39;
+    # add the full path vehicle to the init section
+    uniquename = self.section_list[0].add_full_path_vehicle(model_name = model_name, vehicle_type = vehicle_type, choice = choice, command = command, command_start_time = command_start_time, gap = gap, safety_distance = safety_distance, lead_follow_distance = lead_follow_distance, vehicle_color = vehicle_color )
+ 
+    
+    # create default vehicle setting for normal sections
+    for ii in range(1,len(self.section_list)):
+        self.section_list[ii]._add_full_path_vehicle_normal(uniquename, vehicle_type, choice)
+
+    return uniquename</code></pre>
+</details>
+</dd>
+<dt id="backend.section_environment.FreewayEnv.edit_ego_vehicle"><code class="name flex">
+<span>def <span class="ident">edit_ego_vehicle</span></span>(<span>self, model_name='vehicle.tesla.model3', safety_distance=15.0, vehicle_color=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>edit the ego vheicle setting by delete the original ego vehicle and add a new one</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model_name</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>vehicle type. The default is "vehicle.tesla.model3".</dd>
+<dt><strong><code>safety_distance</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>smallest distance between this vehicle and vehicle ahead</dd>
+<dt><strong><code>vehicle_color</code></strong> :&ensp;<code>string</code></dt>
+<dd>the RGB representation of the vehicle color. e.g. '255,255,255'</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>uniquename</code></strong> :&ensp;<code>string</code></dt>
+<dd>the name of the vehicle</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def edit_ego_vehicle(self, model_name = &#34;vehicle.tesla.model3&#34;, safety_distance = 15.0, vehicle_color = None):
+    # wrapper for edit_ego_vehicle function of the init_section
+    &#39;&#39;&#39;
+    edit the ego vheicle setting by delete the original ego vehicle and add a new one
+    
+    Parameters
+    ----------
+    model_name : string, optional
+        vehicle type. The default is &#34;vehicle.tesla.model3&#34;.
+    safety_distance : float, optional
+        smallest distance between this vehicle and vehicle ahead
+    vehicle_color : string
+        the RGB representation of the vehicle color. e.g. &#39;255,255,255&#39;
+
+    Returns
+    -------
+    uniquename : string
+        the name of the vehicle
+
+    &#39;&#39;&#39;
+    uniquename = self.section_list[0].edit_ego_vehicle(model_name = model_name, safety_distance = safety_distance, vehicle_color = vehicle_color)
+    return uniquename</code></pre>
+</details>
+</dd>
+<dt id="backend.section_environment.FreewayEnv.edit_full_path_vehicle_init_setting"><code class="name flex">
+<span>def <span class="ident">edit_full_path_vehicle_init_setting</span></span>(<span>self, uniquename, vehicle_type, choice, model_name='vehicle.tesla.model3', command='speed', command_start_time=0.0, gap=10.0, safety_distance=15.0, lead_follow_distance=20.0, vehicle_color=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>edit full path vehicle settings by deleting the original vehicle and then add a new one</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>uniquename</code></strong> :&ensp;<code>string</code></dt>
+<dd>the name of the vehicle</dd>
+<dt><strong><code>vehicle_type</code></strong> :&ensp;<code>string, </code></dt>
+<dd>the vehicle type, valid values : "lead", "follow".</dd>
+<dt><strong><code>choice</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>the lane choice, valid values are "subject", "left".</dd>
+<dt><strong><code>model_name</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>vehicle type. The default is "vehicle.tesla.model3".</dd>
+<dt><strong><code>command</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>the command the vehicle is going to execute in this section. Valid values: "speed", "lane", "distance". The default is "speed".</dd>
+<dt><strong><code>command_start_time</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>the time at which the command should be executed. The default is 0.0.</dd>
+<dt><strong><code>gap</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>the gap between the vehicle and the one in the front of it when adding. The default is 10.0, unit: meter</dd>
+<dt><strong><code>safety_distance</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>smallest distance between 2 vehicles when simulation is going. The default is 15.0, unit: meter</dd>
+<dt><strong><code>vehicle_color</code></strong> :&ensp;<code>string</code></dt>
+<dd>the RGB representation of the vehicle color. e.g. '255,255,255'</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>new_uniquename</code></strong> :&ensp;<code>string</code></dt>
+<dd>the new_name of the vehicle</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def edit_full_path_vehicle_init_setting(self, uniquename, vehicle_type, choice, model_name = &#34;vehicle.tesla.model3&#34;,   command = &#34;speed&#34;, command_start_time = 0.0, gap = 10.0, safety_distance = 15.0, lead_follow_distance = 20.0, vehicle_color = None):
+    # wrapper for the edit_full_path_vehicle function of the init section
+    &#39;&#39;&#39;
+    edit full path vehicle settings by deleting the original vehicle and then add a new one
+
+    Parameters
+    ----------
+    uniquename : string
+        the name of the vehicle
+    vehicle_type : string, 
+        the vehicle type, valid values : &#34;lead&#34;, &#34;follow&#34;. 
+    choice : string, optional
+        the lane choice, valid values are &#34;subject&#34;, &#34;left&#34;. 
+    model_name : string, optional
+        vehicle type. The default is &#34;vehicle.tesla.model3&#34;.
+    command : string, optional
+        the command the vehicle is going to execute in this section. Valid values: &#34;speed&#34;, &#34;lane&#34;, &#34;distance&#34;. The default is &#34;speed&#34;.
+    command_start_time : string, optional
+        the time at which the command should be executed. The default is 0.0.
+    gap : float, optional
+        the gap between the vehicle and the one in the front of it when adding. The default is 10.0, unit: meter
+    safety_distance : float, optional
+        smallest distance between 2 vehicles when simulation is going. The default is 15.0, unit: meter
+    vehicle_color : string
+        the RGB representation of the vehicle color. e.g. &#39;255,255,255&#39;
+
+    Returns
+    -------
+    new_uniquename : string
+        the new_name of the vehicle
+
+
+    &#39;&#39;&#39;
+    
+    new_uniquename, index = self.section_list[0].edit_full_path_vehicle(uniquename = uniquename, 
+                                                                 vehicle_type = vehicle_type, 
+                                                                 choice = choice,
+                                                                 model_name = model_name,
+                                                                 command = command,
+                                                                 command_start_time = command_start_time,
+                                                                 gap = gap, 
+                                                                 safety_distance = safety_distance, 
+                                                                 lead_follow_distance = lead_follow_distance, 
+                                                                 vehicle_color = vehicle_color)
+    
+    
+    
+    for ii in range(1,len(self.section_list)):
+        self.section_list[ii]._update_vehicle_uniquename(vehicle_type = vehicle_type, choice = choice,index = index,uniquename = new_uniquename)
+    
+    return new_uniquename</code></pre>
+</details>
+</dd>
+<dt id="backend.section_environment.FreewayEnv.edit_normal_section_setting"><code class="name flex">
+<span>def <span class="ident">edit_normal_section_setting</span></span>(<span>self, section_id, vehicle_type, choice, vehicle_index, command='speed', command_start_time=0.0)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>function for editing vehicle settings for normal section</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>section_id</code></strong> :&ensp;<code>TYPE</code></dt>
+<dd>the section id. e.g., the first normal section is the second section, so enter section_id = 2</dd>
+<dt><strong><code>vehicle_type</code></strong> :&ensp;<code>TYPE</code></dt>
+<dd>DESCRIPTION.</dd>
+<dt><strong><code>choice</code></strong> :&ensp;<code>TYPE</code></dt>
+<dd>DESCRIPTION.</dd>
+<dt><strong><code>vehicle_index</code></strong> :&ensp;<code>int</code></dt>
+<dd>the index of the vehicle</dd>
+<dt><strong><code>command</code></strong> :&ensp;<code>TYPE</code>, optional</dt>
+<dd>DESCRIPTION. The default is "speed".</dd>
+<dt><strong><code>command_start_time</code></strong> :&ensp;<code>TYPE</code>, optional</dt>
+<dd>DESCRIPTION. The default is 0.0.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>None.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def edit_normal_section_setting(self, section_id, vehicle_type, choice, vehicle_index, command = &#34;speed&#34;, command_start_time = 0.0):
+    &#39;&#39;&#39;
+    function for editing vehicle settings for normal section
+
+    Parameters
+    ----------
+    section_id : TYPE
+        the section id. e.g., the first normal section is the second section, so enter section_id = 2
+    vehicle_type : TYPE
+        DESCRIPTION.
+    choice : TYPE
+        DESCRIPTION.
+    vehicle_index : int
+        the index of the vehicle
+    command : TYPE, optional
+        DESCRIPTION. The default is &#34;speed&#34;.
+    command_start_time : TYPE, optional
+        DESCRIPTION. The default is 0.0.
+
+    Returns
+    -------
+    None.
+
+    &#39;&#39;&#39;
+    if section_id &gt; len(self.section_list):
+        print(&#34;invalid section_id&#34;)
+        return
+    
+    section = self.section_list[section_id - 1]
+    
+    # edit the section settings
+    section.edit_full_path_vehicle_local_setting(vehicle_type, choice, vehicle_index, command = command, command_start_time = command_start_time)</code></pre>
+</details>
+</dd>
+<dt id="backend.section_environment.FreewayEnv.get_section_list"><code class="name flex">
+<span>def <span class="ident">get_section_list</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_section_list(self):
+    return self.section_list</code></pre>
+</details>
+</dd>
+<dt id="backend.section_environment.FreewayEnv.get_vehicle_bounding_box"><code class="name flex">
+<span>def <span class="ident">get_vehicle_bounding_box</span></span>(<span>self, uniquename)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>get the bounding box of the vehicle by uniquename
+Parameters</p>
+<hr>
+<dl>
+<dt><strong><code>uniquename</code></strong> :&ensp;<code>string</code></dt>
+<dd>the uniquename of the vehicle.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>new_bb</code></strong> :&ensp;<code>carla.Vector3D</code></dt>
+<dd>the bounding box of the vehicle, new_bb.x is the length, new_bb.y is the width, new_bb.z is the height</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_vehicle_bounding_box(self,uniquename):
+    &#39;&#39;&#39;
+    get the bounding box of the vehicle by uniquename
+    Parameters
+    ----------
+    uniquename : string
+        the uniquename of the vehicle.
+    Returns
+    -------
+    new_bb : carla.Vector3D
+        the bounding box of the vehicle, new_bb.x is the length, new_bb.y is the width, new_bb.z is the height
+    &#39;&#39;&#39;
+    new_bb = self.env.get_vehicle_bounding_box(uniquename)
+    return new_bb</code></pre>
+</details>
+</dd>
+<dt id="backend.section_environment.FreewayEnv.remove_full_path_vehicle"><code class="name flex">
+<span>def <span class="ident">remove_full_path_vehicle</span></span>(<span>self, uniquename)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>remove a full path vehicle based on its uniquename
+this includes the vehicle setting in init section and
+settings in other normal sections</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>uniquename</code></strong> :&ensp;<code>string</code></dt>
+<dd>name of the vehicle.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>removed</code></strong> :&ensp;<code>Bool</code></dt>
+<dd>whether the given vehicle is found and removed</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def remove_full_path_vehicle(self, uniquename):
+    &#39;&#39;&#39;
+    remove a full path vehicle based on its uniquename
+    this includes the vehicle setting in init section and 
+    settings in other normal sections
+
+    Parameters
+    ----------
+    uniquename : string
+        name of the vehicle.
+
+    Returns
+    -------
+    removed : Bool
+        whether the given vehicle is found and removed
+
+    &#39;&#39;&#39;
+    removed, vehicle_type, choice, index = self.section_list[0].remove_full_path_vehicle(uniquename)
+    if removed:
+        for ii in range(1, len(self.section_list)):
+            self.section_list[ii]._remove_full_path_vehicle_normal(vehicle_type, choice, index) # remove the setting from normal
+                                                                                                # sections
+    
+    return removed</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="backend" href="index.html">backend</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="backend.section_environment.main" href="#backend.section_environment.main">main</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="backend.section_environment.FreewayEnv" href="#backend.section_environment.FreewayEnv">FreewayEnv</a></code></h4>
+<ul class="">
+<li><code><a title="backend.section_environment.FreewayEnv.SectionBackend" href="#backend.section_environment.FreewayEnv.SectionBackend">SectionBackend</a></code></li>
+<li><code><a title="backend.section_environment.FreewayEnv.add_ego_vehicle" href="#backend.section_environment.FreewayEnv.add_ego_vehicle">add_ego_vehicle</a></code></li>
+<li><code><a title="backend.section_environment.FreewayEnv.add_full_path_vehicle" href="#backend.section_environment.FreewayEnv.add_full_path_vehicle">add_full_path_vehicle</a></code></li>
+<li><code><a title="backend.section_environment.FreewayEnv.edit_ego_vehicle" href="#backend.section_environment.FreewayEnv.edit_ego_vehicle">edit_ego_vehicle</a></code></li>
+<li><code><a title="backend.section_environment.FreewayEnv.edit_full_path_vehicle_init_setting" href="#backend.section_environment.FreewayEnv.edit_full_path_vehicle_init_setting">edit_full_path_vehicle_init_setting</a></code></li>
+<li><code><a title="backend.section_environment.FreewayEnv.edit_normal_section_setting" href="#backend.section_environment.FreewayEnv.edit_normal_section_setting">edit_normal_section_setting</a></code></li>
+<li><code><a title="backend.section_environment.FreewayEnv.get_section_list" href="#backend.section_environment.FreewayEnv.get_section_list">get_section_list</a></code></li>
+<li><code><a title="backend.section_environment.FreewayEnv.get_vehicle_bounding_box" href="#backend.section_environment.FreewayEnv.get_vehicle_bounding_box">get_vehicle_bounding_box</a></code></li>
+<li><code><a title="backend.section_environment.FreewayEnv.remove_full_path_vehicle" href="#backend.section_environment.FreewayEnv.remove_full_path_vehicle">remove_full_path_vehicle</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+</footer>
+</body>
+</html>

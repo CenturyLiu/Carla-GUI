@@ -1,0 +1,1593 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.2" />
+<title>backend.multiple_vehicle_control_debug API documentation</title>
+<meta name="description" content="Created on Mon Jul
+6 09:54:39 2020 …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>backend.multiple_vehicle_control_debug</code></h1>
+</header>
+<section id="section-intro">
+<p>Created on Mon Jul
+6 09:54:39 2020</p>
+<p>@author: shijiliu</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+&#34;&#34;&#34;
+Created on Mon Jul  6 09:54:39 2020
+
+@author: shijiliu
+&#34;&#34;&#34;
+
+import sys
+sys.path.append(&#34;..&#34;)
+
+import carla
+import matplotlib.pyplot as plt
+import numpy as np
+from collections import deque
+import time
+import math
+
+import control # the python-control package, install first
+
+from backend.intersection_definition import Intersection, get_traffic_lights
+from backend.carla_env import CARLA_ENV # self-written class that provides help functions, should be in the same folder
+from configobj import ConfigObj
+
+# color for debug use
+red = carla.Color(255, 0, 0)
+green = carla.Color(0, 255, 0)
+blue = carla.Color(47, 210, 231)
+cyan = carla.Color(0, 255, 255)
+yellow = carla.Color(255, 255, 0)
+orange = carla.Color(255, 162, 0)
+white = carla.Color(255, 255, 255)
+
+class VehicleControl_debug(object):
+    def __init__(self,env,vehicle_config, delta_seconds):
+        &#39;&#39;&#39;
+        
+
+        Parameters
+        ----------
+        env : CARLA_ENV
+            the self-written environment for simulation
+        
+        vehicle_config : ConfigObj
+            the configuration file for this vehicle. The file is created inside the Intersection&#39;s add_vehicle function.
+            containing the trajectory and speed reference for the vehicle. The configuration file should also indicate whether
+            this vehicle should go or not.
+
+        delta_seconds : float
+            time between two adjacent simulation step. Used for creating discrete controller
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        
+        self.env = env
+        self.vehicle_config = vehicle_config
+        self.model_uniquename = self.vehicle_config[&#34;uniquename&#34;]
+        self.command = self.vehicle_config[&#34;command&#34;]
+        self.trajectory = self.vehicle_config[&#34;trajectory&#34;]
+        self.ref_speed_list = self.vehicle_config[&#34;ref_speed_list&#34;]
+        self.obey_traffic_lights = self.vehicle_config[&#34;obey_traffic_lights&#34;]
+        self.run = self.vehicle_config[&#34;run&#34;]
+        self.safety_distance = self.vehicle_config[&#34;safety_distance&#34;]
+        self.stop_choice = self.vehicle_config[&#34;stop_choice&#34;]
+        self.penetrate_distance = self.vehicle_config[&#34;penetrate_distance&#34;]
+        self.stop_ref_point = self.vehicle_config[&#34;stop_ref_point&#34;]
+        
+        # discrete step time
+        self.delta_seconds = delta_seconds
+        
+        # PI controller constants
+        self.KI = 0.02
+        self.KP = 0.5
+        
+        # pure-pursuit model constants
+        self.k = 0.1 # coefficient for look ahead
+        self.Lfc = 4.0 # look ahead distance
+        self.L = self.vehicle_config[&#34;bounding_box&#34;].x#2.88 # wheelbase
+        
+        # essential storages for the controller to work
+        self.init_values = deque(maxlen = 2) # the state space values of the system. For a control system to be fully functional
+                                        # we need to give initial value
+        self.ref_speeds = deque(maxlen = 2) # the reference / target speed
+        self.curr_speeds = deque(maxlen = 2) # the measured speed of the vehicle
+        
+        # storage for the visualize the reference speed, throttle and measured speed.
+        self.speed = []
+        self.throttles = []
+        self.reference_speed = []
+    
+        # give initial values to storage, assume the car is released at rest, with no initial speed or acceleration
+        self.init_values.append(0) 
+        self.ref_speeds.append(0)
+        self.curr_speeds.append(0)
+    
+        self.current_ref_speed = 0
+        self.index = 0
+        
+        
+        
+        
+        # get the PI controller for the vehicle
+        self._get_PI_controller()
+        
+        
+        self.debug_vehicle = True # enable drawing vehicle trajectory
+        self.vehicle_pose = deque(maxlen = 2)
+        
+        # indication of whether the vehicle stops at traffic light
+        self.blocked_by_light = False
+        
+        
+    def get_vehicle_transform(self):
+        transform = self.env.get_transform_3d(self.model_uniquename)
+        return transform
+        
+    def _get_PI_controller(self):
+        &#39;&#39;&#39;
+        Effects: create a discrete state-space PI controller
+        &#39;&#39;&#39;
+        num_pi = [self.KP, self.KI] # numerator of the PI transfer function (KP*s + KI)
+        den_pi = [1.0, 0.01*self.KI/self.KP] # denominator of PI transfer function (s + 0.01*KI/KP)
+    
+        sys = control.tf(num_pi,den_pi) # get transfer function for PI controller (since the denominator has a small term 0.01*KI/KP, it is actually a lag-compensator)
+        sys = control.sample_system(sys, self.delta_seconds) # discretize the transfer function (from s-domain which is continuous to z-domain)
+                                                            #since our simulation is discrete
+        sys = control.tf2ss(sys) # transform transfer function into state space.
+        self.sys = sys  # the system is created for this vehicle
+        
+    def speed_control(self):
+        &#39;&#39;&#39;
+        Effects: get the reference speed, current (measured) speed and initial values
+                 Use the difference 
+                                   e = ref_speeds - curr_speeds 
+                 as the input for the PI controller, derive the new throttle
+    
+        Parameters
+        ----------
+        self.sys : control.ss 
+            state space controller 
+        self.ref_speeds : list of float
+            the desired speed we need
+        self.curr_speeds : list of float
+            the current speed
+        self.init_values : the initial_values of the system
+            DESCRIPTION.
+    
+        Returns
+        -------
+        throttle : float type
+            DESCRIPTION.
+    
+        &#39;&#39;&#39;
+        
+        
+        U0 = np.array(self.ref_speeds) - np.array(self.curr_speeds)
+        #print(U0)
+        _,y0,x0 = control.forced_response(self.sys,U = U0,X0 = self.init_values[0]) # y0 is the next values, x0 is the state evolution
+                                                                          # see https://python-control.readthedocs.io/en/0.8.3/generated/control.forced_response.html#control.forced_response 
+        self.init_values.append(x0[-1])
+        throttle = y0[-1]
+        return throttle
+    
+    def get_target_index(self,location_2d, current_forward_speed, trajectory):
+        &#39;&#39;&#39;
+        Get the target for the vehicle to navigate to
+    
+        Parameters
+        ----------
+        location_2d : (x,y)
+            current location of the vehicle.
+        current_forward_speed : float
+            current speed of the vehicle.
+        trajectory : numpy 2d array
+            interpolated waypoints.
+    
+        Returns
+        -------
+        ind : TYPE
+            DESCRIPTION.
+        end_trajectory : TYPE
+            DESCRIPTION.
+    
+        &#39;&#39;&#39;
+        
+        
+        distance = np.sum((trajectory - location_2d)**2,axis = 1)**0.5
+        ind = np.argmin(distance)
+        l0 = 0.0
+        
+        Lf = self.k * current_forward_speed + self.Lfc
+        
+        while Lf &gt; l0 and (ind + 1) &lt; len(trajectory):
+            delta_d = sum((trajectory[ind + 1] - trajectory[ind])**2)**0.5
+            l0 += delta_d
+            ind += 1
+        
+        if ind &gt;= len(trajectory) - 1:
+            end_trajectory = True
+        else:
+            end_trajectory = False
+            
+        return ind, end_trajectory
+    
+    def pure_pursuit_control(self,vehicle_pos_2d, current_forward_speed, trajectory, ref_speed_list, prev_index):
+        &#39;&#39;&#39;
+        
+    
+        Parameters
+        ----------
+        vehicle_pos_2d : (location_2d,yaw)
+            tuple of vehicle location and heading in 2d.
+            location_2d : (x,y), both x and y are in meter
+            yaw : heading angle **Note** yaw is in degree
+        current_forward_speed : float
+            the current velocity of the vehicle.
+        trajectory : numpy 2d array
+            interpolated waypoints.
+        ref_speed_list : list
+            the reference speed corresponding to each way point
+        prev_index : int
+            the previous index
+        Returns
+        -------
+        delta : float
+            steer angle of the vehicle.
+        current_ref_speed : the reference speed
+            DESCRIPTION.
+        index : int
+            the index of the target.
+        end_trajectory : boolean
+            whether we have reached clos enough to the destination.
+    
+        &#39;&#39;&#39;
+        
+        
+        
+        location_2d, yaw = vehicle_pos_2d
+        yaw = np.deg2rad(yaw) # change the unit the radius
+        index, end_trajectory = self.get_target_index(location_2d, current_forward_speed, trajectory)
+        
+        if prev_index &gt;= index:
+            index = prev_index
+            
+        if index &lt; len(trajectory):
+            tx = trajectory[index][0]
+            ty = trajectory[index][1]
+        else:
+            tx = trajectory[-1][0]
+            ty = trajectory[-1][1] 
+        
+        alpha = math.atan2(ty - location_2d[1],tx - location_2d[0]) - yaw
+        
+        if current_forward_speed &lt; 0: #back, should not happen in our case
+            alpha = math.pi - alpha
+        
+        Lf = self.k * current_forward_speed + self.Lfc
+        
+        delta = math.atan2(2.0 * self.L * math.sin(alpha) / Lf, 1.0)
+        #print(&#34;delta == &#34;, delta, &#34;yaw == &#34;, yaw)
+        
+        current_ref_speed = ref_speed_list[index]
+        
+        return delta, current_ref_speed, index, end_trajectory
+    
+    def pure_pursuit_control_wrapper(self):
+        &#39;&#39;&#39;
+        Apply one step control to the vehicle, store essential information for further use
+
+        Returns
+        -------
+        end_trajectory : bool
+            whether this vehicle reaches its end
+
+        &#39;&#39;&#39;
+       
+        curr_speed = self.env.get_forward_speed(self.model_uniquename)
+        vehicle_pos_2d = self.env.get_transform_2d(self.model_uniquename) # the (x,y) location and yaw angle of the vehicle
+        self.speed.append(curr_speed)
+        self.curr_speeds.append(curr_speed)
+        
+        # draw real trajectory if debug is enabled
+        if self.debug_vehicle:
+            self.vehicle_pose.append(vehicle_pos_2d[0])
+            if len(self.vehicle_pose) == 2:
+                self.env.draw_real_trajectory(self.vehicle_pose)
+                
+            self._display_vehicle_type()
+                
+        # use pure-pursuit model to get the steer angle (in radius)
+        delta, current_ref_speed, index, end_trajectory = self.pure_pursuit_control(vehicle_pos_2d, curr_speed, self.trajectory, self.ref_speed_list, self.index)
+        self.index = index
+        steer = np.clip(delta,-0.5,0.5)
+        
+        
+        # If vehicle has safety distance set, check whether a vehicle is in the front
+        current_ref_speed = self._obey_safety_distance(current_ref_speed)
+        
+        # If vehicle obey traffic lights and is going straight / turning left, check the traffic light state
+        current_ref_speed = self._obey_traffic_light(current_ref_speed)
+        
+        if self.debug_vehicle:
+            print(&#34;--------&#34;)
+            print(&#34;current_ref_speed == &#34;,current_ref_speed)
+            print(&#34;current_speed ==&#34;,curr_speed)
+        
+        self.ref_speeds.append(current_ref_speed)
+        self.reference_speed.append(current_ref_speed)
+        
+        # get throttle to get the next reference speed 
+        throttle = self.speed_control() # get the throttle control based on reference and current speed
+        throttle = np.clip(throttle,0,1) # throttle value is [0,1]
+        self.throttles.append(throttle) # for visualization
+        
+        # check whether we are reaching the destination or not
+        if end_trajectory:
+            vehicle_control = carla.VehicleControl(throttle = 0.0,steer=steer,brake = 1.0) # immediately stop the car
+            self.env.apply_vehicle_control(self.model_uniquename, vehicle_control) # apply control to vehicle
+            self.run = False
+            self._destroy_vehicle()
+            return end_trajectory
+        
+        # apply throttle-steer-brake control
+        if curr_speed &lt;= current_ref_speed:
+            vehicle_control = carla.VehicleControl(throttle = throttle,steer=steer) 
+        else:
+            vehicle_control = carla.VehicleControl(throttle = throttle,steer=steer,brake = 0.5)
+            
+        self.env.apply_vehicle_control(self.model_uniquename, vehicle_control) # apply control to vehicle
+        return end_trajectory
+    
+    
+    def _obey_traffic_light(self, current_ref_speed):
+        # the vehicle should take traffic lights into account when it is required 
+        # to obey lights and is going straight or turning left
+        self.blocked_by_light = False
+        
+        
+        
+        if not self.obey_traffic_lights:
+            return current_ref_speed
+        if self.command == &#34;right&#34;:
+            return current_ref_speed
+        
+        
+        
+        # get the location of the vehicle
+        curr_transform = self.env.get_transform_2d(self.model_uniquename)
+        curr_location = curr_transform[0]
+        
+        abrupt_stop_vel = carla.Vector3D(x = 0,y = 0,z = 0)
+        
+        if self.vehicle_config[&#34;vehicle_type&#34;] == &#34;other&#34;:
+            target_location = self.stop_ref_point.location
+            target_vector = self.stop_ref_point.get_forward_vector()
+            target_vector_2d = np.array([target_vector.x,target_vector.y])
+            target_vector_2d = target_vector_2d / np.linalg.norm(target_vector_2d)
+            vec_tar_curr = np.array([curr_location[0] - target_location.x,curr_location[1] - target_location.y])
+            vec_tar_curr = vec_tar_curr / np.linalg.norm(vec_tar_curr)
+            coef = np.dot(vec_tar_curr,target_vector_2d)
+            
+            
+            smallest_distance = math.sqrt((curr_location[0] - target_location.x)**2 + (curr_location[1] - target_location.y)**2) * coef
+            light =  self.vehicle_config[&#34;traffic_light&#34;]
+        else:
+            smallest_distance = np.inf
+            real_target = None
+            for ii in range(len(self.stop_ref_point)):
+                target_location = self.stop_ref_point[ii].location
+                distance = math.sqrt((curr_location[0] - target_location.x)**2 + (curr_location[1] - target_location.y)**2)
+                if distance &lt; smallest_distance:
+                    smallest_distance = distance
+                    light = self.vehicle_config[&#34;traffic_light&#34;][ii]
+                    real_target = self.stop_ref_point[ii]
+            target_vector = real_target.get_forward_vector()
+            target_vector_2d = np.array([target_vector.x,target_vector.y])
+            target_vector_2d = target_vector_2d / np.linalg.norm(target_vector_2d)
+            vec_tar_curr = np.array([curr_location[0] - real_target.location.x,curr_location[1] - real_target.location.y])
+            vec_tar_curr = vec_tar_curr / np.linalg.norm(vec_tar_curr)
+            coef = np.dot(vec_tar_curr,target_vector_2d)
+            smallest_distance *= coef
+            
+        if smallest_distance &lt; 0.5 and smallest_distance &gt; -10: 
+            state = light.get_state()
+            if state == carla.TrafficLightState.Red or state == carla.TrafficLightState.Yellow:
+                if self.stop_choice == &#34;abrupt&#34;:
+                    self.env.set_vehicle_velocity(self.model_uniquename , abrupt_stop_vel) # immediately stop vehicle
+                    return 0.0 # abrupt stop
+                else:
+                    if abs(smallest_distance) &lt; 1.0: # normal or penetrate, note smallest_distance is most likely negative
+                        self.env.set_vehicle_velocity(self.model_uniquename , abrupt_stop_vel)
+                        return 0.0
+                    else:
+                        return current_ref_speed
+            else:
+                return current_ref_speed
+        
+        return current_ref_speed
+        
+        &#39;&#39;&#39;
+        # check light state
+        #state = self.env.get_traffic_light_state(self.model_uniquename)
+        
+        if self.vehicle_config[&#39;vehicle_type&#39;] == &#39;lead&#39;:
+            print(state)
+        
+        if state == carla.TrafficLightState.Red or state == carla.TrafficLightState.Yellow:
+            # add an indication that the vehicle is blocked by the traffic light
+            self.blocked_by_light = True
+            abrupt_stop_vel = carla.Vector3D(x = 0,y = 0,z = 0)
+            
+            if self.stop_choice == &#34;abrupt&#34;:
+                self.env.set_vehicle_velocity(self.model_uniquename , abrupt_stop_vel) # immediately stop vehicle
+                return 0.0 # abrupt stop
+            else:
+                curr_transform = self.env.get_transform_2d(self.model_uniquename)
+                curr_location = curr_transform[0]
+                
+                if self.vehicle_config[&#34;vehicle_type&#34;] == &#34;other&#34;:
+                    
+                    target_location = self.stop_ref_point
+                    distance = math.sqrt((curr_location[0] - target_location.x)**2 + (curr_location[1] - target_location.y)**2)
+                    #print(distance)
+                    if distance &lt; 1.0: # close to target enough
+                        self.env.set_vehicle_velocity(self.model_uniquename , abrupt_stop_vel) # stop vehicle when close enough to reference
+                        return 0.0
+                    else:
+                        return current_ref_speed
+                else: # full path vehicle
+                    smallest_distance = np.inf
+                    
+                    # get the smallest distance from the vehicle to target stop point
+                    for target_location in self.stop_ref_point:
+                        distance = math.sqrt((curr_location[0] - target_location.x)**2 + (curr_location[1] - target_location.y)**2)
+                        if distance &lt; smallest_distance:
+                            smallest_distance = distance
+                            
+                    if smallest_distance &lt; 1.0: # close to target enough
+                        self.env.set_vehicle_velocity(self.model_uniquename , abrupt_stop_vel) # stop vehicle when close enough to reference
+                        return 0.0
+                    else:
+                        return current_ref_speed
+            
+            return 0.0 # stop the car immediately
+        
+        return current_ref_speed # obey light and light is green
+        &#39;&#39;&#39;
+    
+    def _obey_safety_distance(self, current_ref_speed):
+        
+        has_vehicle_in_front, distance = self.env.check_vehicle_in_front(self.model_uniquename, self.safety_distance)
+        if has_vehicle_in_front: 
+            return 0.0
+        
+        return current_ref_speed
+    
+    def _destroy_vehicle(self):
+        self.env.destroy_vehicle(self.model_uniquename)
+        
+    def _display_vehicle_type(self):
+        vehicle_type = self.vehicle_config[&#34;vehicle_type&#34;]
+        vehicle_transform = self.get_vehicle_transform()
+        vehicle_location = vehicle_transform.location
+        debug_location = carla.Location(x = vehicle_location.x, y = vehicle_location.y, z = vehicle_location.z + 2 * self.vehicle_config[&#34;bounding_box&#34;].z)
+        
+        
+        if vehicle_type == &#34;other&#34;:
+            self.env.world.debug.draw_string(debug_location,text = &#34;other&#34;, color = green, life_time = self.env.delta_seconds)
+        elif vehicle_type == &#34;lead&#34;:
+            self.env.world.debug.draw_string(debug_location,text = &#34;lead&#34;, color = yellow, life_time = self.env.delta_seconds)
+        elif vehicle_type == &#34;ego&#34;:
+            self.env.world.debug.draw_string(debug_location,text = &#34;ego&#34;, color = red, life_time = self.env.delta_seconds)
+        elif vehicle_type == &#34;follow&#34;:
+            self.env.world.debug.draw_string(debug_location,text = &#34;follow&#34;, color = blue, life_time = self.env.delta_seconds)
+        
+    
+def multiple_vehicle_control(env,intersection_list):
+    vehicle_list = []
+    while True:
+        env.world.tick()
+        
+        # update the distance between vehicles after each tick
+        env.update_vehicle_distance()
+        
+        for ii in range(len(intersection_list)-1,-1,-1):
+            if intersection_list[ii].start_sim:
+                for vehicle_config in intersection_list[ii].subject_vehicle:
+                    vehicle = VehicleControl_debug(env, vehicle_config, env.delta_seconds)
+                    vehicle_list.append(vehicle)
+                    
+                for vehicle_config in intersection_list[ii].left_vehicle:
+                    vehicle = VehicleControl_debug(env, vehicle_config, env.delta_seconds)
+                    vehicle_list.append(vehicle)
+                    
+                for vehicle_config in intersection_list[ii].right_vehicle:
+                    vehicle = VehicleControl_debug(env, vehicle_config, env.delta_seconds)
+                    vehicle_list.append(vehicle)
+        
+                for vehicle_config in intersection_list[ii].ahead_vehicle:
+                    vehicle = VehicleControl_debug(env, vehicle_config, env.delta_seconds)
+                    vehicle_list.append(vehicle)
+                    
+                intersection_list.pop(ii)
+        
+        if len(vehicle_list) == 0:
+            break
+        
+        &#39;&#39;&#39;
+        Temp function. Start vehicle that&#39;s not running
+        &#39;&#39;&#39;
+        has_run = False
+        for vehicle in vehicle_list:
+            if vehicle.run:
+                has_run = True
+                break
+        
+        if not has_run:
+            for vehicle in vehicle_list:
+                vehicle.run = True
+        
+        for jj in range(len(vehicle_list) -1, -1, -1):
+            vehicle = vehicle_list[jj]
+            if vehicle.run:
+                end_trajectory = vehicle.pure_pursuit_control_wrapper()
+                if end_trajectory:
+                    vehicle_list.pop(jj)
+                    
+def main():
+    try:
+        client = carla.Client(&#34;localhost&#34;,2000)
+        client.set_timeout(10.0)
+        world = client.load_world(&#39;Town05&#39;)
+         
+        # set the weather
+        weather = carla.WeatherParameters(
+            cloudiness=10.0,
+            precipitation=0.0,
+            sun_altitude_angle=90.0)
+        world.set_weather(weather)
+        
+        # set the spectator position for demo purpose
+        spectator = world.get_spectator()
+        spectator.set_transform(carla.Transform(carla.Location(x=-133, y=1.29, z=75.0), carla.Rotation(pitch=-88.0, yaw= -1.85, roll=1.595))) # top view of intersection
+        
+        env = CARLA_ENV(world) 
+        time.sleep(2) # sleep for 2 seconds, wait the initialization to finish
+        
+        traffic_light_list = get_traffic_lights(world.get_actors())
+        
+        intersection_list = []
+        
+        # intersection 1
+        world_pos = (-133.0,0.0)#(25.4,0.0)
+        
+        intersection1 = Intersection(env, world_pos, traffic_light_list)
+        intersection1.add_vehicle(obey_traffic_lights = False)
+        
+        intersection1.add_vehicle(command = &#34;left&#34;, obey_traffic_lights = False)
+        intersection1.add_vehicle(command = &#34;right&#34;, obey_traffic_lights = False)
+        
+        intersection1.add_vehicle(gap = 5,choice = &#34;left&#34;, obey_traffic_lights = False)
+        intersection1.add_vehicle(gap = 5, choice = &#34;left&#34;,command = &#34;right&#34;, obey_traffic_lights = False)
+        intersection1.add_vehicle(gap = 5,choice = &#34;left&#34;,command = &#34;left&#34;, obey_traffic_lights = False)
+        intersection1.add_vehicle(choice = &#34;right&#34;, obey_traffic_lights = False)
+        intersection1.add_vehicle(choice = &#34;right&#34;,command = &#34;left&#34;, obey_traffic_lights = False)
+        intersection1.add_vehicle(gap = 10.0,choice = &#34;right&#34;,command = &#34;right&#34;, obey_traffic_lights = False)
+        intersection1.add_vehicle(choice = &#34;ahead&#34;, obey_traffic_lights = False)
+        intersection1.add_vehicle(choice = &#34;ahead&#34;,command = &#34;right&#34;, obey_traffic_lights = False)
+        intersection1.add_vehicle(choice = &#34;ahead&#34;,command = &#34;left&#34;, obey_traffic_lights = False)
+        
+        intersection1._shift_vehicles(-10,index = 1)
+        
+        
+        intersection1.start_sim = True
+        
+        intersection_list.append(intersection1)
+        
+        multiple_vehicle_control(env,intersection_list)
+        
+    finally:
+        time.sleep(10)
+        env.destroy_actors()                    
+
+if __name__ == &#39;__main__&#39;:
+    main()</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="backend.multiple_vehicle_control_debug.main"><code class="name flex">
+<span>def <span class="ident">main</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def main():
+    try:
+        client = carla.Client(&#34;localhost&#34;,2000)
+        client.set_timeout(10.0)
+        world = client.load_world(&#39;Town05&#39;)
+         
+        # set the weather
+        weather = carla.WeatherParameters(
+            cloudiness=10.0,
+            precipitation=0.0,
+            sun_altitude_angle=90.0)
+        world.set_weather(weather)
+        
+        # set the spectator position for demo purpose
+        spectator = world.get_spectator()
+        spectator.set_transform(carla.Transform(carla.Location(x=-133, y=1.29, z=75.0), carla.Rotation(pitch=-88.0, yaw= -1.85, roll=1.595))) # top view of intersection
+        
+        env = CARLA_ENV(world) 
+        time.sleep(2) # sleep for 2 seconds, wait the initialization to finish
+        
+        traffic_light_list = get_traffic_lights(world.get_actors())
+        
+        intersection_list = []
+        
+        # intersection 1
+        world_pos = (-133.0,0.0)#(25.4,0.0)
+        
+        intersection1 = Intersection(env, world_pos, traffic_light_list)
+        intersection1.add_vehicle(obey_traffic_lights = False)
+        
+        intersection1.add_vehicle(command = &#34;left&#34;, obey_traffic_lights = False)
+        intersection1.add_vehicle(command = &#34;right&#34;, obey_traffic_lights = False)
+        
+        intersection1.add_vehicle(gap = 5,choice = &#34;left&#34;, obey_traffic_lights = False)
+        intersection1.add_vehicle(gap = 5, choice = &#34;left&#34;,command = &#34;right&#34;, obey_traffic_lights = False)
+        intersection1.add_vehicle(gap = 5,choice = &#34;left&#34;,command = &#34;left&#34;, obey_traffic_lights = False)
+        intersection1.add_vehicle(choice = &#34;right&#34;, obey_traffic_lights = False)
+        intersection1.add_vehicle(choice = &#34;right&#34;,command = &#34;left&#34;, obey_traffic_lights = False)
+        intersection1.add_vehicle(gap = 10.0,choice = &#34;right&#34;,command = &#34;right&#34;, obey_traffic_lights = False)
+        intersection1.add_vehicle(choice = &#34;ahead&#34;, obey_traffic_lights = False)
+        intersection1.add_vehicle(choice = &#34;ahead&#34;,command = &#34;right&#34;, obey_traffic_lights = False)
+        intersection1.add_vehicle(choice = &#34;ahead&#34;,command = &#34;left&#34;, obey_traffic_lights = False)
+        
+        intersection1._shift_vehicles(-10,index = 1)
+        
+        
+        intersection1.start_sim = True
+        
+        intersection_list.append(intersection1)
+        
+        multiple_vehicle_control(env,intersection_list)
+        
+    finally:
+        time.sleep(10)
+        env.destroy_actors()                    </code></pre>
+</details>
+</dd>
+<dt id="backend.multiple_vehicle_control_debug.multiple_vehicle_control"><code class="name flex">
+<span>def <span class="ident">multiple_vehicle_control</span></span>(<span>env, intersection_list)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def multiple_vehicle_control(env,intersection_list):
+    vehicle_list = []
+    while True:
+        env.world.tick()
+        
+        # update the distance between vehicles after each tick
+        env.update_vehicle_distance()
+        
+        for ii in range(len(intersection_list)-1,-1,-1):
+            if intersection_list[ii].start_sim:
+                for vehicle_config in intersection_list[ii].subject_vehicle:
+                    vehicle = VehicleControl_debug(env, vehicle_config, env.delta_seconds)
+                    vehicle_list.append(vehicle)
+                    
+                for vehicle_config in intersection_list[ii].left_vehicle:
+                    vehicle = VehicleControl_debug(env, vehicle_config, env.delta_seconds)
+                    vehicle_list.append(vehicle)
+                    
+                for vehicle_config in intersection_list[ii].right_vehicle:
+                    vehicle = VehicleControl_debug(env, vehicle_config, env.delta_seconds)
+                    vehicle_list.append(vehicle)
+        
+                for vehicle_config in intersection_list[ii].ahead_vehicle:
+                    vehicle = VehicleControl_debug(env, vehicle_config, env.delta_seconds)
+                    vehicle_list.append(vehicle)
+                    
+                intersection_list.pop(ii)
+        
+        if len(vehicle_list) == 0:
+            break
+        
+        &#39;&#39;&#39;
+        Temp function. Start vehicle that&#39;s not running
+        &#39;&#39;&#39;
+        has_run = False
+        for vehicle in vehicle_list:
+            if vehicle.run:
+                has_run = True
+                break
+        
+        if not has_run:
+            for vehicle in vehicle_list:
+                vehicle.run = True
+        
+        for jj in range(len(vehicle_list) -1, -1, -1):
+            vehicle = vehicle_list[jj]
+            if vehicle.run:
+                end_trajectory = vehicle.pure_pursuit_control_wrapper()
+                if end_trajectory:
+                    vehicle_list.pop(jj)</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="backend.multiple_vehicle_control_debug.VehicleControl_debug"><code class="flex name class">
+<span>class <span class="ident">VehicleControl_debug</span></span>
+<span>(</span><span>env, vehicle_config, delta_seconds)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>env</code></strong> :&ensp;<code>CARLA_ENV</code></dt>
+<dd>the self-written environment for simulation</dd>
+<dt><strong><code>vehicle_config</code></strong> :&ensp;<code>ConfigObj</code></dt>
+<dd>the configuration file for this vehicle. The file is created inside the Intersection's add_vehicle function.
+containing the trajectory and speed reference for the vehicle. The configuration file should also indicate whether
+this vehicle should go or not.</dd>
+<dt><strong><code>delta_seconds</code></strong> :&ensp;<code>float</code></dt>
+<dd>time between two adjacent simulation step. Used for creating discrete controller</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>None.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class VehicleControl_debug(object):
+    def __init__(self,env,vehicle_config, delta_seconds):
+        &#39;&#39;&#39;
+        
+
+        Parameters
+        ----------
+        env : CARLA_ENV
+            the self-written environment for simulation
+        
+        vehicle_config : ConfigObj
+            the configuration file for this vehicle. The file is created inside the Intersection&#39;s add_vehicle function.
+            containing the trajectory and speed reference for the vehicle. The configuration file should also indicate whether
+            this vehicle should go or not.
+
+        delta_seconds : float
+            time between two adjacent simulation step. Used for creating discrete controller
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        
+        self.env = env
+        self.vehicle_config = vehicle_config
+        self.model_uniquename = self.vehicle_config[&#34;uniquename&#34;]
+        self.command = self.vehicle_config[&#34;command&#34;]
+        self.trajectory = self.vehicle_config[&#34;trajectory&#34;]
+        self.ref_speed_list = self.vehicle_config[&#34;ref_speed_list&#34;]
+        self.obey_traffic_lights = self.vehicle_config[&#34;obey_traffic_lights&#34;]
+        self.run = self.vehicle_config[&#34;run&#34;]
+        self.safety_distance = self.vehicle_config[&#34;safety_distance&#34;]
+        self.stop_choice = self.vehicle_config[&#34;stop_choice&#34;]
+        self.penetrate_distance = self.vehicle_config[&#34;penetrate_distance&#34;]
+        self.stop_ref_point = self.vehicle_config[&#34;stop_ref_point&#34;]
+        
+        # discrete step time
+        self.delta_seconds = delta_seconds
+        
+        # PI controller constants
+        self.KI = 0.02
+        self.KP = 0.5
+        
+        # pure-pursuit model constants
+        self.k = 0.1 # coefficient for look ahead
+        self.Lfc = 4.0 # look ahead distance
+        self.L = self.vehicle_config[&#34;bounding_box&#34;].x#2.88 # wheelbase
+        
+        # essential storages for the controller to work
+        self.init_values = deque(maxlen = 2) # the state space values of the system. For a control system to be fully functional
+                                        # we need to give initial value
+        self.ref_speeds = deque(maxlen = 2) # the reference / target speed
+        self.curr_speeds = deque(maxlen = 2) # the measured speed of the vehicle
+        
+        # storage for the visualize the reference speed, throttle and measured speed.
+        self.speed = []
+        self.throttles = []
+        self.reference_speed = []
+    
+        # give initial values to storage, assume the car is released at rest, with no initial speed or acceleration
+        self.init_values.append(0) 
+        self.ref_speeds.append(0)
+        self.curr_speeds.append(0)
+    
+        self.current_ref_speed = 0
+        self.index = 0
+        
+        
+        
+        
+        # get the PI controller for the vehicle
+        self._get_PI_controller()
+        
+        
+        self.debug_vehicle = True # enable drawing vehicle trajectory
+        self.vehicle_pose = deque(maxlen = 2)
+        
+        # indication of whether the vehicle stops at traffic light
+        self.blocked_by_light = False
+        
+        
+    def get_vehicle_transform(self):
+        transform = self.env.get_transform_3d(self.model_uniquename)
+        return transform
+        
+    def _get_PI_controller(self):
+        &#39;&#39;&#39;
+        Effects: create a discrete state-space PI controller
+        &#39;&#39;&#39;
+        num_pi = [self.KP, self.KI] # numerator of the PI transfer function (KP*s + KI)
+        den_pi = [1.0, 0.01*self.KI/self.KP] # denominator of PI transfer function (s + 0.01*KI/KP)
+    
+        sys = control.tf(num_pi,den_pi) # get transfer function for PI controller (since the denominator has a small term 0.01*KI/KP, it is actually a lag-compensator)
+        sys = control.sample_system(sys, self.delta_seconds) # discretize the transfer function (from s-domain which is continuous to z-domain)
+                                                            #since our simulation is discrete
+        sys = control.tf2ss(sys) # transform transfer function into state space.
+        self.sys = sys  # the system is created for this vehicle
+        
+    def speed_control(self):
+        &#39;&#39;&#39;
+        Effects: get the reference speed, current (measured) speed and initial values
+                 Use the difference 
+                                   e = ref_speeds - curr_speeds 
+                 as the input for the PI controller, derive the new throttle
+    
+        Parameters
+        ----------
+        self.sys : control.ss 
+            state space controller 
+        self.ref_speeds : list of float
+            the desired speed we need
+        self.curr_speeds : list of float
+            the current speed
+        self.init_values : the initial_values of the system
+            DESCRIPTION.
+    
+        Returns
+        -------
+        throttle : float type
+            DESCRIPTION.
+    
+        &#39;&#39;&#39;
+        
+        
+        U0 = np.array(self.ref_speeds) - np.array(self.curr_speeds)
+        #print(U0)
+        _,y0,x0 = control.forced_response(self.sys,U = U0,X0 = self.init_values[0]) # y0 is the next values, x0 is the state evolution
+                                                                          # see https://python-control.readthedocs.io/en/0.8.3/generated/control.forced_response.html#control.forced_response 
+        self.init_values.append(x0[-1])
+        throttle = y0[-1]
+        return throttle
+    
+    def get_target_index(self,location_2d, current_forward_speed, trajectory):
+        &#39;&#39;&#39;
+        Get the target for the vehicle to navigate to
+    
+        Parameters
+        ----------
+        location_2d : (x,y)
+            current location of the vehicle.
+        current_forward_speed : float
+            current speed of the vehicle.
+        trajectory : numpy 2d array
+            interpolated waypoints.
+    
+        Returns
+        -------
+        ind : TYPE
+            DESCRIPTION.
+        end_trajectory : TYPE
+            DESCRIPTION.
+    
+        &#39;&#39;&#39;
+        
+        
+        distance = np.sum((trajectory - location_2d)**2,axis = 1)**0.5
+        ind = np.argmin(distance)
+        l0 = 0.0
+        
+        Lf = self.k * current_forward_speed + self.Lfc
+        
+        while Lf &gt; l0 and (ind + 1) &lt; len(trajectory):
+            delta_d = sum((trajectory[ind + 1] - trajectory[ind])**2)**0.5
+            l0 += delta_d
+            ind += 1
+        
+        if ind &gt;= len(trajectory) - 1:
+            end_trajectory = True
+        else:
+            end_trajectory = False
+            
+        return ind, end_trajectory
+    
+    def pure_pursuit_control(self,vehicle_pos_2d, current_forward_speed, trajectory, ref_speed_list, prev_index):
+        &#39;&#39;&#39;
+        
+    
+        Parameters
+        ----------
+        vehicle_pos_2d : (location_2d,yaw)
+            tuple of vehicle location and heading in 2d.
+            location_2d : (x,y), both x and y are in meter
+            yaw : heading angle **Note** yaw is in degree
+        current_forward_speed : float
+            the current velocity of the vehicle.
+        trajectory : numpy 2d array
+            interpolated waypoints.
+        ref_speed_list : list
+            the reference speed corresponding to each way point
+        prev_index : int
+            the previous index
+        Returns
+        -------
+        delta : float
+            steer angle of the vehicle.
+        current_ref_speed : the reference speed
+            DESCRIPTION.
+        index : int
+            the index of the target.
+        end_trajectory : boolean
+            whether we have reached clos enough to the destination.
+    
+        &#39;&#39;&#39;
+        
+        
+        
+        location_2d, yaw = vehicle_pos_2d
+        yaw = np.deg2rad(yaw) # change the unit the radius
+        index, end_trajectory = self.get_target_index(location_2d, current_forward_speed, trajectory)
+        
+        if prev_index &gt;= index:
+            index = prev_index
+            
+        if index &lt; len(trajectory):
+            tx = trajectory[index][0]
+            ty = trajectory[index][1]
+        else:
+            tx = trajectory[-1][0]
+            ty = trajectory[-1][1] 
+        
+        alpha = math.atan2(ty - location_2d[1],tx - location_2d[0]) - yaw
+        
+        if current_forward_speed &lt; 0: #back, should not happen in our case
+            alpha = math.pi - alpha
+        
+        Lf = self.k * current_forward_speed + self.Lfc
+        
+        delta = math.atan2(2.0 * self.L * math.sin(alpha) / Lf, 1.0)
+        #print(&#34;delta == &#34;, delta, &#34;yaw == &#34;, yaw)
+        
+        current_ref_speed = ref_speed_list[index]
+        
+        return delta, current_ref_speed, index, end_trajectory
+    
+    def pure_pursuit_control_wrapper(self):
+        &#39;&#39;&#39;
+        Apply one step control to the vehicle, store essential information for further use
+
+        Returns
+        -------
+        end_trajectory : bool
+            whether this vehicle reaches its end
+
+        &#39;&#39;&#39;
+       
+        curr_speed = self.env.get_forward_speed(self.model_uniquename)
+        vehicle_pos_2d = self.env.get_transform_2d(self.model_uniquename) # the (x,y) location and yaw angle of the vehicle
+        self.speed.append(curr_speed)
+        self.curr_speeds.append(curr_speed)
+        
+        # draw real trajectory if debug is enabled
+        if self.debug_vehicle:
+            self.vehicle_pose.append(vehicle_pos_2d[0])
+            if len(self.vehicle_pose) == 2:
+                self.env.draw_real_trajectory(self.vehicle_pose)
+                
+            self._display_vehicle_type()
+                
+        # use pure-pursuit model to get the steer angle (in radius)
+        delta, current_ref_speed, index, end_trajectory = self.pure_pursuit_control(vehicle_pos_2d, curr_speed, self.trajectory, self.ref_speed_list, self.index)
+        self.index = index
+        steer = np.clip(delta,-0.5,0.5)
+        
+        
+        # If vehicle has safety distance set, check whether a vehicle is in the front
+        current_ref_speed = self._obey_safety_distance(current_ref_speed)
+        
+        # If vehicle obey traffic lights and is going straight / turning left, check the traffic light state
+        current_ref_speed = self._obey_traffic_light(current_ref_speed)
+        
+        if self.debug_vehicle:
+            print(&#34;--------&#34;)
+            print(&#34;current_ref_speed == &#34;,current_ref_speed)
+            print(&#34;current_speed ==&#34;,curr_speed)
+        
+        self.ref_speeds.append(current_ref_speed)
+        self.reference_speed.append(current_ref_speed)
+        
+        # get throttle to get the next reference speed 
+        throttle = self.speed_control() # get the throttle control based on reference and current speed
+        throttle = np.clip(throttle,0,1) # throttle value is [0,1]
+        self.throttles.append(throttle) # for visualization
+        
+        # check whether we are reaching the destination or not
+        if end_trajectory:
+            vehicle_control = carla.VehicleControl(throttle = 0.0,steer=steer,brake = 1.0) # immediately stop the car
+            self.env.apply_vehicle_control(self.model_uniquename, vehicle_control) # apply control to vehicle
+            self.run = False
+            self._destroy_vehicle()
+            return end_trajectory
+        
+        # apply throttle-steer-brake control
+        if curr_speed &lt;= current_ref_speed:
+            vehicle_control = carla.VehicleControl(throttle = throttle,steer=steer) 
+        else:
+            vehicle_control = carla.VehicleControl(throttle = throttle,steer=steer,brake = 0.5)
+            
+        self.env.apply_vehicle_control(self.model_uniquename, vehicle_control) # apply control to vehicle
+        return end_trajectory
+    
+    
+    def _obey_traffic_light(self, current_ref_speed):
+        # the vehicle should take traffic lights into account when it is required 
+        # to obey lights and is going straight or turning left
+        self.blocked_by_light = False
+        
+        
+        
+        if not self.obey_traffic_lights:
+            return current_ref_speed
+        if self.command == &#34;right&#34;:
+            return current_ref_speed
+        
+        
+        
+        # get the location of the vehicle
+        curr_transform = self.env.get_transform_2d(self.model_uniquename)
+        curr_location = curr_transform[0]
+        
+        abrupt_stop_vel = carla.Vector3D(x = 0,y = 0,z = 0)
+        
+        if self.vehicle_config[&#34;vehicle_type&#34;] == &#34;other&#34;:
+            target_location = self.stop_ref_point.location
+            target_vector = self.stop_ref_point.get_forward_vector()
+            target_vector_2d = np.array([target_vector.x,target_vector.y])
+            target_vector_2d = target_vector_2d / np.linalg.norm(target_vector_2d)
+            vec_tar_curr = np.array([curr_location[0] - target_location.x,curr_location[1] - target_location.y])
+            vec_tar_curr = vec_tar_curr / np.linalg.norm(vec_tar_curr)
+            coef = np.dot(vec_tar_curr,target_vector_2d)
+            
+            
+            smallest_distance = math.sqrt((curr_location[0] - target_location.x)**2 + (curr_location[1] - target_location.y)**2) * coef
+            light =  self.vehicle_config[&#34;traffic_light&#34;]
+        else:
+            smallest_distance = np.inf
+            real_target = None
+            for ii in range(len(self.stop_ref_point)):
+                target_location = self.stop_ref_point[ii].location
+                distance = math.sqrt((curr_location[0] - target_location.x)**2 + (curr_location[1] - target_location.y)**2)
+                if distance &lt; smallest_distance:
+                    smallest_distance = distance
+                    light = self.vehicle_config[&#34;traffic_light&#34;][ii]
+                    real_target = self.stop_ref_point[ii]
+            target_vector = real_target.get_forward_vector()
+            target_vector_2d = np.array([target_vector.x,target_vector.y])
+            target_vector_2d = target_vector_2d / np.linalg.norm(target_vector_2d)
+            vec_tar_curr = np.array([curr_location[0] - real_target.location.x,curr_location[1] - real_target.location.y])
+            vec_tar_curr = vec_tar_curr / np.linalg.norm(vec_tar_curr)
+            coef = np.dot(vec_tar_curr,target_vector_2d)
+            smallest_distance *= coef
+            
+        if smallest_distance &lt; 0.5 and smallest_distance &gt; -10: 
+            state = light.get_state()
+            if state == carla.TrafficLightState.Red or state == carla.TrafficLightState.Yellow:
+                if self.stop_choice == &#34;abrupt&#34;:
+                    self.env.set_vehicle_velocity(self.model_uniquename , abrupt_stop_vel) # immediately stop vehicle
+                    return 0.0 # abrupt stop
+                else:
+                    if abs(smallest_distance) &lt; 1.0: # normal or penetrate, note smallest_distance is most likely negative
+                        self.env.set_vehicle_velocity(self.model_uniquename , abrupt_stop_vel)
+                        return 0.0
+                    else:
+                        return current_ref_speed
+            else:
+                return current_ref_speed
+        
+        return current_ref_speed
+        
+        &#39;&#39;&#39;
+        # check light state
+        #state = self.env.get_traffic_light_state(self.model_uniquename)
+        
+        if self.vehicle_config[&#39;vehicle_type&#39;] == &#39;lead&#39;:
+            print(state)
+        
+        if state == carla.TrafficLightState.Red or state == carla.TrafficLightState.Yellow:
+            # add an indication that the vehicle is blocked by the traffic light
+            self.blocked_by_light = True
+            abrupt_stop_vel = carla.Vector3D(x = 0,y = 0,z = 0)
+            
+            if self.stop_choice == &#34;abrupt&#34;:
+                self.env.set_vehicle_velocity(self.model_uniquename , abrupt_stop_vel) # immediately stop vehicle
+                return 0.0 # abrupt stop
+            else:
+                curr_transform = self.env.get_transform_2d(self.model_uniquename)
+                curr_location = curr_transform[0]
+                
+                if self.vehicle_config[&#34;vehicle_type&#34;] == &#34;other&#34;:
+                    
+                    target_location = self.stop_ref_point
+                    distance = math.sqrt((curr_location[0] - target_location.x)**2 + (curr_location[1] - target_location.y)**2)
+                    #print(distance)
+                    if distance &lt; 1.0: # close to target enough
+                        self.env.set_vehicle_velocity(self.model_uniquename , abrupt_stop_vel) # stop vehicle when close enough to reference
+                        return 0.0
+                    else:
+                        return current_ref_speed
+                else: # full path vehicle
+                    smallest_distance = np.inf
+                    
+                    # get the smallest distance from the vehicle to target stop point
+                    for target_location in self.stop_ref_point:
+                        distance = math.sqrt((curr_location[0] - target_location.x)**2 + (curr_location[1] - target_location.y)**2)
+                        if distance &lt; smallest_distance:
+                            smallest_distance = distance
+                            
+                    if smallest_distance &lt; 1.0: # close to target enough
+                        self.env.set_vehicle_velocity(self.model_uniquename , abrupt_stop_vel) # stop vehicle when close enough to reference
+                        return 0.0
+                    else:
+                        return current_ref_speed
+            
+            return 0.0 # stop the car immediately
+        
+        return current_ref_speed # obey light and light is green
+        &#39;&#39;&#39;
+    
+    def _obey_safety_distance(self, current_ref_speed):
+        
+        has_vehicle_in_front, distance = self.env.check_vehicle_in_front(self.model_uniquename, self.safety_distance)
+        if has_vehicle_in_front: 
+            return 0.0
+        
+        return current_ref_speed
+    
+    def _destroy_vehicle(self):
+        self.env.destroy_vehicle(self.model_uniquename)
+        
+    def _display_vehicle_type(self):
+        vehicle_type = self.vehicle_config[&#34;vehicle_type&#34;]
+        vehicle_transform = self.get_vehicle_transform()
+        vehicle_location = vehicle_transform.location
+        debug_location = carla.Location(x = vehicle_location.x, y = vehicle_location.y, z = vehicle_location.z + 2 * self.vehicle_config[&#34;bounding_box&#34;].z)
+        
+        
+        if vehicle_type == &#34;other&#34;:
+            self.env.world.debug.draw_string(debug_location,text = &#34;other&#34;, color = green, life_time = self.env.delta_seconds)
+        elif vehicle_type == &#34;lead&#34;:
+            self.env.world.debug.draw_string(debug_location,text = &#34;lead&#34;, color = yellow, life_time = self.env.delta_seconds)
+        elif vehicle_type == &#34;ego&#34;:
+            self.env.world.debug.draw_string(debug_location,text = &#34;ego&#34;, color = red, life_time = self.env.delta_seconds)
+        elif vehicle_type == &#34;follow&#34;:
+            self.env.world.debug.draw_string(debug_location,text = &#34;follow&#34;, color = blue, life_time = self.env.delta_seconds)</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="backend.multiple_vehicle_control_debug.VehicleControl_debug.get_target_index"><code class="name flex">
+<span>def <span class="ident">get_target_index</span></span>(<span>self, location_2d, current_forward_speed, trajectory)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the target for the vehicle to navigate to</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>location_2d</code></strong> :&ensp;<code>(x,y)</code></dt>
+<dd>current location of the vehicle.</dd>
+<dt><strong><code>current_forward_speed</code></strong> :&ensp;<code>float</code></dt>
+<dd>current speed of the vehicle.</dd>
+<dt><strong><code>trajectory</code></strong> :&ensp;<code>numpy 2d array</code></dt>
+<dd>interpolated waypoints.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>ind</code></strong> :&ensp;<code>TYPE</code></dt>
+<dd>DESCRIPTION.</dd>
+<dt><strong><code>end_trajectory</code></strong> :&ensp;<code>TYPE</code></dt>
+<dd>DESCRIPTION.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_target_index(self,location_2d, current_forward_speed, trajectory):
+    &#39;&#39;&#39;
+    Get the target for the vehicle to navigate to
+
+    Parameters
+    ----------
+    location_2d : (x,y)
+        current location of the vehicle.
+    current_forward_speed : float
+        current speed of the vehicle.
+    trajectory : numpy 2d array
+        interpolated waypoints.
+
+    Returns
+    -------
+    ind : TYPE
+        DESCRIPTION.
+    end_trajectory : TYPE
+        DESCRIPTION.
+
+    &#39;&#39;&#39;
+    
+    
+    distance = np.sum((trajectory - location_2d)**2,axis = 1)**0.5
+    ind = np.argmin(distance)
+    l0 = 0.0
+    
+    Lf = self.k * current_forward_speed + self.Lfc
+    
+    while Lf &gt; l0 and (ind + 1) &lt; len(trajectory):
+        delta_d = sum((trajectory[ind + 1] - trajectory[ind])**2)**0.5
+        l0 += delta_d
+        ind += 1
+    
+    if ind &gt;= len(trajectory) - 1:
+        end_trajectory = True
+    else:
+        end_trajectory = False
+        
+    return ind, end_trajectory</code></pre>
+</details>
+</dd>
+<dt id="backend.multiple_vehicle_control_debug.VehicleControl_debug.get_vehicle_transform"><code class="name flex">
+<span>def <span class="ident">get_vehicle_transform</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_vehicle_transform(self):
+    transform = self.env.get_transform_3d(self.model_uniquename)
+    return transform</code></pre>
+</details>
+</dd>
+<dt id="backend.multiple_vehicle_control_debug.VehicleControl_debug.pure_pursuit_control"><code class="name flex">
+<span>def <span class="ident">pure_pursuit_control</span></span>(<span>self, vehicle_pos_2d, current_forward_speed, trajectory, ref_speed_list, prev_index)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>vehicle_pos_2d</code></strong> :&ensp;<code>(location_2d,yaw)</code></dt>
+<dd>tuple of vehicle location and heading in 2d.
+location_2d : (x,y), both x and y are in meter
+yaw : heading angle <strong>Note</strong> yaw is in degree</dd>
+<dt><strong><code>current_forward_speed</code></strong> :&ensp;<code>float</code></dt>
+<dd>the current velocity of the vehicle.</dd>
+<dt><strong><code>trajectory</code></strong> :&ensp;<code>numpy 2d array</code></dt>
+<dd>interpolated waypoints.</dd>
+<dt><strong><code>ref_speed_list</code></strong> :&ensp;<code>list</code></dt>
+<dd>the reference speed corresponding to each way point</dd>
+<dt><strong><code>prev_index</code></strong> :&ensp;<code>int</code></dt>
+<dd>the previous index</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>delta</code></strong> :&ensp;<code>float</code></dt>
+<dd>steer angle of the vehicle.</dd>
+<dt><strong><code>current_ref_speed</code></strong> :&ensp;<code>the reference speed</code></dt>
+<dd>DESCRIPTION.</dd>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>the index of the target.</dd>
+<dt><strong><code>end_trajectory</code></strong> :&ensp;<code>boolean</code></dt>
+<dd>whether we have reached clos enough to the destination.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def pure_pursuit_control(self,vehicle_pos_2d, current_forward_speed, trajectory, ref_speed_list, prev_index):
+    &#39;&#39;&#39;
+    
+
+    Parameters
+    ----------
+    vehicle_pos_2d : (location_2d,yaw)
+        tuple of vehicle location and heading in 2d.
+        location_2d : (x,y), both x and y are in meter
+        yaw : heading angle **Note** yaw is in degree
+    current_forward_speed : float
+        the current velocity of the vehicle.
+    trajectory : numpy 2d array
+        interpolated waypoints.
+    ref_speed_list : list
+        the reference speed corresponding to each way point
+    prev_index : int
+        the previous index
+    Returns
+    -------
+    delta : float
+        steer angle of the vehicle.
+    current_ref_speed : the reference speed
+        DESCRIPTION.
+    index : int
+        the index of the target.
+    end_trajectory : boolean
+        whether we have reached clos enough to the destination.
+
+    &#39;&#39;&#39;
+    
+    
+    
+    location_2d, yaw = vehicle_pos_2d
+    yaw = np.deg2rad(yaw) # change the unit the radius
+    index, end_trajectory = self.get_target_index(location_2d, current_forward_speed, trajectory)
+    
+    if prev_index &gt;= index:
+        index = prev_index
+        
+    if index &lt; len(trajectory):
+        tx = trajectory[index][0]
+        ty = trajectory[index][1]
+    else:
+        tx = trajectory[-1][0]
+        ty = trajectory[-1][1] 
+    
+    alpha = math.atan2(ty - location_2d[1],tx - location_2d[0]) - yaw
+    
+    if current_forward_speed &lt; 0: #back, should not happen in our case
+        alpha = math.pi - alpha
+    
+    Lf = self.k * current_forward_speed + self.Lfc
+    
+    delta = math.atan2(2.0 * self.L * math.sin(alpha) / Lf, 1.0)
+    #print(&#34;delta == &#34;, delta, &#34;yaw == &#34;, yaw)
+    
+    current_ref_speed = ref_speed_list[index]
+    
+    return delta, current_ref_speed, index, end_trajectory</code></pre>
+</details>
+</dd>
+<dt id="backend.multiple_vehicle_control_debug.VehicleControl_debug.pure_pursuit_control_wrapper"><code class="name flex">
+<span>def <span class="ident">pure_pursuit_control_wrapper</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Apply one step control to the vehicle, store essential information for further use</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>end_trajectory</code></strong> :&ensp;<code>bool</code></dt>
+<dd>whether this vehicle reaches its end</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def pure_pursuit_control_wrapper(self):
+    &#39;&#39;&#39;
+    Apply one step control to the vehicle, store essential information for further use
+
+    Returns
+    -------
+    end_trajectory : bool
+        whether this vehicle reaches its end
+
+    &#39;&#39;&#39;
+   
+    curr_speed = self.env.get_forward_speed(self.model_uniquename)
+    vehicle_pos_2d = self.env.get_transform_2d(self.model_uniquename) # the (x,y) location and yaw angle of the vehicle
+    self.speed.append(curr_speed)
+    self.curr_speeds.append(curr_speed)
+    
+    # draw real trajectory if debug is enabled
+    if self.debug_vehicle:
+        self.vehicle_pose.append(vehicle_pos_2d[0])
+        if len(self.vehicle_pose) == 2:
+            self.env.draw_real_trajectory(self.vehicle_pose)
+            
+        self._display_vehicle_type()
+            
+    # use pure-pursuit model to get the steer angle (in radius)
+    delta, current_ref_speed, index, end_trajectory = self.pure_pursuit_control(vehicle_pos_2d, curr_speed, self.trajectory, self.ref_speed_list, self.index)
+    self.index = index
+    steer = np.clip(delta,-0.5,0.5)
+    
+    
+    # If vehicle has safety distance set, check whether a vehicle is in the front
+    current_ref_speed = self._obey_safety_distance(current_ref_speed)
+    
+    # If vehicle obey traffic lights and is going straight / turning left, check the traffic light state
+    current_ref_speed = self._obey_traffic_light(current_ref_speed)
+    
+    if self.debug_vehicle:
+        print(&#34;--------&#34;)
+        print(&#34;current_ref_speed == &#34;,current_ref_speed)
+        print(&#34;current_speed ==&#34;,curr_speed)
+    
+    self.ref_speeds.append(current_ref_speed)
+    self.reference_speed.append(current_ref_speed)
+    
+    # get throttle to get the next reference speed 
+    throttle = self.speed_control() # get the throttle control based on reference and current speed
+    throttle = np.clip(throttle,0,1) # throttle value is [0,1]
+    self.throttles.append(throttle) # for visualization
+    
+    # check whether we are reaching the destination or not
+    if end_trajectory:
+        vehicle_control = carla.VehicleControl(throttle = 0.0,steer=steer,brake = 1.0) # immediately stop the car
+        self.env.apply_vehicle_control(self.model_uniquename, vehicle_control) # apply control to vehicle
+        self.run = False
+        self._destroy_vehicle()
+        return end_trajectory
+    
+    # apply throttle-steer-brake control
+    if curr_speed &lt;= current_ref_speed:
+        vehicle_control = carla.VehicleControl(throttle = throttle,steer=steer) 
+    else:
+        vehicle_control = carla.VehicleControl(throttle = throttle,steer=steer,brake = 0.5)
+        
+    self.env.apply_vehicle_control(self.model_uniquename, vehicle_control) # apply control to vehicle
+    return end_trajectory</code></pre>
+</details>
+</dd>
+<dt id="backend.multiple_vehicle_control_debug.VehicleControl_debug.speed_control"><code class="name flex">
+<span>def <span class="ident">speed_control</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Effects: get the reference speed, current (measured) speed and initial values
+Use the difference
+e = ref_speeds - curr_speeds
+as the input for the PI controller, derive the new throttle</p>
+<h2 id="parameters">Parameters</h2>
+<p>self.sys : control.ss
+state space controller
+self.ref_speeds : list of float
+the desired speed we need
+self.curr_speeds : list of float
+the current speed
+self.init_values : the initial_values of the system
+DESCRIPTION.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>throttle</code></strong> :&ensp;<code>float type</code></dt>
+<dd>DESCRIPTION.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def speed_control(self):
+    &#39;&#39;&#39;
+    Effects: get the reference speed, current (measured) speed and initial values
+             Use the difference 
+                               e = ref_speeds - curr_speeds 
+             as the input for the PI controller, derive the new throttle
+
+    Parameters
+    ----------
+    self.sys : control.ss 
+        state space controller 
+    self.ref_speeds : list of float
+        the desired speed we need
+    self.curr_speeds : list of float
+        the current speed
+    self.init_values : the initial_values of the system
+        DESCRIPTION.
+
+    Returns
+    -------
+    throttle : float type
+        DESCRIPTION.
+
+    &#39;&#39;&#39;
+    
+    
+    U0 = np.array(self.ref_speeds) - np.array(self.curr_speeds)
+    #print(U0)
+    _,y0,x0 = control.forced_response(self.sys,U = U0,X0 = self.init_values[0]) # y0 is the next values, x0 is the state evolution
+                                                                      # see https://python-control.readthedocs.io/en/0.8.3/generated/control.forced_response.html#control.forced_response 
+    self.init_values.append(x0[-1])
+    throttle = y0[-1]
+    return throttle</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="backend" href="index.html">backend</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="backend.multiple_vehicle_control_debug.main" href="#backend.multiple_vehicle_control_debug.main">main</a></code></li>
+<li><code><a title="backend.multiple_vehicle_control_debug.multiple_vehicle_control" href="#backend.multiple_vehicle_control_debug.multiple_vehicle_control">multiple_vehicle_control</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="backend.multiple_vehicle_control_debug.VehicleControl_debug" href="#backend.multiple_vehicle_control_debug.VehicleControl_debug">VehicleControl_debug</a></code></h4>
+<ul class="">
+<li><code><a title="backend.multiple_vehicle_control_debug.VehicleControl_debug.get_target_index" href="#backend.multiple_vehicle_control_debug.VehicleControl_debug.get_target_index">get_target_index</a></code></li>
+<li><code><a title="backend.multiple_vehicle_control_debug.VehicleControl_debug.get_vehicle_transform" href="#backend.multiple_vehicle_control_debug.VehicleControl_debug.get_vehicle_transform">get_vehicle_transform</a></code></li>
+<li><code><a title="backend.multiple_vehicle_control_debug.VehicleControl_debug.pure_pursuit_control" href="#backend.multiple_vehicle_control_debug.VehicleControl_debug.pure_pursuit_control">pure_pursuit_control</a></code></li>
+<li><code><a title="backend.multiple_vehicle_control_debug.VehicleControl_debug.pure_pursuit_control_wrapper" href="#backend.multiple_vehicle_control_debug.VehicleControl_debug.pure_pursuit_control_wrapper">pure_pursuit_control_wrapper</a></code></li>
+<li><code><a title="backend.multiple_vehicle_control_debug.VehicleControl_debug.speed_control" href="#backend.multiple_vehicle_control_debug.VehicleControl_debug.speed_control">speed_control</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+</footer>
+</body>
+</html>
