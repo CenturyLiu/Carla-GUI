@@ -67,11 +67,6 @@ class Vehicle(QLabel):
         self.setStyleSheet("background:rgb({},{},{}); color:{};".format(r,g,b,text_color))
 
 
-        
-
-
-
-
 def main():
     primary.main()
 

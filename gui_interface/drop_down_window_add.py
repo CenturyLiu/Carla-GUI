@@ -1,12 +1,8 @@
-from PyQt5 import QtWidgets, QtCore, QtGui
+from PyQt5 import QtCore
 from PyQt5.QtWidgets import *
-from PyQt5.QtCore import pyqtSignal
-from PyQt5.QtGui import QFont, QPixmap
-import edit_section
-import freeway_window
+from PyQt5.QtGui import QFont
 import home as primary
 import carla_vehicle_list
-
 
 
 class Drop_Down_Window_Add(QDialog):
@@ -134,8 +130,6 @@ class Drop_Down_Window_Add(QDialog):
         self.grid.addWidget(self.vehicle_color, 4,1,1,1)
         self.grid.addWidget(self.add_button, 5,0,1,2)
         
-        
-
 
     def close(self):
         """
@@ -147,17 +141,6 @@ class Drop_Down_Window_Add(QDialog):
         self.parent_window.show()
         self.parent_window.subject_lane_add_vehicle.setEnabled(True)
         self.parent_window.subject_lane_edit_lane.setEnabled(True)
-
-        
-
-
-
-
-
-
-
-
-
 
 
 def main():

@@ -143,13 +143,13 @@ class Edit_Section_Window(QWidget):
         self.add_vehicles = QPushButton()
         self.add_vehicles.setText("Add Vehicles")
         self.add_vehicles.setFont(QFont("Arial", 16))
-        self.add_vehicles.clicked.connect(self.freeway_window.show_add_vehicles)
+        self.add_vehicles.clicked.connect(self.freeway_window.add_vehicle)
 
 
         #EDIT EGO VEHICLE WINDOW
         self.edit_vehicle_window = edit_vehicle.Edit_Vehicle_Widget(self)
         self.edit_vehicle_window.hide()
-
+        
 
         #EDIT VEHICLE WINDOWS
         self.edit_vehicle_list = list()
@@ -241,15 +241,6 @@ class Edit_Section_Window(QWidget):
             
             self.edit_vehicle_list[i].lane_change_time.setValue(tuple_list[i][3])
             self.edit_vehicle_list[i].safety_distance.setValue(tuple_list[i][4])
-
-
-
-
-
-
-        
-
-
 
 
 def main():

@@ -1,11 +1,7 @@
-from PyQt5 import QtWidgets, QtCore, QtGui
+from PyQt5 import QtCore
 from PyQt5.QtWidgets import *
-from PyQt5.QtCore import pyqtSignal
 from PyQt5.QtGui import QFont, QPixmap
-import sys
-import edit_section
 import drop_down_window_add
-import drop_down_window_edit
 import vehicle
 import carla_vehicle_list
 
@@ -29,7 +25,6 @@ class Add_Vehicles_Window(QWidget):
         self.setLayout(self.grid)
         self.grid.setContentsMargins(0,0,0,0)
         self.setAutoFillBackground(True)
-
 
 
         #back button
@@ -89,7 +84,6 @@ class Add_Vehicles_Window(QWidget):
         self.spacer_bottom = QLabel()
         self.spacer_bottom.setMaximumWidth(primary.width/3)
         self.spacer_bottom.setMinimumWidth(primary.width/15)
-
 
 
         #ADD VEHICLES

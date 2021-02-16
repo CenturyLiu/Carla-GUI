@@ -1,6 +1,5 @@
 from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtWidgets import *
-from PyQt5.QtCore import pyqtSignal
 from PyQt5.QtGui import QFont, QPixmap
 from functools import partial
 import sys
@@ -11,7 +10,7 @@ import edit_vehicle
 import edit_vehicle_ego
 import start_sim_pop_up
 import back_home_pop_up
-import home as primary
+import gui_test as primary
 import glob
 import os
 import sys
@@ -30,21 +29,7 @@ import carla
 import time
 from backend.carla_env import CARLA_ENV
 from backend.section_environment import FreewayEnv
-
-
-class ExtendedQLabel(QLabel):
-    """
-    Extended Qlabel that allows clicking signals.
-
-    Creates text labels that can be connected to a function through a 
-    click handler.
-    """
-    def __init__(self, parent):
-        QLabel.__init__(self, parent)
-
-    clicked=pyqtSignal()
-    def mouseReleaseEvent(self, ev):
-        self.clicked.emit()
+from ui_helpers import ExtendedQLabel
 
 
 class Freeway_Window(QMainWindow):
@@ -59,7 +44,9 @@ class Freeway_Window(QMainWindow):
         self.setGeometry(0, 0, primary.width, primary.height)
         self.setWindowTitle("Freeway Experiments")
         self.initUI() # Create the UI componenets
-        self.carla_start() # Establish connected to Carla Server
+        
+        # TODO reenable this; disabled for gui development
+        # self.carla_start() # Establish connected to Carla Server
 
 
     def carla_start(self):
@@ -99,323 +86,8 @@ class Freeway_Window(QMainWindow):
             # Failed to connect, abort
             time.sleep(5)
             self.env.destroy_actors()
-        
 
 
-    def initUI(self):
-        """
-        Initializes all the UI componenets on the Freeway Window.
-        
-        Runs when the Freeway Window is created. Creates all of the UI 
-        components that enable to user to interact and design an experiment.
-        """
-        #CARLA SETTINGS
-        self.stack = QStackedLayout() #stack contains freeway_window.py and all edit_section.py pages
-        self.main_widget = QWidget()
-        self.main_widget.setLayout(self.stack)
-        self.setCentralWidget(self.main_widget) #central widget necessary for pyqt5 to function correctly
-
-        self.general_settings_widget = QWidget()
-        self.grid = QGridLayout()
-        self.general_settings_widget.setLayout(self.grid)
-        self.stack.addWidget(self.general_settings_widget)
-        section_vector.page_list.append(self.general_settings_widget) #adds freeway_window to page list
-
-        #back button
-        self.back_button = QPushButton()
-        self.back_button.setText("Back to Start")
-        self.back_button.setFont(QFont("Arial", 18))
-        self.back_button.setMaximumWidth(primary.width/10)
-        self.back_button.setMaximumHeight(primary.height/26)
-        self.back_button.clicked.connect(self.show_back_button_pop_up)
-        
-        #General Settings text
-        self.general_settings = QLabel()
-        self.general_settings.setText("General Settings")
-        self.general_settings.setFont(QFont("Arial", 24))
-        self.general_settings.setAlignment(QtCore.Qt.AlignCenter)
-        self.general_settings.setMaximumHeight(primary.height/10)
-        
-        #Allow Collisions
-        self.allow_collisions_text = QLabel()
-        self.allow_collisions_text.setText("Allow Collisions")
-        self.allow_collisions_text.setFont(QFont("Arial", 18))
-
-        self.allow_collisions = QCheckBox()
-        self.allow_collisions.setChecked(True)
-        size_val = str(primary.height/20) 
-        self.allow_collisions.setStyleSheet("QCheckBox::indicator { width: %spx; height: %spx;}" % (size_val,size_val))
-
-        #Number of Freeway Sections
-        self.num_sections_text = QLabel()
-        self.num_sections_text.setText("Number of Freeway Sections")
-        self.num_sections_text.setFont(QFont("Arial", 18))
-        self.num_sections_text.setMinimumWidth(primary.width/4) #controls dist between input boxes and input text
-
-        self.num_sections = QSpinBox()
-        self.num_sections.setMaximumHeight(primary.height/20)
-        self.num_sections.setMaximumWidth(primary.height/20)
-        self.num_sections.setMinimumHeight(primary.height/20)
-        self.num_sections.setMinimumWidth(primary.height/20)
-        self.num_sections.setValue(0)
-        self.num_sections.setMinimum(1)
-        self.num_sections.setMaximum(7)
-        self.num_sections.valueChanged.connect(self.validate_input_num_sections)
-
-
-        #Min Speed
-        self.min_speed_text = QLabel()
-        self.min_speed_text.setText("Minimum Speed (m/s)")
-        self.min_speed_text.setFont(QFont("Arial", 18))
-
-        self.min_speed = QSpinBox()
-        self.min_speed.setMaximumHeight(primary.height/20)
-        self.min_speed.setMaximumWidth(primary.height/20)
-        self.min_speed.setMinimumHeight(primary.height/20)
-        self.min_speed.setMinimumWidth(primary.height/20)
-        self.min_speed.setMinimum(0)
-        self.min_speed.setValue(15)
-        self.min_speed.valueChanged.connect(self.validate_input_speed)
-        self.min_speed.textChanged.connect(self.validate_input_speed)
-
-
-        #Max Speed
-        self.max_speed_text = QLabel()
-        self.max_speed_text.setText("Maximum Speed (m/s)")
-        self.max_speed_text.setFont(QFont("Arial", 18))
-
-        self.max_speed = QSpinBox()
-        self.max_speed.setMaximumHeight(primary.height/20)
-        self.max_speed.setMaximumWidth(primary.height/20)
-        self.max_speed.setMinimumHeight(primary.height/20)
-        self.max_speed.setMinimumWidth(primary.height/20)
-        self.max_speed.setMinimum(self.min_speed.value())
-        self.max_speed.setMaximum(150)
-        self.max_speed.setValue(30)
-        self.max_speed.valueChanged.connect(self.validate_input_speed)
-        self.max_speed.textChanged.connect(self.validate_input_speed)
-        self.min_speed.setMaximum(self.max_speed.value())
-
-
-        #Safety Distance
-        self.safety_distance_text = QLabel()
-        self.safety_distance_text.setText("Safety Distance (m)")
-        self.safety_distance_text.setFont(QFont("Arial", 18))
-
-        self.safety_distance = QSpinBox()
-        self.safety_distance.setMaximumHeight(primary.height/20)
-        self.safety_distance.setMaximumWidth(primary.height/20)
-        self.safety_distance.setMinimumHeight(primary.height/20)
-        self.safety_distance.setMinimumWidth(primary.height/20)
-        self.safety_distance.setValue(15)
-        self.safety_distance.setMinimum(5)
-        self.safety_distance.setMaximum(999)
-
-        #Start Simulation
-        self.start_simulation = QPushButton()
-        self.start_simulation.setText("Start Simulation")
-        self.start_simulation.setFont(QFont("Arial", 14))
-        self.start_simulation.setMaximumWidth(primary.width/6)
-        self.start_simulation.setMinimumHeight(primary.height/25)
-        self.start_simulation.clicked.connect(self.show_start_sim_pop_up)
-
-        #MAP SETTINGS
-
-            #widget
-        self.map_widget = QWidget()
-        self.map_widget.setMinimumWidth(primary.width/2.03)
-        self.map_widget.setMinimumHeight(primary.height/2.1)
-
-            #background color
-        self.map_background = QLabel(self.map_widget)
-        self.map_background.setStyleSheet("background-color: #cccac6;")
-        self.map_background.setMinimumHeight(primary.height/2.15)
-        self.map_background.setMinimumWidth(primary.width/2.75)
-
-            #map
-        self.pixmap = QPixmap('images/road.gif')
-        self.pixmap = self.pixmap.scaledToHeight(primary.height/2.5)
-
-        self.map1 = QLabel(self.map_widget)
-        self.map1.setPixmap(self.pixmap)
-        self.map2 = QLabel(self.map_widget)
-        self.map2.setPixmap(self.pixmap)
-        self.map3 = QLabel(self.map_widget)
-        self.map3.setPixmap(self.pixmap)
-        self.map4 = QLabel(self.map_widget)
-        self.map4.setPixmap(self.pixmap)
-        self.map5 = QLabel(self.map_widget)
-        self.map5.setPixmap(self.pixmap)
-
-            #arrow pixmap objects
-        self.arrow_pixmap = QPixmap('images/next.png')
-        self.arrow_pixmap = self.arrow_pixmap.scaledToHeight(primary.height/12)
-        self.arrow_pixmap_left = self.arrow_pixmap.transformed(QtGui.QTransform().scale(-1,1))
-        self.double_arrow_pixmap = QPixmap('images/double_next.png')
-        self.double_arrow_pixmap = self.double_arrow_pixmap.scaledToHeight(primary.height/12)
-        self.double_arrow_pixmap_left = self.double_arrow_pixmap.transformed(QtGui.QTransform().scale(-1,1))
-
-            #arrows
-        self.right_arrow = ExtendedQLabel(self.map_widget)
-        self.right_arrow.setPixmap(self.arrow_pixmap)
-        self.right_arrow.clicked.connect(self.single_right)
-
-        self.double_arrow_right = ExtendedQLabel(self.map_widget)
-        self.double_arrow_right.setPixmap(self.double_arrow_pixmap)
-        self.double_arrow_right.clicked.connect(self.double_right)
-
-        self.left_arrow = ExtendedQLabel(self.map_widget)
-        self.left_arrow.setPixmap(self.arrow_pixmap_left)
-        self.left_arrow.clicked.connect(self.single_left)
-
-        self.double_arrow_left = ExtendedQLabel(self.map_widget)
-        self.double_arrow_left.setPixmap(self.double_arrow_pixmap_left)
-        self.double_arrow_left.clicked.connect(self.double_left)
-
-            #clickable buttons on road sections
-        self.road_array = ["-","-","-","-","1"]
-
-        self.road_button1 = QPushButton(self.map_widget)
-        self.road_button1.setMaximumWidth(primary.width/30)
-        self.road_button1.setMinimumWidth(primary.width/30)
-        self.road_button1.setMaximumHeight(primary.height/25)
-        self.road_button1.setMinimumHeight(primary.height/25)
-        self.road_button1.setText(str(self.road_array[0]))
-        self.road_button1.clicked.connect(self.road_button_click_1)
-
-        self.road_button2 = QPushButton(self.map_widget)
-        self.road_button2.setMaximumWidth(primary.width/30)
-        self.road_button2.setMinimumWidth(primary.width/30)
-        self.road_button2.setMaximumHeight(primary.height/25)
-        self.road_button2.setMinimumHeight(primary.height/25)
-        self.road_button2.setText(str(self.road_array[1]))
-        self.road_button2.clicked.connect(self.road_button_click_2)
-
-        self.road_button3 = QPushButton(self.map_widget)
-        self.road_button3.setMaximumWidth(primary.width/30)
-        self.road_button3.setMinimumWidth(primary.width/30)
-        self.road_button3.setMaximumHeight(primary.height/25)
-        self.road_button3.setMinimumHeight(primary.height/25)
-        self.road_button3.setText(str(self.road_array[2]))
-        self.road_button3.clicked.connect(self.road_button_click_3)
-
-        self.road_button4 = QPushButton(self.map_widget)
-        self.road_button4.setMaximumWidth(primary.width/30)
-        self.road_button4.setMinimumWidth(primary.width/30)
-        self.road_button4.setMaximumHeight(primary.height/25)
-        self.road_button4.setMinimumHeight(primary.height/25)
-        self.road_button4.setText(str(self.road_array[3]))
-        self.road_button4.clicked.connect(self.road_button_click_4)
-
-        self.road_button5 = QPushButton(self.map_widget)
-        self.road_button5.setMaximumWidth(primary.width/30)
-        self.road_button5.setMinimumWidth(primary.width/30)
-        self.road_button5.setMaximumHeight(primary.height/25)
-        self.road_button5.setMinimumHeight(primary.height/25)
-        self.road_button5.setText(str(self.road_array[4]))
-        self.road_button5.clicked.connect(self.road_button_click_5)
-
-
-        #CONNECTED PAGES/WIDGETS
-
-            #add vehicles widget
-            #to edit, see add_vehicles.py
-        self.add_vehicles_widget = add_vehicles.Add_Vehicles_Window(self,self)
-        self.add_vehicles_widget.hide()
-
-
-            #edit ego vehicle widget
-            #to edit, see edit_vehicle_ego.py
-        self.edit_ego_vehicle = edit_vehicle_ego.Edit_Vehicle_Ego_Widget(self)
-        self.edit_ego_vehicle.hide()
-
-
-            #start sim pop up widget
-            #to edit, see start_sim_pop_up.py
-        self.start_sim_pop_up = start_sim_pop_up.Start_Sim_Pop_Up(self)
-        self.start_sim_pop_up.move(primary.width/2.3,primary.height/2.3)
-        self.start_sim_pop_up.hide()
-
-
-            #back button pop up widget
-            #to edit, see back_home_pop_up.py
-        self.back_button_pop_up = back_home_pop_up.Back_Home_Pop_Up(self)
-        self.back_button_pop_up.move(primary.width/2.3,primary.height/2.3)
-        self.back_button_pop_up.hide()
-
-
-        #PAGE DATA (for functions below)
-
-            #carla_vehicle_list
-        self.carla_vehicle_list_subject_lead = list()
-        self.carla_vehicle_list_subject_follow = list()
-        self.carla_vehicle_list_left_lead = list()
-        self.carla_vehicle_list_left_follow = list()
-
-
-        #GRID SETTINGS
-
-            #labels and text
-        self.grid.addWidget(self.back_button,          0,0,1,1)
-        self.grid.addWidget(self.general_settings,     1,0,1,1)
-        self.grid.addWidget(self.allow_collisions_text,2,0,1,1)
-        self.grid.addWidget(self.num_sections_text,    3,0,1,1)
-        self.grid.addWidget(self.max_speed_text,       4,0,1,1)
-        self.grid.addWidget(self.min_speed_text,       5,0,1,1)
-        self.grid.addWidget(self.safety_distance_text, 6,0,1,1)
-        self.grid.addWidget(self.start_simulation,     7,0,1,1)
-
-            #input boxes
-        self.grid.addWidget(self.allow_collisions,     2,1,1,1)
-        self.grid.addWidget(self.num_sections,         3,1,1,1)
-        self.grid.addWidget(self.max_speed,            4,1,1,1)
-        self.grid.addWidget(self.min_speed,            5,1,1,1)
-        self.grid.addWidget(self.safety_distance,      6,1,1,1)
-    
-
-            #map
-        move_dist = (primary.width/12)
-        self.grid.addWidget(self.map_widget,          2,2,-1,-1)
-        self.map_background.move(primary.width/12,0)
-        self.map1.move(move_dist*1.2,primary.height/40)
-        self.map2.move(move_dist*2.0,primary.height/40)
-        self.map3.move(move_dist*2.8,primary.height/40)
-        self.map4.move(move_dist*3.6,primary.height/40)
-        self.map5.move(move_dist*4.4,primary.height/40)
-
-            #arrows
-        self.right_arrow.move(primary.width/2.37,primary.height/6)
-        self.left_arrow.move(primary.width/17.37, primary.height/6)
-        self.double_arrow_right.move(primary.width/2.18,primary.height/6)
-        self.double_arrow_left.move(primary.width/26.37, primary.height/6)
-
-
-            #road buttons
-        self.road_button1.move(primary.width/8.7,primary.height/5.1)
-        self.road_button2.move(primary.width/5.55,primary.height/5.1)
-        self.road_button3.move(primary.width/4.05,primary.height/5.1)
-        self.road_button4.move(primary.width/3.18,primary.height/5.1)
-        self.road_button5.move(primary.width/2.62,primary.height/5.1)
-
-
-
-    def show_back_button_pop_up(self):
-        """
-        connected to: self.back_button.clicked
-        function: shows back_home_pop_up.py when pressing back button
-        """
-
-        self.back_button_pop_up.show()
-
-
-    def show_start_sim_pop_up(self):
-        """
-        connected to: self.start_simulation.clicked
-        function: shows start_sim_pop_up.py when pressing start simulation button
-        """
-
-        self.start_sim_pop_up.show()
-    
 
     def show_add_vehicles(self):
         """
@@ -449,6 +121,7 @@ class Freeway_Window(QMainWindow):
         self.road_button4.setText(str(self.road_array[3]))
         self.road_button5.setText(str(self.road_array[4]))
 
+
     def road_button_click_helper(self,index):
         """
         connected to: none
@@ -470,55 +143,6 @@ class Freeway_Window(QMainWindow):
         QtWidgets.QStackedLayout.setCurrentWidget(self.stack,section_vector.page_list[index])
         section_vector.page_list[index].section_id.setCurrentText("Section {}".format(index)) #create edit_section pages and go to selected page
         
-
-
-
-    def road_button_click_1(self):
-        """
-        connected to: self.road_button_1
-        function: displays edit_section page as shown on road_button_1
-        """
-
-        index = self.road_button1.text()
-        self.road_button_click_helper(index)
-        
-
-    def road_button_click_2(self):
-        """
-        connected to: self.road_button_2
-        function: displays edit_section page as shown on road_button_2
-        """
-
-        index = self.road_button2.text()
-        self.road_button_click_helper(index)
-
-    def road_button_click_3(self):
-        """
-        connected to: self.road_button_3
-        function: displays edit_section page as shown on road_button_3
-        """
-
-        index = self.road_button3.text()
-        self.road_button_click_helper(index)
-
-    def road_button_click_4(self):
-        """
-        connected to: self.road_button_4
-        function: displays edit_section page as shown on road_button_4
-        """
-
-        index = self.road_button4.text()
-        self.road_button_click_helper(index)
-
-    def road_button_click_5(self):
-        """
-        connected to: self.road_button_5
-        function: displays edit_section page as shown on road_button_5
-        """
-
-        index = self.road_button5.text()
-        self.road_button_click_helper(index)
-
 
     def single_left(self):
         """
@@ -992,6 +616,300 @@ class Freeway_Window(QMainWindow):
         finally:
             time.sleep(5)
             self.env.destroy_actors()
+            
+            
+    def initUI(self):
+        """
+        Initializes all the UI componenets on the Freeway Window.
+        
+        Runs when the Freeway Window is created. Creates all of the UI 
+        components that enable to user to interact and design an experiment.
+        """
+        #CARLA SETTINGS
+        self.stack = QStackedLayout() #stack contains freeway_window.py and all edit_section.py pages
+        self.main_widget = QWidget()
+        self.main_widget.setLayout(self.stack)
+        self.setCentralWidget(self.main_widget) #central widget necessary for pyqt5 to function correctly
+
+        self.general_settings_widget = QWidget()
+        self.grid = QGridLayout()
+        self.general_settings_widget.setLayout(self.grid)
+        self.stack.addWidget(self.general_settings_widget)
+        section_vector.page_list.append(self.general_settings_widget) #adds freeway_window to page list
+        
+        #CONNECTED PAGES/WIDGETS
+
+            #add vehicles widget
+            #to edit, see add_vehicles.py
+        self.add_vehicles_widget = add_vehicles.Add_Vehicles_Window(self,self)
+        self.add_vehicles_widget.hide()
+
+
+            #edit ego vehicle widget
+            #to edit, see edit_vehicle_ego.py
+        self.edit_ego_vehicle = edit_vehicle_ego.Edit_Vehicle_Ego_Widget(self)
+        self.edit_ego_vehicle.hide()
+
+
+            #start sim pop up widget
+            #to edit, see start_sim_pop_up.py
+        self.start_sim_pop_up = start_sim_pop_up.Start_Sim_Pop_Up(self)
+        self.start_sim_pop_up.move(primary.width/2.3,primary.height/2.3)
+        self.start_sim_pop_up.hide()
+
+
+            #back button pop up widget
+            #to edit, see back_home_pop_up.py
+        self.back_button_pop_up = back_home_pop_up.Back_Home_Pop_Up(self)
+        self.back_button_pop_up.move(primary.width/2.3,primary.height/2.3)
+        self.back_button_pop_up.hide()
+
+
+        #PAGE DATA (for functions below)
+
+            #carla_vehicle_list
+        self.carla_vehicle_list_subject_lead = list()
+        self.carla_vehicle_list_subject_follow = list()
+        self.carla_vehicle_list_left_lead = list()
+        self.carla_vehicle_list_left_follow = list()
+
+        #back button
+        self.back_button = QPushButton()
+        self.back_button.setText("Back to Start")
+        self.back_button.setFont(QFont("Arial", 18))
+        self.back_button.setMaximumWidth(primary.width/10)
+        self.back_button.setMaximumHeight(primary.height/26)
+        self.back_button.clicked.connect(self.back_button_pop_up.show)
+        
+        #General Settings text
+        self.general_settings = QLabel()
+        self.general_settings.setText("General Settings")
+        self.general_settings.setFont(QFont("Arial", 24))
+        self.general_settings.setAlignment(QtCore.Qt.AlignCenter)
+        self.general_settings.setMaximumHeight(primary.height/10)
+        
+        #Allow Collisions
+        self.allow_collisions_text = QLabel()
+        self.allow_collisions_text.setText("Allow Collisions")
+        self.allow_collisions_text.setFont(QFont("Arial", 18))
+
+        self.allow_collisions = QCheckBox()
+        self.allow_collisions.setChecked(True)
+        size_val = str(primary.height/20) 
+        self.allow_collisions.setStyleSheet("QCheckBox::indicator { width: %spx; height: %spx;}" % (size_val,size_val))
+
+        #Number of Freeway Sections
+        self.num_sections_text = QLabel()
+        self.num_sections_text.setText("Number of Freeway Sections")
+        self.num_sections_text.setFont(QFont("Arial", 18))
+        self.num_sections_text.setMinimumWidth(primary.width/4) #controls dist between input boxes and input text
+
+        self.num_sections = QSpinBox()
+        self.num_sections.setMaximumHeight(primary.height/20)
+        self.num_sections.setMaximumWidth(primary.height/20)
+        self.num_sections.setMinimumHeight(primary.height/20)
+        self.num_sections.setMinimumWidth(primary.height/20)
+        self.num_sections.setValue(0)
+        self.num_sections.setMinimum(1)
+        self.num_sections.setMaximum(7)
+        self.num_sections.valueChanged.connect(self.validate_input_num_sections)
+
+
+        #Min Speed
+        self.min_speed_text = QLabel()
+        self.min_speed_text.setText("Minimum Speed (m/s)")
+        self.min_speed_text.setFont(QFont("Arial", 18))
+
+        self.min_speed = QSpinBox()
+        self.min_speed.setMaximumHeight(primary.height/20)
+        self.min_speed.setMaximumWidth(primary.height/20)
+        self.min_speed.setMinimumHeight(primary.height/20)
+        self.min_speed.setMinimumWidth(primary.height/20)
+        self.min_speed.setMinimum(0)
+        self.min_speed.setValue(15)
+        self.min_speed.valueChanged.connect(self.validate_input_speed)
+        self.min_speed.textChanged.connect(self.validate_input_speed)
+
+
+        #Max Speed
+        self.max_speed_text = QLabel()
+        self.max_speed_text.setText("Maximum Speed (m/s)")
+        self.max_speed_text.setFont(QFont("Arial", 18))
+
+        self.max_speed = QSpinBox()
+        self.max_speed.setMaximumHeight(primary.height/20)
+        self.max_speed.setMaximumWidth(primary.height/20)
+        self.max_speed.setMinimumHeight(primary.height/20)
+        self.max_speed.setMinimumWidth(primary.height/20)
+        self.max_speed.setMinimum(self.min_speed.value())
+        self.max_speed.setMaximum(150)
+        self.max_speed.setValue(30)
+        self.max_speed.valueChanged.connect(self.validate_input_speed)
+        self.max_speed.textChanged.connect(self.validate_input_speed)
+        self.min_speed.setMaximum(self.max_speed.value())
+
+
+        #Safety Distance
+        self.safety_distance_text = QLabel()
+        self.safety_distance_text.setText("Safety Distance (m)")
+        self.safety_distance_text.setFont(QFont("Arial", 18))
+
+        self.safety_distance = QSpinBox()
+        self.safety_distance.setMaximumHeight(primary.height/20)
+        self.safety_distance.setMaximumWidth(primary.height/20)
+        self.safety_distance.setMinimumHeight(primary.height/20)
+        self.safety_distance.setMinimumWidth(primary.height/20)
+        self.safety_distance.setValue(15)
+        self.safety_distance.setMinimum(5)
+        self.safety_distance.setMaximum(999)
+
+        #Start Simulation
+        self.start_simulation = QPushButton()
+        self.start_simulation.setText("Start Simulation")
+        self.start_simulation.setFont(QFont("Arial", 14))
+        self.start_simulation.setMaximumWidth(primary.width/6)
+        self.start_simulation.setMinimumHeight(primary.height/25)
+        self.start_simulation.clicked.connect(self.start_sim_pop_up.show)
+
+        #MAP SETTINGS
+
+            #widget
+        self.map_widget = QWidget()
+        self.map_widget.setMinimumWidth(primary.width/2.03)
+        self.map_widget.setMinimumHeight(primary.height/2.1)
+
+            #background color
+        self.map_background = QLabel(self.map_widget)
+        self.map_background.setStyleSheet("background-color: #cccac6;")
+        self.map_background.setMinimumHeight(primary.height/2.15)
+        self.map_background.setMinimumWidth(primary.width/2.75)
+
+            #map
+        self.pixmap = QPixmap('images/road.gif')
+        self.pixmap = self.pixmap.scaledToHeight(primary.height/2.5)
+
+        self.map1 = QLabel(self.map_widget)
+        self.map1.setPixmap(self.pixmap)
+        self.map2 = QLabel(self.map_widget)
+        self.map2.setPixmap(self.pixmap)
+        self.map3 = QLabel(self.map_widget)
+        self.map3.setPixmap(self.pixmap)
+        self.map4 = QLabel(self.map_widget)
+        self.map4.setPixmap(self.pixmap)
+        self.map5 = QLabel(self.map_widget)
+        self.map5.setPixmap(self.pixmap)
+
+            #arrow pixmap objects
+        self.arrow_pixmap = QPixmap('images/next.png')
+        self.arrow_pixmap = self.arrow_pixmap.scaledToHeight(primary.height/12)
+        self.arrow_pixmap_left = self.arrow_pixmap.transformed(QtGui.QTransform().scale(-1,1))
+        self.double_arrow_pixmap = QPixmap('images/double_next.png')
+        self.double_arrow_pixmap = self.double_arrow_pixmap.scaledToHeight(primary.height/12)
+        self.double_arrow_pixmap_left = self.double_arrow_pixmap.transformed(QtGui.QTransform().scale(-1,1))
+
+            #arrows
+        self.right_arrow = ExtendedQLabel(self.map_widget)
+        self.right_arrow.setPixmap(self.arrow_pixmap)
+        self.right_arrow.clicked.connect(self.single_right)
+
+        self.double_arrow_right = ExtendedQLabel(self.map_widget)
+        self.double_arrow_right.setPixmap(self.double_arrow_pixmap)
+        self.double_arrow_right.clicked.connect(self.double_right)
+
+        self.left_arrow = ExtendedQLabel(self.map_widget)
+        self.left_arrow.setPixmap(self.arrow_pixmap_left)
+        self.left_arrow.clicked.connect(self.single_left)
+
+        self.double_arrow_left = ExtendedQLabel(self.map_widget)
+        self.double_arrow_left.setPixmap(self.double_arrow_pixmap_left)
+        self.double_arrow_left.clicked.connect(self.double_left)
+
+            #clickable buttons on road sections
+        self.road_array = ["-","-","-","-","1"]
+
+        self.road_button1 = QPushButton(self.map_widget)
+        self.road_button1.setMaximumWidth(primary.width/30)
+        self.road_button1.setMinimumWidth(primary.width/30)
+        self.road_button1.setMaximumHeight(primary.height/25)
+        self.road_button1.setMinimumHeight(primary.height/25)
+        self.road_button1.setText(str(self.road_array[0]))
+        self.road_button1.clicked.connect(lambda: self.road_button_click_helper(self.road_button1.text()))
+
+        self.road_button2 = QPushButton(self.map_widget)
+        self.road_button2.setMaximumWidth(primary.width/30)
+        self.road_button2.setMinimumWidth(primary.width/30)
+        self.road_button2.setMaximumHeight(primary.height/25)
+        self.road_button2.setMinimumHeight(primary.height/25)
+        self.road_button2.setText(str(self.road_array[1]))
+        self.road_button2.clicked.connect(lambda: self.road_button_click_helper(self.road_button2.text()))
+
+        self.road_button3 = QPushButton(self.map_widget)
+        self.road_button3.setMaximumWidth(primary.width/30)
+        self.road_button3.setMinimumWidth(primary.width/30)
+        self.road_button3.setMaximumHeight(primary.height/25)
+        self.road_button3.setMinimumHeight(primary.height/25)
+        self.road_button3.setText(str(self.road_array[2]))
+        self.road_button3.clicked.connect(lambda: self.road_button_click_helper(self.road_button3.text()))
+
+        self.road_button4 = QPushButton(self.map_widget)
+        self.road_button4.setMaximumWidth(primary.width/30)
+        self.road_button4.setMinimumWidth(primary.width/30)
+        self.road_button4.setMaximumHeight(primary.height/25)
+        self.road_button4.setMinimumHeight(primary.height/25)
+        self.road_button4.setText(str(self.road_array[3]))
+        self.road_button4.clicked.connect(lambda: self.road_button_click_helper(self.road_button4.text()))
+
+        self.road_button5 = QPushButton(self.map_widget)
+        self.road_button5.setMaximumWidth(primary.width/30)
+        self.road_button5.setMinimumWidth(primary.width/30)
+        self.road_button5.setMaximumHeight(primary.height/25)
+        self.road_button5.setMinimumHeight(primary.height/25)
+        self.road_button5.setText(str(self.road_array[4]))
+        self.road_button5.clicked.connect(lambda: self.road_button_click_helper(self.road_button5.text()))
+
+        #GRID SETTINGS
+
+            #labels and text
+        self.grid.addWidget(self.back_button,          0,0,1,1)
+        self.grid.addWidget(self.general_settings,     1,0,1,1)
+        self.grid.addWidget(self.allow_collisions_text,2,0,1,1)
+        self.grid.addWidget(self.num_sections_text,    3,0,1,1)
+        self.grid.addWidget(self.max_speed_text,       4,0,1,1)
+        self.grid.addWidget(self.min_speed_text,       5,0,1,1)
+        self.grid.addWidget(self.safety_distance_text, 6,0,1,1)
+        self.grid.addWidget(self.start_simulation,     7,0,1,1)
+
+            #input boxes
+        self.grid.addWidget(self.allow_collisions,     2,1,1,1)
+        self.grid.addWidget(self.num_sections,         3,1,1,1)
+        self.grid.addWidget(self.max_speed,            4,1,1,1)
+        self.grid.addWidget(self.min_speed,            5,1,1,1)
+        self.grid.addWidget(self.safety_distance,      6,1,1,1)
+    
+
+            #map
+        move_dist = (primary.width/12)
+        self.grid.addWidget(self.map_widget,          2,2,-1,-1)
+        self.map_background.move(primary.width/12,0)
+        self.map1.move(move_dist*1.2,primary.height/40)
+        self.map2.move(move_dist*2.0,primary.height/40)
+        self.map3.move(move_dist*2.8,primary.height/40)
+        self.map4.move(move_dist*3.6,primary.height/40)
+        self.map5.move(move_dist*4.4,primary.height/40)
+
+            #arrows
+        self.right_arrow.move(primary.width/2.37,primary.height/6)
+        self.left_arrow.move(primary.width/17.37, primary.height/6)
+        self.double_arrow_right.move(primary.width/2.18,primary.height/6)
+        self.double_arrow_left.move(primary.width/26.37, primary.height/6)
+
+
+            #road buttons
+        self.road_button1.move(primary.width/8.7,primary.height/5.1)
+        self.road_button2.move(primary.width/5.55,primary.height/5.1)
+        self.road_button3.move(primary.width/4.05,primary.height/5.1)
+        self.road_button4.move(primary.width/3.18,primary.height/5.1)
+        self.road_button5.move(primary.width/2.62,primary.height/5.1)
     
 
 def main():
