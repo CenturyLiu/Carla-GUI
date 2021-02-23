@@ -72,7 +72,7 @@ class Edit_Section_Window(QWidget):
 
         #import settings
         self.import_settings_button = QPushButton()
-        self.import_settings_button.setText("Import Settings")
+        self.import_settings_button.setText("Copy Settings")
         self.import_settings_button.setFont(QFont("Arial", 16))
         self.import_settings_button.clicked.connect(self.import_settings_click)
         self.import_settings_button.setToolTip("Replaces section's vehicle behavior settings with those of the selected section.")
