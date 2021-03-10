@@ -70,7 +70,7 @@ class Edit_Section_Window(QWidget):
         self.section_id.setView(self.view2)
 
 
-        #import settings
+        #copy settings
         self.import_settings_button = QPushButton()
         self.import_settings_button.setText("Copy Settings")
         self.import_settings_button.setFont(QFont("Arial", 16))
