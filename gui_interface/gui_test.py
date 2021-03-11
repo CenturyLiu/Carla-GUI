@@ -7,9 +7,8 @@ designed a freeway experiment and an intersection experiment.
 
 import sys
 from PyQt5 import QtWidgets, QtCore
-from PyQt5.QtWidgets import QApplication, QMainWindow, QGridLayout, \
-    QPushButton, QWidget, QSpacerItem, QPushButton, QLabel
-from PyQt5.QtGui import QFont
+from PyQt5.QtWidgets import QApplication, QMainWindow, QGridLayout, QPushButton, QWidget, QSpacerItem, QPushButton, QLabel, QAction
+from PyQt5.QtGui import QFont, QIcon
 import freeway_window as Fway
 import main_use as Inter_main
 
@@ -54,6 +53,18 @@ class Start_Window(QMainWindow):
         self.grid = QGridLayout()
         self.main_widget.setLayout(self.grid)
         self.setCentralWidget(self.main_widget)
+
+
+        # menubar -GUI Instruction
+        string = "Welcome to Carla Driving Simulator User Interface. \nYou can create driving simulation sceinarios in your preferred driving enviroment by choosing either Freeway or Intersection."
+        menubar = self.menuBar()
+        helpMenu = menubar.addMenu('Instruction')
+        instruction = QAction(string, self)
+        helpMenu.addAction(instruction)
+        helpMenu.setStyleSheet(
+            "QMenu {font-size: 20px;}"
+        )
+
 
         # freeway button
         self.fway_button = QPushButton()
