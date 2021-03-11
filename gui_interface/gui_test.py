@@ -7,8 +7,14 @@ designed a freeway experiment and an intersection experiment.
 
 import sys
 from PyQt5 import QtWidgets, QtCore
+<<<<<<< Updated upstream
 from PyQt5.QtWidgets import QApplication, QMainWindow, QGridLayout, QPushButton, QWidget, QSpacerItem, QPushButton, QLabel, QAction
 from PyQt5.QtGui import QFont, QIcon
+=======
+from PyQt5.QtWidgets import QApplication, QMainWindow, QGridLayout, \
+    QPushButton, QWidget, QSpacerItem, QPushButton, QLabel, QAction, QMenu
+from PyQt5.QtGui import QFont
+>>>>>>> Stashed changes
 import freeway_window as Fway
 import main_use as Inter_main
 
@@ -54,6 +60,7 @@ class Start_Window(QMainWindow):
         self.main_widget.setLayout(self.grid)
         self.setCentralWidget(self.main_widget)
 
+<<<<<<< Updated upstream
 
         # menubar -GUI Instruction
         string = "Welcome to Carla Driving Simulator User Interface. \nYou can create driving simulation sceinarios in your preferred driving enviroment by choosing either Freeway or Intersection."
@@ -65,6 +72,28 @@ class Start_Window(QMainWindow):
             "QMenu {font-size: 20px;}"
         )
 
+=======
+        # menubar - GUI Instruction
+        menubar = self.menuBar()
+        fileMenu = menubar.addMenu('Instructions')
+        main = QMenu('Main', self)
+        mainStr1 = "Welcome to Carla Driving Simulator User Interface."
+        mainStr2 = "You can create driving simulation sceinarios in your preferred driving enviroment by choosing either Freeway or Intersection."
+        mainAct1 = QAction(mainStr1, self)
+        mainAct2 = QAction(mainStr2, self)
+        main.addAction(mainAct1)
+        main.addAction(mainAct2)
+        fileMenu.addMenu(main)
+        
+        fileMenu.setStyleSheet(
+            "font-size: 16px;"
+        )
+        main.setStyleSheet(
+            "font-size: 16px;"
+        )
+             
+        
+>>>>>>> Stashed changes
 
         # freeway button
         self.fway_button = QPushButton()

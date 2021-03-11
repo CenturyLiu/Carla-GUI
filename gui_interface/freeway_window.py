@@ -94,6 +94,116 @@ class Freeway_Window(QMainWindow):
         connected to: edit_section.py-->add_vehicles_button.clicked
         function: shows add_vehicles.py window when pressing add vehicles button in an edit section page
         """
+<<<<<<< Updated upstream
+=======
+
+        # menubar - GUI Instruction
+        menubar = self.menuBar()
+
+        # GENERAL SETTINGS
+        fileMenu = menubar.addMenu('Instructions')
+        gs = QMenu('GENERAL SETTINGS', self)
+        gsStr1 = "1. Choose collision availability."
+        gsStr2 = "2. Enter the number of Freeway Sections. (Between 1 and 7)"
+        gsStr3 = "3. Enter the maximum speed. (Max: 150 m/s)"
+        gsStr4 = "4. Enter the minimum speed. (Min: 0 m/s)"
+        gsStr5 = "5. Enter the safety distance between cars. (Min: 5 m, Max: 999 m)"
+        gsStr6 = "6. Click the number box on each section to edit. "
+        gsStr7 = "* If there are more than 5 sections, click the arrow to see more."
+        gsStr8 = "* You can always discard all settings and return to the main page by hitting \"Back to Start\"."
+        gsAct1 = QAction(gsStr1, self)
+        gsAct2 = QAction(gsStr2, self)
+        gsAct3 = QAction(gsStr3, self)
+        gsAct4 = QAction(gsStr4, self)
+        gsAct5 = QAction(gsStr5, self)
+        gsAct6 = QAction(gsStr6, self)
+        gsAct7 = QAction(gsStr7, self)
+        gsAct8 = QAction(gsStr8, self)
+        gs.addAction(gsAct1)
+        gs.addAction(gsAct2)
+        gs.addAction(gsAct3)
+        gs.addAction(gsAct4)
+        gs.addAction(gsAct5)
+        gs.addAction(gsAct6)
+        gs.addAction(gsAct7)
+        gs.addAction(gsAct8)    
+        fileMenu.addMenu(gs)
+        gs.setStyleSheet(
+            "font-size: 16px;"
+        )
+        
+        # EDIT FREEWAY SECTION
+        efs = QMenu('EDIT FREEWAY SECTION', self)     
+        efsStr1 = "1. Choose Section ID and hit \"Add Vehicles\"."
+        efsStr2 = "2. If you'd like to copy a specific section's setting, you can choose a corresponding section ID on the bottom of the window and hit \"Copy Settings\"."
+        efsStr3 = "*Example*"
+        efsStr4 = "Let's say you want Section 5 to have the same settings as Section 2 does."
+        efsStr5 = "Select Section ID to Section 5."
+        efsStr6 = "Select Section 5 on the bottom and hit \"Copy Settings\"."
+        efsAct1 = QAction(efsStr1, self)
+        efsAct2 = QAction(efsStr2, self)
+        efsAct3 = QAction(efsStr3, self)
+        efsAct4 = QAction(efsStr4, self)
+        efsAct5 = QAction(efsStr5, self)
+        efsAct6 = QAction(efsStr6, self)
+        efs.addAction(efsAct1)
+        efs.addAction(efsAct2)
+        efs.addAction(efsAct3)
+        efs.addAction(efsAct4)
+        efs.addAction(efsAct5)
+        efs.addAction(efsAct6)      
+        fileMenu.addMenu(efs)
+        efs.setStyleSheet(
+            "font-size: 16px;"
+        )
+
+        # ADD VEHICLES
+        addV = QMenu('ADD VEHICLES', self)
+        addVStr1 = "1. Add vehicles to preffered lane by hitting \"Add Vehicle\"."
+        addVStr2 = "2. Enter the gap. (Min: 8 m, Max: 35 m)"
+        addVStr3 = "3. Choose a vehicle model."
+        addVStr4 = "4. Choose a vehicle type (lead or ego)"
+        addVStr5 = "5. Choose a vehicle color. (The vehicle in the color is shown on the road)"
+        addVStr6 = "6. Hit \"Add\" to add."
+        addVAct1 = QAction(addVStr1, self)
+        addVAct2 = QAction(addVStr2, self)
+        addVAct3 = QAction(addVStr3, self)
+        addVAct4 = QAction(addVStr4, self)
+        addVAct5 = QAction(addVStr5, self)
+        addVAct6 = QAction(addVStr6, self)
+        addV.addAction(addVAct1)
+        addV.addAction(addVAct2)
+        addV.addAction(addVAct3)
+        addV.addAction(addVAct4)
+        addV.addAction(addVAct5)
+        addV.addAction(addVAct6)   
+        fileMenu.addMenu(addV)
+        addV.setStyleSheet(
+            "font-size: 16px;"
+        )
+
+        # Finish settings and start simulation
+        ss = QAction("After done settings, you can start simulation!", self)
+        fileMenu.addAction(ss)       
+
+        fileMenu.setStyleSheet(
+            "font-size: 16px;"
+        )
+
+        
+        
+        #CARLA SETTINGS
+        self.stack = QStackedLayout() #stack contains freeway_window.py and all edit_section.py pages
+        self.main_widget = QWidget()
+        self.main_widget.setLayout(self.stack)
+        self.setCentralWidget(self.main_widget) #central widget necessary for pyqt5 to function correctly
+
+        self.general_settings_widget = QWidget()
+        self.grid = QGridLayout()
+        self.general_settings_widget.setLayout(self.grid)
+        self.stack.addWidget(self.general_settings_widget)
+        section_vector.page_list.append(self.general_settings_widget) #adds freeway_window to page list
+>>>>>>> Stashed changes
 
         self.add_vehicles_widget.show()
         
