@@ -143,7 +143,7 @@ class Edit_Section_Window(QWidget):
         self.add_vehicles = QPushButton()
         self.add_vehicles.setText("Add Vehicles")
         self.add_vehicles.setFont(QFont("Arial", 16))
-        self.add_vehicles.clicked.connect(self.freeway_window.add_vehicle)
+        self.add_vehicles.clicked.connect(self.freeway_window.show_add_vehicles)
 
 
         #EDIT EGO VEHICLE WINDOW
