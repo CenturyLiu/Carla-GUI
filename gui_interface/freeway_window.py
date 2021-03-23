@@ -94,8 +94,6 @@ class Freeway_Window(QMainWindow):
         connected to: edit_section.py-->add_vehicles_button.clicked
         function: shows add_vehicles.py window when pressing add vehicles button in an edit section page
         """
-<<<<<<< Updated upstream
-=======
 
         # menubar - GUI Instruction
         menubar = self.menuBar()
@@ -203,7 +201,6 @@ class Freeway_Window(QMainWindow):
         self.general_settings_widget.setLayout(self.grid)
         self.stack.addWidget(self.general_settings_widget)
         section_vector.page_list.append(self.general_settings_widget) #adds freeway_window to page list
->>>>>>> Stashed changes
 
         self.add_vehicles_widget.show()
         

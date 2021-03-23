@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TrafLightSet</class>
+ <widget class="QDialog" name="TrafLightSet">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>492</width>
+    <height>327</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QDialogButtonBox" name="buttonBoxTLDia">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>290</y>
+     <width>156</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <property name="standardButtons">
+    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+   </property>
+  </widget>
+  <widget class="QDoubleSpinBox" name="SpinBox1TLDia">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>25</y>
+     <width>62</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+  </widget>
+  <widget class="QDoubleSpinBox" name="SpinBox2TLDia">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>100</y>
+     <width>62</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+  </widget>
+  <widget class="QDoubleSpinBox" name="SpinBox3TLDia">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>184</y>
+     <width>62</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="cobBox1TLDia">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>20</y>
+     <width>180</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <item>
+    <property name="text">
+     <string>Red Light Duration</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Yellow Light Duration</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Green Light Duration</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QComboBox" name="cobBox2TLdia">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>95</y>
+     <width>180</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <item>
+    <property name="text">
+     <string>Red Light Duration</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Yellow Light Duration</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Green Light Duration</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QComboBox" name="cobBox3TLDia">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>178</y>
+     <width>180</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <item>
+    <property name="text">
+     <string>Red Light Duration</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Yellow Light Duration</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Green Light Duration</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="BL1TLDia">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>18</y>
+     <width>51</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+     <pointsize>18</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>First</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="BL2TLDia">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>92</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+     <pointsize>18</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Second</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="BL2TLDia_2">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>176</y>
+     <width>61</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+     <pointsize>18</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Third</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBoxTLDia</sender>
+   <signal>accepted()</signal>
+   <receiver>TrafLightSet</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBoxTLDia</sender>
+   <signal>rejected()</signal>
+   <receiver>TrafLightSet</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
