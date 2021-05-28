@@ -158,7 +158,7 @@ class VehicleControl_debug(object):
         
         U0 = np.array(self.ref_speeds) - np.array(self.curr_speeds)
         #print(U0)
-        _,y0,x0 = control.forced_response(self.sys,U = U0,X0 = self.init_values[0]) # y0 is the next values, x0 is the state evolution
+        _,y0,x0 = control.forced_response(self.sys,U = U0,X0 = self.init_values[0], return_x=True) # y0 is the next values, x0 is the state evolution
                                                                           # see https://python-control.readthedocs.io/en/0.8.3/generated/control.forced_response.html#control.forced_response 
         self.init_values.append(x0[-1])
         throttle = y0[-1]
