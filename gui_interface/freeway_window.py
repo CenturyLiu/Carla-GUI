@@ -3,12 +3,15 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import pyqtSignal
 from PyQt5.QtGui import QFont, QPixmap
 from functools import partial
+from multiprocessing import Process
 import sys
+import edit_section
 import section_vector
 import add_vehicles
 import vehicle
 import edit_vehicle
 import edit_vehicle_ego
+import carla_vehicle_list
 import start_sim_pop_up
 import back_home_pop_up
 import home as primary
@@ -16,7 +19,7 @@ import glob
 import os
 import sys
 
-# Allow imports from parent and sibling directories
+#to allow imports from parent directory
 sys.path.append("..")
 try:
     sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
@@ -32,12 +35,11 @@ from backend.carla_env import CARLA_ENV
 from backend.section_environment import FreewayEnv
 
 
+
 class ExtendedQLabel(QLabel):
     """
-    Extended Qlabel that allows clicking signals.
-
-    Creates text labels that can be connected to a function through a 
-    click handler.
+    extended Qlabel that allows clicking signals
+    for use in Vehicle object --> see vehicle.py
     """
     def __init__(self, parent):
         QLabel.__init__(self, parent)
@@ -47,56 +49,41 @@ class ExtendedQLabel(QLabel):
         self.clicked.emit()
 
 
+
 class Freeway_Window(QMainWindow):
     """
-    Window for users to set up Freeway Experiments.
-    
-    Enables users to choose general experiment settings and customize
-    the vehicles on the roadway using an interactive map.
+    Freeway Window. Contains general settings and clickable map
     """
     def __init__(self,parent=None):
-        super().__init__(parent)
-        self.setGeometry(0, 0, primary.width, primary.height)
-        self.setWindowTitle("Freeway Experiments")
-        self.initUI() # Create the UI componenets
-        self.carla_start() # Establish connected to Carla Server
+        super(Freeway_Window, self).__init__(parent)
+        self.setGeometry(0,0,primary.width,primary.height)
+        self.setWindowTitle("Freeway")
+        self.initUI()
+        self.carla_start()
 
 
     def carla_start(self):
         """
-        Establishes a connected to the Carla server.
-        
-        Connects to the Carla server on localhost:2000 and loads the desired
-        map, weather parameters, and spectator view. If the function is unable
-        to connect within 10 seconds, it times out and exits.
+        function to set up CARLA environment immediately when interface is loaded
+        see https://carla.readthedocs.io/en/latest/ for more info
         """
         try:
-            # Connect to the server
             client = carla.Client("localhost",2000)
             client.set_timeout(10.0)
             world = client.load_world('Town04')
 
-            # Set the weather
             weather = carla.WeatherParameters(
-                cloudiness = 10.0,
-                precipitation=0.0,
-                sun_altitude_angle=90.0
-            )
+            cloudiness = 10.0,
+            precipitation=0.0,
+            sun_altitude_angle=90.0)
             world.set_weather(weather)
 
-            # Set the spectator view
             spectator = world.get_spectator()
-            spectator.set_transform(
-                carla.Transform(
-                    carla.Location(x=-170, y=-151, z=116.5), 
-                    carla.Rotation(pitch=-33, yaw= 56.9, roll=0.0)
-                    )
-                )   
+            spectator.set_transform(carla.Transform(carla.Location(x=-170, y=-151, z=116.5), carla.Rotation(pitch=-33, yaw= 56.9, roll=0.0)))   
 
             self.env = CARLA_ENV(world)
 
         finally:
-            # Failed to connect, abort
             time.sleep(5)
             self.env.destroy_actors()
         
@@ -104,11 +91,11 @@ class Freeway_Window(QMainWindow):
 
     def initUI(self):
         """
-        Initializes all the UI componenets on the Freeway Window.
-        
-        Runs when the Freeway Window is created. Creates all of the UI 
-        components that enable to user to interact and design an experiment.
+        initUI function is run only when freeway_window.py is created
+        all of the visual components are described here
+        each widget is separated by #comments with grouped widgets under the same #comment
         """
+
         #CARLA SETTINGS
         self.stack = QStackedLayout() #stack contains freeway_window.py and all edit_section.py pages
         self.main_widget = QWidget()
@@ -121,6 +108,7 @@ class Freeway_Window(QMainWindow):
         self.stack.addWidget(self.general_settings_widget)
         section_vector.page_list.append(self.general_settings_widget) #adds freeway_window to page list
 
+
         #back button
         self.back_button = QPushButton()
         self.back_button.setText("Back to Start")
@@ -129,13 +117,18 @@ class Freeway_Window(QMainWindow):
         self.back_button.setMaximumHeight(primary.height/26)
         self.back_button.clicked.connect(self.show_back_button_pop_up)
         
+
+
         #General Settings text
         self.general_settings = QLabel()
         self.general_settings.setText("General Settings")
         self.general_settings.setFont(QFont("Arial", 24))
         self.general_settings.setAlignment(QtCore.Qt.AlignCenter)
         self.general_settings.setMaximumHeight(primary.height/10)
-        
+
+
+
+
         #Allow Collisions
         self.allow_collisions_text = QLabel()
         self.allow_collisions_text.setText("Allow Collisions")
@@ -145,6 +138,8 @@ class Freeway_Window(QMainWindow):
         self.allow_collisions.setChecked(True)
         size_val = str(primary.height/20) 
         self.allow_collisions.setStyleSheet("QCheckBox::indicator { width: %spx; height: %spx;}" % (size_val,size_val))
+
+
 
         #Number of Freeway Sections
         self.num_sections_text = QLabel()
@@ -161,6 +156,8 @@ class Freeway_Window(QMainWindow):
         self.num_sections.setMinimum(1)
         self.num_sections.setMaximum(7)
         self.num_sections.valueChanged.connect(self.validate_input_num_sections)
+
+
 
 
         #Min Speed
@@ -211,6 +208,9 @@ class Freeway_Window(QMainWindow):
         self.safety_distance.setMinimum(5)
         self.safety_distance.setMaximum(999)
 
+
+
+
         #Start Simulation
         self.start_simulation = QPushButton()
         self.start_simulation.setText("Start Simulation")
@@ -218,6 +218,9 @@ class Freeway_Window(QMainWindow):
         self.start_simulation.setMaximumWidth(primary.width/6)
         self.start_simulation.setMinimumHeight(primary.height/25)
         self.start_simulation.clicked.connect(self.show_start_sim_pop_up)
+
+
+
 
         #MAP SETTINGS
 
@@ -272,8 +275,9 @@ class Freeway_Window(QMainWindow):
         self.double_arrow_left.setPixmap(self.double_arrow_pixmap_left)
         self.double_arrow_left.clicked.connect(self.double_left)
 
+
             #clickable buttons on road sections
-        self.road_array = ["-","-","-","-","1"]
+        self.road_array = ["1","-","-","-",""]
 
         self.road_button1 = QPushButton(self.map_widget)
         self.road_button1.setMaximumWidth(primary.width/30)
@@ -527,7 +531,7 @@ class Freeway_Window(QMainWindow):
         ex: if road_array = [3,4,5,6,7] --> single_left(road_array) = [2,3,4,5,6]
         """
 
-        if self.road_array[0] == "-" or self.road_array[0] == 1: #do nothing if already as far left as possible
+        if self.road_array[0] == 1: #do nothing if already as far left as possible
             return
 
         self.road_array[0] -= 1
@@ -689,11 +693,10 @@ class Freeway_Window(QMainWindow):
 
         val = self.num_sections.value()
 
-        j = 4
         for i in range(0,5):
-            self.road_array[i] = val - j
-            j = j - 1
-            if val - j <= 1:
+            if i + 1 <= val: 
+                self.road_array[i] = i + 1
+            else:
                 self.road_array[i] = '-'
 
         self.road_button_reset()
@@ -993,6 +996,10 @@ class Freeway_Window(QMainWindow):
             time.sleep(5)
             self.env.destroy_actors()
     
+            
+
+
+
 
 def main():
     primary.main()
