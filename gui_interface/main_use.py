@@ -151,6 +151,8 @@ class Main(QMainWindow):
             tmp = self.inter.findChild(QLabel, name)
             tmp.clicked.connect(self.make_any_vehicle(x = 3, y = i))
 
+
+
         self.inter.backButtonVeh.clicked.connect(self.vehicle_inter)
         self.TrafLit.buttonBoxTLDia.accepted.connect(self.traffic_light_ok)
         self.addVeh.buttonBoxAdDia.accepted.connect(self.add_vehicle_ok)
@@ -166,6 +168,10 @@ class Main(QMainWindow):
         self.traffic_light_list = get_traffic_lights(self.world.get_actors())
         self.intersection_list = create_intersections(self.env, 4, self.traffic_light_list, self.navigation_speed)
         
+
+
+
+
         #lists initialized
         for i in range(4):
             light_list_one = [[0.00, 10.00, 10.00, 15.00, 15.00, 25.00], [0.00, 10.00, 10.00, 15.00, 15.00, 25.00], [0.00, 10.00, 10.00, 15.00, 15.00, 25.00], [0.00, 10.00, 10.00, 15.00, 15.00, 25.00]]
@@ -186,11 +192,39 @@ class Main(QMainWindow):
                 inter_list.append(lane_list)
             self.delete_car.append(inter_list)
 
+        self.spawn_ego_default()
         self.show_win()
 
        
 
-   
+    def spawn_ego_default(self):
+        #add ego 
+        index = self.addVeh.cobBoxModAdDia.currentIndex()
+        gapNum = self.addVeh.spinBoxGapAdDia.value()
+        model_combine = self.addVeh.model_list[index].split()
+        model1 = model_combine[0]
+        model2 = model_combine[1]
+        Mname = "vehicle." + model1 + "." + model2
+        R = "255"
+        G = "255"
+        B = "255"
+
+        color = R + "," + G + "," + B
+        self.cur_inter = 0
+        self.cur_lane = 0
+        car2 = self.intersection_list[self.cur_inter].add_ego_vehicle(gap=gapNum, model_name=Mname, safety_distance=self.gloSafetyDistance, vehicle_color=color)                
+        car1 = self.intersection_list[self.cur_inter].add_lead_vehicle(lead_distance= 10, vehicle_color="255,255,255", safety_distance=self.gloSafetyDistance)
+        car3 = self.intersection_list[self.cur_inter].add_follow_vehicle(follow_distance= 10, vehicle_color="255,255,255", safety_distance=self.gloSafetyDistance)
+         
+        #put into car list for further use
+        self.car_list[self.cur_inter][self.cur_lane].append(car1)
+        self.car_list[self.cur_inter][self.cur_lane].append(car2)
+        self.car_list[self.cur_inter][self.cur_lane].append(car3)
+        self.normal_num = 3
+        
+        self.ego_spawned = True
+        self.show_car()
+
     #front end haddle change of intersection
     def show_win(self):
         if len(self.intersection_list) > 6:
@@ -554,6 +588,7 @@ class Main(QMainWindow):
 
     #ok button on add vehicle dialogue
     def add_vehicle_ok(self):
+       
         index = self.addVeh.cobBoxModAdDia.currentIndex()
         gapNum = self.addVeh.spinBoxGapAdDia.value()
         model_combine = self.addVeh.model_list[index].split()
