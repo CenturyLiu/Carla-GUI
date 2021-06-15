@@ -232,24 +232,29 @@ class Main(QMainWindow):
     def change_int(self):
         
         num = self.inter.spinBoxNumIntFro.value()
-        if num < 4:
-            for i in range(num, 4):
-                self.inter.cobBoxIDInt.removeItem(i)
-                self.intersection_list.pop(i)
 
-        #unfinished, only support 4 intersections now
-        if num > 4:
-            num = 4
+        # unfinished, only support 4 intersections now
+        num = min(num, 4)
+        self.inter.spinBoxNumIntFro.setValue(num)
+
+        IntNFro = [self.inter.Int1Fro, self.inter.Int2Fro, self.inter.Int3Fro, 
+                   self.inter.Int4Fro, self.inter.Int5Fro, self.inter.Int6Fro,]
+        # it is much easier to stop user from click the button
+        for i in range(num, 4):
+            IntNFro[i].setEnabled(False)
+        for i in range(0, num):
+            IntNFro[i].setEnabled(True)
 
         self.show_win()
-        
-        #give the warning for user that number can't be changed after setting
-        self.errMes.labelErr.setText("The intersection number can only be set once.\n Please confirm your input and click ok")
-        self.inter.spinBoxNumIntFro.setReadOnly(True)
-        self.inter.spinBoxNumIntFro.setCursor(QtGui.QCursor(QtCore.Qt.ForbiddenCursor))
-        self.errMes.buttonBoxErr.accepted.connect(self.usual_cancel)
-        self.errMes.buttonBoxErr.rejected.connect(self.cancel_numInt)
-        self.errMes.show()
+
+    # set up the intersection list based on spinBoxNumIntFro
+    def setup_intersection_list(self):
+        num = self.inter.spinBoxNumIntFro.value()
+        print("final intersection size is", num)
+        print("intersection list has length", len(self.intersection_list))
+        # default we have intersection_list with length 4
+        del self.intersection_list[num:]
+        print("intersection list has length", len(self.intersection_list))
 
     #front page go right
     def right(self):
@@ -883,6 +888,7 @@ class Main(QMainWindow):
     #start simulation in front page
     def start_simulation(self):
         view_string = None
+        self.setup_intersection_list()
         human = True
         if self.simulation.cobBoxViewSimDia.currentIndex() == 0:
             view_string = "first_person"
