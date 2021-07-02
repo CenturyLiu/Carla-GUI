@@ -89,9 +89,9 @@ class Ui_Form(QWidget):
 
         #small label for collision 
         self.SLColFro = QtWidgets.QLabel(self.widget1Fro)
-        self.SLColFro.setGeometry(QtCore.QRect(40, 150, 200, 83))
-        self.SLColFro.setMinimumSize(QtCore.QSize(180, 83))
-        self.SLColFro.setMaximumSize(QtCore.QSize(180, 83))
+        self.SLColFro.setGeometry(QtCore.QRect(40, 150, 220, 83))
+        self.SLColFro.setMinimumSize(QtCore.QSize(220, 83))
+        self.SLColFro.setMaximumSize(QtCore.QSize(220, 83))
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(18)
@@ -121,7 +121,7 @@ class Ui_Form(QWidget):
 
         #small label for number of intersection
         self.SLNumInterFro = QtWidgets.QLabel(self.widget1Fro)
-        self.SLNumInterFro.setGeometry(QtCore.QRect(40, 383, 300, 83))
+        self.SLNumInterFro.setGeometry(QtCore.QRect(40, 383, 340, 83))
         self.SLNumInterFro.setAlignment(QtCore.Qt.AlignLeft)
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
@@ -131,7 +131,7 @@ class Ui_Form(QWidget):
 
         #start simulation button
         self.StartSimFro = QtWidgets.QPushButton(self.widget1Fro)
-        self.StartSimFro.setGeometry(QtCore.QRect(40, 690, 200, 37))
+        self.StartSimFro.setGeometry(QtCore.QRect(40, 690, 220, 37))
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(18)

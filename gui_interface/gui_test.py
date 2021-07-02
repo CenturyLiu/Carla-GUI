@@ -58,8 +58,8 @@ class Start_Window(QMainWindow):
         # freeway button
         self.fway_button = QPushButton()
         self.fway_button.setText("Freeway Experiments")
-        self.fway_button.setFont(QFont("Arial", 18))
-        self.fway_button.setMaximumWidth(int(width/7))
+        self.fway_button.setFont(QFont("Arial", 16))
+        self.fway_button.setMaximumWidth(int(width/6))
         self.fway_button.setMaximumHeight(int(height/10))
         self.fway_button.clicked.connect(self.go_to_freeway)
         self.fway_button.setStyleSheet(
@@ -69,8 +69,8 @@ class Start_Window(QMainWindow):
         # intersection button
         self.inter_button = QPushButton()
         self.inter_button.setText("Intersection Experiments")
-        self.inter_button.setFont(QFont("Arial", 18))
-        self.inter_button.setMaximumWidth(int(width/7))
+        self.inter_button.setFont(QFont("Arial", 16))
+        self.inter_button.setMaximumWidth(int(width/6))
         self.inter_button.setMaximumHeight(int(height/10))
         self.inter_button.clicked.connect(self.go_to_intersection)
         self.inter_button.setStyleSheet(
