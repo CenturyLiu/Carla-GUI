@@ -187,7 +187,7 @@ class Ui_Form(QWidget):
 
         #spinbox for number of intersection
         self.spinBoxNumIntFro = QtWidgets.QSpinBox(self.widget1Fro)
-        self.spinBoxNumIntFro.setGeometry(QtCore.QRect(350, 392, 60, 20))
+        self.spinBoxNumIntFro.setGeometry(QtCore.QRect(370, 392, 60, 20))
         self.spinBoxNumIntFro.setMinimumSize(QtCore.QSize(60, 20))
         self.spinBoxNumIntFro.setMaximumSize(QtCore.QSize(60, 20))
         self.spinBoxNumIntFro.setMinimum(1)
