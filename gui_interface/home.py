@@ -53,7 +53,7 @@ class Start_Window(QMainWindow):
 
         #version text
         self.version_text = QLabel()
-        self.version_text.setText("University of Michigan - UMTRI - Version 0.00")
+        self.version_text.setText("University of Michigan - UMTRI - Version 1.00")
         self.version_text.setFont(QFont("Arial", 18))
         self.version_text.setAlignment(QtCore.Qt.AlignCenter)
         self.version_text.setMinimumHeight(int(height/6))
