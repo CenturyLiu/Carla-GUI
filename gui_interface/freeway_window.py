@@ -550,7 +550,7 @@ class Freeway_Window(QMainWindow):
         ex: if road_array = [3,4,5,6,7] --> single_right(road_array) = [4,5,6,7,8]
         """
 
-        if self.road_array[0] == "-": #if no more sections right: return
+        if self.road_array[-1] == "-": #if no more sections right: return
             return
 
         val = self.num_sections.value()
@@ -571,7 +571,7 @@ class Freeway_Window(QMainWindow):
         ex: if road_array = [3,4,5,6,7] --> double_left(road_array) = [1,2,3,4,5]
         """
 
-        if self.road_array[0] == '-':
+        if self.road_array[0] == 1: #you're as far left as possible: do nothing
             return
 
         self.road_array[0] = 1
@@ -588,6 +588,8 @@ class Freeway_Window(QMainWindow):
         function: performs a map transition to the end of the road_array
         ex: if num_sections = 10 and road_array = [3,4,5,6,7] --> double_right(road_array) = [6,7,8,9,10]
         """
+        if self.road_array[-1] == "-":
+            return
 
         val = self.num_sections.value()
         if self.road_array[-1] == val:
