@@ -232,8 +232,8 @@ class Freeway_Window(QMainWindow):
             #background color
         self.map_background = QLabel(self.map_widget)
         self.map_background.setStyleSheet("background-color: #cccac6;")
-        self.map_background.setMinimumHeight(primary.height/2.15)
-        self.map_background.setMinimumWidth(primary.width/2.75)
+        self.map_background.setMinimumHeight(primary.height/2.135)
+        self.map_background.setMinimumWidth(primary.width/2.03)
 
             #map
         self.pixmap = QPixmap('images/road.gif')
@@ -277,7 +277,7 @@ class Freeway_Window(QMainWindow):
 
 
             #clickable buttons on road sections
-        self.road_array = ["1","-","-","-",""]
+        self.road_array = [1,"-","-","-","-"]
 
         self.road_button1 = QPushButton(self.map_widget)
         self.road_button1.setMaximumWidth(primary.width/30)
@@ -380,26 +380,26 @@ class Freeway_Window(QMainWindow):
             #map
         move_dist = (primary.width/12)
         self.grid.addWidget(self.map_widget,          2,2,-1,-1)
-        self.map_background.move(primary.width/12,0)
-        self.map1.move(move_dist*1.2,primary.height/40)
-        self.map2.move(move_dist*2.0,primary.height/40)
-        self.map3.move(move_dist*2.8,primary.height/40)
-        self.map4.move(move_dist*3.6,primary.height/40)
-        self.map5.move(move_dist*4.4,primary.height/40)
+        self.map_background.move(primary.width/10,0)
+        self.map1.move(move_dist*2.2,primary.height/40)
+        self.map2.move(move_dist*3.0,primary.height/40)
+        self.map3.move(move_dist*3.8,primary.height/40)
+        self.map4.move(move_dist*4.6,primary.height/40)
+        self.map5.move(move_dist*5.4,primary.height/40)
 
             #arrows
-        self.right_arrow.move(primary.width/2.37,primary.height/6)
-        self.left_arrow.move(primary.width/17.37, primary.height/6)
-        self.double_arrow_right.move(primary.width/2.18,primary.height/6)
-        self.double_arrow_left.move(primary.width/26.37, primary.height/6)
+        self.right_arrow.move(primary.width/2 + 20,primary.height/6)
+        self.left_arrow.move(move_dist*2.2 - 100, primary.height/6)
+        self.double_arrow_right.move(primary.width/1.77 - 20,primary.height/6)
+        self.double_arrow_left.move(move_dist*2.2 - 150, primary.height/6)
 
 
             #road buttons
-        self.road_button1.move(primary.width/8.7,primary.height/5.1)
-        self.road_button2.move(primary.width/5.55,primary.height/5.1)
-        self.road_button3.move(primary.width/4.05,primary.height/5.1)
-        self.road_button4.move(primary.width/3.18,primary.height/5.1)
-        self.road_button5.move(primary.width/2.62,primary.height/5.1)
+        self.road_button1.move(move_dist*2.2 + 22,primary.height/5.1)
+        self.road_button2.move(move_dist*3.0 + 22, primary.height/5.1)
+        self.road_button3.move(move_dist*3.8 + 22,primary.height/5.1)
+        self.road_button4.move(move_dist*4.6 + 22,primary.height/5.1)
+        self.road_button5.move(move_dist*5.4 + 22,primary.height/5.1)
 
 
 
@@ -533,7 +533,6 @@ class Freeway_Window(QMainWindow):
 
         if self.road_array[0] == 1: #do nothing if already as far left as possible
             return
-
         self.road_array[0] -= 1
         self.road_array[1] -= 1
         self.road_array[2] -= 1
@@ -549,14 +548,10 @@ class Freeway_Window(QMainWindow):
         function: performs a map transition of value = 1 in the right direction
         ex: if road_array = [3,4,5,6,7] --> single_right(road_array) = [4,5,6,7,8]
         """
-
-        if self.road_array[-1] == "-": #if no more sections right: return
-            return
-
         val = self.num_sections.value()
-        if self.road_array[-1] == val: #if at max section: return
+        if self.road_array[-1] == val or self.road_array[-1] == "-": #if at max section: return
             return
-
+            
         self.road_array[0] += 1
         self.road_array[1] += 1
         self.road_array[2] += 1
@@ -588,11 +583,8 @@ class Freeway_Window(QMainWindow):
         function: performs a map transition to the end of the road_array
         ex: if num_sections = 10 and road_array = [3,4,5,6,7] --> double_right(road_array) = [6,7,8,9,10]
         """
-        if self.road_array[-1] == "-":
-            return
-
         val = self.num_sections.value()
-        if self.road_array[-1] == val:
+        if self.road_array[-1] == val or self.road_array[-1] == "-":
             return
 
         j = 4
@@ -694,7 +686,6 @@ class Freeway_Window(QMainWindow):
         """
 
         val = self.num_sections.value()
-
         for i in range(0,5):
             if i + 1 <= val: 
                 self.road_array[i] = i + 1
