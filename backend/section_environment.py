@@ -327,6 +327,31 @@ class FreewayEnv(object):
         # edit the section settings
         section.edit_full_path_vehicle_local_setting(vehicle_type, choice, vehicle_index, command = command, command_start_time = command_start_time)
     
+    def dataOnScreen(self):
+        """
+        print the ego car data on the screen
+
+        Error: This function is not working as it stuck on run
+        it might be helpful to use thread to do async
+        """
+        world_snapshot = self.env.world.get_snapshot()
+        ego_uniquename = self.section_list[0]
+        ego_id = (int)(ego_uniquename.split("_")[1])
+        ego_actor = world_snapshot.find(ego_id)
+        debug = self.env.world.debug
+
+        while True:
+            actor_velocity = ego_actor.get_velocity()
+            x = round(actor_velocity.x, 2)
+            y = round(actor_velocity.y, 2)
+            z = round(actor_velocity.z, 2)
+            text = "Velocity: x=" + str(x) + " y=" + str(y) + " z=" +str(z) + "(m/s)\n"
+
+            debug.draw_string(location = ego_actor.get_transform().location, 
+                            text = text,
+                            life_time = 0.2)
+            time.sleep(0.2)
+
     def SectionBackend(self, spectator_mode = None, allow_collision = True, enable_human_control = False):
         '''
         back end function for the freeway
@@ -603,8 +628,8 @@ class FreewayEnv(object):
                         if command != None:
                             vehicle.command = command
                             vehicle.command_start_time = command_start_time
-
-        file.close()
+        if self.RECORD_ENABLE:
+            file.close()
         
     
     # private methods
