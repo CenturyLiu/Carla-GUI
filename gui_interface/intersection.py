@@ -229,9 +229,9 @@ class Ui_Form(QWidget):
 
         #widget for 1st intersection part
         self.widget3Fro = QtWidgets.QWidget(self.widgetFrontAll)
-        self.widget3Fro.setMinimumSize(QtCore.QSize(165, 682))
-        self.widget3Fro.setMaximumSize(QtCore.QSize(165, 682))
-        self.widget3Fro.setObjectName("widget3Fro")\
+        self.widget3Fro.setMinimumSize(QtCore.QSize(110, 455))
+        self.widget3Fro.setMaximumSize(QtCore.QSize(110, 455))
+        self.widget3Fro.setObjectName("widget3Fro")
         
         #1st intersection's button
         self.Int1Fro = QtWidgets.QPushButton(self.widget3Fro)
