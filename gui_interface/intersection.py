@@ -370,7 +370,7 @@ class Ui_Form(QWidget):
         self.Pic4Fro.raise_()
         self.Int4Fro.raise_()
         self.horizontalLayoutFront.addWidget(self.widget6Fro)
-
+        
         #widget for 5th intersection part
         self.widget7Fro = QtWidgets.QWidget(self.widgetFrontAll)
         self.widget7Fro.setMinimumSize(QtCore.QSize(110, 455))
@@ -1217,8 +1217,8 @@ class Ui_Form(QWidget):
         self.Int2Fro.setText(_translate("Form", "2"))
         self.Int3Fro.setText(_translate("Form", "3"))
         self.Int4Fro.setText(_translate("Form", "4"))
-        self.Int5Fro.setText(_translate("Form", "5"))
-        self.Int6Fro.setText(_translate("Form", "6"))
+        # self.Int5Fro.setText(_translate("Form", "5"))
+        # self.Int6Fro.setText(_translate("Form", "6"))
         #Intersection Translate 
 
         self.setWindowTitle(_translate("Form", "Form"))

@@ -166,28 +166,28 @@ class Main(QMainWindow):
         self.spectator.set_transform(carla.Transform(carla.Location(x=-190, y=1.29, z=75.0), carla.Rotation(pitch=-88.0, yaw= -1.85, roll=1.595)))
         self.env = CARLA_ENV(self.world)  
         self.traffic_light_list = get_traffic_lights(self.world.get_actors())
-        self.intersection_list = create_intersections(self.env, 4, self.traffic_light_list, self.navigation_speed)
+        self.intersection_list = create_intersections(self.env, 6, self.traffic_light_list, self.navigation_speed)
         
 
 
 
 
         #lists initialized
-        for i in range(4):
+        for i in range(6): # changed all to 6 was 4
             light_list_one = [[0.00, 10.00, 10.00, 15.00, 15.00, 25.00], [0.00, 10.00, 10.00, 15.00, 15.00, 25.00], [0.00, 10.00, 10.00, 15.00, 15.00, 25.00], [0.00, 10.00, 10.00, 15.00, 15.00, 25.00]]
             self.light_list_all.append(light_list_one)
             self.saved_intersections.append(None)
             inter_list = []
-            for j in range(4):
+            for j in range(6):
                 lane_list = []
                 inter_list.append(lane_list)
 
             self.car_list.append(inter_list)
-        for i in range(4):
+        for i in range(6):
             inter_list = []
-            for j in range(4):
+            for j in range(6):
                 lane_list = []
-                for k in range(4):
+                for k in range(6):
                     lane_list.append(False)
                 inter_list.append(lane_list)
             self.delete_car.append(inter_list)
@@ -253,28 +253,30 @@ class Main(QMainWindow):
             self.inter.RightMostFro.hide()
             self.inter.LeftFro.hide()
             self.inter.LeftMostFro.hide()
-
+            print("length of intersection",len(self.intersection_list))
             for i in range(len(self.intersection_list)):
                 Button = widgetmaps[i].findChild(QPushButton)
                 Button.show()
-
+            """
             for i in range(len(self.intersection_list), 6):
                 Button = widgetmaps[i].findChild(QPushButton)
                 Button.hide()
+            """
+
 
     # back end haddle change of intersection
     def change_int(self):
         
         num = self.inter.spinBoxNumIntFro.value()
 
-        # unfinished, only support 4 intersections now
-        num = min(num, 4)
+        # attempt to support 6 intersection, 4 must work
+        num = min(num, 6)
         self.inter.spinBoxNumIntFro.setValue(num)
 
         IntNFro = [self.inter.Int1Fro, self.inter.Int2Fro, self.inter.Int3Fro, 
                    self.inter.Int4Fro, self.inter.Int5Fro, self.inter.Int6Fro,]
         # it is much easier to stop user from click the button
-        for i in range(num, 4):
+        for i in range(num, 6):
             IntNFro[i].setEnabled(False)
         for i in range(0, num):
             IntNFro[i].setEnabled(True)
